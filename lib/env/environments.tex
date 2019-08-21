@@ -1,0 +1,226 @@
+% Template:     Template Tesis LaTeX
+% Documento:    Definición de entornos
+% Versión:      0.0.3 (20/08/2019)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R. @ppizarror
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo.pizarro@ing.uchile.cl, ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/Template-Tesis/]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+\newenvironment{references}{
+\ifthenelse{\equal{\stylecitereferences}{bibtex}}{
+	}{
+		\throwerror{\references}{Solo se puede usar entorno references con estilo citas \noexpand\stylecitereferences=bibtex}
+	}
+	\begingroup
+\ifthenelse{\equal{\sectionrefenv}{true}}{
+		\section{\namereferences}
+	}{
+		\sectionanum{\namereferences}
+	}
+	\renewcommand{\section}[2]{}
+\begin{thebibliography}{99}
+	}
+	{
+	\end{thebibliography}
+\endgroup
+}
+\newenvironment{anexo}{
+\begingroup
+	\clearpage
+	\phantomsection
+\changeheadertitle{\nomltappendixsection}
+\def\GLOBALsectionalph{true}
+\appendixtitleon
+	\appendicestocpagenum
+	\appendixtitletocon
+	\bookmarksetup{
+		numbered,
+		openlevel=0
+	}
+	\bookmarksetupnext{level=part}
+\begin{appendices}
+		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
+			\belowpdfbookmark{\nameappendixsection}{contents}
+		}
+		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
+			\counterwithin{equation}{section}
+			\counterwithin{figure}{section}
+			\counterwithin{lstlisting}{section}
+			\counterwithin{table}{section}}{
+		}
+	}{
+	\end{appendices}
+\def\GLOBALsectionalph{false}
+\bookmarksetupnext{level=0}
+	\endgroup
+}
+\newcommand{\coreinitsourcecodep}[4]{
+	\emptyvarerr{sourcecodep}{#2}{Estilo no definido}
+	\checkvalidsourcecodestyle{#2}
+	\ifthenelse{\equal{\showlinenumbers}{true}}{
+		\rightlinenumbers}{
+	}
+	\lstset{
+		backgroundcolor=\color{\sourcecodebgcolor}
+	}
+	\ifthenelse{\equal{\codecaptiontop}{true}}{
+		\ifx\hfuzz#4\hfuzz
+			\ifx\hfuzz#3\hfuzz
+				\lstset{
+					style=#2
+				}
+			\else
+				\lstset{
+					style=#2,
+					#3
+				}
+			\fi
+		\else
+			\ifx\hfuzz#3\hfuzz
+				\lstset{
+					caption={#4 #1},
+					captionpos=t,
+					style=#2
+				}
+			\else
+				\lstset{
+					caption={#4 #1},
+					captionpos=t,
+					style=#2,
+					#3
+				}
+			\fi
+		\fi
+	}{
+		\ifx\hfuzz#4\hfuzz
+			\ifx\hfuzz#3\hfuzz
+				\lstset{
+					style=#2
+				}
+			\else
+				\lstset{
+					style=#2,
+					#3
+				}
+			\fi
+		\else
+			\ifx\hfuzz#3\hfuzz
+				\lstset{
+					caption={#4 #1},
+					captionpos=b,
+					style=#2
+				}
+			\else
+				\lstset{
+					caption={#4 #1},
+					captionpos=b,
+					style=#2,
+					#3
+				}
+			\fi
+		\fi	
+	}
+}
+\lstnewenvironment{sourcecodep}[4][]{
+	\coreinitsourcecodep{#1}{#2}{#3}{#4}
+}{
+	\ifthenelse{\equal{\showlinenumbers}{true}}{
+		\leftlinenumbers}{
+	}
+}
+\newcommand{\importsourcecodep}[5][]{
+	\coreinitsourcecodep{#1}{#2}{#3}{#5}
+	\inputlisting{#4}
+	\ifthenelse{\equal{\showlinenumbers}{true}}{
+		\leftlinenumbers}{
+	}
+}
+\newcommand{\coreinitsourcecode}[3]{
+	\emptyvarerr{\equationresize}{#2}{Estilo no definido}
+	\checkvalidsourcecodestyle{#2}
+	\ifthenelse{\equal{\showlinenumbers}{true}}{
+		\rightlinenumbers}{
+	}
+	\lstset{
+		backgroundcolor=\color{\sourcecodebgcolor}
+	}
+	\ifthenelse{\equal{\codecaptiontop}{true}}{
+		\ifx\hfuzz#3\hfuzz
+			\lstset{
+				style=#2
+			}
+		\else
+			\lstset{
+				style=#2,
+				caption={#3 #1},
+				captionpos=t
+			}
+		\fi
+	}{
+		\ifx\hfuzz#3\hfuzz
+			\lstset{
+				style=#2
+			}
+		\else
+			\lstset{
+				style=#2,
+				caption={#3 #1},
+				captionpos=b
+			}
+		\fi
+	}
+}
+\lstnewenvironment{sourcecode}[3][]{
+	\coreinitsourcecode{#1}{#2}{#3}
+}{
+	\ifthenelse{\equal{\showlinenumbers}{true}}{
+		\leftlinenumbers}{
+	}
+}
+\newcommand{\importsourcecode}[4][]{
+	\coreinitsourcecode{#1}{#2}{#4}
+	\lstinputlisting{#3}
+	\ifthenelse{\equal{\showlinenumbers}{true}}{
+		\leftlinenumbers}{
+	}
+}
+\newenvironment{itemizebf}[1][]{
+	\begin{itemize}[font=\bfseries,#1]
+	}{
+	\end{itemize}
+}
+\newenvironment{enumeratebf}[1][]{
+	\begin{enumerate}[font=\bfseries,#1]
+	}{
+	\end{enumerate}
+}
+\newenvironment{resumen}{
+	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
+	\sectionanumnoiheadless{\nameabstract}}{
+}
+\newenvironment{images}[2][]{
+	\def\envimageslabelvar {#1}
+	\def\envimagescaptionvar {#2}
+	\def\GLOBALenvimageinitialized {true}
+	\def\GLOBALenvimageadded {false}
+	\vspace{\marginimagetop cm}
+	\captionsetup{margin=\captionmarginmultimg cm}
+	\begin{figure}[H] \centering
+		\vspace{\marginimagemulttop cm}
+		}{
+		\setcaptionmargincm{\captionlrmargin}
+\ifthenelse{\equal{\envimagescaptionvar}{}}{
+			\vspace{\captionlessmarginimage cm}
+		}{
+			\caption{\envimagescaptionvar\envimageslabelvar}
+		}
+	\end{figure}
+	\setcaptionmargincm{\captionlrmargin}
+	\vspace{\marginimagebottom cm}
+	\def\GLOBALenvimageinitialized {false}
+}

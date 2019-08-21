@@ -1,0 +1,398 @@
+% Template:     Template Tesis LaTeX
+% Documento:    Funciones para insertar ecuaciones
+% Versión:      0.0.3 (20/08/2019)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R. @ppizarror
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo.pizarro@ing.uchile.cl, ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/Template-Tesis/]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+\newcommand{\equationresize}[2]{
+	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
+	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
+	\resizebox{#1\textwidth}{!}{$#2$}
+}
+\newcommand{\insertequation}[2][]{
+	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}
+	\ifthenelse{\equal{\numberedequation}{true}}{
+		\vspace{\marginequationtop cm}
+		\begin{equation}
+			\text{#1} #2
+		\end{equation}
+		\vspace{\marginequationbottom cm}
+	}{
+		\ifx\hfuzz#1\hfuzz
+		\else
+			\throwwarning{Label invalido en ecuacion sin numero}
+		\fi
+		\insertequationanum{#2}
+	}
+}
+\newcommand{\insertequationanum}[1]{
+	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}
+	\vspace{\marginequationtop cm}
+	\begin{equation*}
+		\ensuremath{#1}
+	\end{equation*}
+	\vspace{\marginequationbottom cm}
+}
+\newcommand{\insertequationleft}[2][]{
+	\emptyvarerr{\insertequationleft}{#2}{Ecuacion no definida}
+	\ifthenelse{\equal{\numberedequation}{true}}{
+		\vspace{\marginequationtop cm}
+		\vspace{-\baselineskip}
+		\begin{equation}
+			\hfilneg \text{#1} #2 \hspace{10000pt minus 1fil}
+		\end{equation}
+		\vspace{\marginequationbottom cm}
+	}{
+		\ifx\hfuzz#1\hfuzz
+		\else
+			\throwwarning{Label invalido en ecuacion sin numero}
+		\fi
+		\insertequationleftanum{#2}
+	}
+}
+\newcommand{\insertequationleftanum}[1]{
+	\emptyvarerr{\insertequationleftanum}{#1}{Ecuacion no definida}
+	\vspace{\marginequationtop cm}
+	\vspace{-\baselineskip}
+	\begin{equation*}
+		\hfilneg \ensuremath{#1} \hspace{10000pt minus 1fil}
+	\end{equation*}
+	\vspace{\marginequationbottom cm}
+}
+\newcommand{\insertequationright}[2][]{
+	\emptyvarerr{\insertequationright}{#2}{Ecuacion no definida}
+	\ifthenelse{\equal{\numberedequation}{true}}{
+		\vspace{\marginequationtop cm}
+		\vspace{-\baselineskip}
+		\begin{equation}
+			\hspace{10000pt minus 1fil} \text{#1} #2 \hfilneg
+		\end{equation}
+		\vspace{\marginequationbottom cm}
+	}{
+		\ifx\hfuzz#1\hfuzz
+		\else
+			\throwwarning{Label invalido en ecuacion sin numero}
+		\fi
+		\insertequationrightanum{#2}
+	}
+}
+\newcommand{\insertequationrightanum}[1]{
+	\emptyvarerr{\insertequationrightanum}{#1}{Ecuacion no definida}
+	\vspace{\marginequationtop cm}
+	\vspace{-\baselineskip}
+	\begin{equation*}
+		\hspace{10000pt minus 1fil} \ensuremath{#1} \hfilneg
+	\end{equation*}
+	\vspace{\marginequationbottom cm}
+}
+\newcommand{\insertequationcaptioned}[3][]{
+	\emptyvarerr{\insertequationcaptioned}{#2}{Ecuacion no definida}
+	\ifx\hfuzz#3\hfuzz
+		\insertequation[#1]{#2}
+	\else
+		\ifthenelse{\equal{\numberedequation}{true}}{
+			\vspace{\marginequationtop cm}
+			\begin{equation}
+				\text{#1} #2
+			\end{equation}
+			\vspace{\margineqncaptiontop cm}
+			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+				\centering \textcolor{\captiontextcolor}{#3}
+				\vspace{\margineqncaptionbottom cm}
+			\end{changemargin}
+			\vspace{\margineqncaptionbottom cm}
+		}{
+			\ifx\hfuzz#1\hfuzz
+			\else
+				\throwwarning{Label invalido en ecuacion sin numero}
+			\fi
+			\insertequationcaptionedanum{#2}{#3}
+		}
+	\fi
+}
+\newcommand{\insertequationcaptionedanum}[2]{
+	\emptyvarerr{\insertequationcaptionedanum}{#1}{Ecuacion no definida}
+	\ifx\hfuzz#2\hfuzz
+		\insertequationanum{#1}
+	\else
+		\vspace{\marginequationtop cm}
+		\begin{equation*}
+			\ensuremath{#1}
+		\end{equation*}
+		\vspace{\margineqncaptiontop cm}
+		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+			\centering \textcolor{\captiontextcolor}{#2}
+			\vspace{\margineqncaptionbottom cm}
+		\end{changemargin}
+		\vspace{\margineqncaptionbottom cm}
+	\fi
+}
+\newcommand{\insertgather}[1]{
+	\emptyvarerr{\insertgather}{#1}{Ecuacion no definida}
+	\ifthenelse{\equal{\numberedequation}{true}}{
+		\vspace{\margingathertop cm}
+		\begin{gather}
+			\ensuremath{#1}
+		\end{gather}
+		\vspace{\margingatherbottom cm}
+	}{
+		\insertgatheranum{#1}
+	}
+}
+\newcommand{\insertgatheranum}[1]{
+	\emptyvarerr{\insertgatheranum}{#1}{Ecuacion no definida}
+	\vspace{\margingathertop cm}
+	\begin{gather*}
+		\ensuremath{#1}
+	\end{gather*}
+	\vspace{\margingatherbottom cm}
+}
+\newcommand{\insertgathercaptioned}[2]{
+	\emptyvarerr{\insertgathercaptioned}{#1}{Ecuacion no definida}
+	\ifx\hfuzz#2\hfuzz
+		\insertgather{#1}
+	\else
+		\ifthenelse{\equal{\numberedequation}{true}}{
+			\vspace{\margingathertop cm}
+			\begin{gather}
+				\ensuremath{#1}
+			\end{gather}
+			\vspace{\margingathercapttop cm}
+			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+				\centering \textcolor{\captiontextcolor}{#2}
+				\vspace{\margingathercaptbottom cm}
+			\end{changemargin}
+			\vspace{\margingathercaptbottom cm}
+		}{
+			\insertgathercaptionedanum{#1}{#2}
+		}
+	\fi
+}
+\newcommand{\insertgathercaptionedanum}[2]{
+	\emptyvarerr{\insertgathercaptionedanum}{#1}{Ecuacion no definida}
+	\ifx\hfuzz#2\hfuzz
+		\insertgatheranum{#1}
+	\else
+		\vspace{\margingathertop cm}
+		\begin{gather*}
+			\ensuremath{#1}
+		\end{gather*}
+		\vspace{\margingathercapttop cm}
+		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+			\centering \textcolor{\captiontextcolor}{#2}
+			\vspace{\margingathercaptbottom cm}
+		\end{changemargin}
+		\vspace{\margingathercaptbottom cm}
+	\fi
+}
+\newcommand{\insertgathered}[2][]{
+	\emptyvarerr{\insertgathered}{#2}{Ecuacion no definida}
+	\ifthenelse{\equal{\numberedequation}{true}}{
+		\vspace{\marginequationtop cm}
+		\begin{equation}
+			\begin{gathered}
+				\text{#1} \ensuremath{#2}
+			\end{gathered}
+		\end{equation}
+		\vspace{\margingatheredbottom cm}
+	}{
+		\ifx\hfuzz#1\hfuzz
+		\else
+			\throwwarning{Label invalido en ecuacion (gathered) sin numero}
+		\fi
+\vspace{\margingatheredtop cm}
+		\begin{gather*}
+			\ensuremath{#2}
+		\end{gather*}
+		\vspace{\margingatheredbottom cm}
+	}
+}
+\newcommand{\insertgatheredanum}[1]{
+	\emptyvarerr{\insertgatheredanum}{#1}{Ecuacion no definida}
+	\vspace{\margingatheredtop cm}
+	\begin{gather*}
+		\ensuremath{#1}
+	\end{gather*}
+	\vspace{\margingatheredbottom cm}
+}
+\newcommand{\insertgatheredcaptioned}[3][]{
+	\emptyvarerr{\insertgatheredcaptioned}{#2}{Ecuacion no definida}
+	\ifx\hfuzz#3\hfuzz
+		\insertgathered[#1]{#2}
+	\else
+		\ifthenelse{\equal{\numberedequation}{true}}{
+			\vspace{\marginequationtop cm}
+			\begin{equation}
+				\begin{gathered}
+					\text{#1} \ensuremath{#2}
+				\end{gathered}
+			\end{equation}
+			\vspace{\margingatheredcapttop cm}
+			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+				\centering \textcolor{\captiontextcolor}{#3}
+				\vspace{\margingatheredcaptbottom cm}
+			\end{changemargin}
+			\vspace{\margingatheredcaptbottom cm}
+		}{
+			\ifx\hfuzz#1\hfuzz
+			\else
+				\throwwarning{Label invalido en ecuacion (gathered) sin numero}
+			\fi
+			\insertgatheredcaptionedanum{#2}{#3}
+		}
+		\fi
+}
+\newcommand{\insertgatheredcaptionedanum}[2]{
+	\emptyvarerr{\insertgatheredcaptionedanum}{#1}{Ecuacion no definida}
+	\ifx\hfuzz#2\hfuzz
+		\insertgatheredanum{#1}
+	\else
+		\vspace{\margingatheredtop cm}
+		\begin{gather*}
+			\ensuremath{#1}
+		\end{gather*}
+		\vspace{\margingatheredcapttop cm}
+		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+			\centering \textcolor{\captiontextcolor}{#2}
+			\vspace{\margingatheredcaptbottom cm}
+		\end{changemargin}
+		\vspace{\margingathercaptbottom cm}
+	\fi
+}
+\newcommand{\insertalign}[1]{
+	\emptyvarerr{\insertalign}{#1}{Ecuacion no definida}
+	\ifthenelse{\equal{\numberedequation}{true}}{
+		\vspace{\marginaligntop cm}
+		\begin{align}
+			\ensuremath{#1}
+		\end{align}
+		\vspace{\marginalignbottom cm}
+	}{
+		\insertalignanum{#1}
+	}
+}
+\newcommand{\insertalignanum}[1]{
+	\emptyvarerr{\insertalignanum}{#1}{Ecuacion no definida}
+	\vspace{\marginaligntop cm}
+	\begin{align*}
+		\ensuremath{#1}
+	\end{align*}
+	\vspace{\marginalignbottom cm}
+}
+\newcommand{\insertaligncaptioned}[2]{
+	\emptyvarerr{\insertaligncaptioned}{#1}{Ecuacion no definida}
+	\ifx\hfuzz#2\hfuzz
+		\insertalign{#1}
+	\else
+		\ifthenelse{\equal{\numberedequation}{true}}{
+			\vspace{\marginaligntop cm}
+			\begin{align}
+				\ensuremath{#1}
+			\end{align}
+			\vspace{\marginaligncapttop cm}
+			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+				\centering \textcolor{\captiontextcolor}{#2}
+				\vspace{\marginaligncaptbottom cm}
+			\end{changemargin}
+			\vspace{\marginaligncaptbottom cm}
+		}{
+			\insertaligncaptionedanum{#1}{#2}
+		}
+	\fi
+}
+\newcommand{\insertaligncaptionedanum}[2]{
+	\emptyvarerr{\insertaligncaptioned}{#1}{Ecuacion no definida}
+	\ifx\hfuzz#2\hfuzz
+		\insertalignanum{#1}
+	\else
+		\vspace{\marginaligntop cm}
+		\begin{align*}
+			\ensuremath{#1}
+		\end{align*}
+		\vspace{\marginaligncapttop cm}
+		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+			\centering \textcolor{\captiontextcolor}{#2}
+			\vspace{\marginaligncaptbottom cm}
+		\end{changemargin}
+		\vspace{\marginaligncaptbottom cm}
+	\fi
+}
+\newcommand{\insertaligned}[2][]{
+	\emptyvarerr{\insertaligned}{#2}{Ecuacion no definida}
+	\ifthenelse{\equal{\numberedequation}{true}}{
+		\vspace{\marginequationtop cm}
+		\begin{equation}
+			\begin{aligned}
+				\text{#1} \ensuremath{#2}
+			\end{aligned}
+		\end{equation}
+		\vspace{\marginalignedbottom cm}
+	}{
+		\ifx\hfuzz#1\hfuzz
+		\else
+			\throwwarning{Label invalido en ecuacion (aligned) sin numero}
+		\fi
+		\insertalignedanum{#2}
+	}
+}
+\newcommand{\insertalignedanum}[1]{
+	\emptyvarerr{\insertalignedanum}{#1}{Ecuacion no definida}
+	\vspace{\marginalignedtop cm}
+	\begin{align*}
+		\ensuremath{#1}
+	\end{align*}
+	\vspace{\marginalignedbottom cm}
+}
+\newcommand{\insertalignedcaptioned}[3][]{
+	\emptyvarerr{\insertalignedcaptioned}{#2}{Ecuacion no definida}
+	\ifx\hfuzz#3\hfuzz
+		\insertaligned[#1]{#2}
+	\else
+		\ifthenelse{\equal{\numberedequation}{true}}{
+			\vspace{\marginequationtop cm}
+			\begin{equation}
+				\begin{aligned}
+					\text{#1} \ensuremath{#2}
+				\end{aligned}
+			\end{equation}
+			\vspace{\marginalignedcapttop cm}
+			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+				\centering \textcolor{\captiontextcolor}{#3}
+				\vspace{\marginalignedcaptbottom cm}
+			\end{changemargin}
+			\vspace{\marginalignedcaptbottom cm}
+		}{
+			\ifx\hfuzz#1\hfuzz
+			\else
+				\throwwarning{Label invalido en ecuacion (aligned) sin numero}
+			\fi
+			\insertalignedcaptionedanum{#2}{#3}
+		}
+	\fi
+}
+\newcommand{\insertalignedcaptionedanum}[2]{
+	\emptyvarerr{\insertalignedcaptioned}{#1}{Ecuacion no definida}
+	\ifx\hfuzz#2\hfuzz
+		\insertalignedanum{#1}
+	\else
+		\vspace{\marginequationtop cm}
+		\begin{equation}
+			\begin{aligned}
+				\ensuremath{#1}
+			\end{aligned}
+		\end{equation}
+		\vspace{\marginalignedcapttop cm}
+		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+			\centering \textcolor{\captiontextcolor}{#2}
+			\vspace{\marginalignedcaptbottom cm}
+		\end{changemargin}
+		\vspace{\marginalignedcaptbottom cm}
+	\fi
+}

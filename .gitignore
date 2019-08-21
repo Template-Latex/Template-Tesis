@@ -1,0 +1,48 @@
+# Archivos creados por TeXstudio.
+*.aux
+*.lof
+*.lomycapequ
+*.lot
+*.out
+*.synctex.*
+*.toc
+*.log
+*.lol
+*.bbl
+*.blg
+*(busy)*
+
+# Releases.
+*.zip
+
+# Windows.
+desktop.ini
+
+# OSX.
+__MACOSX/
+.DS_Store
+
+# Ignora proyecto PyCharm
+.idea/
+
+# Ignora archivos compilados de python
+*.pyc
+
+# Ignora el main.pdf
+main.pdf
+
+# Ignora tesis.pdf
+tesis.pdf
+
+# Logs
+log.txt
+
+# Distribución
+dist/
+
+# Archivos gitkeep
+*.gitkeep
+*/*.gitkeep
+
+# Archivos temporales
+*_temp.tex

@@ -1,0 +1,132 @@
+% Template:     Template Tesis LaTeX
+% Documento:    Funciones matemáticas
+% Versión:      0.0.3 (20/08/2019)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R. @ppizarror
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo.pizarro@ing.uchile.cl, ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/Template-Tesis/]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+\newcommand{\lpow}[2]{
+	\ensuremath{{#1}_{#2}}
+}
+\newcommand{\pow}[2]{
+	\ensuremath{{#1}^{#2}}
+}
+\newcommand{\aasin}[1][]{
+	\ifx\hfuzz#1\hfuzz
+		\ensuremath{\sin^{-1}#1}
+	\else
+		\ensuremath{{\sin}^{-1}}
+	\fi
+}
+\newcommand{\aacos}[1][]{
+	\ifx\hfuzz#1\hfuzz
+		\ensuremath{\cos^{-1}#1}
+	\else
+		\ensuremath{\cos^{-1}}
+	\fi
+}
+\newcommand{\aatan}[1][]{
+	\ifx\hfuzz#1\hfuzz
+		\ensuremath{\tan^{-1}#1}
+	\else
+		\ensuremath{\tan^{-1}}
+	\fi
+}
+\newcommand{\aacsc}[1][]{
+	\ifx\hfuzz#1\hfuzz
+		\ensuremath{\csc^{-1}#1}
+	\else
+		\ensuremath{\csc^{-1}}
+	\fi
+}
+\newcommand{\aasec}[1][]{
+	\ifx\hfuzz#1\hfuzz
+		\ensuremath{\sec^{-1}#1}
+	\else
+		\ensuremath{\sec^{-1}}
+	\fi
+}
+\newcommand{\aacot}[1][]{
+	\ifx\hfuzz#1\hfuzz
+		\ensuremath{\cot^{-1}#1}
+	\else
+		\ensuremath{\cot^{-1}}
+	\fi
+}
+\newcommand{\fracpartial}[2]{
+	\ensuremath{\pdv{#1}{#2}}
+}
+\newcommand{\fracdpartial}[2]{
+	\ensuremath{\pdv[2]{#1}{#2}}
+}
+\newcommand{\fracnpartial}[3]{
+	\ensuremath{\pdv[#3]{#1}{#2}}
+}
+\newcommand{\fracderivat}[2]{
+	\ensuremath{\dv{#1}{#2}}
+}
+\newcommand{\fracdderivat}[2]{
+	\ensuremath{\dv[2]{#1}{#2}}
+}
+\newcommand{\fracnderivat}[3]{
+	\ensuremath{\dv[#3]{#1}{#2}}
+}
+\newcommand{\topequal}[2]{
+	\ensuremath{\overbrace{#1}^{\mathclap{#2}}}
+}
+\newcommand{\underequal}[2]{
+	\ensuremath{\underbrace{#1}_{\mathclap{#2}}}
+}
+\newcommand{\topsequal}[2]{
+	\ensuremath{\overbracket{#1}^{\mathclap{#2}}}
+}
+\newcommand{\undersequal}[2]{
+	\ensuremath{\underbracket{#1}_{\mathclap{#2}}}
+}
+\newcommand{\bigp}[1]{
+	\ensuremath{\big(#1\big)}
+}
+\newcommand{\biggp}[1]{
+	\ensuremath{\bigg(#1\bigg)}
+}
+\newcommand{\bigc}[1]{
+	\ensuremath{\big[#1\big]}
+}
+\newcommand{\biggc}[1]{
+	\ensuremath{\bigg[#1\bigg]}
+}
+\newcommand{\bigb}[1]{
+	\ensuremath{\big\{#1\big\}}
+}
+\newcommand{\biggb}[1]{
+	\ensuremath{\bigg\{#1\bigg\}}
+}
+\newcommand{\divexp}{
+	\ensuremath{\rm{div}\ }
+}
+\newcommand{\Autexp}{
+	\ensuremath{\rm{Aut}}
+}
+\newcommand{\Diffexp}{
+	\ensuremath{\rm{Diff}}
+}
+\newcommand{\Imexp}{
+	\ensuremath{\rm{Im}}
+}
+\newcommand{\Imzexp}{
+	\ensuremath{\rm{Im}(z)}
+}
+\newcommand{\Reexp}{
+	\ensuremath{\rm{Re}}
+}
+\newcommand{\Rezexp}{
+	\ensuremath{\rm{Re}(z)}
+}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}

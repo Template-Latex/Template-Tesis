@@ -1,0 +1,298 @@
+% Template:     Template Tesis LaTeX
+% Documento:    Funciones para insertar imágenes
+% Versión:      0.0.3 (20/08/2019)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R. @ppizarror
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo.pizarro@ing.uchile.cl, ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/Template-Tesis/]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+\newcommand{\addimage}[3]{\addimageboxed{#1}{#2}{0}{#3}}
+\newcommand{\addimageboxed}[4]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#4]{\fbox{\includegraphics[#2]{#1}}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
+\newcommand{\imagesnewline}{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\\\hspace{\GLOBALenvimagenewlinemarg cm}}
+\newcommand{\imageshspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\hspace{#1}}
+\newcommand{\imagesvspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}~ \\ \vspace*{#1}}
+\newcommand{\insertimage}[4][]{
+	\insertimageboxed[#1]{#2}{#3}{0}{#4}
+}
+\newcommand{\insertimageboxed}[5][]{
+	\emptyvarerr{\insertimageboxed}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageboxed}{#3}{Parametros de la imagen no definidos}
+	\emptyvarerr{\insertimageboxed}{#4}{Ancho de la linea no definido}
+	\checkoutsideenvimage
+	\vspace{\marginimagetop cm}
+	\begin{figure}[H]
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#4 pt}
+			\centering
+			\fbox{\includegraphics[#3]{#2}}
+		\endgroup
+		\ifx\hfuzz#5\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\hspace{0cm}\caption{#5 #1}
+		\fi
+	\end{figure}
+	\vspace{\marginimagebottom cm}
+}
+\newcommand{\insertimageleft}[4][]{
+	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}
+}
+\newcommand{\insertimageleftboxed}[5][]{
+	\emptyvarerr{\insertimageleftboxed}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageleftboxed}{#3}{Ancho de la imagen no definido}
+	\emptyvarerr{\insertimageleftboxed}{#4}{Ancho de la linea no definido}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}{l}{#3\textwidth}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}
+		}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#4 pt}
+			\centering
+			\fbox{\includegraphics[width=\linewidth]{#2}}
+		\endgroup
+		\ifx\hfuzz#5\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#5 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimageleftline}[5][]{
+	\insertimageleftlineboxed[#1]{#2}{#3}{0}{#4}{#5}
+}
+\newcommand{\insertimageleftlineboxed}[6][]{
+	\emptyvarerr{\insertimageleftlineboxed}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageleftlineboxed}{#3}{Ancho de la imagen no definido}
+	\emptyvarerr{\insertimageleftlineboxed}{#4}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimageleftlineboxed}{#5}{Altura en lineas de la imagen flotante izquierda no definida}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}[#5]{l}{#3\textwidth}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#4 pt}
+			\centering
+			\fbox{\includegraphics[width=\linewidth]{#2}}
+		\endgroup
+		\ifx\hfuzz#6\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#6 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimageright}[4][]{
+	\insertimagerightboxed[#1]{#2}{#3}{0}{#4}
+}
+\newcommand{\insertimagerightboxed}[5][]{
+	\emptyvarerr{\insertimagerightboxed}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimagerightboxed}{#3}{Ancho de la imagen no defindo}
+	\emptyvarerr{\insertimagerightboxed}{#4}{Ancho de la linea no definido}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}{r}{#3\textwidth}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}
+		}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#4 pt}
+			\centering
+			\fbox{\includegraphics[width=\linewidth]{#2}}
+		\endgroup
+		\ifx\hfuzz#5\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#5 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimagerightline}[5][]{
+	\insertimagerightlineboxed[#1]{#2}{#3}{0}{#4}{#5}
+}
+\newcommand{\insertimagerightlineboxed}[6][]{
+	\emptyvarerr{\insertimagerightlineboxed}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimagerightlineboxed}{#3}{Ancho de la imagen no defindo}
+	\emptyvarerr{\insertimagerightlineboxed}{#4}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimagerightlineboxed}{#5}{Altura en lineas de la imagen flotante derecha no definida}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}[#5]{r}{#3\textwidth}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}
+		}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#4 pt}
+			\centering
+			\fbox{\includegraphics[width=\linewidth]{#2}}
+		\endgroup
+		\ifx\hfuzz#6\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#6 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimageleftp}[5][]{
+	\xspace~\\
+	\vspace{-2\baselineskip}
+	\par
+	\insertimageleftboxedp[#1]{#2}{#3}{#4}{0}{#5}
+}
+\newcommand{\insertimageleftboxedp}[6][]{
+	\emptyvarerr{\insertimageleftboxedp}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageleftboxedp}{#3}{Ancho del objeto no definido}
+	\emptyvarerr{\insertimageleftboxedp}{#4}{Propiedades de la imagen no defindos}
+	\emptyvarerr{\insertimageleftboxedp}{#5}{Ancho de la linea no definido}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}{l}{#3}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}
+		}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#5 pt}
+			\centering
+			\fbox{\includegraphics[#4]{#2}}
+		\endgroup
+		\ifx\hfuzz#6\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#6 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimageleftlinep}[6][]{
+	\insertimageleftlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
+}
+\newcommand{\insertimageleftlineboxedp}[7][]{
+	\emptyvarerr{\insertimageleftlineboxedp}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageleftlineboxedp}{#3}{Ancho del objeto no definido}
+	\emptyvarerr{\insertimageleftlineboxedp}{#4}{Propiedades de la imagen no definidos}
+	\emptyvarerr{\insertimageleftlineboxedp}{#5}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimageleftlineboxedp}{#6}{Altura en lineas de la imagen flotante izquierda no definida}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}[#6]{l}{#3}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}
+		}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#5 pt}
+			\centering
+			\fbox{\includegraphics[#4]{#2}}
+		\endgroup
+		\ifx\hfuzz#7\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#7 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimagerightp}[5][]{
+	\xspace~\\
+	\vspace{-2\baselineskip}
+	\par
+	\insertimagerightboxedp[#1]{#2}{#3}{#4}{0}{#5}
+}
+\newcommand{\insertimagerightboxedp}[6][]{
+	\emptyvarerr{\insertimagerightboxedp}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimagerightboxedp}{#3}{Ancho del objeto no definido}
+	\emptyvarerr{\insertimagerightboxedp}{#4}{Propiedades de la imagen no definidos}
+	\emptyvarerr{\insertimagerightboxedp}{#5}{Ancho de la linea no definido}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}{r}{#3}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}
+		}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#5 pt}
+			\centering
+			\fbox{\includegraphics[#4]{#2}}
+		\endgroup
+		\ifx\hfuzz#6\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#6 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimagerightlinep}[6][]{
+	\insertimagerightlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
+}
+\newcommand{\insertimagerightlineboxedp}[7][]{
+	\emptyvarerr{\insertimagerightlineboxedp}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimagerightlineboxedp}{#3}{Ancho del objeto no definido}
+	\emptyvarerr{\insertimagerightlineboxedp}{#4}{Propiedades de la imagen no definidos}
+	\emptyvarerr{\insertimagerightlineboxedp}{#5}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimagerightlineboxedp}{#6}{Altura en lineas de la imagen flotante derecha no definida}
+	\checkoutsideenvimage
+	~
+	\vspace{-\baselineskip}
+	\par
+	\begin{wrapfigure}[#6]{r}{#3}
+		\setcaptionmargincm{0}
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
+			\vspace{\marginfloatimages pt}
+		}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#5 pt}
+			\centering
+			\fbox{\includegraphics[#4]{#2}}
+		\endgroup
+		\ifx\hfuzz#7\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\caption{#7 #1}
+		\fi
+	\end{wrapfigure}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\makeatletter
+\define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
+\makeatother

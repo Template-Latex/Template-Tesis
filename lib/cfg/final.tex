@@ -1,0 +1,267 @@
+% Template:     Template Tesis LaTeX
+% Documento:    Configuraciones finales
+% Versión:      0.0.3 (20/08/2019)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R. @ppizarror
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo.pizarro@ing.uchile.cl, ppizarror.com
+%
+% Sitio web:    [https://latex.ppizarror.com/Template-Tesis/]
+% Licencia MIT: [https://opensource.org/licenses/MIT]
+
+\markboth{}{}
+\newpage
+\ifthenelse{\equal{\disablehfrightmark}{false}}{
+	\ifthenelse{\equal{\hfstyle}{style1}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}}{
+	}
+	\ifthenelse{\equal{\hfstyle}{style2}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}}{
+	}
+	\ifthenelse{\equal{\hfstyle}{style4}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}}{
+	}
+	\ifthenelse{\equal{\hfstyle}{style5}}{
+		\ifthenelse{\equal{\hfwidthwrap}{true}}{
+			\fancyhead[R]{
+				\begin{minipage}[t]{\hfwidthtitle\linewidth}
+					\begin{flushright}
+						\nouppercase{\leftmark}
+					\end{flushright}
+				\end{minipage}
+			}
+		}{
+			\fancyhead[R]{\nouppercase{\leftmark}}
+		}}{
+	}
+	\ifthenelse{\equal{\hfstyle}{style9}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}}{
+	}
+	\ifthenelse{\equal{\hfstyle}{style10}}{
+		\ifthenelse{\equal{\hfwidthwrap}{true}}{
+			\fancyhead[L]{
+				\begin{minipage}[t]{\hfwidthtitle\linewidth}
+					\begin{flushleft}
+						\nouppercase{\leftmark}
+					\end{flushleft}
+				\end{minipage}
+			}
+		}{
+			\fancyhead[L]{\nouppercase{\leftmark}}
+		}}{
+	}
+\ifthenelse{\equal{\hfstyle}{style11}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}}{
+	}
+\ifthenelse{\equal{\hfstyle}{style14}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}}{
+	}
+\ifthenelse{\equal{\hfstyle}{style15}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}}{
+	}
+	}{
+}
+\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
+\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
+\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
+\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
+	\def\sectionobjectnumcode {}
+}{
+\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
+	\def\sectionobjectnumcode {\thesection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{
+	\def\sectionobjectnumcode {\thesubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{
+	\def\sectionobjectnumcode {\thesubsubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{
+	\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\def\sectionobjectnumcode {\thesubsubsubsection}
+	}{
+		\def\sectionobjectnumcode {\thesubsubsubsection\sectioncaptiondelimiter}
+	}
+}{
+	\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,sec,ssec,sssec,ssssec}}}}}
+}
+\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
+	\def\sectionobjectnumeqn {}
+}{
+\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{
+	\def\sectionobjectnumeqn {\thesection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{
+	\def\sectionobjectnumeqn {\thesubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{
+	\def\sectionobjectnumeqn {\thesubsubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{
+	\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\def\sectionobjectnumeqn {\thesubsubsubsection}
+	}{
+		\def\sectionobjectnumeqn {\thesubsubsubsection\sectioncaptiondelimiter}
+	}
+}{
+	\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,sec,ssec,sssec,ssssec}}}}}
+}
+\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
+	\def\sectionobjectnumfig {}
+}{
+\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{
+	\def\sectionobjectnumfig {\thesection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{
+	\def\sectionobjectnumfig {\thesubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{
+	\def\sectionobjectnumfig {\thesubsubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{
+	\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\def\sectionobjectnumfig {\thesubsubsubsection}
+	}{
+		\def\sectionobjectnumfig {\thesubsubsubsection\sectioncaptiondelimiter}
+	}
+}{
+	\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,sec,ssec,sssec,ssssec}}}}}
+}
+\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
+	\def\sectionobjectnumtab {}
+}{
+\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{
+	\def\sectionobjectnumtab {\thesection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{
+	\def\sectionobjectnumtab {\thesubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{
+	\def\sectionobjectnumtab {\thesubsubsection\sectioncaptiondelimiter}
+}{
+\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{
+	\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\def\sectionobjectnumtab {\thesubsubsubsection}
+	}{
+		\def\sectionobjectnumtab {\thesubsubsubsection\sectioncaptiondelimiter}
+	}
+}{
+	\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,sec,ssec,sssec,ssssec}}}}}
+}
+\ifthenelse{\equal{\captionnumcode}{arabic}}{
+	\renewcommand{\thelstlisting}{\sectionobjectnumcode\arabic{lstlisting}}
+}{
+\ifthenelse{\equal{\captionnumcode}{alph}}{
+	\renewcommand{\thelstlisting}{\sectionobjectnumcode\alph{lstlisting}}
+}{
+\ifthenelse{\equal{\captionnumcode}{Alph}}{
+	\renewcommand{\thelstlisting}{\sectionobjectnumcode\Alph{lstlisting}}
+}{
+\ifthenelse{\equal{\captionnumcode}{roman}}{
+	\renewcommand{\thelstlisting}{\sectionobjectnumcode\roman{lstlisting}}
+}{
+\ifthenelse{\equal{\captionnumcode}{Roman}}{
+	\renewcommand{\thelstlisting}{\sectionobjectnumcode\Roman{lstlisting}}
+}{
+	\throwbadconfig{Tipo numero codigo fuente desconocido}{\captionnumcode}{arabic,alph,Alph,roman,Roman}}}}}
+}
+\ifthenelse{\equal{\captionnumequation}{arabic}}{
+	\renewcommand{\theequation}{\sectionobjectnumeqn\arabic{equation}}
+}{
+\ifthenelse{\equal{\captionnumequation}{alph}}{
+	\renewcommand{\theequation}{\sectionobjectnumeqn\alph{equation}}
+}{
+\ifthenelse{\equal{\captionnumequation}{Alph}}{
+	\renewcommand{\theequation}{\sectionobjectnumeqn\Alph{equation}}
+}{
+\ifthenelse{\equal{\captionnumequation}{roman}}{
+	\renewcommand{\theequation}{\sectionobjectnumeqn\roman{equation}}
+}{
+\ifthenelse{\equal{\captionnumequation}{Roman}}{
+	\renewcommand{\theequation}{\sectionobjectnumeqn\Roman{equation}}
+}{
+	\throwbadconfig{Tipo numero ecuacion desconocido}{\captionnumequation}{arabic,alph,Alph,roman,Roman}}}}}
+}
+\ifthenelse{\equal{\captionnumfigure}{arabic}}{
+	\renewcommand{\thefigure}{\sectionobjectnumfig\arabic{figure}}
+}{
+\ifthenelse{\equal{\captionnumfigure}{alph}}{
+	\renewcommand{\thefigure}{\sectionobjectnumfig\alph{figure}}
+}{
+\ifthenelse{\equal{\captionnumfigure}{Alph}}{
+	\renewcommand{\thefigure}{\sectionobjectnumfig\Alph{figure}}
+}{
+\ifthenelse{\equal{\captionnumfigure}{roman}}{
+	\renewcommand{\thefigure}{\sectionobjectnumfig\roman{figure}}
+}{
+\ifthenelse{\equal{\captionnumfigure}{Roman}}{
+	\renewcommand{\thefigure}{\sectionobjectnumfig\Roman{figure}}
+}{
+	\throwbadconfig{Tipo numero figura desconocido}{\captionnumfigure}{arabic,alph,Alph,roman,Roman}}}}}
+}
+\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{
+	\renewcommand{\thesubfigure}{\arabic{subfigure}}
+}{
+\ifthenelse{\equal{\captionnumsubfigure}{alph}}{
+	\renewcommand{\thesubfigure}{\alph{subfigure}}
+}{
+\ifthenelse{\equal{\captionnumsubfigure}{Alph}}{
+	\renewcommand{\thesubfigure}{\Alph{subfigure}}
+}{
+\ifthenelse{\equal{\captionnumsubfigure}{roman}}{
+	\renewcommand{\thesubfigure}{\roman{subfigure}}
+}{
+\ifthenelse{\equal{\captionnumsubfigure}{Roman}}{
+	\renewcommand{\thesubfigure}{\Roman{subfigure}}
+}{
+	\throwbadconfig{Tipo numero subfigura desconocido}{\captionnumsubfigure}{arabic,alph,Alph,roman,Roman}}}}}
+}
+\ifthenelse{\equal{\captionnumtable}{arabic}}{
+	\renewcommand{\thetable}{\sectionobjectnumtab\arabic{table}}
+}{
+\ifthenelse{\equal{\captionnumtable}{alph}}{
+	\renewcommand{\thetable}{\sectionobjectnumtab\alph{table}}
+}{
+\ifthenelse{\equal{\captionnumtable}{Alph}}{
+	\renewcommand{\thetable}{\sectionobjectnumtab\Alph{table}}
+}{
+\ifthenelse{\equal{\captionnumtable}{roman}}{
+	\renewcommand{\thetable}{\sectionobjectnumtab\roman{table}}
+}{
+\ifthenelse{\equal{\captionnumtable}{Roman}}{
+	\renewcommand{\thetable}{\sectionobjectnumtab\Roman{table}}
+}{
+	\throwbadconfig{Tipo numero tabla desconocido}{\captionnumtable}{arabic,alph,Alph,roman,Roman}}}}}
+}
+\ifthenelse{\equal{\captionnumsubtable}{arabic}}{
+	\renewcommand{\thesubtable}{\arabic{subtable}}
+}{
+\ifthenelse{\equal{\captionnumsubtable}{alph}}{
+	\renewcommand{\thesubtable}{\alph{subtable}}
+}{
+\ifthenelse{\equal{\captionnumsubtable}{Alph}}{
+	\renewcommand{\thesubtable}{\Alph{subtable}}
+}{
+\ifthenelse{\equal{\captionnumsubtable}{roman}}{
+	\renewcommand{\thesubtable}{\roman{subtable}}
+}{
+\ifthenelse{\equal{\captionnumsubtable}{Roman}}{
+	\renewcommand{\thesubtable}{\Roman{subtable}}
+}{
+	\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
+}
+\ifthenelse{\equal{\predocpageromannumber}{true}}{
+	\renewcommand{\thepage}{\arabic{page}}}{
+}
+\ifthenelse{\equal{\predocresetpagenumber}{true}}{
+	\setcounter{page}{1}}{
+}
+\setcounter{section}{0}
+\setcounter{footnote}{0}
+\ifthenelse{\equal{\showlinenumbers}{true}}{
+	\linenumbers}{
+}

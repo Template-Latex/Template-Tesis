@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      0.0.3 (20/08/2019)
+% Versión:      0.0.5 (21/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -13,7 +13,7 @@
 
 % CONFIGURACIONES GENERALES
 \def\addemptypagetwosides {false}  % Añade pag en blanco al imprimir a 2 caras
-\def\defaultinterline {1.0}        % Interlineado por defecto [pt]
+\def\defaultinterline {1.25}       % Interlineado por defecto [pt]
 \def\defaultnewlinesize {11}       % Tamaño del salto de línea [pt]
 \def\documentlang {es-CL}          % Define el idioma del documento
 \def\fontdocument {lmodern}        % Tipografía base, ver soportadas en manual
@@ -53,10 +53,10 @@
 \def\codecaptiontop {true}         % Leyenda arriba del código fuente
 \def\figurecaptiontop {false}      % Leyenda arriba de las imágenes
 \def\sectioncaptiondelimiter {.}   % Carácter delimitador N° objeto y sección
-\def\showsectioncaptioncode {none} % N° sec. código {none,(s/ss/sss/ssss)ec}
-\def\showsectioncaptioneqn {none}  % N° sec. ecuación {none,(s/ss/sss/ssss)ec}
-\def\showsectioncaptionfig {none}  % N° sec. figuras {none,(s/ss/sss/ssss)ec}
-\def\showsectioncaptiontab {none}  % N° sec. tablas {none,(s/ss/sss/ssss)ec}
+\def\showsectioncaptioncode {none} % N° sec. código {none,chap,(s/ss/sss/ssss)ec}
+\def\showsectioncaptioneqn {none}  % N° sec. ecuación {none,chap,(s/ss/sss/ssss)ec}
+\def\showsectioncaptionfig {none}  % N° sec. figuras {none,chap,(s/ss/sss/ssss)ec}
+\def\showsectioncaptiontab {none}  % N° sec. tablas {none,chap,(s/ss/sss/ssss)ec}
 \def\subcaptionlabelformat{parens} % Formato leyenda sub. {empty,simple,parens}
 \def\subcaptionlabelsep {space}    % Sep. {none,colon,period,space,quad,newline}
 \def\tablecaptiontop {true}        % Leyenda arriba de las tablas
@@ -168,10 +168,10 @@
 \def\urlcolor {magenta}            % Color de los enlaces web (\href,\url)
 
 % MÁRGENES DE PÁGINA
-\def\pagemarginbottom {2.54}       % Margen inferior página [cm]
-\def\pagemarginleft {2.54}         % Margen izquierdo página [cm]
-\def\pagemarginright {2.54}        % Margen derecho página [cm]
-\def\pagemargintop {2.54}          % Margen superior página [cm]
+\def\pagemarginbottom {2.5}       % Margen inferior página [cm]
+\def\pagemarginleft {4.0}         % Margen izquierdo página [cm]
+\def\pagemarginright {2.5}        % Margen derecho página [cm]
+\def\pagemargintop {4.0}          % Margen superior página [cm]
 
 % OPCIONES DEL PDF COMPILADO
 \def\addindextobookmarks {false}   % Añade el índice a los marcadores del pdf

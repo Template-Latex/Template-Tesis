@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      0.0.6 (21/08/2019)
+% Versión:      0.1.2 (21/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -48,10 +48,10 @@
 			\belowpdfbookmark{\nameappendixsection}{contents}
 		}
 		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
-			\counterwithin{equation}{section}
-			\counterwithin{figure}{section}
-			\counterwithin{lstlisting}{section}
-			\counterwithin{table}{section}}{
+\counterwithin{equation}{chapter}
+\counterwithin{figure}{chapter}
+\counterwithin{lstlisting}{chapter}
+\counterwithin{table}{chapter}
 		}
 	}{
 	\end{appendices}

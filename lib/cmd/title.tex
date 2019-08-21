@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar títulos
-% Versión:      0.0.6 (21/08/2019)
+% Versión:      0.1.2 (21/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -55,9 +55,9 @@
 		\setcounter{table}{0}
 	}{}
 	\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-		\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+		\renewcommand{\thesubsection}{\thechapter.\Alph{section}.\arabic{subsection}}
 	}{
-		\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+		\renewcommand{\thesubsection}{\thechapter.\arabic{section}.\arabic{subsection}}
 	}
 	\def\GLOBALsectionanumenabled{false}
 	\def\GLOBALsubsectionanumenabled{false}
@@ -87,9 +87,9 @@
 		\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
 	}{
 		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-			\renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
+			\renewcommand{\thesubsubsection}{\thechapter.\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
 		}{
-			\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+			\renewcommand{\thesubsubsection}{\thechapter.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
 		}
 	}
 	\def\GLOBALsubsectionanumenabled{false}
@@ -127,15 +127,15 @@
 		}{
 			\ifthenelse{\equal{\showdotaftersnum}{true}}{
 				\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-					\renewcommand{\thesubsubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}	
+					\renewcommand{\thesubsubsubsection}{\thechapter.\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}	
 				}{
-					\renewcommand{\thesubsubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}
+					\renewcommand{\thesubsubsubsection}{\thechapter.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}
 				}
 			}{
 				\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-					\renewcommand{\thesubsubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
+					\renewcommand{\thesubsubsubsection}{\thechapter.\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
 				}{
-					\renewcommand{\thesubsubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
+					\renewcommand{\thesubsubsubsection}{\thechapter.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
 				}
 			}
 		}

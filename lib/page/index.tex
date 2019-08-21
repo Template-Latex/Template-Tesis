@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Índice
-% Versión:      0.0.6 (21/08/2019)
+% Versión:      0.1.2 (21/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -12,6 +12,10 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 \ifthenelse{\equal{\showindex}{true}}{
+\ifthenelse{\equal{\objectchaptermargin}{false}}{
+	\let\origaddvspace\addvspace
+	\renewcommand{\addvspace}[1]{}
+}{}
 	\newpage
 	\begingroup
 	\sectionfont{\color{\indextitlecolor} \fontsizetitlei \styletitlei \selectfont}
@@ -36,14 +40,7 @@
 	\def\cftsubsubsecaftersnum {.}
 	\def\cftsubsubsubsecaftersnum {.}
 	}{
-}
-		\def\cftsecnumwidth {1.9em}
-\def\cftsubsecnumwidth {2.57em}
-\renewcommand\cftsubsubsecnumwidth{3.35em}
-		\setlength{\cftsubsecindent}{1.91em}
-\setlength{\cftsubsubsecindent}{4.48em}
-		}{
-	}
+}{}
 	\renewcommand{\cftdot}{\charnumpageindex}
 	\def\cftfigaftersnum {\charafterobjectindex\enspace}
 	\def\cftsubfigaftersnum {\charafterobjectindex\enspace}
@@ -269,6 +266,9 @@
 		\throwbadconfig{Estilo desconocido del indice}{\indexstyle}{,f,ft,ftc,fc,fct,t,tf,tfc,tc,tcf,c,ct,ctf,cf,cft}}}}}}}}}}}}}}}}
 	}
 	\endgroup
+\ifthenelse{\equal{\objectchaptermargin}{false}}{
+	\renewcommand{\addvspace}[1]{\origaddvspace{#1}}
+}{}
 	\newpage
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
 		\vfill

@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://latex.ppizarror.com/Template-Tesis/" title="Template-Tesis">
+  <a href="https://latex.ppizarror.com/tesis.html" title="Template-Tesis">
     <img alt="Template-Tesis" src="https://latex.ppizarror.com/res/favicon-informe/icon.png" width="200px" height="200px" />
   </a>
   <br /><br />

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      0.2.2 (23/08/2019)
+% Versión:      0.2.3 (23/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -50,7 +50,7 @@
 \def\captiontextsubnumbold {false} % N° subfigura/subtabla en negrita
 \def\codecaptiontop {true}         % Leyenda arriba del código fuente
 \def\figurecaptiontop {false}      % Leyenda arriba de las imágenes
-\def\sectioncaptiondelimiter {.}   % Carácter delimitador N° objeto y sección
+\def\sectioncaptiondelimiter {.}   % Carácter delimitador n° objeto y sección
 \def\showsectioncaptioncode {chap} % N° sec. código {none,chap,(s/ss/sss/ssss)ec}
 \def\showsectioncaptioneqn {chap}  % N° sec. ecuación {none,chap,(s/ss/sss/ssss)ec}
 \def\showsectioncaptionfig {chap}  % N° sec. figuras {none,chap,(s/ss/sss/ssss)ec}
@@ -60,6 +60,9 @@
 \def\tablecaptiontop {true}        % Leyenda arriba de las tablas
 
 % CONFIGURACIÓN DEL ÍNDICE
+\def\addabstracttobookmarks {true} % Añade el resumen a los marcadores del pdf
+\def\addagradectobookmarks {true}  % Añade el agradecimiento a los marcadores
+\def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
 \def\charafterobjectindex {.}      % Carácter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Carácter número de página en índice
 \def\indexdepth {4}                % Profundidad máxima del índice
@@ -67,6 +70,7 @@
 \def\indextitlemargin {11.4}       % Margen título índice \insertindextitle [pt]
 \def\objectchaptermargin {false}   % Activa margen de objetos entre capítulos
 \def\objectindexindent {false}     % Indenta la lista de objetos
+\def\showappendixsecindex {false}  % Título de la sec. de anexos en el índice
 
 % ANEXO, CITAS, REFERENCIAS
 \def\apaciterefsep {9}             % Separación entre refs. {apacite} [pt]
@@ -166,7 +170,6 @@
 \def\pagemargintop {4.0}          % Margen superior página [cm]
 
 % OPCIONES DEL PDF COMPILADO
-\def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
 \def\cfgbookmarksopenlevel {0}     % Nivel marcadores en pdf (1:secciones)
 \def\cfgpdfbookmarkopen {true}     % Expande marcadores del nivel configurado
 \def\cfgpdfcenterwindow {true}     % Centra ventana del lector al abrir el pdf

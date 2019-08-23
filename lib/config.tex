@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      0.1.5 (22/08/2019)
+% Versión:      0.1.6 (22/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -167,8 +167,8 @@
 \def\pagemargintop {4.0}          % Margen superior página [cm]
 
 % OPCIONES DEL PDF COMPILADO
-\def\addindextobookmarks {false}   % Añade el índice a los marcadores del pdf
-\def\cfgbookmarksopenlevel {1}     % Nivel marcadores en pdf (1:secciones)
+\def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
+\def\cfgbookmarksopenlevel {0}     % Nivel marcadores en pdf (1:secciones)
 \def\cfgpdfbookmarkopen {true}     % Expande marcadores del nivel configurado
 \def\cfgpdfcenterwindow {true}     % Centra ventana del lector al abrir el pdf
 \def\cfgpdfcopyright {}            % Establece el copyright del documento
@@ -177,14 +177,15 @@
 \def\cfgpdfmenubar {true}          % Muestra el menú del lector
 \def\cfgpdfpagemode {OneColumn}    % Modo de página {OneColumn,SinglePage}
 \def\cfgpdfpageview {FitH}         % {Fit,FitH,FitV,FitR,FitB,FitBH,FitBV}
-\def\cfgpdfsecnumbookmarks {true}  % Número de la sec. en marcadores del pdf
+\def\cfgpdfsecnumbookmarks {false} % Número de la sec. en marcadores del pdf
 \def\cfgpdftoolbar {true}          % Muestra barra de herramientas lector pdf
-\def\cfgshowbookmarkmenu {false}   % Muestra menú marcadores al abrir el pdf
+\def\cfgshowbookmarkmenu {true}    % Muestra menú marcadores al abrir el pdf
 \def\pdfcompilecompression {9}     % Factor de compresión del pdf (0-9)
 \def\pdfcompileobjcompression {2}  % Nivel compresión objetos del pdf (0-3)
 \def\pdfcompileversion {7}         % Versión mínima del pdf compilado
 
 % NOMBRE DE OBJETOS
+\def\nameabstract {Resumen}           % Nombre del resumen-abstract
 \def\nameagradec {Agradecimientos}    % Nombre del cap. de agradecimientos
 \def\nameappendixsection {Anexos}     % Nombre de la sec. de anexos/apéndices
 \def\nameportraitpage {Portada}       % Etiqueta página de la portada

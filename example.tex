@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Archivo de ejemplo
-% Versión:      0.1.4 (22/08/2019)
+% Versión:      0.1.5 (22/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -15,7 +15,7 @@
 % NUEVO CAPÍTULO
 % ------------------------------------------------------------------------------
 % A diferencia de Template-Informe, Template-Tesis requiere el uso de capítulos; las secciones, subsecciones, etc son parte de un capítulo. Se recomienda el uso de un capítulo en un archivo distinto
-\chapter{Primero}
+\chapter{Introducción}
 
 \section{Tesis con \LaTeX}
 
@@ -35,8 +35,8 @@
 	% Para insertar una imagen se puede usar la función \insertimage la cual
 	% toma un primer parámetro opcional para definir una etiqueta (dentro de
 	% los corchetes), luego toma la dirección de la imagen, sus parámetros
-	% (en este caso se definió la escala de 0.14) y una leyenda opcional
-	\insertimage[\label{img:testimage}]{ejemplos/test-image.png}{scale=0.14}{Where are you? de \quotes{Internet}.}
+	% (en este caso se definió la escala de 0.12) y una leyenda opcional
+	\insertimage[\label{img:testimage}]{ejemplos/test-image.png}{scale=0.12}{Where are you? de \quotes{Internet}.}
 
 	A continuación\footnote{Como se puede observar las funciones \texttt{\textbackslash insert...} añaden un párrafo automáticamente.} se muestra un ejemplo de inserción de ecuaciones simples con el comando \href{https://latex.ppizarror.com/informe.html#hlp-formulae}{\hreftext{\textbackslash insertequation}}:
 
@@ -52,7 +52,7 @@
 	% errores y warnings por parte del compilador de LaTeX
 	\newp Este es un nuevo párrafo insertado con el comando \href{https://latex.ppizarror.com/informe.html#hlp-parrafo}{\hreftext{\textbackslash newp}}. Si no te gustan los comandos \texttt{\textbackslash newp}, \texttt{\textbackslash newpar} o \texttt{\textbackslash newparnl} simplemente puedes usar los salto de línea convencionales acompañado de \texttt{\textbackslash par}.
 	
-	\newp \lipsum[5]
+	\newp \lipsum[4]
 	
 	\newp \lipsum[11]
 
@@ -76,9 +76,6 @@
 		\end{tabular}
 		\label{tab:tabla-1}
 	\end{table}
-
-	\lipsum[1]
-	\newp \lipsum[9]
 	
 	% Tabla generada con el plugin Excel2Latex
 	\enabletablerowcolor
@@ -99,7 +96,7 @@
 % ------------------------------------------------------------------------------
 % NUEVO CAPÍTULO
 % ------------------------------------------------------------------------------
-\chapter{Segundo}
+\chapter{El desarrollo de la tesis}
 
 \section{Aquí una nueva sección}
 
@@ -118,7 +115,6 @@
 
 	% Párrafos de ejemplo
 	\newp \lipsum[115]
-	\newp \lipsum[2]
 
 	% Agrega una ecuación con leyenda
 	\insertequationcaptioned[\label{eqn:formulasinsentido}]{\int_{a}^{b} f(x) \dd{x} = \fracnpartial{f(x)}{x}{\eta} \cdotp \textstyle \sum_{x=a}^{b} f(x)\cancelto{1+\frac{\epsilon}{k}}{\bigp{1+\Delta x}}}{Ecuación sin sentido.}
@@ -152,7 +148,7 @@
 		\insertequation[]{ \boxed{f(x) = \fracdpartial{u}{t}} }
 
 		% Párrafo 2 del multicols
-		\lipsum[2]
+		\lipsum[2-3]
 
 	\end{multicols}
 
@@ -280,11 +276,6 @@ Obteniendo así:
 			\end{itemize}
 		\end{multicols}
 
-	% Inserta un subtítulo sin número
-	\subsectionanum{Otros}
-
-		Recuerda revisar el manual de todas las funciones y configuraciones de este template visitando el siguiente link: \url{https://latex.ppizarror.com/Template-Informe/} \cite{templateinforme}. Si necesitas una ayuda muy específica sobre el template, o si tienes alguna sugerencia, me puedes enviar un correo a \insertemail{pablo.pizarro@ing.uchile.cl}.
-
 
 % ------------------------------------------------------------------------------
 % REFERENCIAS (ESTILO BIBTEX), revisar configuración \stylecitereferences
@@ -294,7 +285,7 @@ Obteniendo así:
 	\bibitem{templateinforme}
 	Template Informe en \LaTeX.
 	\textit{¡Revisa el manual online de este template!} \\
-	\url{https://latex.ppizarror.com/Template-Informe/}
+	\url{https://latex.ppizarror.com/informe}
 
 	\bibitem{excel2latex}
 	Excel2Latex.

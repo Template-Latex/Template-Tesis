@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      0.1.4 (22/08/2019)
+% Versión:      0.1.5 (22/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -12,18 +12,16 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 % CONFIGURACIONES GENERALES
-\def\addemptypagetwosides {false}  % Añade pag en blanco al imprimir a 2 caras
+\def\addemptypagespredoc {false}   % Añade pag. en blanco después de portada,etc.
 \def\defaultinterline {1.25}       % Interlineado por defecto [pt]
-\def\defaultnewlinesize {11}       % Tamaño del salto de línea [pt]
+\def\defaultnewlinesize {12}       % Tamaño del salto de línea [pt]
 \def\documentlang {es-CL}          % Define el idioma del documento
 \def\fontdocument {lmodern}        % Tipografía base, ver soportadas en manual
 \def\fonttypewriter {tmodern}      % Tipografía de \texttt, ver manual online
 \def\fonturl {tt}                  % Tipo de fuente url {tt,sf,rm,same}
 \def\importtikz {false}            % Utilizar la librería tikz
 \def\pointdecimal {true}           % N° decimales con punto en vez de coma
-\def\predocpageromannumber {true}  % Pág. con número romano previo a inicio doc.
 \def\predocpageromanupper {false}  % Páginas en número romano en mayúsculas
-\def\predocresetpagenumber {true}  % Resetea número de la pag. tras el índice
 \def\showlinenumbers {false}       % Muestra los números de línea del documento
 
 % ESTILO HEADER-FOOTER
@@ -65,16 +63,11 @@
 \def\charafterobjectindex {.}      % Carácter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Carácter número de página en índice
 \def\indexdepth {4}                % Profundidad máxima del índice
-\def\indexnewpagec {false}         % Nueva página en índice códigos fuente
-\def\indexnewpagef {false}         % Nueva página en índice figuras
-\def\indexnewpaget {false}         % Nueva página en índice tablas
 \def\indexstyle {ftc}              % Estilo índice {f:figura, t:tabla, c:código}
 \def\indextitlemargin {11.4}       % Margen título índice \insertindextitle [pt]
 \def\objectchaptermargin {false}   % Activa margen de objetos entre capítulos
 \def\objectindexindent {false}     % Indenta la lista de objetos
 \def\showappendixsecindex {false}  % Título de la sec. de anexos en el índice
-\def\showindex {true}              % Muestra el índice
-\def\showindexofcontents {true}    % Muestra la lista de contenidos
 
 % ANEXO, CITAS, REFERENCIAS
 \def\apaciterefsep {9}             % Separación entre refs. {apacite} [pt]
@@ -192,13 +185,13 @@
 \def\pdfcompileversion {7}         % Versión mínima del pdf compilado
 
 % NOMBRE DE OBJETOS
-\def\nameabstract {Resumen}           % Nombre del resumen-abstract
+\def\nameagradec {Agradecimientos}    % Nombre del cap. de agradecimientos
 \def\nameappendixsection {Anexos}     % Nombre de la sec. de anexos/apéndices
 \def\nameportraitpage {Portada}       % Etiqueta página de la portada
 \def\namereferences {Bibliografía}    % Nombre de la sección de referencias
 \def\nomchapter {Capítulo}            % Nombre de los capítulos
 \def\nomltappendixsection {Anexo}     % Etiqueta sección en anexo/apéndices
-\def\nomltcont {Índice de Contenidos} % Nombre del índice de contenidos
+\def\nomltcont {Tabla de Contenidos}  % Nombre del índice de contenidos
 \def\nomltfigure {Índice de Figuras}  % Nombre del índice de lista de figuras
 \def\nomltsrc {Índice de Códigos}     % Nombre del índice de lista de código
 \def\nomlttable {Índice de Tablas}    % Nombre del índice de lista de tablas

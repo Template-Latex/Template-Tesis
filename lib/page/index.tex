@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Índice
-% Versión:      0.1.8 (22/08/2019)
+% Versión:      0.2.2 (23/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -34,7 +34,8 @@
 		\belowpdfbookmark{\nomltcont}{contents}}{
 	}
 	\tocloftpagestyle{fancy}
-\ifthenelse{\equal{\showdotaftersnum}{true}}{		
+\ifthenelse{\equal{\showdotaftersnum}{true}}{
+	\def\cftchapaftersnum {.}		
 	\def\cftsecaftersnum {.}
 	\def\cftsubsecaftersnum {.}
 	\def\cftsubsubsecaftersnum {.}

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://latex.ppizarror.com/res/images/tesis.png" alt="Reporte" width="70%" />
+  <img src="https://latex.ppizarror.com/res/images/collage_tesis.png" alt="Reporte" width="70%" />
 </p>
 
 ## Manual de uso

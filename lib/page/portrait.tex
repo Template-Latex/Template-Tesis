@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de portadas
-% Versión:      1.0.0 (23/08/2019)
+% Versión:      1.0.1 (26/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -18,13 +18,13 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \includegraphics[scale=\imagendepartamentoescala]{\imagendepartamento}
-\hspace*{-0.15cm}
-\begin{tabular}{l}
+\hspace*{0.05cm}
+\begin{minipage}{0.8\linewidth}
 	\MakeUppercase \nombreuniversidad ~ \\
 	\MakeUppercase \nombrefacultad ~ \\
 	\MakeUppercase \departamentouniversidad
 	\vspace*{1.6cm}\mbox{}
-\end{tabular}
+\end{minipage}
 \begin{center}
 	\textcolor{\portraittitlecolor}{\MakeUppercase{\textbf{\titulotesis}}} ~ \\
 	\vspace{1.5cm}

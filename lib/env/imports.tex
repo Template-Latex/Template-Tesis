@@ -138,11 +138,11 @@
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 		\usepackage{apacite}
+		\usepackage[nottoc,notlof,notlot]{tocbibind}
 	}{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
 		}{}
 	}
-	\usepackage[nottoc,notlof,notlot]{tocbibind}
 }
 \ifthenelse{\equal{\showappendixsecindex}{true}}{
 	\usepackage[toc]{appendix}

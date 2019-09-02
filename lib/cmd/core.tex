@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      1.0.7 (01/09/2019)
+% Versión:      1.0.8 (02/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -11,6 +11,7 @@
 % Sitio web:    [https://latex.ppizarror.com/Template-Tesis/]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+\def\GLOBALcaptiondefn {EMPTY-VAR}
 \def\GLOBALcoretikzimported {false}
 \def\GLOBALenvimageadded {false}
 \def\GLOBALenvimageinitialized {false}
@@ -67,6 +68,8 @@
 \newcommand{\setpagemargincm}[4]{
 	\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
 }
+\newcommand{\setindexcaption}[1]{\def\GLOBALcaptiondefn{#1}}
+\newcommand{\resetindexcaption}{\def\GLOBALcaptiondefn{EMPTY-VAR}}
 \newcommand{\changemargin}[2]{
 	\emptyvarerr{\changemargin}{#1}{Margen izquierdo no definido}
 	\emptyvarerr{\changemargin}{#2}{Margen derecho no definido}

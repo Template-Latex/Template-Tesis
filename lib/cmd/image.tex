@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      1.0.7 (01/09/2019)
+% Versión:      1.0.8 (02/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -35,10 +35,16 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\hspace{0cm}\caption{#5 #1}
+			\hspace{0cm}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#5 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#5 #1}
+			}
 		\fi
 	\end{figure}
 	\vspace{\marginimagebottom cm}
+	\resetindexcaption
 }
 \newcommand{\insertimageleft}[4][]{
 	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}
@@ -65,10 +71,15 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#5 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#5 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#5 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \newcommand{\insertimageleftline}[5][]{
 	\insertimageleftlineboxed[#1]{#2}{#3}{0}{#4}{#5}
@@ -95,10 +106,15 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#6 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#6 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#6 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \newcommand{\insertimageright}[4][]{
 	\insertimagerightboxed[#1]{#2}{#3}{0}{#4}
@@ -125,10 +141,15 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#5 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#5 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#5 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \newcommand{\insertimagerightline}[5][]{
 	\insertimagerightlineboxed[#1]{#2}{#3}{0}{#4}{#5}
@@ -156,10 +177,15 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#6 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#6 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#6 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \newcommand{\insertimageleftp}[5][]{
 	\xspace~\\
@@ -190,10 +216,15 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#6 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#6 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#6 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \newcommand{\insertimageleftlinep}[6][]{
 	\insertimageleftlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
@@ -222,10 +253,15 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#7 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#7 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#7 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \newcommand{\insertimagerightp}[5][]{
 	\xspace~\\
@@ -256,10 +292,15 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#6 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#6 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#6 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \newcommand{\insertimagerightlinep}[6][]{
 	\insertimagerightlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
@@ -288,10 +329,15 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\caption{#7 #1}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
+				\caption{#7 #1}
+			}{
+				\caption[\GLOBALcaptiondefn]{#7 #1}
+			}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
+	\resetindexcaption
 }
 \makeatletter
 \define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de portadas
-% Versión:      1.1.1 (02/09/2019)
+% Versión:      1.1.2 (03/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -12,6 +12,7 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 \newpage
+\def\arraystretch{\tablepaddingv}
 \renewcommand{\thepage}{\nameportraitpage}
 \setpagemargincm{\pagemarginleftportrait}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 \pagestyle{fancy} \fancyhf{}
@@ -30,7 +31,6 @@
 	\textcolor{\portraittitlecolor}{\MakeUppercase{\textbf{\titulotesis}}} ~ \\
 	\vspace{1.5cm}
 	\textcolor{\portraittitlecolor}{\MakeUppercase{\titulogrado}} ~ \\
-	\vspace{3cm}
 	\vfill
 	\tablacomision
 \end{center}

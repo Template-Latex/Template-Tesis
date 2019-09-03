@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.1.1 (02/09/2019)
+% Versión:      1.1.2 (03/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -75,15 +75,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={02/09/2019},
+		Template.Fecha={03/09/2019},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.1.1-2-CTR/EXM-N},
-		Template.Version.Hash={B6BE1ACFA950A61E716668858E7D3CDC},
-		Template.Version.Release={1.1.1},
+		Template.Version.Dev={1.1.2-1-CTR/EXM-N},
+		Template.Version.Hash={13120FE038AACB582D295C2471AB3961},
+		Template.Version.Release={1.1.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/Template-Tesis/},
 		Universidad.Departamento={\departamentouniversidad},
@@ -95,7 +95,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Tesis v1.1.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v1.1.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -209,10 +209,14 @@
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{
 	\bibliographystyle{\natbibrefstyle}
 	\setlength{\bibsep}{\natbibrefsep pt}
+	\newcommand{\shortcite}[1]{\texttt{\textbackslash shortcite\{#1\}}}
+	\newcommand{\fullcite}[1]{\texttt{\textbackslash fullcite\{#1\}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\bibliographystyle{apacite}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
+	\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}}
+	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
 	\bibliographystyle{apa}

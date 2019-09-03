@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Archivo de ejemplo
-% Versión:      1.1.0 (02/09/2019)
+% Versión:      1.1.1 (02/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -19,9 +19,7 @@
 
 \section{Tesis con \LaTeX}
 
-\slipsum[1]
-
-\newp \slipsum[2]
+\lipsum[1]
 
 % SUB-SECCIÓN
 % Las sub-secciones se inician con \subsection, si se quiere una sub-sección
@@ -59,9 +57,9 @@
 	% errores y warnings por parte del compilador de LaTeX
 	\newp Este es un nuevo párrafo insertado con el comando \href{https://latex.ppizarror.com/informe.html#hlp-parrafo}{\hreftext{\textbackslash newp}}. Si no te gustan los comandos \texttt{\textbackslash newp}, \texttt{\textbackslash newpar} o \texttt{\textbackslash newparnl} simplemente puedes usar los salto de línea convencionales acompañado de \texttt{\textbackslash par}.
 	
-	\newp \slipsum[4]
+	\newp \lipsum[4]
 	
-	\newp \slipsum[11]
+	\newp \lipsum[11]
 
 \section{Añadiendo tablas}
 
@@ -77,6 +75,7 @@
 			\hline
 			$\omega$ & $\nu$ & $\delta$ \bigstrut[t]\\
 			$\Phi$ & $\Theta$ & $\varSigma$ \\
+			$\R$ & $\E$ & $\psi$ \\
 			\hline
 		\end{tabular}
 		\label{tab:tabla-1}
@@ -115,15 +114,15 @@ El template por defecto está configurado para trabajar con citas de la librerí
 	% Se inserta una imagen flotante en la izquierda del documento con
 	% \insertimageleft, al igual que las demás funciones, el primer parámetro
 	% es opcional, luego viene la ubicación de la imagen, seguido de la escala
-	% (un 30% del ancho de página) y por último su leyenda. Para insertar una
+	% (un 27% del ancho de página) y por último su leyenda. Para insertar una
 	% imagen flotante en la derecha se utiliza \insertimageright usando los
 	% mismos parámetros
-	\insertimageleft[\label{img:imagen-izquierda}]{ejemplos/test-image-wrap}{0.3}{Apolo flotando a la izquierda.}
+	\insertimageleft[\label{img:imagen-izquierda}]{ejemplos/test-image-wrap}{0.27}{Apolo flotando a la izquierda.}
 
-	\slipsum[6]
+	~ \lipsum[6]
 
 	% Párrafos de ejemplo
-	\newp \slipsum[115]
+	\newp ~ \lipsum[115]
 
 	% Agrega una ecuación con leyenda
 	\insertequationcaptioned[\label{eqn:formulasinsentido}]{\int_{a}^{b} f(x) \dd{x} = \fracnpartial{f(x)}{x}{\eta} \cdotp \textstyle \sum_{x=a}^{b} f(x)\cancelto{1+\frac{\epsilon}{k}}{\bigp{1+\Delta x}}}{Ecuación sin sentido.}
@@ -136,13 +135,13 @@ El template por defecto está configurado para trabajar con citas de la librerí
 
 	% Aquí no es necesario usar \newp dado que todas las funciones \insert...
 	% añaden un párrafo nuevo por defecto
-	\slipsum[115]
+	\lipsum[115]
 
 % Inserta un subtítulo sin número
 \subsection{Otros párrafos más normales}
 
 	% Párrafos
-	\slipsum[7]
+	\lipsum[7]
 
 	% Se inserta una ecuación larga con el entorno gathered (1 solo número de ecuación)
 	\insertgathered[\label{eqn:eqn-larga}]{
@@ -151,19 +150,19 @@ El template por defecto está configurado para trabajar con citas de la librerí
 	}
 
 	% Nuevo párrafo
-	\slipsum[4]
+	\lipsum[4]
 
 	% Se inserta un multicols, con esto se pueden escribir párrafos en varias columnas
 	\begin{multicols}{2}
 
 		% Párrafo 1
-		\slipsum[4]
+		\lipsum[4]
 
 		% Ecuación encerrada en una caja
 		\insertequation[]{ \boxed{f(x) = \fracdpartial{u}{t}} }
 
 		% Párrafo 2 del multicols
-		\slipsum[2-3]
+		\lipsum[2-3]
 
 	\end{multicols}
 
@@ -205,6 +204,21 @@ public class Hola extends GenericServlet { // Hola mundo
 }
 \end{sourcecode}
 
+\begin{sourcecode}{matlab}{Ejemplo en Matlab.}
+	% Se crea gráfico
+	f = figure(1); hold on; movegui(f, 'center');
+	xlabel('td/Tn'); ylabel('FAD=Umax/Uf0');
+	title('Espectro de pulso de desplazamiento');
+	
+	for j = 1:length(BETA)
+	fad = ones(1, NDATOS); % Arreglo para el FAD
+	for i = 1:NDATOS
+	[t, u_t, ~, ~] = main(BETA(j), r(i), M, K, F0, 0);
+	fad(i) = max(abs(u_t)) / uf0;
+	end
+	end
+\end{sourcecode}
+
 % SUB-SECCIÓN
 \subsection{Añadir múltiples imágenes}
 
@@ -215,7 +229,7 @@ El template ofrece el entorno \href{https://latex.ppizarror.com/informe.html#hlp
 	\addimage{ejemplos/test-image}{width=6.5cm}{Ciudad.}
 	\addimage{ejemplos/test-image-wrap}{height=4cm}{Apolo.}
 	\imagesnewline
-	\addimage{ejemplos/test-image}{width=10cm}{Ciudad más grande.}
+	\addimage{ejemplos/test-image}{width=11cm}{Ciudad más grande.}
 \end{images}
 \end{sourcecode}
 
@@ -225,10 +239,11 @@ Obteniendo así:
 	\addimage{ejemplos/test-image}{width=6.5cm}{Ciudad.}
 	\addimage{ejemplos/test-image-wrap}{height=4cm}{Apolo.}
 	\imagesnewline
-	\addimage{ejemplos/test-image}{width=10cm}{Ciudad más grande.}
+	\addimage{ejemplos/test-image}{width=11cm}{Ciudad más grande.}
 \end{images}
 
 % Inserta una sección sin número
+\newpage
 \sectionanum{Más ejemplos}
 
 	% Inserta un subtítulo sin número
@@ -292,7 +307,8 @@ Obteniendo así:
 % ------------------------------------------------------------------------------
 \chapter{Conclusiones}
 
-\slipsum[1-2]
+\lipsum[1]
+\newp \lipsum[2]
 
 
 % ------------------------------------------------------------------------------
@@ -309,14 +325,14 @@ Obteniendo así:
 \chapter{Cálculos realizados}
 
 	\section{Metodología}
-		\slipsum[1-2]
+		\lipsum[1-2]
 
 		% Imagen, se numerará automáticamente con la letra del anexo según
 		% la configuración \appendixindepobjnum
 		\insertimage[\label{img:anexo-2}]{ejemplos/test-image.png}{scale=0.2}{Imagen en anexo.}
 
 	\section{Resultados}
-		\slipsum[10]
+		\lipsum[10]
 
 		% Tablas
 		\enabletablerowcolor[2] % Activa el color de celda

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      1.1.0 (02/09/2019)
+% Versión:      1.1.1 (02/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -13,7 +13,7 @@
 
 % CONFIGURACIONES GENERALES
 \def\addemptypagespredoc {false}   % Añade pag. en blanco después de portada,etc.
-\def\defaultinterline {1.25}       % Interlineado por defecto [pt]
+\def\defaultinterline {1.0}        % Interlineado por defecto [pt]
 \def\defaultnewlinesize {12}       % Tamaño del salto de línea [pt]
 \def\documentlang {es-CL}          % Define el idioma del documento
 \def\fontdocument {lmodern}        % Tipografía base, ver soportadas en manual
@@ -65,7 +65,8 @@
 \def\charafterobjectindex {.}      % Carácter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Carácter número de página en índice
 \def\indexdepth {4}                % Profundidad máxima del índice
-\def\indexstyle {ftc}              % Estilo índice {f:figura, t:tabla, c:código}
+\def\indexstyle {tf}               % Estilo índice {f:figura, t:tabla, c:código}
+\def\pagemarginleftportrait {2.5} % Margen izquierdo página portada [cm]
 \def\indextitlemargin {11.4}       % Margen título índice \insertindextitle [pt]
 \def\objectchaptermargin {false}   % Activa margen de objetos entre capítulos
 \def\objectindexindent {false}     % Indenta la lista de objetos
@@ -132,16 +133,14 @@
 % CONFIGURACIÓN DE LOS TÍTULOS
 \def\anumsecaddtocounter {false}   % Insertar títulos anum. aumenta n° de sec
 \def\fontsizessstitle{\normalsize} % Tamaño sub-sub-subtítulos
-\def\fontsizesubsubtitle {\large}  % Tamaño sub-subtítulos
-\def\fontsizesubtitle {\Large}     % Tamaño subtítulos
-\def\fontsizetitle {\LARGE}        % Tamaño títulos
-\def\fontsizetitlei {\LARGE}       % Tamaño títulos en el índice
+\def\fontsizesubsubtitle {\normalsize} % Tamaño sub-subtítulos
+\def\fontsizesubtitle {\large}     % Tamaño subtítulos
+\def\fontsizetitle {\Large}        % Tamaño títulos
 \def\showdotaftersnum {true}       % Punto al final de n° (s/ss/sss/ssss)ection
 \def\stylessstitle {\bfseries}     % Estilo sub-sub-subtítulos
 \def\stylesubsubtitle {\bfseries}  % Estilo sub-subtítulos
 \def\stylesubtitle {\bfseries}     % Estilo subtítulos
 \def\styletitle {\bfseries}        % Estilo títulos
-\def\styletitlei {\bfseries}       % Estilo títulos en el índice
 
 % CONFIGURACIÓN DE LOS COLORES DEL DOCUMENTO
 \def\captioncolor {black}          % Color de la leyenda (código,figura,tabla)
@@ -166,11 +165,10 @@
 \def\urlcolor {magenta}            % Color de los enlaces web (\href,\url)
 
 % MÁRGENES DE PÁGINA
-\def\pagemarginbottom {2.5}       % Margen inferior página [cm]
-\def\pagemarginleft {4.0}         % Margen izquierdo página [cm]
-\def\pagemarginleftportrait {2.5} % Margen izquierdo página portada [cm]
-\def\pagemarginright {2.5}        % Margen derecho página [cm]
-\def\pagemargintop {4.0}          % Margen superior página [cm]
+\def\pagemarginbottom {2.0}       % Margen inferior página [cm]
+\def\pagemarginleft {3.0}         % Margen izquierdo página [cm]
+\def\pagemarginright {2.0}        % Margen derecho página [cm]
+\def\pagemargintop {2.0}          % Margen superior página [cm]
 
 % OPCIONES DEL PDF COMPILADO
 \def\cfgbookmarksopenlevel {0}     % Nivel marcadores en pdf (1:secciones)

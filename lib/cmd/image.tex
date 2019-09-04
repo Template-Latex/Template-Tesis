@@ -46,6 +46,8 @@
 	\vspace{\marginimagebottom cm}
 	\resetindexcaption
 }
+\newcommand{\inserttableimage}[2]{\inserttableimageboxed{#1}{#2}{0}}
+\newcommand{\inserttableimageboxed}[3]{\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}\checkoutsideenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\raisebox{-1\totalheight}{\fbox{\includegraphics[#2]{#1}}}\endgroup\resetindexcaption}
 \newcommand{\insertimageleft}[4][]{
 	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}
 }

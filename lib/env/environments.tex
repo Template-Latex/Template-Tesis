@@ -197,7 +197,6 @@
 	\end{enumerate}
 }
 \newenvironment{resumen}{
-	\setpagemargincm{\pagemarginleft}{\pagemarginright}{\pagemarginright}{\pagemarginbottom}
 	\ifthenelse{\equal{\addabstracttobookmarks}{true}}{
 		\pdfbookmark{\nameabstract}{contents}}{
 	}
@@ -219,7 +218,6 @@
 			\insertblankpage
 		\fi}{
 	}
-	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 }
 \newenvironment{dedicatoria}{
 	\cleardoublepage\null

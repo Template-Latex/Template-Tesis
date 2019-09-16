@@ -21,10 +21,13 @@
 </p>
 
 ## Manual de uso
-El manual de uso se encuentra disponible en su página web: <a href="https://ppizarror.com/Template-Informe/">Template-Informe</a>
+
+El manual de uso se encuentra disponible en su página web: <a href="https://latex.ppizarror.com/informe">Template-Informe</a>
 
 ## Licencia
+
 Este proyecto está licenciado bajo la licencia MIT [https://opensource.org/licenses/MIT]
+
 
 ## Autor
 <a href="https://ppizarror.com" title="ppizarror">Pablo Pizarro R.</a> | 2019

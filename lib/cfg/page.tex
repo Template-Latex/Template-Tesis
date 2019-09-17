@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      1.1.4 (17/09/2019)
+% Versión:      1.1.5 (17/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -45,6 +45,8 @@
 \subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 \titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 \titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\fancyheadoffset{0pt}
+\def\hfheaderimagesizeA {0.5}
 \ifthenelse{\equal{\hfstyle}{style1}}{
 	\pagestyle{fancy}
 	\newcommand{\COREstyledefinition}{
@@ -127,7 +129,7 @@
 			\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
 		}
 		\fancyhead[R]{
-			\includegraphics[width=1.2cm]{\imagendepartamento}
+			\includegraphics[width=\hfheaderimagesizeA cm]{\imagendepartamento}
 			\vspace{-0.15cm}
 		}
 		\fancyfoot[C]{\thepage}
@@ -334,7 +336,7 @@
 			\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
 		}
 		\fancyhead[R]{
-			\includegraphics[width=1.2cm]{\imagendepartamento}
+			\includegraphics[width=\hfheaderimagesizeA cm]{\imagendepartamento}
 			\vspace{-0.15cm}
 		}
 		\fancyfoot[C]{\thepage \nomnpageof \pageref{LastPage}}
@@ -391,6 +393,7 @@
 	\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style16}}}}}}}}}}}}}}}}
 }
 \fancypagestyle{plain}{
+	\fancyheadoffset{0pt}
 	\COREstyledefinition
 }
 \ifthenelse{\equal{\showlinenumbers}{true}}{

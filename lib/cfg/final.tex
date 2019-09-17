@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones finales
-% Versión:      1.1.3 (04/09/2019)
+% Versión:      1.1.4 (17/09/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -15,15 +15,31 @@
 \newpage
 \ifthenelse{\equal{\disablehfrightmark}{false}}{
 	\ifthenelse{\equal{\hfstyle}{style1}}{
+		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 		\fancyhead[L]{\nouppercase{\leftmark}}}{
 	}
 	\ifthenelse{\equal{\hfstyle}{style2}}{
+		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 		\fancyhead[L]{\nouppercase{\leftmark}}}{
 	}
 	\ifthenelse{\equal{\hfstyle}{style4}}{
+		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 		\fancyhead[L]{\nouppercase{\leftmark}}}{
 	}
 	\ifthenelse{\equal{\hfstyle}{style5}}{
+		\fancypagestyle{plain}{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{
+				\fancyhead[R]{
+					\begin{minipage}[t]{\hfwidthtitle\linewidth}
+						\begin{flushright}
+							\nouppercase{\leftmark}
+						\end{flushright}
+					\end{minipage}
+				}
+			}{
+				\fancyhead[R]{\nouppercase{\leftmark}}
+			}
+		}
 		\ifthenelse{\equal{\hfwidthwrap}{true}}{
 			\fancyhead[R]{
 				\begin{minipage}[t]{\hfwidthtitle\linewidth}
@@ -37,9 +53,23 @@
 		}}{
 	}
 	\ifthenelse{\equal{\hfstyle}{style9}}{
+		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 		\fancyhead[L]{\nouppercase{\leftmark}}}{
 	}
 	\ifthenelse{\equal{\hfstyle}{style10}}{
+		\fancypagestyle{plain}{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{
+				\fancyhead[L]{
+					\begin{minipage}[t]{\hfwidthtitle\linewidth}
+						\begin{flushleft}
+							\nouppercase{\leftmark}
+						\end{flushleft}
+					\end{minipage}
+				}
+			}{
+				\fancyhead[L]{\nouppercase{\leftmark}}
+			}
+		}
 		\ifthenelse{\equal{\hfwidthwrap}{true}}{
 			\fancyhead[L]{
 				\begin{minipage}[t]{\hfwidthtitle\linewidth}
@@ -53,12 +83,15 @@
 		}}{
 	}
 \ifthenelse{\equal{\hfstyle}{style11}}{
+		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 		\fancyhead[L]{\nouppercase{\leftmark}}}{
 	}
 \ifthenelse{\equal{\hfstyle}{style14}}{
+		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 		\fancyhead[L]{\nouppercase{\leftmark}}}{
 	}
 \ifthenelse{\equal{\hfstyle}{style15}}{
+		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 		\fancyhead[L]{\nouppercase{\leftmark}}}{
 	}
 	}{

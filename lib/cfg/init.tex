@@ -81,8 +81,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.1.7-1-THS-N},
-		Template.Version.Hash={A85BB48585B5DD5A9AC2500F0E5240B0},
+		Template.Version.Dev={1.1.7-2-THS-N},
+		Template.Version.Hash={9FFA08A917BBF5ED59A8EF5DC270206A},
 		Template.Version.Release={1.1.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -238,7 +238,7 @@
 \makeatletter
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\ifthenelse{\equal{\apaciterefnumber}{true}}{
-		\renewcommand{\@biblabel}[1]{\apaciterefnumberinit\stepcounter{apaciteNumberCounter}\theMyBibCount\apaciterefnumberfinal}
+		\renewcommand{\@biblabel}[1]{\apaciterefnumberinit\stepcounter{apaciteNumberCounter}\theapaciteNumberCounter\apaciterefnumberfinal}
 	}{}
 }{}
 \makeatother

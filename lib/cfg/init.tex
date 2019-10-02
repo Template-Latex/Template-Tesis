@@ -81,8 +81,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.1.7-THS-N},
-		Template.Version.Hash={0EFB3D01B53C7C0D64A31AB36D986BD0},
+		Template.Version.Dev={1.1.7-1-THS-N},
+		Template.Version.Hash={A85BB48585B5DD5A9AC2500F0E5240B0},
 		Template.Version.Release={1.1.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -233,6 +233,15 @@
 }{
 	\throwbadconfig{Estilo citas desconocido}{\stylecitereferences}{bibtex,apacite,natbib}}}
 }
+\newcounter{apaciteNumberCounter}
+\addtocounter{apaciteNumberCounter}{-1}
+\makeatletter
+\ifthenelse{\equal{\stylecitereferences}{apacite}}{
+	\ifthenelse{\equal{\apaciterefnumber}{true}}{
+		\renewcommand{\@biblabel}[1]{\apaciterefnumberinit\stepcounter{apaciteNumberCounter}\theMyBibCount\apaciterefnumberfinal}
+	}{}
+}{}
+\makeatother
 \patchcmd{\appendices}{\quad}{\sectionappendixlastchar\quad}{}{}
 \begingroup
 	\makeatletter

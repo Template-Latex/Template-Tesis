@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.1.7 (02/10/2019)
+% Versión:      1.1.8 (18/11/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -75,15 +75,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={02/10/2019},
+		Template.Fecha={18/11/2019},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.1.7-2-THS-N},
-		Template.Version.Hash={9FFA08A917BBF5ED59A8EF5DC270206A},
-		Template.Version.Release={1.1.7},
+		Template.Version.Dev={1.1.8-THS-N},
+		Template.Version.Hash={AED8F5FFDD076C04BFE4DB331F4038A4},
+		Template.Version.Release={1.1.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\departamentouniversidad},
@@ -95,7 +95,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Tesis v1.1.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v1.1.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -213,13 +213,13 @@
 	\newcommand{\fullcite}[1]{\texttt{\textbackslash fullcite\{#1\}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
-	\bibliographystyle{apacite}
+	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
 	\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}}
 	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
-	\bibliographystyle{apa}
+	\bibliographystyle{\bibtexstyle}
 	\newlength{\bibitemsep}
 	\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
 	\newlength{\bibparskip}\setlength{\bibparskip}{0pt}

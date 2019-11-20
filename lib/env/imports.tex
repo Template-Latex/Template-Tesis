@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      1.1.8 (18/11/2019)
+% Versión:      1.1.9 (20/11/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -12,7 +12,11 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 \usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}
+\usepackage{sectsty}
 \usepackage{ifthen}
+\ifthenelse{\equal{\compilertype}{pdf2latex}}{
+	\usepackage[utf8]{inputenc}}{
+}
 \newcommand{\throwbadconfig}[4][]{
 	\ifthenelse{\equal{#1}{noheader}}{
 		\errmessage{LaTeX Warning: #4}
@@ -34,12 +38,12 @@
 }{
 	\usepackage{amsmath}
 }
+\let\RE\Re
+\let\IM\Im
 \let\counterwithout\relax
 \let\counterwithin\relax
 \let\underbar\relax
 \let\underline\relax
-\let\RE\Re
-\let\IM\Im
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{array}
@@ -59,7 +63,6 @@
 \usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{listings}
-\usepackage{listingsutf8}
 \usepackage{longtable}
 \usepackage{mathtools}
 \usepackage{multicol}
@@ -68,7 +71,6 @@
 \usepackage{pdfpages}
 \usepackage{physics}
 \usepackage{rotating}
-\usepackage{sectsty}
 \usepackage{selinput}
 \usepackage{setspace}
 \usepackage{soul}
@@ -84,6 +86,9 @@
 \usepackage[figure,table,lstlisting]{totalcount}
 \usepackage[normalem]{ulem}
 \usepackage[dvipsnames,table,usenames]{xcolor}
+\ifthenelse{\equal{\compilertype}{pdf2latex}}{
+	\usepackage{listingsutf8}}{
+}
 \ifthenelse{\equal{\footnotepagetoprule}{true}}{
 \usepackage[bottom,hang]{footmisc}
 }{
@@ -522,5 +527,7 @@
 	\usepackage[switch,columnwise,running]{lineno}}{
 }
 \usepackage{csquotes}
-\inputencoding{utf8}
+\ifthenelse{\equal{\compilertype}{pdf2latex}}{
+	\inputencoding{utf8}}{
+}
 

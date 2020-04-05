@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar ecuaciones
-% Versión:      1.2.3 (02/04/2020)
+% Versión:      1.2.4 (05/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -15,6 +15,18 @@
 	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
 	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
 	\resizebox{#1\textwidth}{!}{$#2$}
+}
+\newcommand{\insertindexequation}[3][]{
+	\vspace{\margineqnindextop cm}
+	\begin{align}
+		\text{#1} \ensuremath{#2}
+	\end{align}
+	\vspace{\margineqnindexbottom cm}
+	\myindexequations{#3}
+	\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
+		\centering \textcolor{\captiontextcolor}{\textit{#3}}
+	\end{changemargin}
+	\addtocounter{templateIndexEquations}{1}
 }
 \newcommand{\insertequation}[2][]{
 	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}

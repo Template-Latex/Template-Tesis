@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      1.2.3 (02/04/2020)
+% Versión:      1.2.4 (05/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -67,7 +67,7 @@
 \def\charafterobjectindex {.}      % Carácter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Carácter número de página en índice
 \def\indexdepth {4}                % Profundidad máxima del índice
-\def\indexstyle {tf}               % Estilo índice {f:figura, t:tabla, c:código}
+\def\indexstyle {tf}               % Estilo {f:figura,t:tabla,c:código,e:ecuación}
 \def\indextitlemargin {11.4}       % Margen título índice \insertindextitle [pt]
 \def\objectchaptermargin {false}   % Activa margen de objetos entre capítulos
 \def\objectindexindent {false}     % Indenta la lista de objetos
@@ -110,6 +110,8 @@
 \def\marginaligntop {-0.40}        % Margen superior entorno align [cm]
 \def\margineqncaptionbottom {0.0}  % Margen inferior caption ecuación [cm]
 \def\margineqncaptiontop {-0.65}   % Margen superior caption ecuación [cm]
+\def\margineqnindexbottom {-0.90}  % Margen inferior ecuaciones índice [cm]
+\def\margineqnindextop {-0.25}     % Margen superior ecuaciones índice [cm]
 \def\marginequationbottom {-0.15}  % Margen inferior ecuaciones [cm]
 \def\marginequationtop {0.0}       % Margen superior ecuaciones [cm]
 \def\marginfloatimages {-13.0}     % Margen sup. fig. insertimageleft/right [pt]
@@ -149,7 +151,7 @@
 \def\styletitle {\bfseries}        % Estilo títulos
 
 % CONFIGURACIÓN DE LOS COLORES DEL DOCUMENTO
-\def\captioncolor {black}          % Color de la leyenda (código,figura,tabla)
+\def\captioncolor {black}          % Color nombre objeto (código,figura,tabla)
 \def\captiontextcolor {black}      % Color de la leyenda
 \def\colorpage {white}             % Color de la página
 \def\highlightcolor {yellow}       % Color del subrayado con \hl
@@ -211,6 +213,7 @@
 \def\nomchapter {Capítulo}            % Nombre de los capítulos
 \def\nomltappendixsection {Anexo}     % Etiqueta sección en anexo/apéndices
 \def\nomltcont {Tabla de Contenidos}  % Nombre del índice de contenidos
+\def\nomlteqn {Índice de Ecuaciones}  % Nombre de la lista de ecuaciones
 \def\nomltfigure {Índice de Ilustraciones} % Nombre de la lista de figuras
 \def\nomltsrc {Índice de Códigos}     % Nombre de la lista de código
 \def\nomlttable {Índice de Tablas}    % Nombre de la lista de tablas

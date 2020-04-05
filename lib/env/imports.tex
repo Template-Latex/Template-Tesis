@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      1.2.3 (02/04/2020)
+% Versión:      1.2.4 (05/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -20,6 +20,9 @@
 \def\unaccentedoperators{}
 \def\decimalpoint{}
 \def\bibname{}
+\makeatletter
+\def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
+\makeatother
 \usepackage{ifthen}
 \ifthenelse{\equal{\usespanishbabel}{true}}{
 	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{

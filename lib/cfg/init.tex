@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.3 (02/04/2020)
+% Versión:      1.2.4 (05/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -20,6 +20,7 @@
 \def\indexnewpagec{false}
 \def\indexnewpagef{false}
 \def\indexnewpaget{false}
+\def\indexnewpagee{false}
 \def\showindex{true}
 \def\showindexofcontents{true}
 \def\codigodelcurso{}
@@ -75,15 +76,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={02/04/2020},
+		Template.Fecha={05/04/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.3-THS-N},
-		Template.Version.Hash={9F823E1475380DC21A609261D7B4DC4D},
-		Template.Version.Release={1.2.3},
+		Template.Version.Dev={1.2.4-THS-N},
+		Template.Version.Hash={411014F6CB17D0CDFE3BB21704EC2283},
+		Template.Version.Release={1.2.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\departamentouniversidad},
@@ -95,7 +96,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Tesis v1.2.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v1.2.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -251,6 +252,13 @@
 	\newlistentry{lstlisting}{lol}{0}
 	\makeatother
 \endgroup
+\newcommand{\listindexequationsname}{\nomlteqn}
+\newlistof{myindexequations}{equ}{\listindexequationsname}
+\newcommand{\myindexequations}[1]{
+	\addcontentsline{equ}{myindexequations}{\protect\numberline{\theequation}#1}
+}
+\setcounter{templateIndexEquations}{0}
+\DeclareTotalCounter{templateIndexEquations}
 \makeatletter
 	\def\ifGm@preamble#1{\@firstofone}
 	\appto\restoregeometry{

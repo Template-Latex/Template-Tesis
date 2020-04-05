@@ -67,7 +67,10 @@
 	\captionsetup{margin=#1cm}
 }
 \newcommand{\setpagemargincm}[4]{
-	\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
+	\ifthenelse{\equal{\compilertype}{lualatex}}{
+	}{
+		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
+	}
 }
 \newcommand{\setindexcaption}[1]{\def\GLOBALcaptiondefn{#1}}
 \newcommand{\resetindexcaption}{\def\GLOBALcaptiondefn{EMPTY-VAR}}

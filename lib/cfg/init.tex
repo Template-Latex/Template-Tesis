@@ -82,8 +82,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.4-2-THS-N},
-		Template.Version.Hash={51A1DE473F3C1D93FBAB5AA6F9417169},
+		Template.Version.Dev={1.2.4-3-THS-N},
+		Template.Version.Hash={E42AFD82DD3A43A5AFA470D997664B55},
 		Template.Version.Release={1.2.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -287,7 +287,13 @@
 	\pdfinclusionerrorlevel=0
 	\pdfminorversion=\pdfcompileversion
 	\pdfobjcompresslevel=\pdfcompileobjcompression
-}{}
+}{
+\ifthenelse{\equal{\compilertype}{xelatex}}{
+}{
+\ifthenelse{\equal{\compilertype}{lualatex}}{
+}{
+	\throwbadconfig{Compilador desconocido}{\compilertype}{pdf2latex,xelatex,lualatex}}}
+}
 \setcounter{secnumdepth}{4}
 \newcounter{subsubsubsection}[subsubsection]
 \ifthenelse{\equal{\showdotaftersnum}{true}}{

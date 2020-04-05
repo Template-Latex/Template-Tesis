@@ -67,7 +67,6 @@
 \usepackage{floatrow}
 \usepackage{framed}
 \usepackage{gensymb}
-\usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{listings}
@@ -162,12 +161,17 @@
 	}
 }
 \ifthenelse{\equal{\showappendixsecindex}{true}}{
-	\usepackage[toc]{appendix}
+\usepackage[toc]{appendix}
 }{
 	\usepackage{appendix}
 }
 \ifthenelse{\equal{\importtikz}{true}}{
 	\usepackage{tikz}}{
+}
+\ifthenelse{\equal{\compilertype}{lualatex}}{
+	\usepackage[top=\pagemargintop cm,bottom=\pagemarginbottom cm,margin=\pagemarginleft cm]{geometry}
+}{
+	\usepackage{geometry}
 }
 \usepackage{bookmark}
 \usepackage{fancyhdr}

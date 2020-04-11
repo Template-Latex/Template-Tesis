@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.4 (05/04/2020)
+% Versión:      1.2.5 (11/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -76,15 +76,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={05/04/2020},
+		Template.Fecha={11/04/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.4-3-THS-N},
-		Template.Version.Hash={E42AFD82DD3A43A5AFA470D997664B55},
-		Template.Version.Release={1.2.4},
+		Template.Version.Dev={1.2.5-THS-N},
+		Template.Version.Hash={809C24A78E519B612CFDAAAF0A4B44E8},
+		Template.Version.Release={1.2.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\departamentouniversidad},
@@ -96,7 +96,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Tesis v1.2.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v1.2.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -273,6 +273,9 @@
 \hbadness=\maxdimen
 \vbadness=\maxdimen
 \makeatletter
+\def\Hv@scale{.95}
+\makeatother
+\makeatletter
 \preto\tabular{\global\rownum=\z@}
 \preto\tabularx{\global\rownum=\z@}
 \makeatother
@@ -280,6 +283,9 @@
 \titlespacing{\section}{0pt}{20pt}{10pt}
 \titlespacing{\subsection}{0pt}{15pt}{10pt}
 \ttfamily \hyphenchar\the\font=`\-
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 \urlstyle{\fonturl}
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\pdfcompresslevel=\pdfcompilecompression
@@ -419,3 +425,7 @@
 	\addtocounter{lstlisting}{\value{templateListings}}
 	\addtocounter{table}{\value{templateTables}}
 }
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}

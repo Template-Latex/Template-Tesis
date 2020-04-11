@@ -42,13 +42,7 @@
 }
 \newcommand{\quotes}[1]{\enquote*{#1}}
 \newcommand{\scite}[1]{\textsuperscript{\cite{#1}}}
-\newcommand{\hreftext}[1]{
-	\ifthenelse{\equal{\fonturl}{same}}{#1}{
-	\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{
-	\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{
-	\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{	
-	}}}}
-}
+\newcommand{\hreftext}[1]{\ifthenelse{\equal{\fonturl}{same}}{#1}{\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{}}}}}
 \newcommand{\insertemail}[1]{\href{mailto:#1}{\hreftext{#1}}}
 \newcommand{\insertphone}[1]{\href{tel:#1}{\hreftext{#1}}}
 \newcommand{\restartequation}{\setcounter{equation}{0}}

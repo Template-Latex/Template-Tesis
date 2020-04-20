@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.5 (11/04/2020)
+% Versión:      1.2.5 (20/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -50,15 +50,36 @@
 	\bookmarksetup{numbered}}{
 }
 \ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{
-	\def\cdfpagemodepdf {UseOutlines}
+	\def\cfgpdfpagemode {UseOutlines}
 	}{
-	\def\cdfpagemodepdf {UseNone}
+	\def\cfgpdfpagemode {UseNone}
+}
+\ifthenelse{\equal{\usepdfmetadata}{true}}{
+	\def\pdfmetainfoautor {\autordeldocumento}
+	\def\pdfmetainfocodigodelcurso {\codigodelcurso}
+	\def\pdfmetainfonombredelcurso {\nombredelcurso}
+	\def\pdfmetainfoautor {\autordeldocumento}
+	\def\pdfmetainfotema {\temaatratar}
+	\def\pdfmetainfotitulo {\titulotesis}
+	\def\pdfmetainfounidepto {\departamentouniversidad}
+	\def\pdfmetainfouninombre {\departamentouniversidad}
+	\def\pdfmetainfouniubicacion {\departamentouniversidad}
+}{
+	\def\pdfmetainfoautor {}
+	\def\pdfmetainfocodigodelcurso {}
+	\def\pdfmetainfonombredelcurso {}
+	\def\pdfmetainfoautor {}
+	\def\pdfmetainfotema {}
+	\def\pdfmetainfotitulo {}
+	\def\pdfmetainfounidepto {}
+	\def\pdfmetainfouninombre {}
+	\def\pdfmetainfouniubicacion {}
 }
 \hypersetup{
 	bookmarksopen={\cfgpdfbookmarkopen},
 	bookmarksopenlevel={\cfgbookmarksopenlevel},
 	bookmarkstype={toc},
-	pdfauthor={\autordeldocumento},
+	pdfauthor={\pdfmetainfoautor},
 	pdfcenterwindow={\cfgpdfcenterwindow},
 	pdfcopyright={\cfgpdfcopyright},
 	pdfcreator={LaTeX},
@@ -66,42 +87,42 @@
 	pdfencoding={unicode},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
-		Curso.Codigo={\codigodelcurso},
-		Curso.Nombre={\nombredelcurso},
-		Documento.Autor={\autordeldocumento},
-		Documento.Tema={\temaatratar},
-		Documento.Titulo={\titulotesis},
+		Curso.Codigo={\pdfmetainfocodigodelcurso},
+		Curso.Nombre={\pdfmetainfonombredelcurso},
+		Documento.Autor={\pdfmetainfoautor},
+		Documento.Tema={\pdfmetainfotema},
+		Documento.Titulo={\pdfmetainfotitulo},
 		Template.Autor.Alias={ppizarror},
 		Template.Autor.Email={pablo@ppizarror.com},
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={11/04/2020},
+		Template.Fecha={20/04/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.5-1-THS-N},
-		Template.Version.Hash={B52D68D0D8243AF1642C67E1D81E7C09},
+		Template.Version.Dev={1.2.5-3-THS-N},
+		Template.Version.Hash={402545180122A3AE9101C7DEABB58E06},
 		Template.Version.Release={1.2.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
-		Universidad.Departamento={\departamentouniversidad},
-		Universidad.Nombre={\nombreuniversidad},
-		Universidad.Ubicacion={\localizacionuniversidad}
+		Universidad.Departamento={\pdfmetainfounidepto},
+		Universidad.Nombre={\pdfmetainfouninombre},
+		Universidad.Ubicacion={\pdfmetainfouniubicacion}
 	},
 	pdfkeywords={\cfgpdfkeywords},
 	pdflang={\documentlang},
 	pdfmenubar={\cfgpdfmenubar},
-	pdfpagelayout={\cfgpdfpagemode},
-	pdfpagemode={\cdfpagemodepdf},
+	pdfpagelayout={\cfgpdflayout},
+	pdfpagemode={\cfgpdfpagemode},
 	pdfproducer={Template-Tesis v1.2.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdfsubject={\temaatratar},
-	pdftitle={\titulotesis},
+	pdfsubject={\pdfmetainfotema},
+	pdftitle={\pdfmetainfotitulo},
 	pdftoolbar={\cfgpdftoolbar}
 }
 \graphicspath{{./\defaultimagefolder}{./\defaultimagefolder/departamentos/}}

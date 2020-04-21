@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones finales
-% Versión:      1.2.5 (20/04/2020)
+% Versión:      1.2.6 (21/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,19 +14,11 @@
 \markboth{}{}
 \newpage
 \ifthenelse{\equal{\disablehfrightmark}{false}}{
-	\ifthenelse{\equal{\hfstyle}{style1}}{
+\def\COREhfstyledefA {
 		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
-		\fancyhead[L]{\nouppercase{\leftmark}}}{
+		\fancyhead[L]{\nouppercase{\leftmark}}
 	}
-	\ifthenelse{\equal{\hfstyle}{style2}}{
-		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
-		\fancyhead[L]{\nouppercase{\leftmark}}}{
-	}
-	\ifthenelse{\equal{\hfstyle}{style4}}{
-		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
-		\fancyhead[L]{\nouppercase{\leftmark}}}{
-	}
-	\ifthenelse{\equal{\hfstyle}{style5}}{
+\def\COREhfstyledefB {
 		\fancypagestyle{plain}{
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{
 				\fancyhead[R]{
@@ -50,13 +42,9 @@
 			}
 		}{
 			\fancyhead[R]{\nouppercase{\leftmark}}
-		}}{
+		}
 	}
-	\ifthenelse{\equal{\hfstyle}{style9}}{
-		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
-		\fancyhead[L]{\nouppercase{\leftmark}}}{
-	}
-	\ifthenelse{\equal{\hfstyle}{style10}}{
+\def\COREhfstyledefC {
 		\fancypagestyle{plain}{
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{
 				\fancyhead[L]{
@@ -80,21 +68,71 @@
 			}
 		}{
 			\fancyhead[L]{\nouppercase{\leftmark}}
-		}}{
+		}
 	}
-\ifthenelse{\equal{\hfstyle}{style11}}{
-		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
-		\fancyhead[L]{\nouppercase{\leftmark}}}{
-	}
-\ifthenelse{\equal{\hfstyle}{style14}}{
-		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
-		\fancyhead[L]{\nouppercase{\leftmark}}}{
-	}
-\ifthenelse{\equal{\hfstyle}{style15}}{
-		\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
-		\fancyhead[L]{\nouppercase{\leftmark}}}{
-	}
+	\ifthenelse{\equal{\hfstyle}{style1}}{
+		\COREhfstyledefA
 	}{
+\ifthenelse{\equal{\hfstyle}{style1-i}}{
+		\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
+		\fancyhead[LE,RO]{\nouppercase{\leftmark}}
+	}{
+\ifthenelse{\equal{\hfstyle}{style1-d}}{
+		\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
+		\fancyhead[LO,RE]{\nouppercase{\leftmark}}
+	}{
+	\ifthenelse{\equal{\hfstyle}{style2}}{
+		\COREhfstyledefA
+	}{
+\ifthenelse{\equal{\hfstyle}{style2-i}}{
+		\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
+		\fancyhead[LE,RO]{\nouppercase{\leftmark}}
+	}{
+\ifthenelse{\equal{\hfstyle}{style2-d}}{
+		\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
+		\fancyhead[LO,RE]{\nouppercase{\leftmark}}
+	}{
+	\ifthenelse{\equal{\hfstyle}{style4}}{
+		\COREhfstyledefA
+	}{
+	\ifthenelse{\equal{\hfstyle}{style5}}{
+		\COREhfstyledefB
+	}{
+\ifthenelse{\equal{\hfstyle}{style5-d}}{
+		\COREhfstyledefB
+	}{
+\ifthenelse{\equal{\hfstyle}{style5-i}}{
+		\COREhfstyledefB
+	}{
+	\ifthenelse{\equal{\hfstyle}{style9}}{
+		\COREhfstyledefA
+	}{
+\ifthenelse{\equal{\hfstyle}{style9-d}}{
+		\COREhfstyledefA
+	}{
+\ifthenelse{\equal{\hfstyle}{style9-i}}{
+		\COREhfstyledefA
+	}{
+	\ifthenelse{\equal{\hfstyle}{style10}}{
+		\COREhfstyledefC
+	}{
+\ifthenelse{\equal{\hfstyle}{style10-d}}{
+		\COREhfstyledefC
+	}{
+\ifthenelse{\equal{\hfstyle}{style10-i}}{
+		\COREhfstyledefC
+	}{
+\ifthenelse{\equal{\hfstyle}{style11}}{
+		\COREhfstyledefA
+	}{
+\ifthenelse{\equal{\hfstyle}{style14}}{
+		\COREhfstyledefA
+	}{
+\ifthenelse{\equal{\hfstyle}{style15}}{
+		\COREhfstyledefA
+	}{
+	}}}}}}}}}}}}}}}}}}}
+}{
 }
 \sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 \subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}

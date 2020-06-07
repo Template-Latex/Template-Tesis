@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      1.2.6 (22/04/2020)
+% Versión:      1.2.7 (07/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -19,6 +19,19 @@
 	\phantomsection
 	\addcontentsline{toc}{chapter}{\namereferences}
 \begin{thebibliography}{}
+\ifthenelse{\equal{\bibtextextalign}{justify}}{
+		}{
+		\ifthenelse{\equal{\bibtextextalign}{left}}{
+			\raggedright
+		}{
+		\ifthenelse{\equal{\bibtextextalign}{right}}{
+			\raggedleft
+		}{
+		\ifthenelse{\equal{\bibtextextalign}{center}}{
+			\centering
+		}{
+			\throwbadconfig{Ajuste de linea referencias bibtex desconocido}{\bibtextextalign}{justified,left,right,center}}}}
+		}
 	}
 	{
 	\end{thebibliography}

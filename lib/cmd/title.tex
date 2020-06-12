@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar títulos
-% Versión:      1.2.7 (07/06/2020)
+% Versión:      1.2.9 (12/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,6 +11,44 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+\def\coreintializetitlenumbering {
+	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{
+		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
+			\renewcommand{\thesection}{\Alph{section}}
+		}{
+			\renewcommand{\thesection}{\arabic{section}}
+		}
+	}{
+		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
+			\renewcommand{\thesection}{\thechapter.\Alph{section}}
+		}{
+			\renewcommand{\thesection}{\thechapter.\arabic{section}}
+		}
+	}
+	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
+		\renewcommand{\thesubsection}{\arabic{subsection}}
+	}{
+		\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+	}
+	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
+		\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+	}{
+		\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+	}
+	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
+		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}.}
+		}{
+			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}}
+		}
+	}{
+		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+			\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
+		}{
+			\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
+		}
+	}
+}
 \pretocmd{\chapter}{
 \ifthenelse{\equal{\showsectioncaptioncode}{chap}}{
 		\addtocounter{templateListings}{\value{lstlisting}}
@@ -32,6 +70,8 @@
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
+	\def\GLOBALchapternumenabled{true}
+	\coreintializetitlenumbering
 }{}{}
 \pretocmd{\section}{
 \ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
@@ -54,13 +94,9 @@
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
-	\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-		\renewcommand{\thesubsection}{\thechapter.\Alph{section}.\arabic{subsection}}
-	}{
-		\renewcommand{\thesubsection}{\thechapter.\arabic{section}.\arabic{subsection}}
-	}
 	\def\GLOBALsectionanumenabled{false}
 	\def\GLOBALsubsectionanumenabled{false}
+	\coreintializetitlenumbering
 }{}{}
 \pretocmd{\subsection}{
 \ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{
@@ -83,16 +119,8 @@
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
-	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
-		\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
-	}{
-		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-			\renewcommand{\thesubsubsection}{\thechapter.\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
-		}{
-			\renewcommand{\thesubsubsection}{\thechapter.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
-		}
-	}
 	\def\GLOBALsubsectionanumenabled{false}
+	\coreintializetitlenumbering
 }{}{}
 \pretocmd{\subsubsection}{
 \ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{
@@ -115,31 +143,7 @@
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
-	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}}
-	}{
-		\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
-			\ifthenelse{\equal{\showdotaftersnum}{true}}{
-				\renewcommand{\thesubsubsubsection}{\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}
-			}{
-				\renewcommand{\thesubsubsubsection}{\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
-			}
-		}{
-			\ifthenelse{\equal{\showdotaftersnum}{true}}{
-				\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-					\renewcommand{\thesubsubsubsection}{\thechapter.\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}	
-				}{
-					\renewcommand{\thesubsubsubsection}{\thechapter.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}.}
-				}
-			}{
-				\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-					\renewcommand{\thesubsubsubsection}{\thechapter.\Alph{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
-				}{
-					\renewcommand{\thesubsubsubsection}{\thechapter.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}}
-				}
-			}
-		}
-	}
+	\coreintializetitlenumbering
 }{}{}
 \pretocmd{\subsubsubsection}{
 \ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{

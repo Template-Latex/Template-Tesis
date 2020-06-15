@@ -1209,11 +1209,7 @@
 			\vspace{\captionlessmarginimage cm}
 		\else
 			\hspace{0cm}
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#5 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#5 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{figure}
 	\vspace{\marginimagebottom cm}
@@ -1246,11 +1242,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#5 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#5 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1281,11 +1273,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1316,11 +1304,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#5 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#5 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1352,11 +1336,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1391,11 +1371,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1428,11 +1404,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#7 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#7 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1467,11 +1439,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1504,11 +1472,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#7 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#7 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -2961,8 +2925,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-alpha-2-THS-N},
-		Template.Version.Hash={A27688FC6B77EBDA7FAB62F458381956},
+		Template.Version.Dev={2.0.0-alpha-3-THS-N},
+		Template.Version.Hash={49E4FEADA3A158C936EE63BA3332C396},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

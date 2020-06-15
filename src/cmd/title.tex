@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar títulos
-% Versión:      1.2.9 (15/06/2020)
+% Versión:      2.0.0 (15/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,15 +14,15 @@
 \def\coreintializetitlenumbering {
 	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{
 		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-			\renewcommand{\thesection}{\thechapter.\Alph{section}}
+			\renewcommand{\thesection}{\Alph{section}}
 		}{
-			\renewcommand{\thesection}{\thechapter.\arabic{section}}
+			\renewcommand{\thesection}{\arabic{section}}
 		}
 	}{
 		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-			\renewcommand{\thesection}{\thechapter.\thechapter.\Alph{section}}
+			\renewcommand{\thesection}{\thechapter.\Alph{section}}
 		}{
-			\renewcommand{\thesection}{\thechapter.\thechapter.\arabic{section}}
+			\renewcommand{\thesection}{\thechapter.\arabic{section}}
 		}
 	}
 	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{

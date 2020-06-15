@@ -15,26 +15,55 @@
 \input{template_config}
 
 % IMPORTACIÓN DE LIBRERÍAS
+% -----------------------------------------------------------------------------
+% SE GUARDAN VARIABLES ANTES DE CARGAR LIBRERÍAS
+% -----------------------------------------------------------------------------
 \let\RE\Re
 \let\IM\Im
+
+% -----------------------------------------------------------------------------
+% PARCHES DE LIBRERÍAS
+% -----------------------------------------------------------------------------
 \let\counterwithout\relax
 \let\counterwithin\relax
 \let\underbar\relax
 \let\underline\relax
+
+% Si se desactiva el idioma
 \def\unaccentedoperators{}
 \def\decimalpoint{}
 \def\bibname{}
+
+% Parche de sectsty.sty
 \makeatletter
 \def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
 \makeatother
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS DEL NÚCLEO
+% -----------------------------------------------------------------------------
+
+% Manejo de condicionales
 \usepackage{ifthen}
+
+% Idioma español, borrar esta línea si se desea usar otro idioma
 \ifthenelse{\equal{\usespanishbabel}{true}}{
 	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
 }
+
+% Cambia el estilo de los títulos
 \usepackage{sectsty}
+
+% Codificación
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\usepackage[utf8]{inputenc}}{
 }
+
+% Lanza un mensaje de error indicando mala configuración
+%	#1	Parámetros opcionales (nostop,noheader)
+%	#2	Mensaje de error
+% 	#3	Configuración usada
+%	#4	Valores esperados
 \newcommand{\throwbadconfig}[4][]{
 	\ifthenelse{\equal{#1}{noheader}}{
 		\errmessage{LaTeX Warning: #4}
@@ -51,67 +80,105 @@
 		}
 	}
 }
+
+% Librerías matemáticas
 \ifthenelse{\equal{\equationleftalign}{true}}{
 	\usepackage[fleqn]{amsmath}
 }{
 	\usepackage{amsmath}
 }
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{array}
-\usepackage{bigstrut}
-\usepackage{bm}
-\usepackage{booktabs}
-\usepackage{caption}
-\usepackage{changepage}
-\usepackage{chngcntr}
-\usepackage{color}
-\usepackage{datetime}
-\usepackage{floatpag}
-\usepackage{floatrow}
-\usepackage{framed}
-\usepackage{gensymb}
-\usepackage{graphicx}
-\usepackage{lipsum}
-\usepackage{listings}
-\usepackage{longtable}
-\usepackage{mathtools}
-\usepackage{multicol}
-\usepackage{needspace}
-\usepackage{pdflscape}
-\usepackage{pdfpages}
-\usepackage{physics}
-\usepackage{rotating}
-\usepackage{selinput}
-\usepackage{setspace}
-\usepackage{soul}
-\usepackage{subfig}
-\usepackage{textcomp}
-\usepackage{url}
-\usepackage{wasysym}
-\usepackage{wrapfig}
-\usepackage{xspace}
-\usepackage[makeroom]{cancel}
-\usepackage[inline]{enumitem}
-\usepackage[subfigure,titles]{tocloft}
-\usepackage[figure,table,lstlisting]{totalcount}
-\usepackage[normalem]{ulem}
-\usepackage[dvipsnames,table,usenames]{xcolor}
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS INDEPENDIENTES
+% -----------------------------------------------------------------------------
+\usepackage{amssymb}       % Librerías matemáticas
+\usepackage{amsthm}        % Definición de teoremas
+\usepackage{array}         % Nuevas características a las tablas
+\usepackage{bigstrut}      % Líneas horizontales en tablas
+\usepackage{bm}            % Caracteres en negrita en ecuaciones
+\usepackage{booktabs}      % Permite manejar elementos visuales en tablas
+\usepackage{caption}       % Leyendas
+\usepackage{changepage}    % Condicionales para administrar páginas
+\usepackage{chngcntr}      % Añade números a las leyendas
+\usepackage{color}         % Colores
+\usepackage{datetime}      % Fechas
+\usepackage{floatpag}      % Maneja números de páginas
+\usepackage{floatrow}      % Permite administrar posiciones en los caption
+\usepackage{framed}        % Permite creación de recuadros
+\usepackage{gensymb}       % Simbología común
+\usepackage{graphicx}      % Propiedades extra para los gráficos
+\usepackage{lipsum}        % Permite crear párrafos de prueba
+\usepackage{listings}      % Permite añadir código fuente
+\usepackage{longtable}     % Permite utilizar tablas en varias hojas
+\usepackage{mathtools}     % Permite utilizar notaciones matemáticas
+\usepackage{multicol}      % Múltiples columnas
+\usepackage{needspace}     % Maneja los espacios en página
+\usepackage{pdflscape}     % Modo página horizontal de página
+\usepackage{pdfpages}      % Permite administrar páginas en pdf
+\usepackage{physics}       % Paquete de matemáticas
+%\usepackage{ragged2e}      % Redefine centering
+\usepackage{rotating}      % Permite rotación de objetos
+\usepackage{selinput}      % Compatibilidad con acentos
+\usepackage{setspace}      % Cambia el espacio entre líneas
+\usepackage{soul}          % Permite subrayar texto
+\usepackage{subfig}        % Permite agrupar imágenes
+\usepackage{textcomp}      % Simbología común
+\usepackage{url}           % Permite añadir enlaces
+\usepackage{wasysym}       % Contiene caracteres misceláneos
+\usepackage{wrapfig}       % Posición de imágenes
+\usepackage{xspace}        % Adminsitra espacios en párrafos y líneas
+
+% En 6.3.7 se desactiva cellspace
+% \usepackage{cellspace}     % Tamaños en celdas de tablas
+
+% \usepackage{colortbl}, xcolor al cargar table ya importa colortbl (v6.3.3)
+% El paquete colortbl queda obsoleto con array+xcolor si la versión es inferior
+% a 1.0c, se recomienda actualizar o ocurren errores asociados a @parbox
+
+% Se prefiere no utilizar matlab-prettifier ya que es muy pesada para lo que
+% la librería ofrece
+% \usepackage{matlab-prettifier}
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS CON PARÁMETROS
+% -----------------------------------------------------------------------------
+\usepackage[makeroom]{cancel} % Cancelar términos en fórmulas
+\usepackage[inline]{enumitem} % Permite enumerar ítems
+\usepackage[subfigure,titles]{tocloft} % Maneja entradas en el índice
+\usepackage[figure,table,lstlisting]{totalcount} % Contador de objetos
+\usepackage[normalem]{ulem} % Permite tachar y subrayar
+\usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS CONDICIONALES
+% -----------------------------------------------------------------------------
+
+% Acepta codificación UTF-8 en código fuente
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\usepackage{listingsutf8}}{
 }
+
+% Regla superior
 \ifthenelse{\equal{\footnotepagetoprule}{true}}{
-\usepackage[bottom,hang]{footmisc}
+	\usepackage[bottom,hang]{footmisc} % Estilo pie de página
 }{
 	\usepackage[bottom,norule,hang]{footmisc}
 }
+
+% Agrega punto a títulos/subtítulos
 \ifthenelse{\equal{\showdotaftersnum}{true}}{
 	\usepackage{secdot}
 	\sectiondot{subsection}
 	\sectiondot{subsubsection}}{
 }
-\usepackage[pdfencoding=auto,psdextra]{hyperref}
-\ifthenelse{\equal{\stylecitereferences}{natbib}}{
+
+% Referencias
+% Desde 6.2.8 se debe cargar al final para evitar errores:
+%	- Option clash for package hyperref
+% 	- name has been referenced but does not exist, replaced by a fixed one
+% Desde 6.5.6 se carga después de las referencias (apacite, natbib, bibtex)
+\usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias
+\ifthenelse{\equal{\stylecitereferences}{natbib}}{ % Formato citas natbib
 	\ifthenelse{\equal{\natbibrefstyle}{apa}}{
 		\ifthenelse{\equal{\natbibsquare}{true}}{
 			\usepackage[square]{natbib}
@@ -156,35 +223,52 @@
 	}}}}
 	\usepackage[nottoc,notlof,notlot]{tocbibind}
 }{
-\ifthenelse{\equal{\stylecitereferences}{apacite}}{
+	\ifthenelse{\equal{\stylecitereferences}{apacite}}{ % Formato citas apacite
 		\usepackage{apacite}
 		\usepackage[nottoc,notlof,notlot]{tocbibind}
 	}{
-\ifthenelse{\equal{\stylecitereferences}{bibtex}}{
+		\ifthenelse{\equal{\stylecitereferences}{bibtex}}{ % Formato citas bibtex
 		}{}
 	}
 }
+
+% Anexos/Apéndices
 \ifthenelse{\equal{\showappendixsecindex}{true}}{
-\usepackage[toc]{appendix}
+	\usepackage[toc]{appendix} % Eliminado en Auxiliares/Controles, sin [toc]
 }{
 	\usepackage{appendix}
 }
-\ifthenelse{\equal{\importtikz}{true}}{
+
+% Importa la librería tikz
+\ifthenelse{\equal{\importtikz}{true}}{ % Eliminado en Auxiliares/Controles
 	\usepackage{tikz}}{
 }
-\ifthenelse{\equal{\compilertype}{lualatex}}{
+
+% Dimensiones y geometría del documento
+\ifthenelse{\equal{\compilertype}{lualatex}}{ % En lualatex sólo se puede cambiar 1 vez el margen
 	\usepackage[top=\pagemargintop cm,bottom=\pagemarginbottom cm,margin=\pagemarginleft cm]{geometry}
-}{
+}{ % pdf2latex, xelatex
 	\usepackage{geometry}
 }
-\usepackage{bookmark}
-\usepackage{fancyhdr}
-\usepackage{float}
-\usepackage{hyperxmp}
-\usepackage{multirow}
-\usepackage{notoccite}
-\usepackage{titlesec}
-\ifthenelse{\equal{\fontdocument}{lmodern}}{
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% LIBRERÍAS DEPENDIENTES
+% -----------------------------------------------------------------------------
+\usepackage{bookmark}      % Administración de marcadores en pdf
+\usepackage{fancyhdr}      % Encabezados y pie de páginas
+\usepackage{float}         % Administrador de posiciones de objetos
+\usepackage{hyperxmp}      % Etiquetas opcionales para el pdf compilado
+\usepackage{multirow}      % Agrega nuevas opciones a las tablas
+\usepackage{notoccite}     % Desactiva las citas en el índice
+\usepackage{titlesec}      % Administración de títulos
+
+% -----------------------------------------------------------------------------
+% TIPOGRAFÍA DEL DOCUMENTO
+% -----------------------------------------------------------------------------
+
+% Tipografías clásicas
+\ifthenelse{\equal{\fontdocument}{lmodern}}{ % Default
 	\usepackage{lmodern}
 }{
 \ifthenelse{\equal{\fontdocument}{arial}}{
@@ -212,6 +296,8 @@
 \ifthenelse{\equal{\fontdocument}{mathpazo}}{
 	\usepackage{mathpazo}
 }{
+
+% Otros
 \ifthenelse{\equal{\fontdocument}{accantis}}{
 	\usepackage{accanthis}
 }{
@@ -325,7 +411,7 @@
 	\usepackage[defaultsans]{droidsans}
 	\renewcommand*\familydefault{\sfdefault}
 }{
-\ifthenelse{\equal{\fontdocument}{fetamont}}{
+\ifthenelse{\equal{\fontdocument}{fetamont}}{ % Falta implementar aún
 	\usepackage{fetamont}
 	\renewcommand*\familydefault{\sfdefault}
 }{
@@ -482,7 +568,11 @@
 	\throwbadconfig[noheader]{Fuente desconocida}{\fontdocument}{universalis,universaliscondensed,venturis}
 	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
-\ifthenelse{\equal{\fonttypewriter}{tmodern}}{
+
+% -----------------------------------------------------------------------------
+% TIPOGRAFÍA TYPEWRITER
+% -----------------------------------------------------------------------------
+\ifthenelse{\equal{\fonttypewriter}{tmodern}}{ % Default
 	\renewcommand*\ttdefault{lmvtt}
 }{
 \ifthenelse{\equal{\fonttypewriter}{anonymouspro}}{
@@ -543,55 +633,86 @@
 		newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern}
 	}}}}}}}}}}}}}}}}
 }
-\usepackage[T1]{fontenc}
-\ifthenelse{\equal{\showlinenumbers}{true}}{
+
+% -----------------------------------------------------------------------------
+% FINALES
+% -----------------------------------------------------------------------------
+\usepackage[T1]{fontenc} % Caracteres acentuados
+\ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
 	\usepackage[switch,columnwise,running]{lineno}}{
 }
-\usepackage{csquotes}
+\usepackage{csquotes} % Citas y comillas, se debe usar después de lineno [6.4.2]
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\inputencoding{utf8}}{
 }
 
-
 % IMPORTACIÓN DE FUNCIONES Y ENTORNOS
-\def\GLOBALcaptiondefn {EMPTY-VAR}
-\def\GLOBALchapternumenabled {false}
-\def\GLOBALcoretikzimported {false}
-\def\GLOBALenvimageadded {false}
-\def\GLOBALenvimageinitialized {false}
-\def\GLOBALenvimagenewlinemarg {0.25}
-\def\GLOBALsectionalph {false}
-\def\GLOBALsectionanumenabled {false}
-\def\GLOBALsubsectionanumenabled {false}
-\def\GLOBALtablerowcolorindex {2}
-\def\GLOBALtablerowcolorswitch {false}
-\newcounter{templateEquations}
-\newcounter{templateIndexEquations}
-\newcounter{templateFigures}
-\newcounter{templatePageCounter}
-\newcounter{templateTables}
-\newcounter{templateListings}
+% Definición de variables globales
+\def\GLOBALcaptiondefn {EMPTY-VAR}       % Definición del caption
+%\def\GLOBALcaptiondefnimages{EMPTY-VAR} % Definición del caption en images
+%\def\GLOBALcaptiondefnsrc{EMPTY-VAR}    % Definición del caption en sourcecode
+\def\GLOBALchapternumenabled {false}     % Numeración de capítulos empezó
+\def\GLOBALcoretikzimported {false}      % Indica que tikz se importó
+\def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
+\def\GLOBALenvimageinitialized {false}   % Entorno images activo
+\def\GLOBALenvimagenewlinemarg {0.25}    % Entorno images activo [cm]
+\def\GLOBALsectionalph {false}           % Sección con numeración de letras
+\def\GLOBALsectionanumenabled {false}    % Sección sin numeración
+\def\GLOBALsubsectionanumenabled {false} % Subsección sin numeración
+\def\GLOBALtablerowcolorindex {2}        % Índice tabla colores
+\def\GLOBALtablerowcolorswitch {false}   % Tabla con colores cambiados
+
+% Contador global de objetos
+\newcounter{templateEquations}      % Ecuaciones
+\newcounter{templateIndexEquations} % Ecuaciones en el índice
+\newcounter{templateFigures}        % Figuras
+\newcounter{templatePageCounter}    % Administra números de páginas
+\newcounter{templateTables}         % Tablas
+\newcounter{templateListings}       % Códigos fuente
+
+% Contador nivel de bookmarks marcadores
 \newcounter{templateBookmarksLevelPrev}
 \setcounter{templateBookmarksLevelPrev}{\cfgbookmarksopenlevel}
 \addtocounter{templateBookmarksLevelPrev}{-1}
+
+% Otros
 \let\latex\LaTeX
+
+% Lanza un mensaje de error
+% 	#1	Función del error
+%	#2	Mensaje
 \newcommand{\throwerror}[2]{
 	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}
 	\stop
 }
+
+% Lanza un mensaje de advertencia
+%	#1	Mensaje
 \newcommand{\throwwarning}[1]{
 	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}
 }
+
+% Lanza un mensaje de error indicando mala configuración dentro de begin{document}
+%	#1	Mensaje de error
+% 	#2	Configuración usada
+%	#3	Valores esperados
 \newcommand{\throwbadconfigondoc}[3]{
 	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}
 	\stop
 }
+
+% Comprueba si una variable está definida
+%	#1	Variable
 \newcommand{\checkvardefined}[1]{
 	\ifthenelse{\isundefined{#1}}{
 		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
 		\stop}{
 	}
 }
+
+% Comprueba si una variable está definida
+%	#1	Variable
+%	#2	Mensaje
 \newcommand{\checkextravarexist}[2]{
 	\ifthenelse{\isundefined{#1}}{
 		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
@@ -602,28 +723,58 @@
 		\fi}{
 	}
 }
+
+% Lanza un mensaje de error si una variable no ha sido definida
+% 	#1	Función del error
+%	#2	Variable
+%	#3	Mensaje
 \newcommand{\emptyvarerr}[3]{
 	\ifx\hfuzz#2\hfuzz
 		\errmessage{LaTeX Warning: \noexpand#1 #3 (linea \the\inputlineno)}
 	\fi
 }
+
+% Cambiar el margen de los caption
+% 	#1	Margen en centímetros
 \newcommand{\setcaptionmargincm}[1]{
 	\captionsetup{margin=#1cm}
 }
+
+% Cambia márgenes de las páginas [cm]
+% 	#1	Margen izquierdo
+%	#2	Margen superior
+%	#3	Margen derecho
+%	#4	Margen inferior
 \newcommand{\setpagemargincm}[4]{
 	\ifthenelse{\equal{\compilertype}{lualatex}}{
+		% Geometry no válido en lualatex
 	}{
 		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
 	}
 }
+
+% Define el caption del índice
+% 	#1	Título del caption
 \newcommand{\setindexcaption}[1]{\def\GLOBALcaptiondefn{#1}}
+%\newcommand{\setindexcaptionimages}[1]{\def\GLOBALcaptiondefnimages{#1}}
+%\newcommand{\setindexcaptionsourcecode}[1]{\def\GLOBALcaptiondefnsrc{#1}}
+
+% Resetea los caption
 \newcommand{\resetindexcaption}{\def\GLOBALcaptiondefn{EMPTY-VAR}}
+%\newcommand{\resetindexcaptionimages}{\def\GLOBALcaptiondefnimages{EMPTY-VAR}}
+%\newcommand{\resetindexcaptionsourcecode}{\def\GLOBALcaptiondefnsrc{EMPTY-VAR}}
+
+% Cambia los márgenes del documento
+%	#1	Margen izquierdo
+%	#2	Margen derecho
 \newcommand{\changemargin}[2]{
 	\emptyvarerr{\changemargin}{#1}{Margen izquierdo no definido}
 	\emptyvarerr{\changemargin}{#2}{Margen derecho no definido}
 	\list{}{\rightmargin#2\leftmargin#1}\item[]
 }
 \let\endchangemargin=\endlist
+
+% Se importa la librería tikz
 \newcommand{\coreimporttikz}{
 	\ifthenelse{\equal{\GLOBALcoretikzimported}{false}}{
 		\ifthenelse{\equal{\importtikz}{false}}{
@@ -633,20 +784,36 @@
 		}{
 	}
 }
+
+% Imagen de prueba tikz
 \def\bgtemplatetestcode {d0g3}
+
+% Chequea que las funciones sólo puedan usarse en el entorno images
 \newcommand{\checkonlyonenvimage}{\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{}{\throwwarning{Funciones \noexpand\addimage o \noexpand\addimageboxed no pueden usarse fuera del entorno \noexpand\images}\stop}}
+
+% Chequea que las funciones sólo puedan usarse fuera del entorno images
 \newcommand{\checkoutsideenvimage}{
 	\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{
 		\throwwarning{Esta funcion solo puede usarse fuera del entorno \noexpand\images}
 		\stop}{
 	}
 }
+% Insertar sub-índice, a_b
+% 	#1	Elemento inferior (a)
+%	#2	Elemento superior (b)
 \newcommand{\lpow}[2]{
 	\ensuremath{{#1}_{#2}}
 }
+
+% Insertar elevado, a^b
+% 	#1	Elemento inferior (a)
+%	#2	Elemento superior (b)
 \newcommand{\pow}[2]{
 	\ensuremath{{#1}^{#2}}
 }
+
+% Inserta inverso función seno, sin^-1
+%	#1	Elemento
 \newcommand{\aasin}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\sin^{-1}#1}
@@ -654,6 +821,9 @@
 		\ensuremath{{\sin}^{-1}}
 	\fi
 }
+
+% Inserta inverso función coseno, cos^-1
+%	#1	Elemento
 \newcommand{\aacos}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\cos^{-1}#1}
@@ -661,6 +831,9 @@
 		\ensuremath{\cos^{-1}}
 	\fi
 }
+
+% Inserta inverso función tangente, tan^-1
+%	#1	Elemento
 \newcommand{\aatan}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\tan^{-1}#1}
@@ -668,6 +841,9 @@
 		\ensuremath{\tan^{-1}}
 	\fi
 }
+
+% Inserta inverso función cosecante, csc^-1
+%	#1	Elemento
 \newcommand{\aacsc}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\csc^{-1}#1}
@@ -675,6 +851,9 @@
 		\ensuremath{\csc^{-1}}
 	\fi
 }
+
+% Inserta inverso función secante, sec^-1
+%	#1	Elemento
 \newcommand{\aasec}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\sec^{-1}#1}
@@ -682,6 +861,9 @@
 		\ensuremath{\sec^{-1}}
 	\fi
 }
+
+% Inserta inverso función cotangente, cot^-1
+%	#1	Elemento
 \newcommand{\aacot}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\cot^{-1}#1}
@@ -689,75 +871,151 @@
 		\ensuremath{\cot^{-1}}
 	\fi
 }
+
+% Fracción de derivadas parciales af/ax
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracpartial}[2]{
 	\ensuremath{\pdv{#1}{#2}}
 }
+
+% Fracción de derivadas parciales dobles a^2f/ax^2
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracdpartial}[2]{
 	\ensuremath{\pdv[2]{#1}{#2}}
 }
+
+% Fracción de derivadas parciales en n, a^nf/ax^n
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
+%	#3	Orden (n)
 \newcommand{\fracnpartial}[3]{
 	\ensuremath{\pdv[#3]{#1}{#2}}
 }
+
+% Fracción de derivadas df/dx
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracderivat}[2]{
 	\ensuremath{\dv{#1}{#2}}
 }
+
+% Fracción de derivadas dobles d^2/dx^2
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracdderivat}[2]{
 	\ensuremath{\dv[2]{#1}{#2}}
 }
+
+% Fracción de derivadas en n d^nf/dx^n
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
+%	#3	Orden de la derivada (n)
 \newcommand{\fracnderivat}[3]{
 	\ensuremath{\dv[#3]{#1}{#2}}
 }
+
+% Llave superior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\topequal}[2]{
 	\ensuremath{\overbrace{#1}^{\mathclap{#2}}}
 }
+
+% Llave inferior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\underequal}[2]{
 	\ensuremath{\underbrace{#1}_{\mathclap{#2}}}
 }
+
+% Rectángulo superior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\topsequal}[2]{
 	\ensuremath{\overbracket{#1}^{\mathclap{#2}}}
 }
+
+% Rectángulo inferior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\undersequal}[2]{
 	\ensuremath{\underbracket{#1}_{\mathclap{#2}}}
 }
+
+% Paréntesis grande
+% 	#1	Expresión
 \newcommand{\bigp}[1]{
 	\ensuremath{\big(#1\big)}
 }
+
+% Paréntesis g+grande
+% 	#1	Expresión
 \newcommand{\biggp}[1]{
 	\ensuremath{\bigg(#1\bigg)}
 }
+
+% Cajón grande
+% 	#1	Expresión
 \newcommand{\bigc}[1]{
 	\ensuremath{\big[#1\big]}
 }
+
+% Cajón g+grande
+% 	#1	Expresión
 \newcommand{\biggc}[1]{
 	\ensuremath{\bigg[#1\bigg]}
 }
+
+% Llave grande
+% 	#1	Expresión
 \newcommand{\bigb}[1]{
 	\ensuremath{\big\{#1\big\}}
 }
+
+% Llave g+grande
+% 	#1	Expresión
 \newcommand{\biggb}[1]{
 	\ensuremath{\bigg\{#1\bigg\}}
 }
+
+% Expresión divergencia
 \newcommand{\divexp}{
 	\ensuremath{\rm{div}\ }
 }
+
+% Expresión automorfismo
 \newcommand{\Autexp}{
 	\ensuremath{\rm{Aut}}
 }
+
+% Expresión diff
 \newcommand{\Diffexp}{
 	\ensuremath{\rm{Diff}}
 }
+
+% Expresión imaginario
 \newcommand{\Imexp}{
 	\ensuremath{\rm{Im}}
 }
+
+% Expresión imaginario en z
 \newcommand{\Imzexp}{
 	\ensuremath{\rm{Im}(z)}
 }
+
+% Expresión real
 \newcommand{\Reexp}{
 	\ensuremath{\rm{Re}}
 }
+
+% Expresión real en z
 \newcommand{\Rezexp}{
 	\ensuremath{\rm{Re}(z)}
 }
+
+% Definición de letras
 \newcommand{\A}{\mathcal{A}}
 \let\oldC=\C
 \renewcommand{\C}{\mathbb{C}}
@@ -781,15 +1039,28 @@
 \renewcommand{\S}{\mathcal{S}}
 \newcommand{\T}{\mathcal{T}}
 \newcommand{\Z}{\mathbb{Z}}
+
+% Barra superior en elemento
+%	#1 	Elemento
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+% Definición de teoremas y lemas
 \makeatletter
 	\renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 \makeatother
+% Redimensiona una ecuación en textwidth
+% 	#1	Tamaño del nuevo objeto (En textwidth)
+%	#2	Ecuación a redimensionar
 \newcommand{\equationresize}[2]{
 	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
 	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
 	\resizebox{#1\textwidth}{!}{$#2$}
 }
+
+% Insertar una ecuación en el índice
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Título de la ecuación
 \newcommand{\insertindexequation}[3][]{
 	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}
 	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}
@@ -804,6 +1075,10 @@
 	\end{changemargin}
 	\addtocounter{templateIndexEquations}{1}
 }
+
+% Insertar una ecuación
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertequation}[2][]{
 	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -820,6 +1095,9 @@
 		\insertequationanum{#2}
 	}
 }
+
+% Insertar una ecuación sin número
+%	#1	Ecuación
 \newcommand{\insertequationanum}[1]{
 	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}
 	\vspace{\marginequationtop cm}
@@ -828,6 +1106,10 @@
 	\end{equation*}
 	\vspace{\marginequationbottom cm}
 }
+
+% Insertar una ecuación alineada a la izquierda
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertequationleft}[2][]{
 	\emptyvarerr{\insertequationleft}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -845,6 +1127,9 @@
 		\insertequationleftanum{#2}
 	}
 }
+
+% Insertar una ecuación sin número alineada a la izquierda
+%	#1	Ecuación
 \newcommand{\insertequationleftanum}[1]{
 	\emptyvarerr{\insertequationleftanum}{#1}{Ecuacion no definida}
 	\vspace{\marginequationtop cm}
@@ -854,6 +1139,10 @@
 	\end{equation*}
 	\vspace{\marginequationbottom cm}
 }
+
+% Insertar una ecuación alineada a la derecha
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertequationright}[2][]{
 	\emptyvarerr{\insertequationright}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -871,6 +1160,9 @@
 		\insertequationrightanum{#2}
 	}
 }
+
+% Insertar una ecuación sin número alineada a la derecha
+%	#1	Ecuación
 \newcommand{\insertequationrightanum}[1]{
 	\emptyvarerr{\insertequationrightanum}{#1}{Ecuacion no definida}
 	\vspace{\marginequationtop cm}
@@ -880,6 +1172,11 @@
 	\end{equation*}
 	\vspace{\marginequationbottom cm}
 }
+
+% Insertar una ecuación con leyenda
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Leyenda
 \newcommand{\insertequationcaptioned}[3][]{
 	\emptyvarerr{\insertequationcaptioned}{#2}{Ecuacion no definida}
 	\ifx\hfuzz#3\hfuzz
@@ -905,6 +1202,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertequationcaptionedanum}[2]{
 	\emptyvarerr{\insertequationcaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -922,6 +1223,9 @@
 		\vspace{\margineqncaptionbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente gather
+%	#1	Ecuación
 \newcommand{\insertgather}[1]{
 	\emptyvarerr{\insertgather}{#1}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -934,6 +1238,9 @@
 		\insertgatheranum{#1}
 	}
 }
+
+% Insertar una ecuación con el ambiente gather sin número
+%	#1	Ecuación
 \newcommand{\insertgatheranum}[1]{
 	\emptyvarerr{\insertgatheranum}{#1}{Ecuacion no definida}
 	\vspace{\margingathertop cm}
@@ -942,6 +1249,10 @@
 	\end{gather*}
 	\vspace{\margingatherbottom cm}
 }
+
+% Insertar una ecuación (gather) con leyenda
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertgathercaptioned}[2]{
 	\emptyvarerr{\insertgathercaptioned}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -963,6 +1274,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación (gather) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertgathercaptionedanum}[2]{
 	\emptyvarerr{\insertgathercaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -980,6 +1295,10 @@
 		\vspace{\margingathercaptbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente gathered
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertgathered}[2][]{
 	\emptyvarerr{\insertgathered}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -995,13 +1314,16 @@
 		\else
 			\throwwarning{Label invalido en ecuacion (gathered) sin numero}
 		\fi
-\vspace{\margingatheredtop cm}
+		\vspace{\margingatheredtop cm} % \insertgatheredanum{#2} tira warning
 		\begin{gather*}
 			\ensuremath{#2}
 		\end{gather*}
 		\vspace{\margingatheredbottom cm}
 	}
 }
+
+% Insertar una ecuación con el ambiente gathered sin número
+%	#1	Ecuación
 \newcommand{\insertgatheredanum}[1]{
 	\emptyvarerr{\insertgatheredanum}{#1}{Ecuacion no definida}
 	\vspace{\margingatheredtop cm}
@@ -1010,6 +1332,11 @@
 	\end{gather*}
 	\vspace{\margingatheredbottom cm}
 }
+
+% Insertar una ecuación (gathered) con leyenda
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Leyenda
 \newcommand{\insertgatheredcaptioned}[3][]{
 	\emptyvarerr{\insertgatheredcaptioned}{#2}{Ecuacion no definida}
 	\ifx\hfuzz#3\hfuzz
@@ -1037,6 +1364,10 @@
 		}
 		\fi
 }
+
+% Insertar una ecuación (gathered) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertgatheredcaptionedanum}[2]{
 	\emptyvarerr{\insertgatheredcaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -1054,6 +1385,9 @@
 		\vspace{\margingathercaptbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente align
+%	#1	Ecuación
 \newcommand{\insertalign}[1]{
 	\emptyvarerr{\insertalign}{#1}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -1066,6 +1400,9 @@
 		\insertalignanum{#1}
 	}
 }
+
+% Insertar una ecuación con el ambiente align sin número
+%	#1	Ecuación
 \newcommand{\insertalignanum}[1]{
 	\emptyvarerr{\insertalignanum}{#1}{Ecuacion no definida}
 	\vspace{\marginaligntop cm}
@@ -1074,6 +1411,10 @@
 	\end{align*}
 	\vspace{\marginalignbottom cm}
 }
+
+% Insertar una ecuación (align) con leyenda
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertaligncaptioned}[2]{
 	\emptyvarerr{\insertaligncaptioned}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -1095,6 +1436,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación (align) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertaligncaptionedanum}[2]{
 	\emptyvarerr{\insertaligncaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -1112,6 +1457,10 @@
 		\vspace{\marginaligncaptbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente aligned
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertaligned}[2][]{
 	\emptyvarerr{\insertaligned}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -1130,6 +1479,9 @@
 		\insertalignedanum{#2}
 	}
 }
+
+% Insertar una ecuación con el ambiente aligned sin número
+%	#1	Ecuación
 \newcommand{\insertalignedanum}[1]{
 	\emptyvarerr{\insertalignedanum}{#1}{Ecuacion no definida}
 	\vspace{\marginalignedtop cm}
@@ -1138,6 +1490,11 @@
 	\end{align*}
 	\vspace{\marginalignedbottom cm}
 }
+
+% Insertar una ecuación (aligned) con leyenda
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Leyenda
 \newcommand{\insertalignedcaptioned}[3][]{
 	\emptyvarerr{\insertalignedcaptioned}{#2}{Ecuacion no definida}
 	\ifx\hfuzz#3\hfuzz
@@ -1165,6 +1522,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación (aligned) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertalignedcaptionedanum}[2]{
 	\emptyvarerr{\insertalignedcaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -1184,14 +1545,45 @@
 		\vspace{\marginalignedcaptbottom cm}
 	\fi
 }
+% Añade una imagen a un env 'image' con borde
+%	#1	Dirección de la imagen
+%	#2	Parámetros de la imagen
+%	#3	Leyenda de la imagen (opcional)
 \newcommand{\addimage}[3]{\addimageboxed{#1}{#2}{0}{#3}}
+
+% Añade una imagen a un env 'image' con borde
+%	#1	Dirección de la imagen
+%	#2	Parámetros de la imagen
+%	#3	Ancho de la línea (en pt)
+%	#4	Leyenda de la imagen (opcional)
 \newcommand{\addimageboxed}[4]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#4]{\fbox{\includegraphics[#2]{#1}}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
+
+% Añade un salto de línea en las imágenes
 \newcommand{\imagesnewline}{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\\\hspace{\GLOBALenvimagenewlinemarg cm}}
+
+% Agrega un espacio horizontal a las imágenes
+% 	#1 Tamaño del espacio
 \newcommand{\imageshspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\hspace{#1}}
+
+% Agrega un espacio vertical a las imágenes
+% 	#1 Tamaño del espacio
 \newcommand{\imagesvspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}~ \\ \vspace*{#1}}
+
+% Insertar una imagen
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Parámetros de la imagen
+%	#4	Leyenda de la imagen (opcional)
 \newcommand{\insertimage}[4][]{
 	\insertimageboxed[#1]{#2}{#3}{0}{#4}
 }
+
+% Insertar una imagen con recuadro
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Parámetros de la imagen
+%	#4	Ancho de la línea (en pt)
+%	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageboxed}[5][]{
 	\emptyvarerr{\insertimageboxed}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimageboxed}{#3}{Parametros de la imagen no definidos}
@@ -1215,11 +1607,33 @@
 	\vspace{\marginimagebottom cm}
 	\resetindexcaption
 }
+
+% Insertar una imagen dentro de una tabla
+%	#1	Dirección de la imagen
+%	#2	Parámetros de la imagen
 \newcommand{\inserttableimage}[2]{\inserttableimageboxed{#1}{#2}{0}}
+
+% Insertar una imagen dentro de una tabla con recuadro
+%	#1	Dirección de la imagen
+%	#2	Parámetros de la imagen
+%	#3	Ancho de la línea (en pt)
 \newcommand{\inserttableimageboxed}[3]{\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}\checkoutsideenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\raisebox{-1\totalheight}{\fbox{\includegraphics[#2]{#1}}}\endgroup\resetindexcaption}
+
+% Insertar una imagen a la izquierda, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleft}[4][]{
 	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}
 }
+
+% Insertar una imagen a la izquierda, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Ancho de la línea (en pt)
+%	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftboxed}[5][]{
 	\emptyvarerr{\insertimageleftboxed}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimageleftboxed}{#3}{Ancho de la imagen no definido}
@@ -1248,9 +1662,24 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Insertar una imagen a la izquierda, ajustada en un número de líneas, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Altura en líneas de la imagen
+%	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftline}[5][]{
 	\insertimageleftlineboxed[#1]{#2}{#3}{0}{#4}{#5}
 }
+
+% Insertar una imagen recuadrada a la izquierda, ajustada en un número de líneas, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Ancho de la línea (en pt)
+%	#5	Altura en líneas de la imagen
+%	#6	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftlineboxed}[6][]{
 	\emptyvarerr{\insertimageleftlineboxed}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimageleftlineboxed}{#3}{Ancho de la imagen no definido}
@@ -1279,9 +1708,22 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Insertar una imagen a la derecha, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Leyenda de la imagen (opcional)
 \newcommand{\insertimageright}[4][]{
 	\insertimagerightboxed[#1]{#2}{#3}{0}{#4}
 }
+
+% Insertar una imagen recuadrada a la derecha, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Ancho de la línea (en pt)
+%	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightboxed}[5][]{
 	\emptyvarerr{\insertimagerightboxed}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimagerightboxed}{#3}{Ancho de la imagen no defindo}
@@ -1310,9 +1752,24 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Insertar una imagen a la derecha, ajustada en un número de líneas, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Altura en líneas de la imagen
+%	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightline}[5][]{
 	\insertimagerightlineboxed[#1]{#2}{#3}{0}{#4}{#5}
 }
+
+% Insertar una imagen recuadrada a la derecha, ajustada en un número de líneas, escalada, ancho fijo
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho de la imagen (en textwidth)
+%	#4	Ancho de la línea (en pt)
+%	#5	Altura en líneas de la imagen
+%	#6	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightlineboxed}[6][]{
 	\emptyvarerr{\insertimagerightlineboxed}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimagerightlineboxed}{#3}{Ancho de la imagen no defindo}
@@ -1342,12 +1799,27 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Insertar una imagen a la izquierda, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto
+%	#4	Propiedades de la imagen
+%	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftp}[5][]{
 	\xspace~\\
 	\vspace{-2\baselineskip}
 	\par
 	\insertimageleftboxedp[#1]{#2}{#3}{#4}{0}{#5}
 }
+
+% Insertar una imagen a la izquierda, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto
+%	#4	Propiedades de la imagen
+%	#5	Ancho de la línea (en pt)
+%	#6	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftboxedp}[6][]{
 	\emptyvarerr{\insertimageleftboxedp}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimageleftboxedp}{#3}{Ancho del objeto no definido}
@@ -1377,9 +1849,26 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Insertar una imagen a la izquierda, ajustada en un número de líneas, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto
+%	#4	Propiedades de la imagen
+%	#5	Altura en líneas de la imagen
+%	#6	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftlinep}[6][]{
 	\insertimageleftlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
 }
+
+% Insertar una imagen recuadrada a la izquierda, ajustada en un número de líneas, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto
+%	#4	Propiedades de la imagen
+%	#5	Ancho de la línea (en pt)
+%	#6	Altura en líneas de la imagen
+%	#7	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftlineboxedp}[7][]{
 	\emptyvarerr{\insertimageleftlineboxedp}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimageleftlineboxedp}{#3}{Ancho del objeto no definido}
@@ -1410,12 +1899,27 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Insertar una imagen a la derecha, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto (en cm)
+%	#4	Propiedades de la imagen
+%	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightp}[5][]{
 	\xspace~\\
 	\vspace{-2\baselineskip}
 	\par
 	\insertimagerightboxedp[#1]{#2}{#3}{#4}{0}{#5}
 }
+
+% Insertar una imagen recuadrada a la derecha, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto
+%	#4	Propiedades de la imagen
+%	#5	Ancho de la línea (en pt)
+%	#6	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightboxedp}[6][]{
 	\emptyvarerr{\insertimagerightboxedp}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimagerightboxedp}{#3}{Ancho del objeto no definido}
@@ -1445,9 +1949,26 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Insertar una imagen a la derecha, ajustada en un número de líneas, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto (en cm)
+%	#4	Propiedades de la imagen
+%	#5	Altura en líneas de la imagen
+%	#6	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightlinep}[6][]{
 	\insertimagerightlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
 }
+
+% Insertar una imagen recuadrada a la derecha, ajustada en un número de líneas, propiedades variables
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Ancho del objeto
+%	#4	Propiedades de la imagen
+%	#5	Ancho de la línea (en pt)
+%	#6	Altura en líneas de la imagen
+%	#7	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightlineboxedp}[7][]{
 	\emptyvarerr{\insertimagerightlineboxedp}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimagerightlineboxedp}{#3}{Ancho del objeto no definido}
@@ -1478,10 +1999,14 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
+
+% Define la clave resolution al insertar imágenes
 \makeatletter
 \define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
 \makeatother
+% Activa la numeración en las secciones
 \def\coreintializetitlenumbering {
+	% section
 	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{
 		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
 			\renewcommand{\thesection}{\Alph{section}}
@@ -1495,16 +2020,19 @@
 			\renewcommand{\thesection}{\thechapter.\arabic{section}}
 		}
 	}
+	% subsection
 	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
 		\renewcommand{\thesubsection}{\arabic{subsection}}
 	}{
 		\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 	}
+	% subsubsection
 	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
 		\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 	}{
 		\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 	}
+	% subsubsubsection
 	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
 		\ifthenelse{\equal{\showdotaftersnum}{true}}{
 			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}.}
@@ -1519,48 +2047,53 @@
 		}
 	}
 }
+
+% Parcha el formato de capítulos
 \pretocmd{\chapter}{
-\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{chap}}{
+	\ifthenelse{\equal{\equationrestart}{chap}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 	\def\GLOBALchapternumenabled{true}
 	\coreintializetitlenumbering
 }{}{}
+
+% Parcha el formato de secciones al pasar desde una anum, vuelve a activar número
+% de la sección
 \pretocmd{\section}{
-\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{sec}}{
+	\ifthenelse{\equal{\equationrestart}{sec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
@@ -1568,75 +2101,87 @@
 	\def\GLOBALsubsectionanumenabled{false}
 	\coreintializetitlenumbering
 }{}{}
+
+% Comienza nueva subsección, si está dentro de una sectionanum entonces no dibuja el
+% número de sección, si no entonces dibuja el número de forma normal
 \pretocmd{\subsection}{
-\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{ssec}}{
+	\ifthenelse{\equal{\equationrestart}{ssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 	\def\GLOBALsubsectionanumenabled{false}
 	\coreintializetitlenumbering
 }{}{}
+
+% Comienza nueva subsubsección, aquí hay varios casos:
+%	- si está dentro de una subsección sin número ignora la sección
+%	- si no, entonces puede estar dentro de una sección sin número o no, en ese caso
+%     debe evaluar ambas posibilidades
 \pretocmd{\subsubsection}{
-\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{sssec}}{
+	\ifthenelse{\equal{\equationrestart}{sssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 	\coreintializetitlenumbering
 }{}{}
+
 \pretocmd{\subsubsubsection}{
-\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{ssssec}}{
+	\ifthenelse{\equal{\equationrestart}{ssssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 }{}{}
+
+% Insertar un título sin número
+% 	#1	Título
 \newcommand{\sectionanum}[1]{
 	\emptyvarerr{\sectionanum}{#1}{Titulo no definido}
 	\phantomsection
@@ -1649,6 +2194,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled{true}
 }
+
+% Insertar un título sin número y sin indexar
+% 	#1	Título
 \newcommand{\sectionanumnoi}[1]{
 	\emptyvarerr{\sectionanumnoi}{#1}{Titulo no definido}
 	\phantomsection
@@ -1660,6 +2208,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled{true}
 }
+
+% Insertar un título sin número sin cambiar el título del header
+% 	#1	Título
 \newcommand{\sectionanumheadless}[1]{
 	\emptyvarerr{\sectionanumnoheadless}{#1}{Titulo no definido}
 	\section*{#1}
@@ -1669,6 +2220,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled{true}
 }
+
+% Insertar un título sin número, sin indexar y sin cambiar el título del header
+% 	#1	Título
 \newcommand{\sectionanumnoiheadless}[1]{
 	\emptyvarerr{\sectionanumnoiheadless}{#1}{Titulo no definido}
 	\section*{#1}
@@ -1677,6 +2231,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled{true}
 }
+
+% Insertar un subtítulo sin número
+% 	#1	Subtítulo
 \newcommand{\subsectionanum}[1]{
 	\emptyvarerr{\subsectionanum}{#1}{Subtitulo no definido}
 	\subsection*{#1}
@@ -1686,6 +2243,9 @@
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 	\def\GLOBALsubsectionanumenabled{true}
 }
+
+% Insertar un subtítulo sin número y sin indexar
+% 	#1	Subtítulo
 \newcommand{\subsectionanumnoi}[1]{
 	\emptyvarerr{\subsectionanumnoi}{#1}{Subtitulo no definido}
 	\subsection*{#1}
@@ -1694,6 +2254,9 @@
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 	\def\GLOBALsubsectionanumenabled{true}
 }
+
+% Insertar un sub-subtítulo sin número
+% 	#1	Sub-subtítulo
 \newcommand{\subsubsectionanum}[1]{
 	\emptyvarerr{\subsubsectionanum}{#1}{Sub-subtitulo no definido}
 	\subsubsection*{#1}
@@ -1706,6 +2269,9 @@
 		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}
 	}
 }
+
+% Insertar un sub-subtítulo sin número y sin indexar
+% 	#1	Sub-subtítulo
 \newcommand{\subsubsectionanumnoi}[1]{
 	\emptyvarerr{\subsubsectionanumnoi}{#1}{Sub-subtitulo no definido}
 	\subsubsection*{#1}
@@ -1717,24 +2283,39 @@
 		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}
 	}
 }
+
+% Insertar un sub-sub-subtítulo sin número
+% 	#1	Sub-sub-subtítulo
 \newcommand{\subsubsubsectionanum}[1]{
 	\emptyvarerr{\subsubsubsectionanum}{#1}{Sub-sub-subtitulo no definido}
 	\subsubsubsection*{#1}
 	\addcontentsline{toc}{subsubsubsection}{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
 }
+
+% Insertar un sub-sub-subtítulo sin número y sin indexar
+% 	#1	Sub-sub-subtítulo
 \newcommand{\subsubsubsectionanumnoi}[1]{
 	\emptyvarerr{\subsubsubsectionanumnoi}{#1}{Sub-sub-subtitulo no definido}
 	\subsubsection*{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
 }
+
+% Cambia el título del encabezado (header)
+%	#1	Título
 \newcommand{\changeheadertitle}[1]{
 	\emptyvarerr{\changeheadertitle}{#1}{Titulo no definido}
 	\markboth{#1}{}
 }
+
+% Elimina el título del encabezado (header)
 \newcommand{\clearheadertitle}{
 	\markboth{}{}
 }
+
+% Insertar un título en un índice, sin número de página
+%	#1	Margen superior en pt. (opcional)
+%	#2	Título
 \newcommand{\insertindextitle}[2][]{
 	\emptyvarerr{\insertindextitle}{#2}{Titulo no definido}
 	\ifx\hfuzz#1\hfuzz
@@ -1744,6 +2325,10 @@
 	\fi
 	\addtocontents{toc}{\noindent\hyperref[swpn]{\textbf{#2}}}
 }
+
+% Insertar un título en un índice, con número de página
+%	#1	Margen superior en pt. (opcional)
+%	#2	Título
 \newcommand{\insertindextitlepage}[2][]{
 	\emptyvarerr{\insertindextitlepage}{#2}{Titulo no definido}
 	\ifx\hfuzz#1\hfuzz
@@ -1753,10 +2338,17 @@
 	\fi
 	\addcontentsline{toc}{section}{#2}
 }
+
+% Crea una sección en el índice y en el header
+%	#1	Margen superior en pt. (opcional)
+%	#2	Título
 \newcommand{\createhiddensection}[2][]{
 	\changeheadertitle{#2}
 	\insertindextitlepage[#1]{#2}
 }
+
+% Crear un capítulo como una sección
+%	#1	Título
 \newcommand{\newchapter}[1]{
 	\emptyvarerr{\newchapter}{#1}{Titulo no definido}
 	\newpage
@@ -1771,14 +2363,30 @@
 	\addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}
 	\markboth{#1}{}
 }
+% Insertar párrafo
 \newcommand{\newp}{\hbadness=10000 \vspace{\defaultnewlinesize pt} \par}
+
+% Insertar párrafo
+% 	#1	Párrafo
 \newcommand{\newpar}[1]{\hbadness=10000 #1 \newp}
+
+% Insertar párrafo sin nueva línea al final
+% 	#1	Párrafo
 \newcommand{\newparnl}[1]{#1 \par}
+
+% Inserta un lipsum corregido
+% \newcommand{\slipsum}[1][]{~\lipsum[#1]}
+
+% Redimensiona un ítem
+% 	#1	Tamaño del nuevo objeto (En textwidth)
+%	#2	Objeto a redimensionar
 \newcommand{\itemresize}[2]{
 	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}
 	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}
 	\resizebox{#1\textwidth}{!}{#2}
 }
+
+% Crea una página vacía sin header o footer
 \newcommand{\insertemptypage}{
 	\newpage
 	\setcounter{templatePageCounter}{\thepage}
@@ -1789,27 +2397,69 @@
 	\pagenumbering{arabic}
 	\setcounter{page}{\thetemplatePageCounter}
 }
+
+% Inserta una página vacía, aunque conserva header, footer y numeración
 \newcommand{\insertblankpage}{
 	\newpage
 	\null
 	\newpage
 }
+
+% Añade un archivo pdf con el header
+%	#1	Parámetros (opcional)
+%	#2	Nombre del archivo pdf
 \newcommand{\includehfpdf}[2][]{
 	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}
 }
+
+% Añade un archivo pdf con el header
+%	#1	Parámetros (opcional)
+%	#2	Nombre del archivo pdf
 \newcommand{\includefullhfpdf}[2][]{
 	\includepdf[pages=-,pagecommand={\pagestyle{fancy}},#1]{#2}
 }
+
+% Inserta un texto entre comillas
+%	#1 	Texto
 \newcommand{\quotes}[1]{\enquote*{#1}}
+
+% Inserta una cita con texto elevado
+%	#1	Cita
 \newcommand{\scite}[1]{\textsuperscript{\cite{#1}}}
+
+% Inserta un texto con el formato de enlace
+% 	#1 	Enlace
 \newcommand{\hreftext}[1]{\ifthenelse{\equal{\fonturl}{same}}{#1}{\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{}}}}}
+
+% Parcha href para incluir el estilo
+% \let\oldhref=\href
+% \renewcommand{\href}[2]{
+% 	\oldhref{#1}{\insertHREFtext{#2}}
+% }
+
+% Inserta un email con un link cliqueable
+%	#1 	Dirección email
 \newcommand{\insertemail}[1]{\href{mailto:#1}{\hreftext{#1}}}
+
+% Inserta un teléfono celular
+%	#1	Teléfono celular
 \newcommand{\insertphone}[1]{\href{tel:#1}{\hreftext{#1}}}
+
+% Reinicia el número de ecuaciones
 \newcommand{\restartequation}{\setcounter{equation}{0}}
+
+% Desactiva el margen de las leyendas
 \newcommand{\disablecaptionmargin}{\setcaptionmargincm{0}}
+
+% Reinicia el margen de las leyendas
 \newcommand{\resetcaptionmargin}{\setcaptionmargincm{\captionlrmargin}}
+
+% Modifica el color de las tablas
+%	#1	Posición inicial del inicio de colores
 \newcommand{\settablerowcolors}[1]{
 	\emptyvarerr{\settablerowcolors}{#1}{Posicion de fila no definida}
+	
+	% Usa colores normales
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -1824,6 +2474,7 @@
 				\rowcolors{#1}{\tablerowsecondcolor}{\tablerowfirstcolor}
 			}
 		}
+	% Usa colores alternados
 	}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -1839,9 +2490,14 @@
 			}
 		}
 	}
+
+	% Actualiza el índice previo
 	\def\GLOBALtablerowcolorindex{#1}
 }
+
+% Alterna los colores de las tablas a la última ejecución
 \newcommand{\settablerowcolorslast}{
+	% Usa colores normales
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -1856,6 +2512,7 @@
 				\rowcolors{\GLOBALtablerowcolorindex}{\tablerowsecondcolor}{\tablerowfirstcolor}
 			}
 		}
+	% Usa colores alternados
 	}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -1872,6 +2529,9 @@
 		}
 	}
 }
+
+% Activa el color de las filas de las tablas
+%	#1	Posición inicial del inicio de colores
 \newcommand{\enabletablerowcolor}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\settablerowcolors{2}
@@ -1879,7 +2539,11 @@
 		\settablerowcolors{#1}
 	\fi
 }
+
+% Desactiva el color de las filas de las tablas
 \newcommand{\disabletablerowcolor}{\rowcolors{2}{}{}}
+
+% Alterna los colores de las filas de las tablas
 \newcommand{\switchtablerowcolors}{
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
 		\def\GLOBALtablerowcolorswitch{true}
@@ -1888,7 +2552,13 @@
 	}
 	\settablerowcolorslast
 }
+
+% Cambia el tamaño de la página
+%	#1	Orientacion de la página, puede ser 0 o 90. Por defecto es cero
+%	#2	Ancho de la página (cm)
+%	#3	Alto de la página (cm)
 \newcommand{\changepagesize}[3][]{
+	% \emptyvarerr{\changepagesize}{#1}{Orientacion de la pagina}
 	\emptyvarerr{\changepagesize}{#2}{Ancho de la pagina no definida}
 	\emptyvarerr{\changepagesize}{#3}{Altura de la pagina no definida}
 	\ifthenelse{\equal{\compilertype}{lualatex}}{
@@ -1908,6 +2578,11 @@
 		}
 	}
 }
+
+% Ofrece diferentes formatos de pagina
+% https://www.prepressure.com/library/paper-size
+%	#1	Indica la rotación, puede ser 0 o 90
+%	#2	Formato de la pagina
 \newcommand{\changepagesizeformat}[2][]{
 	\emptyvarerr{\changepagesizeformat}{#2}{Formato de pagina no definido}
 	\ifthenelse{\equal{#2}{4A0}}{
@@ -1988,15 +2663,16 @@
 		\throwbadconfig{Estilo de pagina no valido}{\changepagesizeformat}{4A0,2A0,A0,A1,A2,A3,A4,A5,A6,letter,legal,foolscap,executive,ledger,tabloid,ANSIC,ANSID,ANSIE,B0,B1,B2,B3,B4,B5,B6}}}}}}}}}}}}}}}}}}}}}}}}}
 	}
 }
+% Crea una sección de referencias solo para bibtex
 \newenvironment{references}{
-\ifthenelse{\equal{\stylecitereferences}{bibtex}}{
+	\ifthenelse{\equal{\stylecitereferences}{bibtex}}{ % Verifica configuraciones
 	}{
 		\throwerror{\references}{Solo se puede usar entorno references con estilo citas \noexpand\stylecitereferences=bibtex}
 	}
 	\phantomsection
 	\addcontentsline{toc}{chapter}{\namereferences}
-\begin{thebibliography}{}
-\ifthenelse{\equal{\bibtextextalign}{justify}}{
+	\begin{thebibliography}{} % Inicia la bibliografía
+		\ifthenelse{\equal{\bibtextextalign}{justify}}{ % Formato ajuste de línea
 		}{
 		\ifthenelse{\equal{\bibtextextalign}{left}}{
 			\raggedright
@@ -2013,23 +2689,27 @@
 	{
 	\end{thebibliography}
 }
+
 \newenvironment{anexo}{
-\begingroup
+	\begingroup % Inicia el grupo en nueva página y sección
 	\clearpage
 	\phantomsection
-\changeheadertitle{\nomltappendixsection}
-\def\GLOBALsectionalph{false}
+	\changeheadertitle{\nomltappendixsection} % Cambia el nombre del header
+	\def\GLOBALsectionalph{false} % Modifica formato de secciones con sección alph
 	\bookmarksetup{
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
 	}
 	\appendixtitleon
 	\appendixtitletocon
+	%\addappheadtotoc
 	\bookmarksetupnext{level=part}
-\begin{appendices}
+	\begin{appendices} % Crea la sección
 		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
-\pdfbookmark{\nameappendixsection}{contents}
+			\pdfbookmark{\nameappendixsection}{contents} % Si false
 		}
+		% \setcounter{secnumdepth}{4}
+		% \setcounter{tocdepth}{4}
 		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
 \counterwithin{equation}{chapter}
 \counterwithin{figure}{chapter}
@@ -2038,14 +2718,20 @@
 		}
 	}{
 	\end{appendices}
-\def\GLOBALsectionalph{false}
-\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}}
+	\def\GLOBALsectionalph{false} % Desactiva formato de secciones con sección alph
+	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Reestablece índice marcador
 	\bookmarksetup{
 		numbered={\cfgpdfsecnumbookmarks},
 		openlevel={\cfgbookmarksopenlevel}
 	}
 	\endgroup
 }
+
+% Inicia código fuente con parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Parámetros
+%	#4	Caption
 \newcommand{\coreinitsourcecodep}[4]{
 	\emptyvarerr{\coreinitsourcecodep}{#2}{Estilo de codigo no definido}
 	\checkvalidsourcecodestyle{#2}
@@ -2113,6 +2799,12 @@
 		\fi	
 	}
 }
+
+% Inserta código fuente con parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Parámetros
+%	#4	Caption
 \lstnewenvironment{sourcecodep}[4][]{
 	\coreinitsourcecodep{#1}{#2}{#3}{#4}
 }{
@@ -2120,6 +2812,13 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Importa código fuente desde un archivo con parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Parámetros
+%	#4	Archivo de código fuente
+%	#5	Caption
 \newcommand{\importsourcecodep}[5][]{
 	\coreinitsourcecodep{#1}{#2}{#3}{#5}
 	\inputlisting{#4}
@@ -2127,6 +2826,11 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Inicia código fuente sin parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Caption
 \newcommand{\coreinitsourcecode}[3]{
 	\emptyvarerr{\coreinitsourcecode}{#2}{Estilo de codigo no definido}
 	\checkvalidsourcecodestyle{#2}
@@ -2162,6 +2866,11 @@
 		\fi
 	}
 }
+
+% Inserta código fuente sin parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Caption
 \lstnewenvironment{sourcecode}[3][]{
 	\coreinitsourcecode{#1}{#2}{#3}
 }{
@@ -2169,6 +2878,12 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Importa código fuente desde un archivo sin parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Archivo de código fuente
+%	#4	Caption
 \newcommand{\importsourcecode}[4][]{
 	\coreinitsourcecode{#1}{#2}{#4}
 	\lstinputlisting{#3}
@@ -2176,25 +2891,37 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Itemize en negrita
+%	#1	Parámetros opcionales
 \newenvironment{itemizebf}[1][]{
 	\begin{itemize}[font=\bfseries,#1]
 	}{
 	\end{itemize}
 }
+
+% Enumerate en negrita
+%	#1	Parámetros opcionales
 \newenvironment{enumeratebf}[1][]{
 	\begin{enumerate}[font=\bfseries,#1]
 	}{
 	\end{enumerate}
 }
+
+% Crea una sección de resumen
 \newenvironment{resumen}{
+	% Añade a los marcadores
+	% \setpagemargincm{\pagemarginleft}{\pagemarginright}{\pagemarginright}{\pagemarginbottom}
 	\ifthenelse{\equal{\addabstracttobookmarks}{true}}{
 		\pdfbookmark{\nameabstract}{contents}}{
 	}
+	% Inserta la tabla resumen
 	\begin{flushright}
 		\small
 		\tablaresumen
 	\end{flushright}
 	\vspace{0.25\baselineskip}
+	% Título
 	\begin{center}
 		\textcolor{\titlecolor}{\MakeUppercase{\textbf{\titulotesis}}}
 	\end{center} \newp
@@ -2208,9 +2935,14 @@
 			\insertblankpage
 		\fi}{
 	}
+	% \setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 }
+% Crea una sección de dedicatoria
 \newenvironment{dedicatoria}{
 	\cleardoublepage\null
+	% \ifthenelse{\equal{\adddedictobookmarks}{true}}{
+	% 	\belowpdfbookmark{\nameadedic}{contents}}{
+	% }
 	\vspace{\stretch{1}}
 	\begin{flushright}
 		\itshape}{
@@ -2221,6 +2953,7 @@
 		\insertblankpage}{
 	}
 }
+% Crea una sección de agradecimientos
 \newenvironment{agradecimientos}{
 	\chapter*{\nameagradec}
 	\ifthenelse{\equal{\addagradectobookmarks}{true}}{
@@ -2232,25 +2965,37 @@
 		\insertblankpage}{
 	}
 }
+
+%	#1	Label (opcional)
+%	#2	Caption
 \newenvironment{images}[2][]{
+	% Modifica globales
 	\def\envimageslabelvar {#1}
 	\def\envimagescaptionvar {#2}
 	\def\GLOBALenvimageinitialized {true}
 	\def\GLOBALenvimageadded {false}
+	
+	% Configura caption y márgenes
 	\vspace{\marginimagetop cm}
 	\captionsetup{margin=\captionmarginmultimg cm}
+	
+	% Inicia la figura
 	\begin{figure}[H] \centering
 		\vspace{\marginimagemulttop cm}
 		}{
 		\setcaptionmargincm{\captionlrmargin}
-\ifthenelse{\equal{\envimagescaptionvar}{}}{
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}
 		}{
 			\caption{\envimagescaptionvar\envimageslabelvar}
 		}
 	\end{figure}
+
+	% Reestablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}
 	\vspace{\marginimagebottom cm}
+	
+	% Reestablece globales
 	\def\GLOBALenvimageinitialized {false}
 }
 
@@ -2270,6 +3015,9 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{ocher}{rgb}{1,0.5,0}
 \definecolor{ocre}{RGB}{243,102,25}
+% -----------------------------------------------------------------------------
+% Assembler
+% -----------------------------------------------------------------------------
 \lstdefinelanguage[x64]{Assembler}[x86masm]{Assembler}{
 	morekeywords={
 		CDQE,CQO,CMPSQ,CMPXCHG16B,JRCXZ,LODSQ,MOVSXD,POPFQ,PUSHFQ,SCASQ,STOSQ,IRETQ,RDTSCP,SWAPGS,rax,rdx,rcx,rbx,rsi,rdi,rsp,rbp,r8,r8d,r8w,r8b,r9,r9d,r9w,r9b,r10,r10d,r10w,r10b,r11,r11d,r11w,r11b,r12,r12d,r12w,r12b,r13,r13d,r13w,r13b,r14,r14d,r14w,r14b,r15,r15d,r15w,r15b
@@ -2281,6 +3029,10 @@
 \lstdefinestyle{assemblerx86}{
 	language=[x86masm]Assembler
 }
+
+% -----------------------------------------------------------------------------
+% Bash
+% -----------------------------------------------------------------------------
 \lstdefinestyle{bash}{
 	language=bash,
 	breakatwhitespace=false,
@@ -2291,16 +3043,28 @@
 	},
 	sensitive=false
 }
+
+% -----------------------------------------------------------------------------
+% C
+% -----------------------------------------------------------------------------
 \lstdefinestyle{c}{
 	language=C,
 	breakatwhitespace=false,
 	keepspaces=true
 }
+
+% -----------------------------------------------------------------------------
+% C++
+% -----------------------------------------------------------------------------
 \lstdefinestyle{cpp}{
 	language=C++,
 	breakatwhitespace=false,
 	morecomment=[l][\color{magenta}]{\#}
 }
+
+% -----------------------------------------------------------------------------
+% C#
+% -----------------------------------------------------------------------------
 \lstdefinestyle{csharp}{
 	language=csh,
 	morecomment=[l]{//},
@@ -2309,6 +3073,10 @@
 		abstract,as,base,bool,break,byte,case,catch,char,checked,class,const,continue,decimal,default,delegate,do,double,else,enum,event,explicit,extern,false,finally,fixed,float,for,foreach,goto,if,implicit,in,int,interface,internal,is,lock,long,namespace,new,null,object,operator,out,override,params,private,protected,public,readonly,ref,return,sbyte,sealed,short,sizeof,stackalloc,static,string,struct,switch,this,throw,true,try,typeof,uint,ulong,unchecked,unsafe,ushort,using,virtual,void,volatile,while
 	}
 }
+
+% -----------------------------------------------------------------------------
+% CSS
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{CSS}{
 	morecomment=[s]{/*}{*/},
 	morekeywords={
@@ -2321,10 +3089,18 @@
 	language=CSS,
 	breakatwhitespace=true
 }
+
+% -----------------------------------------------------------------------------
+% CSV, Archivos separados por coma
+% -----------------------------------------------------------------------------
 \lstdefinestyle{csv}{
 	language={},
 	columns=flexible
 }
+
+% -----------------------------------------------------------------------------
+% CUDA
+% -----------------------------------------------------------------------------
 \lstdefinestyle{cuda}{
 	language=C++,
 	breakatwhitespace=false,
@@ -2335,6 +3111,10 @@
 	morecomment=[l][\color{magenta}]{\#},
 	moredelim=[s][\ttfamily]{<<<}{>>>}
 }
+
+% -----------------------------------------------------------------------------
+% DOCKER
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{docker}{
 	comment=[l]{\#},
 	keywords={
@@ -2347,10 +3127,18 @@
 	language=docker,
 	breakatwhitespace=true
 }
+
+% -----------------------------------------------------------------------------
+% Fortran-95
+% -----------------------------------------------------------------------------
 \lstdefinestyle{fortran}{
 	language=[95]Fortran,
 	breakatwhitespace=false
 }
+
+% -----------------------------------------------------------------------------
+% GLSL - Shaders
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{GLSL}{
 	alsoletter={\#},
 	morekeywords=[1]{
@@ -2372,17 +3160,28 @@
 	sensitive=true,
 	upquote=true
 }
+
+% -----------------------------------------------------------------------------
+% Haskell
+% -----------------------------------------------------------------------------
 \lstdefinestyle{haskell}{
 	language=haskell,
 	morecomment=[l]\%
 }
+
+% -----------------------------------------------------------------------------
+% HTML5
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{HTML5}{
 	language=html,
 	alsoletter={<>=-},
 	morecomment=[s]{<!--}{-->},
 	ndkeywords={
+		% General
 		=,
+		% HTML attributes
 		accept=,accept-charset=,accesskey=,action=,align=,alt=,async=,autocomplete=,autofocus=,autoplay=,autosave=,bgcolor=,border=,buffered=,challenge=,charset=,checked=,cite=,class=,code=,codebase=,color=,cols=,colspan=,content=,contenteditable=,contextmenu=,controls=,coords=,data=,datetime=,default=,defer=,dir=,dirname=,disabled=,download=,draggable=,dropzone=,enctype=,for=,form=,formaction=,headers=,height=,hidden=,high=,href=,hreflang=,http-equiv=,icon=,id=,ismap=,itemprop=,keytype=,kind=,label=,lang=,language=,list=,loop=,low=,manifest=,max=,maxlength=,media=,method=,min=,multiple=,name=,novalidate=,open=,optimum=,pattern=,ping=,placeholder=,poster=,preload=,pubdate=,radiogroup=,readonly=,rel=,required=,reversed=,rows=,rowspan=,sandbox=,scope=,scoped=,seamless=,selected=,shape=,size=,sizes=,span=,spellcheck=,src=,srcdoc=,srclang=,start=,step=,style=,summary=,tabindex=,target=,title=,type=,usemap=,value=,width=,wrap=,
+		% CSSproperties
 		accelerator:,azimuth:,background:,background-attachment:,background-color:,background-image:,background-position:,background-position-x:,background-position-y:,background-repeat:,behavior:,border:,border-bottom:,border-bottom-color:,border-bottom-style:,border-bottom-width:,border-collapse:,border-color:,border-left:,border-left-color:,border-left-style:,border-left-width:,border-right:,border-right-color:,border-right-style:,border-right-width:,border-spacing:,border-style:,border-top:,border-top-color:,border-top-style:,border-top-width:,border-width:,bottom:,caption-side:,clear:,clip:,color:,content:,counter-increment:,counter-reset:,cue:,cue-after:,cue-before:,cursor:,direction:,display:,elevation:,empty-cells:,filter:,float:,font:,font-family:,font-size:,font-size-adjust:,font-stretch:,font-style:,font-variant:,font-weight:,height:,ime-mode:,include-source:,layer-background-color:,layer-background-image:,layout-flow:,layout-grid:,layout-grid-char:,layout-grid-char-spacing:,layout-grid-line:,layout-grid-mode:,layout-grid-type:,left:,letter-spacing:,line-break:,line-height:,list-style:,list-style-image:,list-style-position:,list-style-type:,margin:,margin-bottom:,margin-left:,margin-right:,margin-top:,marker-offset:,marks:,max-height:,max-width:,min-height:,min-width:,transition-duration:,transition-property:,transition-timing-function:,transform:,-moz-transform:,-moz-binding:,-moz-border-radius:,-moz-border-radius-topleft:,-moz-border-radius-topright:,-moz-border-radius-bottomright:,-moz-border-radius-bottomleft:,-moz-border-top-colors:,-moz-border-right-colors:,-moz-border-bottom-colors:,-moz-border-left-colors:,-moz-opacity:,-moz-outline:,-moz-outline-color:,-moz-outline-style:,-moz-outline-width:,-moz-user-focus:,-moz-user-input:,-moz-user-modify:,-moz-user-select:,orphans:,outline:,outline-color:,outline-style:,outline-width:,overflow:,overflow-X:,overflow-Y:,padding:,padding-bottom:,padding-left:,padding-right:,padding-top:,page:,page-break-after:,page-break-before:,page-break-inside:,pause:,pause-after:,pause-before:,pitch:,pitch-range:,play-during:,position:,quotes:,-replace:,richness:,right:,ruby-align:,ruby-overhang:,ruby-position:,-set-link-source:,size:,speak:,speak-header:,speak-numeral:,speak-punctuation:,speech-rate:,stress:,scrollbar-arrow-color:,scrollbar-base-color:,scrollbar-dark-shadow-color:,scrollbar-face-color:,scrollbar-highlight-color:,scrollbar-shadow-color:,scrollbar-3d-light-color:,scrollbar-track-color:,table-layout:,text-align:,text-align-last:,text-decoration:,text-indent:,text-justify:,text-overflow:,text-shadow:,text-transform:,text-autospace:,text-kashida-space:,text-underline-position:,top:,unicode-bidi:,-use-link-source:,vertical-align:,visibility:,voice-family:,volume:,white-space:,widows:,width:,word-break:,word-spacing:,word-wrap:,writing-mode:,z-index:,zoom:
 	},
 	otherkeywords={
@@ -2399,6 +3198,10 @@
 	ndkeywordstyle=\color{dkgreen}\bfseries,
 	numberfirstline=true
 }
+
+% -----------------------------------------------------------------------------
+% INI, Archivos de configuraciones
+% -----------------------------------------------------------------------------
 \lstdefinestyle{ini}{
 	language={},
 	columns=flexible,
@@ -2410,11 +3213,19 @@
 	morekeywords={},
 	otherkeywords={=,:}
 }
+
+% -----------------------------------------------------------------------------
+% Java
+% -----------------------------------------------------------------------------
 \lstdefinestyle{java}{
 	language=Java,
 	breakatwhitespace=true,
 	keepspaces=true
 }
+
+% -----------------------------------------------------------------------------
+% Javascript
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{JavaScript}{
 	comment=[l]{//},
 	keepspaces=true,
@@ -2434,6 +3245,10 @@
 \lstdefinestyle{js}{
 	language=JavaScript
 }
+
+% -----------------------------------------------------------------------------
+% JSON
+% -----------------------------------------------------------------------------
 \lstdefinestyle{json}{
 	literate=*{0}{{{\color{numb}0}}}{1}{1}{{{\color{numb}1}}}{1}{2}
 	{{{\color{numb}2}}}{1}{3}{{{\color{numb}3}}}{1}{4}{{{\color{numb}4}}}
@@ -2444,6 +3259,10 @@
 	{1}{[}{{{\color{delim}{[}}}}{1}{]}{{{\color{delim}{]}}}}{1},
 	tabsize=2
 }
+
+% -----------------------------------------------------------------------------
+% Kotlin
+% -----------------------------------------------------------------------------
 \lstdefinestyle{kotlin}{
 	comment=[l]{//},
 	emph={delegate,filter,first,firstOrNull,forEach,lazy,map,mapNotNull,println,
@@ -2461,19 +3280,35 @@
 	ndkeywordstyle=\color{BurntOrange}\bfseries,
 	sensitive=true
 }
+
+% -----------------------------------------------------------------------------
+% LaTeX
+% -----------------------------------------------------------------------------
 \lstdefinestyle{latex}{
 	language=TeX,
 	morekeywords={
 		aacos,aasin,aatan,acos,addimage,addimageboxed,align,asin,atan,begin,bibitem,bibliography,bigstrut,boldmath,bookmarksetup,boxed,cancelto,caption,changeheadertitle,checkmark,checkvardefined,cite,dd,degree,eqref,equal,frac,fracnpartial,fullcite,hline,href,ifthenelse,imagesnewline,imageshspace,imagesvspace,includehfpdf,includefullhfpdf,insertalign,insertalignanum,insertaligncaptioned,insertaligncaptioned,insertaligncaptionedanum,insertaligned,insertalignedanum,insertalignedcaptioned,insertalignedcaptionedanum,insertemail,insertemptypage,inserteqimage,insertequation,insertequationanum,insertequationcaptioned,insertequationcaptionedanum,insertgather,insertgatheranum,insertgathercaptioned,insertgathercaptionedanum,insertgathered,insertgatheredanum,insertgatheredcaptioned,insertgatheredcaptionedanum,insertimage,insertimageleft,insertimageright,insertindextitle,insertindextitlepage,insertphone,isundefined,itemresize,label,LaTeX,lipsum,lpow,makeatletter,makeatother,newcommand,newcounter,newp,newpage,pow,quotes,ref,renewcommand,section,sectionanum,setcounter,setlength,shortcite,sourcecode,sourcecodep,subsection,subsectionanum,subsubsection,subsubsectionanum,subsubsubsection,subsubsubsection,subsubsubsectionanum,textbf,textit,textregistered,textsuperscript,texttt,throwbadconfig,unboldmath,url,xspace
 	}
 }
+
+% -----------------------------------------------------------------------------
+% Lisp
+% -----------------------------------------------------------------------------
 \lstdefinestyle{lisp}{
 	language=Lisp,
 	morekeywords={if}
 }
+
+% -----------------------------------------------------------------------------
+% Lua
+% -----------------------------------------------------------------------------
 \lstdefinestyle{lua}{
 	language={[5.2]Lua}
 }
+
+% -----------------------------------------------------------------------------
+% Maple
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{Maple}{
 	morecomment=[l]\#,
 	morekeywords={
@@ -2486,6 +3321,10 @@
 \lstdefinestyle{maple}{
 	language=Maple
 }
+
+% -----------------------------------------------------------------------------
+% Matlab
+% -----------------------------------------------------------------------------
 \lstdefinestyle{matlab}{
 	language=Matlab,
 	deletekeywords={fft},
@@ -2497,6 +3336,10 @@
 		addOptional,box,break,catch,cell,classdef,continue,deal,double,end,factorial,for,gradient,hessian,if,isa,ltitr,matlab2tikz,methods,minor,movegui,normcdf,normpdf,on,ones,parse,persistent,poissrnd,properties,repmat,solve,strcat,subs,syms,try,var,warning,xlim,ylim
 	}
 }
+
+% -----------------------------------------------------------------------------
+% Octave
+% -----------------------------------------------------------------------------
 \lstdefinestyle{octave}{
 	language=Octave,
 	flexiblecolumns=true,
@@ -2504,6 +3347,10 @@
 	morecomment=[l]\%,
 	morecomment=[n]{\%\{\^^M}{\%\}\^^M}
 }
+
+% -----------------------------------------------------------------------------
+% OpenCL
+% -----------------------------------------------------------------------------
 \lstdefinestyle{opencl}{
 	language=C++,
 	breakatwhitespace=false,
@@ -2513,6 +3360,10 @@
 	emphstyle=\color{dkcyan}\ttfamily,
 	morecomment=[l][\color{magenta}]{\#}
 }
+
+% -----------------------------------------------------------------------------
+% OpenSees
+% -----------------------------------------------------------------------------
 \lstdefinestyle{opensees}{
 	language=tcl,
 	breakatwhitespace=false,
@@ -2520,6 +3371,7 @@
 		-dir,-dof,-ele,-eleRange,-file,-height,-increment,-initial,-iNode,-integration,-iterate,-jNode,-kNode,-mass,-mat,-matConcrete,-matShear,-matSteel,-max,-maxDim,-maxEta,-maxIter,-min,-minEta,-ndf,-ndm,-node,-nodeRange,-numSublevels,-numSubSteps,-region,-rho,-sections,-thick,-time,-tol,-type,-width
 	},
 	emphstyle=[1]\color{black}\bfseries\em,
+	% moredelim=[s][\color{black}\bfseries\em]{-}{\ },
 	keepspaces=true,
 	morecomment=[l]{\#},
 	morekeywords={
@@ -2530,17 +3382,29 @@
 	},
 	ndkeywordstyle=\color{dkcyan}\ttfamily
 }
+
+% -----------------------------------------------------------------------------
+% Pascal
+% -----------------------------------------------------------------------------
 \lstdefinestyle{pascal}{
 	language=Pascal,
 	morecomment=[l]{//},
 	sensitive=false
 }
+
+% -----------------------------------------------------------------------------
+% Perl
+% -----------------------------------------------------------------------------
 \lstdefinestyle{perl}{
 	language=Perl,
 	alsoletter={\%},
 	breakatwhitespace=false,
 	keepspaces=true
 }
+
+% -----------------------------------------------------------------------------
+% PHP
+% -----------------------------------------------------------------------------
 \lstdefinestyle{php}{
 	language=php,
 	emph=[1]{
@@ -2560,6 +3424,10 @@
 	showlines=true,
 	upquote=true
 }
+
+% -----------------------------------------------------------------------------
+% Texto plano
+% -----------------------------------------------------------------------------
 \lstdefinestyle{plaintext}{
 	language={},
 	columns=fullflexible,
@@ -2579,6 +3447,10 @@
 	{»}{{\guillemotright}}1 {\ \ }{{\ }}1,
 	tabsize=4
 }
+
+% -----------------------------------------------------------------------------
+% Pseudocódigo
+% -----------------------------------------------------------------------------
 \lstdefinestyle{pseudocode}{
 	language={},
 	backgroundcolor=\color{white},
@@ -2598,6 +3470,10 @@
 	sensitive=false,
 	stringstyle=\color{dkgray}\bfseries\em
 }
+
+% -----------------------------------------------------------------------------
+% Python
+% -----------------------------------------------------------------------------
 \lstdefinestyle{python}{
 	language=Python,
 	breakatwhitespace=false,
@@ -2606,6 +3482,10 @@
 	keepspaces=true,
 	morekeywords={as,assert,close,listdir,split,strip,with}
 }
+
+% -----------------------------------------------------------------------------
+% R
+% -----------------------------------------------------------------------------
 \lstdefinestyle{r}{
 	language=R,
 	alsoletter={.<-},
@@ -2616,6 +3496,10 @@
 	morestring=[d]",
 	otherkeywords={!,!=,~,$,*,\&,\%/\%,\%*\%,\%\%,<-,<<-,/}
 }
+
+% -----------------------------------------------------------------------------
+% Ruby
+% -----------------------------------------------------------------------------
 \lstdefinestyle{ruby}{
 	language=Ruby,
 	breakatwhitespace=true,
@@ -2623,6 +3507,10 @@
 	morestring=*[d]{"},
 	sensitive=true
 }
+
+% -----------------------------------------------------------------------------
+% Scala
+% -----------------------------------------------------------------------------
 \lstdefinestyle{scala}{
 	language=scala,
 	breakatwhitespace=true,
@@ -2636,6 +3524,10 @@
 	morestring=[b]""",
 	otherkeywords={=>,<-,<\%,<:,>:,\#,@}
 }
+
+% -----------------------------------------------------------------------------
+% Scheme
+% -----------------------------------------------------------------------------
 \lstdefinestyle{scheme}{
 	language=Lisp,
 	morecomment=[l]{;},
@@ -2644,23 +3536,43 @@
 	},
 	morestring=[b]"
 }
+
+% -----------------------------------------------------------------------------
+% SQL
+% -----------------------------------------------------------------------------
 \lstdefinestyle{sql}{
 	language=SQL,
 	breakatwhitespace=true
 }
+
+% -----------------------------------------------------------------------------
+% TCL
+% -----------------------------------------------------------------------------
 \lstdefinestyle{tcl}{
 	language=tcl,
 	breakatwhitespace=false,
 	keepspaces=true,
 	morecomment=[l]{\#}
 }
+
+% -----------------------------------------------------------------------------
+% Visual Basic
+% -----------------------------------------------------------------------------
 \lstdefinestyle{vbscript}{
 	language=[Visual]Basic,
 	extendedchars=true
 }
+
+% -----------------------------------------------------------------------------
+% Verilog
+% -----------------------------------------------------------------------------
 \lstdefinestyle{verilog}{
 	language=Verilog
 }
+
+% -----------------------------------------------------------------------------
+% VDHL
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{VHDL}{
 	morekeywords=[1]{
 		library,use,all,entity,is,port,in,out,end,architecture,of,begin,and,or,Not,downto,ALL
@@ -2673,6 +3585,10 @@
 \lstdefinestyle{vhdl}{
 	language=VHDL
 }
+
+% -----------------------------------------------------------------------------
+% XML
+% -----------------------------------------------------------------------------
 \lstdefinelanguage{XML}{
 	morecomment=[s]{<?}{?>},
 	morekeywords={
@@ -2685,7 +3601,12 @@
 	language=XML,
 	tabsize=2
 }
+
+% -----------------------------------------------------------------------------
+% Configuración de códigos fuente
+% -----------------------------------------------------------------------------
 \lstset{
+	% \mbox{\textcolor{black}{$\hookrightarrow$}\space}
 	aboveskip=0.75em,
 	basicstyle={\sourcecodefonts\sourcecodefontf\color{\maintextcolor}},
 	belowskip=1em,
@@ -2694,6 +3615,7 @@
 	commentstyle=\color{dkgreen}\upshape,
 	extendedchars=true,
 	fontadjust=true,
+	% fancyvrb=false,
 	identifierstyle=\color{black},
 	keepspaces=true,
 	keywordstyle=\color{blue},
@@ -2720,6 +3642,10 @@
 	stringstyle=\color{mauve},
 	tabsize={\sourcecodetabsize}
 }
+
+% -----------------------------------------------------------------------------
+% Chequeo de estilos, cualquier nuevo estilo añadirlo a esta lista
+% -----------------------------------------------------------------------------
 \newcommand{\checkvalidsourcecodestyle}[1]{
 	\ifthenelse{\equal{#1}{assemblerx64}}{}{
 	\ifthenelse{\equal{#1}{assemblerx86}}{}{
@@ -2768,6 +3694,9 @@
 		\errmessage{LaTeX Warning: Estilo de codigo desconocido. Valores esperados: assemblerx64,assemblerx86,bash,c,cpp,csharp,css,csv,cuda,docker,fortran,glsl,haskell,html5,ini,java,js,json,kotlin,latex,lisp,lua,maple,matlab,octave,opencl,opensees,pascal,perl,php,plaintext,pseudocode,python,r,ruby,scala,scheme,sql,tcl,vbscript,verilog,vhdl,xml}
 	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
+% -----------------------------------------------------------------------------
+% Estilo de enumeración en griego
+% -----------------------------------------------------------------------------
 \RequirePackage{enumitem}
 \makeatletter
 \def\greek#1{\expandafter\@greek\csname c@#1\endcsname}
@@ -2833,6 +3762,10 @@
 \AddEnumerateCounter{\Greek}{\@Greek}{12}
 
 % CONFIGURACIÓN INICIAL DEL DOCUMENTO
+% -----------------------------------------------------------------------------
+% Se revisa si las variables no han sido borradas
+% -----------------------------------------------------------------------------
+% Inicialización de variables
 \def\temaatratar{}
 \def\titulodelinforme{\titulotesis}
 \def\autordeldocumento{\autortesis}
@@ -2849,6 +3782,7 @@
 \def\nombredelcurso{}
 \def\fontsizetitlei{\fontsizetitle}
 \def\styletitlei{\styletitle}
+
 \checkvardefined{\autordeldocumento}
 \checkvardefined{\departamentouniversidad}
 \checkvardefined{\localizacionuniversidad}
@@ -2857,6 +3791,10 @@
 \checkvardefined{\nombreuniversidad}
 \checkvardefined{\temaatratar}
 \checkvardefined{\titulodelinforme}
+
+% -----------------------------------------------------------------------------
+% Se añade \xspace a las variables
+% -----------------------------------------------------------------------------
 \makeatletter
 	\g@addto@macro\autordeldocumento\xspace
 	\g@addto@macro\codigodelcurso\xspace
@@ -2868,9 +3806,18 @@
 	\g@addto@macro\temaatratar\xspace
 	\g@addto@macro\titulodelinforme\xspace
 \makeatother
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% Se activan números en menú marcadores del pdf
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\cfgpdfsecnumbookmarks}{true}}{
 	\bookmarksetup{numbered}}{
 }
+
+% -----------------------------------------------------------------------------
+% Se define metadata del pdf
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\cfgshowbookmarkmenu}{true}}{
 	\def\cfgpdfpagemode {UseOutlines}
 	}{
@@ -2925,8 +3872,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-alpha-3-THS-N},
-		Template.Version.Hash={49E4FEADA3A158C936EE63BA3332C396},
+		Template.Version.Dev={2.0.0-alpha-3-THS},
+		Template.Version.Hash={2FE6A8BDF32E4B41A2D965C338F5C0C5},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -2947,30 +3894,49 @@
 	pdftitle={\pdfmetainfotitulo},
 	pdftoolbar={\cfgpdftoolbar}
 }
+
+% -----------------------------------------------------------------------------
+% Establece la carpeta de imágenes por defecto
+% -----------------------------------------------------------------------------
 \graphicspath{{./\defaultimagefolder}{./\defaultimagefolder/departamentos/}}
-\renewcommand{\baselinestretch}{\defaultinterline}
-\setlength{\headheight}{64 pt}
-\setlength{\footnotemargin}{\marginfootnote pt}
-\setlength{\columnsep}{\columnsepwidth em}
+
+% -----------------------------------------------------------------------------
+% Definición de valores e dimensiones
+% -----------------------------------------------------------------------------
+\renewcommand{\baselinestretch}{\defaultinterline} % Ajuste del entrelineado
+\setlength{\headheight}{64 pt} % Tamaño de la cabecera sin fancyhdr
+% \setcounter{MaxMatrixCols}{20} % Número máximo de columnas en matrices
+\setlength{\footnotemargin}{\marginfootnote pt} % Margen del footnote
+\setlength{\columnsep}{\columnsepwidth em} % Separación entre columnas
 \ifthenelse{\equal{\showlinenumbers}{true}}{
 	\setlength{\linenumbersep}{0.50cm}
 	\renewcommand\linenumberfont{\normalfont\tiny\color{\linenumbercolor}}
 	}{
 }
+
+% -----------------------------------------------------------------------------
+% Posición inicial de los objetos
+% -----------------------------------------------------------------------------
 \floatplacement{figure}{\imagedefaultplacement}
 \floatplacement{table}{\tabledefaultplacement}
 \floatplacement{tikz}{\tikzdefaultplacement}
-\color{\maintextcolor}
-\arrayrulecolor{\tablelinecolor}
-\sethlcolor{\highlightcolor}
+
+% -----------------------------------------------------------------------------
+% Configuración de los colores
+% -----------------------------------------------------------------------------
+\color{\maintextcolor} % Color principal
+\arrayrulecolor{\tablelinecolor} % Color de las líneas de las tablas
+\sethlcolor{\highlightcolor} % Color del subrayado por defecto
 \ifthenelse{\equal{\showborderonlinks}{true}}{
+	% Color de links con borde
 	\hypersetup{
 		citebordercolor=\numcitecolor,
 		linkbordercolor=\linkcolor,
 		urlbordercolor=\urlcolor
 	}
 }{
-\hypersetup{
+	% Color de links sin borde
+	\hypersetup{ % No reorganizar
 		hidelinks,
 		colorlinks=true,
 		citecolor=\numcitecolor,
@@ -2981,15 +3947,23 @@
 \ifthenelse{\equal{\colorpage}{white}}{}{
 	\pagecolor{\colorpage}
 }
+
+% -----------------------------------------------------------------------------
+% Configuración de las leyendas
+% -----------------------------------------------------------------------------
+
+% Márgenes de las leyendas por defecto
 \setcaptionmargincm{\captionlrmargin}
-\ifthenelse{\equal{\captiontextbold}{true}}{
+\ifthenelse{\equal{\captiontextbold}{true}}{ % Texto en negrita en etiquetas
 	\renewcommand{\captiontextbold}{bf}}{
 	\renewcommand{\captiontextbold}{}
 }
-\ifthenelse{\equal{\captiontextsubnumbold}{true}}{
+\ifthenelse{\equal{\captiontextsubnumbold}{true}}{ % Número en negritas
 	\renewcommand{\captiontextsubnumbold}{bf}}{
 	\renewcommand{\captiontextsubnumbold}{}
 }
+
+% Se configura el texto de los caption
 \captionsetup{
 	labelfont={color=\captioncolor, \captiontextbold},
 	labelformat={\captionlabelformat},
@@ -2997,6 +3971,8 @@
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
 }
+
+% Configura texto de los subcaption
 \captionsetup*[subfigure]{
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
@@ -3011,38 +3987,48 @@
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
 }
+
+% Configuración de márgenes en las figuras
 \floatsetup[figure]{
 	captionskip=\captiontbmarginfigure pt
 }
+
+% Configuración de márgenes en las tablas
 \floatsetup[table]{
 	captionskip=\captiontbmargintable pt
 }
+
+% Caption superior en figuras
 \ifthenelse{\equal{\figurecaptiontop}{true}}{
 	\floatsetup[figure]{position=above}}{
 }
+
+% Caption superior en tablas
 \ifthenelse{\equal{\tablecaptiontop}{true}}{
 	\floatsetup[table]{position=top}
 	}{
 	\floatsetup[table]{position=bottom}
 }
-\ifthenelse{\equal{\captionalignment}{justified}}{
+
+% Alineado de leyendas
+\ifthenelse{\equal{\captionalignment}{justified}}{ % Leyenda justificada
 	\captionsetup{
 		format=plain,
 		justification=justified
 	}
 }{
-\ifthenelse{\equal{\captionalignment}{centered}}{
+\ifthenelse{\equal{\captionalignment}{centered}}{ % Leyenda centrada
 	\captionsetup{
 		justification=centering
 	}
 }{
-\ifthenelse{\equal{\captionalignment}{left}}{
+\ifthenelse{\equal{\captionalignment}{left}}{ % Leyenda alineada a la izquierda
 	\captionsetup{
 		justification=raggedright,
 		singlelinecheck=false
 	}
 }{
-\ifthenelse{\equal{\captionalignment}{right}}{
+\ifthenelse{\equal{\captionalignment}{right}}{ % Leyenda alineada a la derecha
 	\captionsetup{
 		justification=raggedleft,
 		singlelinecheck=false
@@ -3050,15 +4036,23 @@
 }{
 	\throwbadconfig{Posicion de leyendas desconocida}{\captionalignment}{justified,centered,left,right}}}}
 }
+
+% -----------------------------------------------------------------------------
+% Configuración de referencias y citas
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{
 	\bibliographystyle{\natbibrefstyle}
 	\setlength{\bibsep}{\natbibrefsep pt}
+	%\newcommand{\shortcite}[1]{\texttt{\textbackslash shortcite\{#1\}}\throwwarning{Esta funcion no es soportada con el uso de las referencias natbib}}
+	%\newcommand{\fullcite}[1]{\texttt{\textbackslash fullcite\{#1\}}\throwwarning{Esta funcion no es soportada con el uso de las referencias natbib}}
 	\newcommand{\shortcite}[1]{\texttt{\textbackslash shortcite\{#1\}}}
 	\newcommand{\fullcite}[1]{\texttt{\textbackslash fullcite\{#1\}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
+	%\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}\throwwarning{Esta funcion no es soportada con el uso de las referencias apacite}}
+	%\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}\throwwarning{Esta funcion no es soportada con el uso de las referencias apacite}}
 	\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}}
 	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}
 }{
@@ -3077,6 +4071,7 @@
 }{
 	\throwbadconfig{Estilo citas desconocido}{\stylecitereferences}{bibtex,apacite,natbib}}}
 }
+% Crea referencias enumeradas en apacite
 \newcounter{apaciteNumberCounter}
 \addtocounter{apaciteNumberCounter}{-1}
 \makeatletter
@@ -3086,7 +4081,14 @@
 	}{}
 }{}
 \makeatother
+% -----------------------------------------------------------------------------
+% Configuración anexo
+% -----------------------------------------------------------------------------
 \patchcmd{\appendices}{\quad}{\sectionappendixlastchar\quad}{}{}
+
+% -----------------------------------------------------------------------------
+% Se añade listings (código fuente) a tocloft
+% -----------------------------------------------------------------------------
 \begingroup
 	\makeatletter
 	\let\newcounter\@gobble\let\setcounter\@gobbletwo
@@ -3095,6 +4097,10 @@
 	\newlistentry{lstlisting}{lol}{0}
 	\makeatother
 \endgroup
+
+% -----------------------------------------------------------------------------
+% Crea índice de ecuaciones
+% -----------------------------------------------------------------------------
 \newcommand{\listindexequationsname}{\nomlteqn}
 \newlistof{myindexequations}{equ}{\listindexequationsname}
 \newcommand{\myindexequations}[1]{
@@ -3102,6 +4108,10 @@
 }
 \setcounter{templateIndexEquations}{0}
 \DeclareTotalCounter{templateIndexEquations}
+
+% -----------------------------------------------------------------------------
+% Reconfiguración de tamaño de páginas
+% -----------------------------------------------------------------------------
 \makeatletter
 	\def\ifGm@preamble#1{\@firstofone}
 	\appto\restoregeometry{
@@ -3111,30 +4121,76 @@
 		\pdfpagewidth=\paperwidth
 		\pdfpageheight=\paperheight}{}{}
 \makeatother
+
+% -----------------------------------------------------------------------------
+% Configuración de hbox y vbox
+% -----------------------------------------------------------------------------
 \hfuzz=200pt
 \vfuzz=200pt
 \hbadness=\maxdimen
 \vbadness=\maxdimen
+% \sloppy Sloppy arruina portadas al exigir "justify", desde 6.4.2 se desactiva
+
+% -----------------------------------------------------------------------------
+% Configura las fuentes
+% -----------------------------------------------------------------------------
 \makeatletter
 \def\Hv@scale{.95}
 \makeatother
+
+% -----------------------------------------------------------------------------
+% Configuraciones de las tablas
+% -----------------------------------------------------------------------------
+
+% Reinicia el número de cada fila en todas las tablas
 \makeatletter
 \preto\tabular{\global\rownum=\z@}
 \preto\tabularx{\global\rownum=\z@}
 \makeatother
+
+% -----------------------------------------------------------------------------
+% Se activa el modo estricto de revisión de números de página
+% -----------------------------------------------------------------------------
 \strictpagecheck
+
+% -----------------------------------------------------------------------------
+% Actualización márgen títulos
+% -----------------------------------------------------------------------------
 \titlespacing{\section}{0pt}{20pt}{10pt}
 \titlespacing{\subsection}{0pt}{15pt}{10pt}
+
+% -----------------------------------------------------------------------------
+% Se activa el word-wrap para textos con \texttt{}
+% -----------------------------------------------------------------------------
 \ttfamily \hyphenchar\the\font=`\-
 \makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\g@addto@macro{\UrlBreaks}{\UrlOrds} % Word-wrap para las \url
 \makeatother
+
+% -----------------------------------------------------------------------------
+% Se define el tipo de texto de los url
+% -----------------------------------------------------------------------------
 \urlstyle{\fonturl}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% Configuraciones del motor de compilación
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
+	% Nivel de compresión
 	\pdfcompresslevel=\pdfcompilecompression
+	
+	% El óptimo es 2, según
+	% http://texdoc.net/texmf-dist/doc/pdftex/manual/pdftex-a.pdf p.20
 	\pdfdecimaldigits=2
+	
+	% Inclusión de PDF
 	\pdfinclusionerrorlevel=0
+	
+	% Versión
 	\pdfminorversion=\pdfcompileversion
+	
+	% Compresión de objetos
 	\pdfobjcompresslevel=\pdfcompileobjcompression
 }{
 \ifthenelse{\equal{\compilertype}{xelatex}}{
@@ -3143,15 +4199,27 @@
 }{
 	\throwbadconfig{Compilador desconocido}{\compilertype}{pdf2latex,xelatex,lualatex}}}
 }
-\setcounter{secnumdepth}{4}
+
+% -----------------------------------------------------------------------------
+% Profundidad de las secciones
+% -----------------------------------------------------------------------------
+\setcounter{secnumdepth}{4} % Límite máximo subsubsubsección
+
+% Crea las subsubsubsecciones
 \newcounter{subsubsubsection}[subsubsection]
-\ifthenelse{\equal{\showdotaftersnum}{true}}{
+
+% Establece el número de las subsubsubsecciones
+\ifthenelse{\equal{\showdotaftersnum}{true}}{ % Agrega punto tras el número
 	\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}.}
 }{
 	\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}}
 }
+
+% -----------------------------------------------------------------------------
+% Agrega compatibilidad de subsubsubsecciones al TOC
+% -----------------------------------------------------------------------------
 \makeatletter
 	\def\toclevel@subsubsubsection{4}
 	\def\toclevel@paragraph{5}
@@ -3165,7 +4233,7 @@
 		{-1em}
 		{\normalfont\normalsize\bfseries}}
 	\ifthenelse{\equal{\showdotaftersnum}{true}}{
-\def\l@subsubsubsection{\@dottedtocline{4}{7.83em}{4.15em}}
+		\def\l@subsubsubsection{\@dottedtocline{4}{7.83em}{4.15em}} % Incremento 0.77+3.35 a 3.35
 		\def\l@paragraph{\@dottedtocline{5}{11.98em}{4.92em}}
 		\def\l@subparagraph{\@dottedtocline{6}{14.65em}{5.69em}}
 	}{
@@ -3174,7 +4242,15 @@
 		\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
 	}
 \makeatother
+
+% -----------------------------------------------------------------------------
+% Profundidad del índice y bookmarks pdf
+% -----------------------------------------------------------------------------
 \setcounter{tocdepth}{\indexdepth}
+
+% -----------------------------------------------------------------------------
+% Restauración número footnote
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\footnoterestart}{none}}{
 }{
 \ifthenelse{\equal{\footnoterestart}{sec}}{
@@ -3197,6 +4273,10 @@
 }{
 	\throwbadconfig{Formato reinicio numero footnote desconocido}{\footnoterestart}{none,chap,page,sec,ssec,sssec,ssssec}}}}}}}
 }
+
+% -----------------------------------------------------------------------------
+% Restauración número ecuación, NOTA: NO hace nada, sólo se modifica en title.tex
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\equationrestart}{none}}{
 }{
 \ifthenelse{\equal{\equationrestart}{chap}}{
@@ -3211,9 +4291,15 @@
 }{
 	\throwbadconfig{Formato reinicio numero ecuacion desconocido}{\equationrestart}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 }
+
+% -----------------------------------------------------------------------------
+% Configuración elementos matemáticos
+% -----------------------------------------------------------------------------
 \newtheoremstyle{miestilo}{\baselineskip}{3pt}{\itshape}{}{\bfseries}{}{.5em}{}
 \newtheoremstyle{miobs}{\baselineskip}{3pt}{}{}{\bfseries}{}{.5em}{}
 \theoremstyle{miestilo}
+
+% Configura números
 \ifthenelse{\equal{\showsectioncaptionmat}{none}}{
 	\newtheorem{defn}{\namemathdefn}
 	\newtheorem{teo}{\namemaththeorem}
@@ -3261,13 +4347,27 @@
 \theoremstyle{miobs}
 \newtheorem*{ej}{\namemathej}
 \newtheorem*{obs}{\namemathobs}
+
+% -----------------------------------------------------------------------------
+% Configuraciones del idioma
+% -----------------------------------------------------------------------------
+
+% Desactiva carácteres acentuados en operaciones matemáticas
 \unaccentedoperators
+
+% -----------------------------------------------------------------------------
+% Configura número de objetos en el final del documento
+% -----------------------------------------------------------------------------
 \AtEndDocument{
 	\addtocounter{equation}{\value{templateEquations}}
 	\addtocounter{figure}{\value{templateFigures}}
 	\addtocounter{lstlisting}{\value{templateListings}}
 	\addtocounter{table}{\value{templateTables}}
 }
+
+% -----------------------------------------------------------------------------
+% Formato de columnas
+% -----------------------------------------------------------------------------
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
@@ -3275,14 +4375,19 @@
 
 % PORTADA
 \newcommand{\templatePortrait}{
+
+	% Configura la página
 	\newpage
-\def\arraystretch{\tablepaddingv}
+	\def\arraystretch{\tablepaddingv} % Ajusta espaciamiento de las tablas
 	\renewcommand{\thepage}{\nameportraitpage}
 	\setpagemargincm{\pagemarginleftportrait}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
+
 	\pagestyle{fancy} \fancyhf{}
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}
-\hspace*{-0.5cm}
+
+	% Logo de la universidad
+	\hspace*{-0.5cm} % Necesario para centrar el logo con el título
 	\includegraphics[scale=\imagendepartamentoescala]{\imagendepartamento}
 	\hspace*{0.05cm}
 	\begin{minipage}{0.8\linewidth}
@@ -3291,20 +4396,33 @@
 		\MakeUppercase \departamentouniversidad
 		\vspace*{1.6cm}\mbox{}
 	\end{minipage}
+
 	\vfill
+
 	\begin{center}
 		\textcolor{\portraittitlecolor}{\MakeUppercase{\textbf{\titulotesis}}} ~ \\
+		
 		\vspace{1.5cm}
 		\textcolor{\portraittitlecolor}{\MakeUppercase{\titulogrado}} ~ \\
+		
+		%\vspace{3cm}
+		%\textcolor{\portraittitlecolor}{\MakeUppercase{\textbf{\autortesis}}}
+		
 		\vfill
 		\tablacomision
 	\end{center}
+
 	\normalfont
+	
 }
 % CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
 \newcommand{\templatePagecfg}{
+
+	% -----------------------------------------------------------------------------
+	% Numeración de páginas
+	% -----------------------------------------------------------------------------
 	\newpage
-\ifthenelse{\equal{\predocpageromannumber}{true}}{
+	\ifthenelse{\equal{\predocpageromannumber}{true}}{ % Si se usan números romanos en el predocumento
 		\ifthenelse{\equal{\predocpageromanupper}{true}}{
 			\pagenumbering{Roman}
 		}{
@@ -3314,32 +4432,52 @@
 	}
 	\setcounter{page}{1}
 	\setcounter{footnote}{0}
+
+	% -----------------------------------------------------------------------------
+	% Márgenes de páginas y tablas
+	% -----------------------------------------------------------------------------
 	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
-\def\arraystretch {\tablepaddingv}
-\setlength{\tabcolsep}{\tablepaddingh em}
+	\def\arraystretch {\tablepaddingv} % Se ajusta el padding vertical de las tablas
+	\setlength{\tabcolsep}{\tablepaddingh em} % Se ajusta el padding horizontal de las tablas
+
+	% -----------------------------------------------------------------------------
+	% Se define el punto decimal
+	% -----------------------------------------------------------------------------
 	\ifthenelse{\equal{\pointdecimal}{true}}{
 		\decimalpoint}{
 	}
-\renewcommand{\appendixname}{\nomltappendixsection}
-\renewcommand{\appendixpagename}{\nameappendixsection}
-\renewcommand{\appendixtocname}{\nameappendixsection}
+
+	% -----------------------------------------------------------------------------
+	% Definición de nombres de objetos
+	% -----------------------------------------------------------------------------
+	\renewcommand{\appendixname}{\nomltappendixsection} % Nombre del anexo (título)
+	\renewcommand{\appendixpagename}{\nameappendixsection} % Nombre del anexo en índice
+	\renewcommand{\appendixtocname}{\nameappendixsection} % Nombre del anexo en índice
 \renewcommand{\chaptername}{\nomchapter}
-\renewcommand{\contentsname}{\nomltcont}
-\renewcommand{\figurename}{\nomltwfigure}
-\renewcommand{\listfigurename}{\nomltfigure}
-\renewcommand{\listtablename}{\nomlttable}
-\renewcommand{\lstlistingname}{\nomltwsrc}
-\renewcommand{\lstlistlistingname}{\nomltsrc}
-\renewcommand{\refname}{\namereferences}
-\renewcommand{\bibname}{\namereferences}
-\renewcommand{\tablename}{\nomltwtable}
+	\renewcommand{\contentsname}{\nomltcont} % Nombre del índice
+	\renewcommand{\figurename}{\nomltwfigure} % Nombre de la leyenda de las fig.
+	\renewcommand{\listfigurename}{\nomltfigure} % Nombre del índice de figuras
+	\renewcommand{\listtablename}{\nomlttable} % Nombre del índice de tablas
+	\renewcommand{\lstlistingname}{\nomltwsrc} % Nombre leyenda del código fuente
+	\renewcommand{\lstlistlistingname}{\nomltsrc} % Nombre índice código fuente
+	\renewcommand{\refname}{\namereferences} % Nombre de las referencias (bibtex)
+	\renewcommand{\bibname}{\namereferences} % Nombre de las referencias (natbib)
+	\renewcommand{\tablename}{\nomltwtable} % Nombre de la leyenda de tablas
+
+	% -----------------------------------------------------------------------------
+	% Estilo de títulos
+	% -----------------------------------------------------------------------------
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\fancyheadoffset{0pt}
-\def\hfheaderimagesizeA {0.5}
+
+	% -----------------------------------------------------------------------------
+	% Se crean los header-footer
+	% -----------------------------------------------------------------------------
+	\fancyheadoffset{0pt} % Desactiva el offset de los header-footer
+	\def\hfheaderimagesizeA {0.5}  % Tamaño de las imágenes del encabezado estilo 3/13
 	\ifthenelse{\equal{\hfstyle}{style1}}{
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
@@ -3373,7 +4511,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style1-i}}{
+	\ifthenelse{\equal{\hfstyle}{style1-i}}{ % impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3406,7 +4544,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style1-d}}{
+	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3472,7 +4610,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style2-i}}{
+	\ifthenelse{\equal{\hfstyle}{style2-i}}{ % impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3505,7 +4643,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style1-d}}{
+	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3613,7 +4751,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style5-d}}{
+	\ifthenelse{\equal{\hfstyle}{style5-d}}{ % impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3648,7 +4786,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style5-i}}{
+	\ifthenelse{\equal{\hfstyle}{style5-i}}{ % impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3718,7 +4856,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style8-d}}{
+	\ifthenelse{\equal{\hfstyle}{style8-d}}{ % impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3729,7 +4867,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style8-i}}{
+	\ifthenelse{\equal{\hfstyle}{style8-i}}{ % impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3756,7 +4894,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style9-d}}{
+	\ifthenelse{\equal{\hfstyle}{style9-d}}{ % impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3772,7 +4910,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style9-i}}{
+	\ifthenelse{\equal{\hfstyle}{style9-i}}{ % impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3823,7 +4961,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style10-i}}{
+	\ifthenelse{\equal{\hfstyle}{style10-i}}{ % impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3858,7 +4996,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style10-d}}{
+	\ifthenelse{\equal{\hfstyle}{style10-d}}{ % impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3893,7 +5031,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style11}}{
+	\ifthenelse{\equal{\hfstyle}{style11}}{ % Similar a 1
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3926,7 +5064,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style12}}{
+	\ifthenelse{\equal{\hfstyle}{style12}}{ % Similar a 6
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3939,7 +5077,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style13}}{
+	\ifthenelse{\equal{\hfstyle}{style13}}{ % Similar a 3
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3964,7 +5102,7 @@
 		}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style14}}{
+	\ifthenelse{\equal{\hfstyle}{style14}}{ % Similar a 4
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -3979,7 +5117,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style15}}{
+	\ifthenelse{\equal{\hfstyle}{style15}}{ % Similar a 1
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -4015,9 +5153,14 @@
 		\fancyheadoffset{0pt}
 		\COREstyledefinition
 	}
+
+	% -----------------------------------------------------------------------------
+	% Muestra los números de línea
+	% -----------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
+% Añade página en blanco
 \ifthenelse{\equal{\addemptypagespredoc}{true}}{
 	\insertblankpage}{
 }
@@ -4025,13 +5168,22 @@
 
 % TABLA DE CONTENIDOS - ÍNDICE
 \newcommand{\templateIndex}{
+	
+	% -------------------------------------------------------------------------
+% Inicio índice, desactiva espacio entre objetos
 \ifthenelse{\equal{\objectchaptermargin}{false}}{
 	\let\origaddvspace\addvspace
 	\renewcommand{\addvspace}[1]{}
 }{}
+
+	% -------------------------------------------------------------------------
 	\newpage
 	\begingroup
 	\sectionfont{\color{\indextitlecolor} \fontsizetitlei \styletitlei \selectfont}
+	
+	% -------------------------------------------------------------------------
+	% Salta de página si está imprimiendo por ambas caras
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
 		\checkoddpage
 		\ifoddpage
@@ -4043,10 +5195,17 @@
 			\addtocounter{page}{-1}
 		\fi}{
 	}
+	
+	% -------------------------------------------------------------------------
+	% Añade la entrada del índice a los marcadores del pdf
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\addindextobookmarks}{true}}{
 		\belowpdfbookmark{\nomltcont}{contents}}{
 	}
 	\tocloftpagestyle{fancy}
+	
+	% -------------------------------------------------------------------------
+% Configuración del punto en índice
 \ifthenelse{\equal{\showdotaftersnum}{true}}{
 	\def\cftchapaftersnum {.}		
 	\def\cftsecaftersnum {.}
@@ -4055,15 +5214,29 @@
 	\def\cftsubsubsubsecaftersnum {.}
 	}{
 }{}
+
+	% Configuración carácter número de página
+	% -------------------------------------------------------------------------
 	\renewcommand{\cftdot}{\charnumpageindex}
-\def\cftfigaftersnum {\charafterobjectindex\enspace}
-\def\cftsubfigaftersnum {\charafterobjectindex\enspace}
-\def\cfttabaftersnum {\charafterobjectindex\enspace}
-\def\cftlstlistingaftersnum {\charafterobjectindex\enspace}
-\def\cftmyindexequationsaftersnum {\charafterobjectindex\enspace}
+	
+	% -------------------------------------------------------------------------
+	% Configuración del punto en número de objetos
+	% -------------------------------------------------------------------------
+	\def\cftfigaftersnum {\charafterobjectindex\enspace} % Figuras
+	\def\cftsubfigaftersnum {\charafterobjectindex\enspace} % Subfiguras
+	\def\cfttabaftersnum {\charafterobjectindex\enspace} % Tablas
+	\def\cftlstlistingaftersnum {\charafterobjectindex\enspace} % Códigos fuente
+	\def\cftmyindexequationsaftersnum {\charafterobjectindex\enspace} % Ecuaciones
+	
+	% -------------------------------------------------------------------------
+	% Desactiva los números de línea
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\nolinenumbers}{
 	}
+
+	% -------------------------------------------------------------------------
+% Cambia tabulación índice de objetos para alinear con contenidos
 \ifthenelse{\equal{\objectindexindent}{true}}{
 	\setlength{\cfttabindent}{1.5em}
 	\setlength{\cftfigindent}{1.5em}
@@ -4075,9 +5248,14 @@
 	\setlength{\cftsubfigindent}{0em}
 	\def\cftlstlistingindent {0em}
 }
+
+	% Calcula tamaño del margen de los números en objetos del índice
+	% -------------------------------------------------------------------------
+	
+	% Código fuente
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
-\def\cftdefautnumwidthcode {3.0em}
-\def\cftdefaultnumwidthromancode {5.25em}
+		\def\cftdefautnumwidthcode {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromancode {5.25em} % Añade +0.5em para no overflow
 	}{
 	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
 		\def\cftdefautnumwidthcode {3.7em}
@@ -4101,9 +5279,11 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Código fuente
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
-\def\cftdefautnumwidtheqn {3.0em}
-\def\cftdefaultnumwidthromaneqn {5.25em}
+		\def\cftdefautnumwidtheqn {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromaneqn {5.25em} % Añade +0.5em para no overflow
 	}{
 	\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{
 		\def\cftdefautnumwidtheqn {3.7em}
@@ -4127,9 +5307,11 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+	
+	% Figuras
 	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
-\def\cftdefautnumwidthfig {3.0em}
-\def\cftdefaultnumwidthromanfig {5.25em}
+		\def\cftdefautnumwidthfig {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromanfig {5.25em} % Añade +0.5em
 	}{
 	\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{
 		\def\cftdefautnumwidthfig {3.7em}
@@ -4153,9 +5335,11 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+	
+	% Tablas
 	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
-\def\cftdefautnumwidthtab {3.0em}
-\def\cftdefaultnumwidthromantab {5.25em}
+		\def\cftdefautnumwidthtab {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromantab {5.25em} % Añade +0.5em
 	}{
 	\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{
 		\def\cftdefautnumwidthtab {3.7em}
@@ -4179,10 +5363,15 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+	
+	% Configuración identado de títulos de objetos después del número
 	\def\cftfignumwidth {\cftdefautnumwidth}
+	% \def\cftsubfignumwidth {\cftdefautnumwidth}
 	\def\cfttabnumwidth {\cftdefautnumwidth}
 	\def\cftlstlistingnumwidth {\cftdefautnumwidth}
-\ifthenelse{\equal{\captionnumcode}{arabic}}{
+	
+	% Código fuente
+	\ifthenelse{\equal{\captionnumcode}{arabic}}{ % No hace nada (default)
 		\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
 	}{
 		\ifthenelse{\equal{\captionnumcode}{roman}}{
@@ -4194,7 +5383,9 @@
 			\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
 		}}
 	}
-\ifthenelse{\equal{\captionnumequation}{arabic}}{
+
+	% Ecuaciones
+	\ifthenelse{\equal{\captionnumequation}{arabic}}{ % No hace nada (default)
 		\def\cftmyindexequationsnumwidth {\cftdefautnumwidtheqn}
 	}{
 		\ifthenelse{\equal{\captionnumequation}{roman}}{
@@ -4206,7 +5397,9 @@
 			\def\cftmyindexequationsnumwidth {\cftdefautnumwidtheqn}
 		}}
 	}
-\ifthenelse{\equal{\captionnumfigure}{arabic}}{
+	
+	% Figuras
+	\ifthenelse{\equal{\captionnumfigure}{arabic}}{ % No hace nada (default)
 		\def\cftfignumwidth {\cftdefautnumwidthfig}
 	}{
 		\ifthenelse{\equal{\captionnumfigure}{roman}}{
@@ -4218,7 +5411,9 @@
 				\def\cftfignumwidth {\cftdefautnumwidthfig}
 			}}
 	}
-\ifthenelse{\equal{\captionnumtable}{arabic}}{
+
+	% Tablas
+	\ifthenelse{\equal{\captionnumtable}{arabic}}{ % No hace nada (default)
 		\def\cfttabnumwidth {\cftdefautnumwidthtab}
 	}{
 		\ifthenelse{\equal{\captionnumtable}{roman}}{
@@ -4230,38 +5425,59 @@
 				\def\cfttabnumwidth {\cftdefautnumwidthtab}
 			}}
 	}
-\newcommand{\LoIf}{
+
+	% -------------------------------------------------------------------------
+	% Genera las funciones para los índices
+	% -------------------------------------------------------------------------
+	\newcommand{\LoIf}{ % Lista de figuras
 		\iftotalfigures
 			\ifthenelse{\equal{\indexnewpagef}{true}}{\newpage}{}
 			\listoffigures
 		\fi
 	}
-\newcommand{\LoIt}{
+	\newcommand{\LoIt}{ % Tablas
 		\iftotaltables
 			\ifthenelse{\equal{\indexnewpaget}{true}}{\newpage}{}
 			\listoftables
 		\fi
 	}
-\newcommand{\LoIc}{
+	\newcommand{\LoIc}{ % Códigos fuente (listings)
 		\iftotallstlistings
 			\ifthenelse{\equal{\indexnewpagec}{true}}{\newpage}{}
 			\lstlistoflistings
 		\fi
 	}
-\newcommand{\LoIe}{
+	\newcommand{\LoIe}{ % Ecuaciones
 		\iftotaltemplateIndexEquationss
 			\ifthenelse{\equal{\indexnewpagee}{true}}{\newpage}{}
 			\listofmyindexequations
 		\fi
 	}
+
+	% -------------------------------------------------------------------------
+	% Índice de contenidos
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showindexofcontents}{true}}{
 		\tableofcontents
 	}{}
+	
+	% -------------------------------------------------------------------------
+	% Índice de objetos
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\indexstyle}{ftc}}{\LoIf\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{}}{}{\ifthenelse{\equal{\indexstyle}{e}}{\LoIe}{\ifthenelse{\equal{\indexstyle}{c}}{\LoIc}{\ifthenelse{\equal{\indexstyle}{f}}{\LoIf}{\ifthenelse{\equal{\indexstyle}{t}}{\LoIt}{\ifthenelse{\equal{\indexstyle}{ec}}{\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{ce}}{\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{ef}}{\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{fe}}{\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{et}}{\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{te}}{\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{cf}}{\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{fc}}{\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ct}}{\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{tc}}{\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{ft}}{\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{tf}}{\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{ecf}}{\LoIe\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{efc}}{\LoIe\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{cef}}{\LoIc\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{cfe}}{\LoIc\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{fec}}{\LoIf\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{fce}}{\LoIf\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{ect}}{\LoIe\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{etc}}{\LoIe\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{cet}}{\LoIc\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{cte}}{\LoIc\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{tec}}{\LoIt\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{tce}}{\LoIt\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{eft}}{\LoIe\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{etf}}{\LoIe\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{fet}}{\LoIf\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{fte}}{\LoIf\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{tef}}{\LoIt\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{tfe}}{\LoIt\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{cft}}{\LoIc\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{ctf}}{\LoIc\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{fct}}{\LoIf\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{tcf}}{\LoIt\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{tfc}}{\LoIt\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ecft}}{\LoIe\LoIc\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{ectf}}{\LoIe\LoIc\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{efct}}{\LoIe\LoIf\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{eftc}}{\LoIe\LoIf\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{etcf}}{\LoIe\LoIt\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{etfc}}{\LoIe\LoIt\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ceft}}{\LoIc\LoIe\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{cetf}}{\LoIc\LoIe\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{cfet}}{\LoIc\LoIf\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{cfte}}{\LoIc\LoIf\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{ctef}}{\LoIc\LoIt\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{ctfe}}{\LoIc\LoIt\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{fect}}{\LoIf\LoIe\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{fetc}}{\LoIf\LoIe\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{fcet}}{\LoIf\LoIc\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{fcte}}{\LoIf\LoIc\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{ftec}}{\LoIf\LoIt\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{ftce}}{\LoIf\LoIt\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{tecf}}{\LoIt\LoIe\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{tefc}}{\LoIt\LoIe\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{tcef}}{\LoIt\LoIc\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{tcfe}}{\LoIt\LoIc\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{tfec}}{\LoIt\LoIf\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{tfce}}{\LoIt\LoIf\LoIc\LoIe}{\throwbadconfig{Estilo desconocido del indice}{\indexstyle}{ftc,,e,c,f,t,ec,ce,ef,fe,et,te,cf,fc,ct,tc,ft,tf,ecf,efc,cef,cfe,fec,fce,ect,etc,cet,cte,tec,tce,eft,etf,fet,fte,tef,tfe,cft,ctf,fct,tcf,tfc,ecft,ectf,efct,eftc,etcf,etfc,ceft,cetf,cfet,cfte,ctef,ctfe,fect,fetc,fcet,fcte,ftec,ftce,tecf,tefc,tcef,tcfe,tfec,tfce}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+	% -------------------------------------------------------------------------
+	% Termina el bloque de índice
+	% -------------------------------------------------------------------------
 	\endgroup
+	
+	% -------------------------------------------------------------------------
+% Final del índice, reestablece el espacio
 \ifthenelse{\equal{\objectchaptermargin}{false}}{
 	\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
 }{}
+
+	% -------------------------------------------------------------------------
 	\newpage
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
 		\vfill
@@ -4275,18 +5491,27 @@
 		\else
 		\fi}{
 	}
+
 }
 
 % CONFIGURACIONES FINALES
 \newcommand{\templateFinalcfg}{
+	
+	% -----------------------------------------------------------------------------
+	% Se reestablecen headers y footers
+	% -----------------------------------------------------------------------------
 	\markboth{}{}
 	\newpage
+
+	% Actualiza headers
 	\ifthenelse{\equal{\disablehfrightmark}{false}}{
-\def\COREhfstyledefA {
+		
+		% Define funciones generales
+		\def\COREhfstyledefA { % 1, 2, 4, 9, 11, 14, 15
 			\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 			\fancyhead[L]{\nouppercase{\leftmark}}
 		}
-\def\COREhfstyledefB {
+		\def\COREhfstyledefB { % 5
 			\fancypagestyle{plain}{
 				\ifthenelse{\equal{\hfwidthwrap}{true}}{
 					\fancyhead[R]{
@@ -4312,7 +5537,7 @@
 				\fancyhead[R]{\nouppercase{\leftmark}}
 			}
 		}
-\def\COREhfstyledefC {
+		\def\COREhfstyledefC { % 10
 			\fancypagestyle{plain}{
 				\ifthenelse{\equal{\hfwidthwrap}{true}}{
 					\fancyhead[L]{
@@ -4338,25 +5563,27 @@
 				\fancyhead[L]{\nouppercase{\leftmark}}
 			}
 		}
+		
+		% Actualiza los header-footer
 		\ifthenelse{\equal{\hfstyle}{style1}}{
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style1-i}}{
+		\ifthenelse{\equal{\hfstyle}{style1-i}}{ % impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
 			\fancyhead[LE,RO]{\nouppercase{\leftmark}}
 		}{
-\ifthenelse{\equal{\hfstyle}{style1-d}}{
+		\ifthenelse{\equal{\hfstyle}{style1-d}}{ % impar derecho
 			\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{
 		\ifthenelse{\equal{\hfstyle}{style2}}{
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style2-i}}{
+		\ifthenelse{\equal{\hfstyle}{style2-i}}{ % impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
 			\fancyhead[LE,RO]{\nouppercase{\leftmark}}
 		}{
-\ifthenelse{\equal{\hfstyle}{style2-d}}{
+		\ifthenelse{\equal{\hfstyle}{style2-d}}{ % impar derecho
 			\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{
@@ -4366,47 +5593,58 @@
 		\ifthenelse{\equal{\hfstyle}{style5}}{
 			\COREhfstyledefB
 		}{
-\ifthenelse{\equal{\hfstyle}{style5-d}}{
+		\ifthenelse{\equal{\hfstyle}{style5-d}}{ % impar derecho
 			\COREhfstyledefB
 		}{
-\ifthenelse{\equal{\hfstyle}{style5-i}}{
+		\ifthenelse{\equal{\hfstyle}{style5-i}}{ % impar izquierdo
 			\COREhfstyledefB
 		}{
 		\ifthenelse{\equal{\hfstyle}{style9}}{
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style9-d}}{
+		\ifthenelse{\equal{\hfstyle}{style9-d}}{ % impar derecho
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style9-i}}{
+		\ifthenelse{\equal{\hfstyle}{style9-i}}{ % impar izquierdo
 			\COREhfstyledefA
 		}{
 		\ifthenelse{\equal{\hfstyle}{style10}}{
 			\COREhfstyledefC
 		}{
-\ifthenelse{\equal{\hfstyle}{style10-d}}{
+		\ifthenelse{\equal{\hfstyle}{style10-d}}{ % impar derecho
 			\COREhfstyledefC
 		}{
-\ifthenelse{\equal{\hfstyle}{style10-i}}{
+		\ifthenelse{\equal{\hfstyle}{style10-i}}{ % impar izquierdo
 			\COREhfstyledefC
 		}{
-\ifthenelse{\equal{\hfstyle}{style11}}{
+		\ifthenelse{\equal{\hfstyle}{style11}}{ % Similar a 1
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style14}}{
+		\ifthenelse{\equal{\hfstyle}{style14}}{ % Similar a 4
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style15}}{
+		\ifthenelse{\equal{\hfstyle}{style15}}{ % Similar a 1
 			\COREhfstyledefA
 		}{
+			% No se encontró el header-footer, no hace nada
 		}}}}}}}}}}}}}}}}}}}
 	}{
 	}
+
+	% -----------------------------------------------------------------------------
+	% Estilo de títulos - reestablece estilos por el índice
+	% -----------------------------------------------------------------------------
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+	% -----------------------------------------------------------------------------
+	% Crea funciones para numerar objetos
+	% -----------------------------------------------------------------------------
+
+	% Numeración de la sección en los objetos CÓDIGO FUENTE
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
 		\def\sectionobjectnumcode {}
 	}{
@@ -4431,6 +5669,8 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Numeración de la sección en los objetos ECUACIONES
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
 		\def\sectionobjectnumeqn {}
 	}{
@@ -4455,6 +5695,8 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Numeración de la sección en los objetos FIGURAS
 	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
 		\def\sectionobjectnumfig {}
 	}{
@@ -4479,6 +5721,8 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Numeración de la sección en los objetos TABLAS
 	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
 		\def\sectionobjectnumtab {}
 	}{
@@ -4503,6 +5747,12 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% -----------------------------------------------------------------------------
+	% Modifica numeración de objetos
+	% -----------------------------------------------------------------------------
+
+	% Código fuente, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\arabic{lstlisting}}
 	}{
@@ -4520,6 +5770,8 @@
 	}{
 		\throwbadconfig{Tipo numero codigo fuente desconocido}{\captionnumcode}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Ecuaciones, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumequation}{arabic}}{
 		\renewcommand{\theequation}{\sectionobjectnumeqn\arabic{equation}}
 	}{
@@ -4537,6 +5789,8 @@
 	}{
 		\throwbadconfig{Tipo numero ecuacion desconocido}{\captionnumequation}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Figuras, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumfigure}{arabic}}{
 		\renewcommand{\thefigure}{\sectionobjectnumfig\arabic{figure}}
 	}{
@@ -4554,6 +5808,8 @@
 	}{
 		\throwbadconfig{Tipo numero figura desconocido}{\captionnumfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Subfiguras, NO USAR SECCIONES YA QUE SON HIJAS DE FIGURA
 	\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{
 		\renewcommand{\thesubfigure}{\arabic{subfigure}}
 	}{
@@ -4571,6 +5827,8 @@
 	}{
 		\throwbadconfig{Tipo numero subfigura desconocido}{\captionnumsubfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Tablas, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumtable}{arabic}}{
 		\renewcommand{\thetable}{\sectionobjectnumtab\arabic{table}}
 	}{
@@ -4588,6 +5846,8 @@
 	}{
 		\throwbadconfig{Tipo numero tabla desconocido}{\captionnumtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Subtablas, NO INCLUIR SECCIÓN YA QUE SON HIJAS DE LAS TABLAS
 	\ifthenelse{\equal{\captionnumsubtable}{arabic}}{
 		\renewcommand{\thesubtable}{\arabic{subtable}}
 	}{
@@ -4605,16 +5865,33 @@
 	}{
 		\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% -----------------------------------------------------------------------------
+	% Se reestablecen números de página y secciones
+	% -----------------------------------------------------------------------------
+
+	% Se usa número de páginas en arábigo si es que se tenía activado los númeos romanos
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{
 		\renewcommand{\thepage}{\arabic{page}}}{
 	}
+
+	% Reinicia número de página
 	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
 		\setcounter{page}{1}}{
 	}
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
+
+	% -----------------------------------------------------------------------------
+	% Muestra los números de línea
+	% -----------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
+
+	% -----------------------------------------------------------------------------
+	% Establece el estilo de las subsubsubsecciones
+	% -----------------------------------------------------------------------------
 	\titleclass{\subsubsubsection}{straight}[\subsection]
+
 }

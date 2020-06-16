@@ -103,8 +103,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-3-THS},
-		Template.Version.Hash={9F22161361436D0F025AB52CC969E315},
+		Template.Version.Dev={2.0.0-beta-4-THS},
+		Template.Version.Hash={132B84B05F4531B27AA990A6C165C60D},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -271,23 +271,23 @@
 \makeatother
 \makeatletter
 \ifthenelse{\equal{\twocolumnreferences}{true}}{
-\renewenvironment{thebibliography}[1]
-{\begin{multicols}{2}[\chapter*{\refname}]
-\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}
-\list{\@biblabel{\@arabic\c@enumiv}}
-{\settowidth\labelwidth{\@biblabel{#1}}
-\leftmargin\labelwidth
-\advance\leftmargin\labelsep
-\@openbib@code
-\usecounter{enumiv}
-\let\p@enumiv\@empty
-\renewcommand\theenumiv{\@arabic\c@enumiv}}
-\sloppy
-\clubpenalty 4000
-\@clubpenalty \clubpenalty
-\widowpenalty 4000
-\sfcode`\.\@m}
-{\def\@noitemerr
+	\renewenvironment{thebibliography}[1]
+	{\begin{multicols}{2}[\chapter*{\refname}]
+		\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}
+		\list{\@biblabel{\@arabic\c@enumiv}}
+		{\settowidth\labelwidth{\@biblabel{#1}}
+			\leftmargin\labelwidth
+			\advance\leftmargin\labelsep
+			\@openbib@code
+			\usecounter{enumiv}
+			\let\p@enumiv\@empty
+			\renewcommand\theenumiv{\@arabic\c@enumiv}}
+		\sloppy
+		\clubpenalty 4000
+		\@clubpenalty \clubpenalty
+		\widowpenalty 4000
+		\sfcode`\.\@m}
+		{\def\@noitemerr
 		{\@latex@warning{Ambiente `thebibliography' no definido}}
 		\endlist\end{multicols}}}{}
 \makeatother

@@ -3004,16 +3004,14 @@
 \colorlet{punct}{red!60!black}
 \definecolor{delim}{RGB}{20,105,176}
 \definecolor{dkcyan}{RGB}{0,123,167}
-\definecolor{dkgray}{rgb}{0.35,0.35,0.35}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{dkyellow}{cmyk}{0,0,0.8,0.3}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{dkgray}{RGB}{90,90,90}
+\definecolor{dkgreen}{RGB}{0,150,0}
+\definecolor{dkyellow}{RGB}{179,179,36}
+\definecolor{gray}{RGB}{127,127,127}
 \definecolor{lbrown}{RGB}{255,252,249}
 \definecolor{lgray}{RGB}{240,240,240}
-\definecolor{lyellow}{rgb}{1.0,1.0,0.88}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{ocher}{rgb}{1,0.5,0}
+\definecolor{lyellow}{RGB}{255,255,204}
+\definecolor{mauve}{RGB}{150,0,210}
 \definecolor{ocre}{RGB}{243,102,25}
 % -----------------------------------------------------------------------------
 % Assembler
@@ -3094,8 +3092,7 @@
 % CSV, Archivos separados por coma
 % -----------------------------------------------------------------------------
 \lstdefinestyle{csv}{
-	language={},
-	columns=flexible
+	language={}
 }
 
 % -----------------------------------------------------------------------------
@@ -3204,7 +3201,6 @@
 % -----------------------------------------------------------------------------
 \lstdefinestyle{ini}{
 	language={},
-	columns=flexible,
 	commentstyle=\color{gray}\ttfamily,
 	keywordstyle={\color{black}\bfseries},
 	morecomment=[l]{;},
@@ -3328,7 +3324,6 @@
 \lstdefinestyle{matlab}{
 	language=Matlab,
 	deletekeywords={fft},
-	flexiblecolumns=true,
 	keepspaces=true,
 	morecomment=[l]\%,
 	morecomment=[n]{\%\{\^^M}{\%\}\^^M},
@@ -3342,7 +3337,6 @@
 % -----------------------------------------------------------------------------
 \lstdefinestyle{octave}{
 	language=Octave,
-	flexiblecolumns=true,
 	keepspaces=true,
 	morecomment=[l]\%,
 	morecomment=[n]{\%\{\^^M}{\%\}\^^M}
@@ -3430,21 +3424,8 @@
 % -----------------------------------------------------------------------------
 \lstdefinestyle{plaintext}{
 	language={},
-	columns=fullflexible,
 	keepspaces=true,
 	postbreak={},
-	literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {à}{{\`a}}1
-	{è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1 {À}{{\`A}}1 {È}{{\'E}}1
-	{Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1 {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1
-	{ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1
-	{Ü}{{\"U}}1 {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1 {œ}{{\oe}}1
-	{Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1 {ű}{{\H{u}}}1
-	{Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1 {ç}{{\c c}}1 {Ç}{{\c C}}1
-	{ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1 {€}{{\EUR}}1 {£}{{\pounds}}1
-	{ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?``}}1 {¡}{{!``}}1 {«}{{\guillemotleft}}1
-	{»}{{\guillemotright}}1 {\ \ }{{\ }}1,
 	tabsize=4
 }
 
@@ -3477,10 +3458,13 @@
 \lstdefinestyle{python}{
 	language=Python,
 	breakatwhitespace=false,
-	emph={__init__,__name__},
+	emph={
+		AbstractSet,Any,AsyncContextManager,AsyncGenerator,AsyncIterable,AsyncIterator,Awaitable,AwaitableGenerator,BinaryIO,ByteString,Callable,Collection,Container,ContextManager,Coroutine,Dict,ForwardRef,Generator,GenericMeta,Hashable,IO,ItemsView,Iterable,Iterator,KeysView,List,Mapping,MappingView,Match,Meta,MutableMapping,MutableSequence,MutableSet,NamedTuple,Pattern,Reversible,Sequence,Sized,SupportInts,SupportsAbs,SupportsBytes,SupportsComplex,SupportsFloat,SupportsIndex,SupportsRound,TextIO,Tuple,TypeAlias,TYPE_CHECKING,Union,ValuesView,__add__,__and__,__eq__,__floordiv__,__ge__,__gt__,__init__,__le__,__lt__,__main__,__mod__,__mul__,__name__,__ne__,__or__,__pow__,__repr__,__str__,__sub__,__truediv__,__xor__
+	},
 	emphstyle=\color{dkcyan}\ttfamily,
 	keepspaces=true,
-	morekeywords={as,assert,close,listdir,split,strip,with}
+	morecomment=[s][\color{BurntOrange}]{@}{\ },
+	morekeywords={as,assert,close,listdir,None,self,sorted,split,strip,with}
 }
 
 % -----------------------------------------------------------------------------
@@ -3611,7 +3595,7 @@
 	basicstyle={\sourcecodefonts\sourcecodefontf\color{\maintextcolor}},
 	belowskip=1em,
 	breaklines=true,
-	columns=flexible,
+	columns=fullflexible,
 	commentstyle=\color{dkgreen}\upshape,
 	extendedchars=true,
 	fontadjust=true,
@@ -3630,7 +3614,9 @@
 		{Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1 {ç}{{\c c}}1 {Ç}{{\c C}}1
 		{ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1 {€}{{\EUR}}1 {£}{{\pounds}}1
 		{ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?``}}1 {¡}{{!``}}1 {«}{{\guillemotleft}}1
-		{»}{{\guillemotright}}1,
+		{»}{{\guillemotright}}1 {°}{{\textdegree}}1 {∢}{{$\sphericalangle$}}1
+		{¬}{{$\neg$}}1 {¨}{{\textasciidieresis}}1 {ã}{{\~a}}1 {Ã}{{\~a}}1
+		{õ}{{\~o}}1 {Õ}{{\~O}}1 {Ð}{{\DJ}}1 {Ø}{{\O}}1 {Ý}{{\'Y}}1,
 	numbers=left,
 	numbersep={\sourcecodenumbersep pt},
 	numberstyle=\tiny\color{dkgray},
@@ -3872,8 +3858,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-alpha-3-THS},
-		Template.Version.Hash={2FE6A8BDF32E4B41A2D965C338F5C0C5},
+		Template.Version.Dev={2.0.0-alpha-4-THS},
+		Template.Version.Hash={47DF8BDC94188958D8A594B486041ED6},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

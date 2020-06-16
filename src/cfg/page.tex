@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      2.0.0 (15/06/2020)
+% Versión:      2.0.0 (16/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -47,6 +47,9 @@
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+	\ifthenelse{\equal{\stylecitereferences}{apacite}}{
+		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
+	}{}
 \fancyheadoffset{0pt}
 \def\hfheaderimagesizeA {0.5}
 	\ifthenelse{\equal{\hfstyle}{style1}}{

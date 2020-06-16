@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      2.0.0 (15/06/2020)
+% Versión:      2.0.0 (16/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -108,6 +108,7 @@
 }
 \usepackage[pdfencoding=auto,psdextra]{hyperref}
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{
+	\usepackage[nottoc,notlof,notlot]{tocbibind}
 	\ifthenelse{\equal{\natbibrefstyle}{apa}}{
 		\ifthenelse{\equal{\natbibsquare}{true}}{
 			\usepackage[square]{natbib}
@@ -150,11 +151,10 @@
 			}
 		}
 	}}}}
-	\usepackage[nottoc,notlof,notlot]{tocbibind}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
-		\usepackage{apacite}
 		\usepackage[nottoc,notlof,notlot]{tocbibind}
+		\usepackage[nosectionbib]{apacite}
 	}{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
 		}{}

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.0.0 (15/06/2020)
+% Versión:      2.0.0 (16/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -97,14 +97,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={15/06/2020},
+		Template.Fecha={16/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-alpha-4-THS},
-		Template.Version.Hash={47DF8BDC94188958D8A594B486041ED6},
+		Template.Version.Dev={2.0.0-beta-3-THS},
+		Template.Version.Hash={9F22161361436D0F025AB52CC969E315},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -229,18 +229,21 @@
 	\throwbadconfig{Posicion de leyendas desconocida}{\captionalignment}{justified,centered,left,right}}}}
 }
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{
+	\def\twocolumnreferencesmargin{-0.35cm}
 	\bibliographystyle{\natbibrefstyle}
 	\setlength{\bibsep}{\natbibrefsep pt}
 	\newcommand{\shortcite}[1]{\texttt{\textbackslash shortcite\{#1\}}}
 	\newcommand{\fullcite}[1]{\texttt{\textbackslash fullcite\{#1\}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
+	\def\twocolumnreferencesmargin{-0.39cm}
 	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
 	\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}}
 	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
+	\def\twocolumnreferencesmargin{-0.35cm}
 	\bibliographystyle{\bibtexstyle}
 	\newlength{\bibitemsep}
 	\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
@@ -255,14 +258,38 @@
 }{
 	\throwbadconfig{Estilo citas desconocido}{\stylecitereferences}{bibtex,apacite,natbib}}}
 }
-\newcounter{apaciteNumberCounter}
-\addtocounter{apaciteNumberCounter}{-1}
 \makeatletter
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\ifthenelse{\equal{\apaciterefnumber}{true}}{
-		\renewcommand{\@biblabel}[1]{\apaciterefnumberinit\stepcounter{apaciteNumberCounter}\theapaciteNumberCounter\apaciterefnumberfinal}
+		\newcounter{apaciteNumberCounter}
+\renewcommand{\theapaciteNumberCounter}{\apaciterefnumberinit\arabic{apaciteNumberCounter}\apaciterefnumberfinal}
+		\patchcmd{\@lbibitem}{\item[}{\item[\stepcounter{apaciteNumberCounter}{\hss\llap{\theapaciteNumberCounter}\quad}}{}{}
+		\setlength{\bibleftmargin}{2.54em}
+		\setlength{\bibindent}{-0.54em}
 	}{}
 }{}
+\makeatother
+\makeatletter
+\ifthenelse{\equal{\twocolumnreferences}{true}}{
+\renewenvironment{thebibliography}[1]
+{\begin{multicols}{2}[\chapter*{\refname}]
+\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}
+\list{\@biblabel{\@arabic\c@enumiv}}
+{\settowidth\labelwidth{\@biblabel{#1}}
+\leftmargin\labelwidth
+\advance\leftmargin\labelsep
+\@openbib@code
+\usecounter{enumiv}
+\let\p@enumiv\@empty
+\renewcommand\theenumiv{\@arabic\c@enumiv}}
+\sloppy
+\clubpenalty 4000
+\@clubpenalty \clubpenalty
+\widowpenalty 4000
+\sfcode`\.\@m}
+{\def\@noitemerr
+		{\@latex@warning{Ambiente `thebibliography' no definido}}
+		\endlist\end{multicols}}}{}
 \makeatother
 \patchcmd{\appendices}{\quad}{\sectionappendixlastchar\quad}{}{}
 \begingroup

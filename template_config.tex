@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.0.0 (16/06/2020)
+% Versión:      2.0.0 (17/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,8 +14,8 @@
 % CONFIGURACIONES GENERALES
 \def\addemptypagespredoc {false}   % Añade pag. en blanco después de portada,etc.
 \def\compilertype {pdf2latex}      % Compilador {pdf2latex,xelatex,lualatex}
-\def\defaultinterline {1.0}        % Interlineado por defecto [pt]
-\def\defaultnewlinesize {12}       % Tamaño del salto de línea [pt]
+\def\documentfontsize {12}         % Tamaño de la fuente del documento [pt]
+\def\documentinterline {1.0}       % Interlineado del documento defecto [factor]
 \def\documentlang {es-CL}          % Define el idioma del documento
 \def\fontdocument {lmodern}        % Tipografía base, ver soportadas en manual
 \def\fonttypewriter {tmodern}      % Tipografía de \texttt, ver manual
@@ -39,6 +39,7 @@
 \def\captionlabelsep {colon}       % Sep. {none,colon,period,space,quad,newline}
 \def\captionlessmarginimage {0.1}  % Margen sup/inf de fig. si no hay ley. [cm]
 \def\captionlrmargin {2.0}         % Márgenes izq/der de la leyenda [cm]
+\def\captionlrmarginmc {1.0}       % Mar. izq/der leyenda dentro de columnas [cm]
 \def\captionmarginmultimg {0.0}    % Margen izq/der leyendas múltiple img [cm]
 \def\captionnumcode {arabic}       % N° código {arabic,alph,Alph,roman,Roman}
 \def\captionnumequation {arabic}   % N° ecuaciones {arabic,alph,Alph,roman,Roman}
@@ -79,6 +80,7 @@
 \def\apaciterefnumberfinal {]}     % Caracter final números apacite
 \def\apaciterefnumberinit {[}      % Caracter inicial números apacite
 \def\apaciterefsep {6}             % Separación entre refs. {apacite} [pt]
+\def\apaciteshowurl {false}        % Muestra las url en las referencias
 \def\apacitestyle {apacite}        % Formato de ref. apacite {apa,ieeetr,etc..}
 \def\appendixindepobjnum {true}    % Anexo usa n° objetos independientes
 \def\bibtexrefsep {6}              % Separación entre refs. {bibtex} [pt]
@@ -143,11 +145,13 @@
 
 % CONFIGURACIÓN DE LOS TÍTULOS
 \def\anumsecaddtocounter {false}   % Insertar títulos anum. aumenta n° de sec
+\def\fontsizechapter {\huge}       % Tamaño fuente de los capítulos
 \def\fontsizessstitle{\normalsize} % Tamaño sub-sub-subtítulos
 \def\fontsizesubsubtitle {\normalsize} % Tamaño sub-subtítulos
 \def\fontsizesubtitle {\large}     % Tamaño subtítulos
 \def\fontsizetitle {\Large}        % Tamaño títulos
 \def\showdotaftersnum {true}       % Punto al final de n° (s/ss/sss/ssss)ection
+\def\stylechapter {\bfseries}      % Estilo de los capítulos
 \def\stylessstitle {\bfseries}     % Estilo sub-sub-subtítulos
 \def\stylesubsubtitle {\bfseries}  % Estilo sub-subtítulos
 \def\stylesubtitle {\bfseries}     % Estilo subtítulos
@@ -156,6 +160,7 @@
 % CONFIGURACIÓN DE LOS COLORES DEL DOCUMENTO
 \def\captioncolor {black}          % Color nombre objeto (código,figura,tabla)
 \def\captiontextcolor {black}      % Color de la leyenda
+\def\chaptercolor {black}          % Color de los capítulos
 \def\colorpage {white}             % Color de la página
 \def\highlightcolor {yellow}       % Color del subrayado con \hl
 \def\indextitlecolor {black}       % Color de los títulos del índice

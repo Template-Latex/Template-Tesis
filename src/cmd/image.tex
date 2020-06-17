@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.0.0 (16/06/2020)
+% Versión:      2.0.0 (17/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -40,6 +40,45 @@
 		\fi
 	\end{figure}
 	\vspace{\marginimagebottom cm}
+	\resetindexcaption
+}
+\newcommand{\insertimagemc}[5][]{
+	\setcaptionmargincm{\captionlrmarginmc}
+	\insertimageboxed[#1]{#2}{#3}{0}{#4}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimagemcfull}[5][]{
+	\insertimageboxedmcfull[#1]{#2}{#3}{0}{#4}{#5}
+}
+\newcommand{\insertimageboxedmcfull}[6][]{
+	\emptyvarerr{\insertimageboxedmcfull}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageboxedmcfull}{#3}{Parametros de la imagen no definidos}
+	\emptyvarerr{\insertimageboxedmcfull}{#4}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimageboxedmcfull}{#5}{Posicion de la imagen no definida}
+	\checkoutsideenvimage
+	\setcaptionmargincm{\captionlrmarginmc}
+	\ifthenelse{\equal{#5}{bottom}}{
+		\begin{figure*}[b!]
+	}{
+	\ifthenelse{\equal{#5}{top}}{
+		\begin{figure*}[t!]
+	}{
+		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
+	}}
+		\begingroup
+			\setlength{\fboxsep}{0 pt}
+			\setlength{\fboxrule}{#4 pt}
+			\centering
+			\fbox{\includegraphics[#3]{#2}}
+		\endgroup
+		\ifx\hfuzz#6\hfuzz
+			\vspace{\captionlessmarginimage cm}
+		\else
+			\hspace{0cm}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
+		\fi
+	\end{figure*}
+	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
 \newcommand{\inserttableimage}[2]{\inserttableimageboxed{#1}{#2}{0}}

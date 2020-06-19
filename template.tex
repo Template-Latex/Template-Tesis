@@ -1619,7 +1619,8 @@
 	\emptyvarerr{\insertimageboxed}{#4}{Ancho de la linea no definido}
 	\checkoutsideenvimage
 	\vspace{\marginimagetop cm}
-	\begin{figure}[H]
+	\begin{figure}[H]%
+		\thisfloatpagestyle{fancy}
 		\begingroup
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
@@ -1692,6 +1693,7 @@
 	}{
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 	}}
+		\thisfloatpagestyle{fancy}
 		\begingroup
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
@@ -1742,8 +1744,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}{l}{#3\textwidth}
+	\par%
+	\begin{wrapfigure}{l}{#3\textwidth}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1789,8 +1792,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}[#5]{l}{#3\textwidth}
+	\par%
+	\begin{wrapfigure}[#5]{l}{#3\textwidth}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}}
@@ -1832,8 +1836,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}{r}{#3\textwidth}
+	\par%
+	\begin{wrapfigure}{r}{#3\textwidth}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1879,8 +1884,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}[#5]{r}{#3\textwidth}
+	\par%
+	\begin{wrapfigure}[#5]{r}{#3\textwidth}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1908,9 +1914,9 @@
 %	#4	Propiedades de la imagen
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftp}[5][]{%
-	\xspace~\\
-	\vspace{-2\baselineskip}
-	\par
+	\xspace~\\%
+	\vspace{-2\baselineskip}%
+	\par%
 	\insertimageleftboxedp[#1]{#2}{#3}{#4}{0}{#5}
 }
 
@@ -1929,8 +1935,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}{l}{#3}
+	\par%
+	\begin{wrapfigure}{l}{#3}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1979,8 +1986,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}[#6]{l}{#3}
+	\par%
+	\begin{wrapfigure}[#6]{l}{#3}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -2008,9 +2016,9 @@
 %	#4	Propiedades de la imagen
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightp}[5][]{%
-	\xspace~\\
-	\vspace{-2\baselineskip}
-	\par
+	\xspace~\\%
+	\vspace{-2\baselineskip}%
+	\par%
 	\insertimagerightboxedp[#1]{#2}{#3}{#4}{0}{#5}
 }
 
@@ -2029,8 +2037,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}{r}{#3}
+	\par%
+	\begin{wrapfigure}{r}{#3}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -2079,8 +2088,9 @@
 	\checkoutsideenvimage
 	~
 	\vspace{-\baselineskip}
-	\par
-	\begin{wrapfigure}[#6]{r}{#3}
+	\par%
+	\begin{wrapfigure}[#6]{r}{#3}%
+		\thisfloatpagestyle{fancy}
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -3082,6 +3092,7 @@
 	
 	% Inicia la figura
 	\begin{figure}[H] \centering%
+		\thisfloatpagestyle{fancy}
 		\vspace{\marginimagemulttop cm}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
@@ -3117,6 +3128,7 @@
 	% Inicia la figura
 	\begin{figure}[H] \centering%
 		\vspace{\marginimagemulttop cm}%
+		\thisfloatpagestyle{fancy}
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
@@ -3151,13 +3163,14 @@
 	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
-		\begin{figure*}[b!] \centering \thisfloatpagestyle{fancy}%
+		\begin{figure*}[b!] \centering%
 		}{%
 	\ifthenelse{\equal{#2}{top}}{%
-		\begin{figure*}[t!] \centering \thisfloatpagestyle{fancy}%
+		\begin{figure*}[t!] \centering%
 	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 	}}%
+		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
@@ -4039,8 +4052,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-2-THS},
-		Template.Version.Hash={25EA1F5593B3F85794352B57FBB55A54},
+		Template.Version.Dev={2.0.0-beta-3-THS},
+		Template.Version.Hash={68191B95BE16F4A51E9C438871E00450},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -4224,15 +4237,15 @@
 	\def\twocolumnreferencesmargin{-0.35cm}
 	\bibliographystyle{\natbibrefstyle}
 	\setlength{\bibsep}{\natbibrefsep pt}
-	\newcommand{\shortcite}[1]{\texttt{\textbackslash shortcite\{#1\}}}
-	\newcommand{\fullcite}[1]{\texttt{\textbackslash fullcite\{#1\}}}
+	\newcommand{\shortcite}[1]{\citep{#1}}
+	\newcommand{\fullcite}[1]{\citet{#1}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\def\twocolumnreferencesmargin{-0.39cm}
 	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
-	\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}}
-	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}	
+	\newcommand{\citep}[1]{\fullcite{#1}}
+	\newcommand{\citet}[1]{\shortcite{#1}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
 	\def\twocolumnreferencesmargin{-0.35cm}

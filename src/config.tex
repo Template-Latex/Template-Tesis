@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.0.0 (17/06/2020)
+% Versión:      2.0.0 (18/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -15,7 +15,7 @@
 \def\addemptypagespredoc {false}   % Añade pag. en blanco después de portada,etc.
 \def\compilertype {pdf2latex}      % Compilador {pdf2latex,xelatex,lualatex}
 \def\documentfontsize {12}         % Tamaño de la fuente del documento [pt]
-\def\documentinterline {1.0}       % Interlineado del documento defecto [factor]
+\def\documentinterline {1.0}     % Interlineado del documento defecto [factor]
 \def\documentlang {es-CL}          % Define el idioma del documento
 \def\fontdocument {lmodern}        % Tipografía base, ver soportadas en manual
 \def\fonttypewriter {tmodern}      % Tipografía de \texttt, ver manual
@@ -35,6 +35,7 @@
 
 % CONFIGURACIÓN DE LAS LEYENDAS - CAPTION
 \def\captionalignment {justified}  % Posición {centered,justified,left,right}
+\def\captionfontsize {small}       % Tamaño de fuente de los caption
 \def\captionlabelformat {simple}   % Formato leyenda {empty,simple,parens}
 \def\captionlabelsep {colon}       % Sep. {none,colon,period,space,quad,newline}
 \def\captionlessmarginimage {0.1}  % Margen sup/inf de fig. si no hay ley. [cm]
@@ -59,6 +60,7 @@
 \def\showsectioncaptionfig {chap}  % N° sec. figuras {none,chap,(s/ss/sss/ssss)ec}
 \def\showsectioncaptionmat {chap}  % N° matemático {none,chap,(s/ss/sss/ssss)ec}
 \def\showsectioncaptiontab {chap}  % N° sec. tablas {none,chap,(s/ss/sss/ssss)ec}
+\def\subcaptionfsize{footnotesize} % Tamaño de la fuente de los subcaption
 \def\subcaptionlabelformat{parens} % Formato leyenda sub. {empty,simple,parens}
 \def\subcaptionlabelsep {space}    % Sep. {none,colon,period,space,quad,newline}
 \def\tablecaptiontop {true}        % Leyenda arriba de las tablas
@@ -104,6 +106,7 @@
 \def\equationrestart {none}        % Reinicio n° {none,chap,(s/ss/sss/ssss)ec}
 \def\footnotepagetoprule {false}   % Footnote en pag. tienen separador superior
 \def\footnoterestart {none}        % N° footnote {none,chap,page,(s/ss/sss/ssss)ec}
+\def\fpremovetopbottomcenter{true} % Elimina espacio vertical al centrar con b!,t!
 \def\imagedefaultplacement {H}     % Posición por defecto de las imágenes
 \def\marginalignbottom {-0.30}     % Margen inferior entorno align [cm]
 \def\marginaligncaptbottom {0.05}  % Margen inferior entorno align caption[cm]

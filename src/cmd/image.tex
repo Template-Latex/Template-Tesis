@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.0.0 (17/06/2020)
+% Versión:      2.0.0 (18/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -30,7 +30,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[#3]{#2}}
+			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -42,9 +42,14 @@
 	\vspace{\marginimagebottom cm}
 	\resetindexcaption
 }
-\newcommand{\insertimagemc}[5][]{
+\newcommand{\insertimagemc}[4][]{
 	\setcaptionmargincm{\captionlrmarginmc}
 	\insertimageboxed[#1]{#2}{#3}{0}{#4}
+	\setcaptionmargincm{\captionlrmargin}
+}
+\newcommand{\insertimageboxedmc}[5][]{
+	\setcaptionmargincm{\captionlrmarginmc}
+	\insertimageboxed[#1]{#2}{#3}{#4}{#5}
 	\setcaptionmargincm{\captionlrmargin}
 }
 \newcommand{\insertimagemcfull}[5][]{
@@ -69,7 +74,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[#3]{#2}}
+			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -103,7 +108,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -134,7 +139,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -165,7 +170,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -197,7 +202,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -232,7 +237,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -265,7 +270,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -300,7 +305,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -333,7 +338,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}

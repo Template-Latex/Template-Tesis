@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.0 (17/06/2020)
+% Versión:      2.0.0 (18/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -803,6 +803,31 @@
 		\stop}{
 	}
 }
+
+% Agrega una carpeta al path de imágenes
+%	#1	Carpeta
+\makeatletter
+\newcommand\addpathimage[1]{\gappto\Ginput@path{{#1}}}
+\makeatother
+
+% Verifica que un tamaño de fuente sea correcto
+%	#1	Tamaño de fuente
+\newcommand{\corecheckfontsize}[1]{
+	\ifthenelse{\equal{#1}{normalsize}}{}{
+	\ifthenelse{\equal{#1}{small}}{}{
+	\ifthenelse{\equal{#1}{large}}{}{
+	\ifthenelse{\equal{#1}{Large}}{}{
+	\ifthenelse{\equal{#1}{LARGE}}{}{
+	\ifthenelse{\equal{#1}{huge}}{}{
+	\ifthenelse{\equal{#1}{Huge}}{}{
+	\ifthenelse{\equal{#1}{HUGE}}{}{
+	\ifthenelse{\equal{#1}{footnotesize}}{}{
+	\ifthenelse{\equal{#1}{scriptsize}}{}{
+		\errmessage{LaTeX Warning: Tamano de fuente incorrecto (\noexpand #1= #1). Valores esperados: scriptsize,footnotesize,small,normalisize,large,Large,LARGE,huge,Huge,HUGE}
+		\stop
+		}}}}}}}}}
+	}
+}
 % Insertar sub-índice, a_b
 % 	#1	Elemento inferior (a)
 %	#2	Elemento superior (b)
@@ -1076,7 +1101,7 @@
 	\vspace{\margineqnindexbottom cm}
 	\myindexequations{#3}
 	\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-		\centering \textcolor{\captiontextcolor}{\textit{#3}}
+		\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}\textit{#3}\end{\captionfontsize}}
 	\end{changemargin}
 	\addtocounter{templateIndexEquations}{1}
 }
@@ -1194,7 +1219,7 @@
 			\end{equation}
 			\vspace{\margineqncaptiontop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#3}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#3\end{\captionfontsize}}
 				\vspace{\margineqncaptionbottom cm}
 			\end{changemargin}
 			\vspace{\margineqncaptionbottom cm}
@@ -1222,7 +1247,7 @@
 		\end{equation*}
 		\vspace{\margineqncaptiontop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\margineqncaptionbottom cm}
 		\end{changemargin}
 		\vspace{\margineqncaptionbottom cm}
@@ -1270,7 +1295,7 @@
 			\end{gather}
 			\vspace{\margingathercapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#2}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 				\vspace{\margingathercaptbottom cm}
 			\end{changemargin}
 			\vspace{\margingathercaptbottom cm}
@@ -1294,7 +1319,7 @@
 		\end{gather*}
 		\vspace{\margingathercapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\margingathercaptbottom cm}
 		\end{changemargin}
 		\vspace{\margingathercaptbottom cm}
@@ -1356,7 +1381,7 @@
 			\end{equation}
 			\vspace{\margingatheredcapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#3}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#3\end{\captionfontsize}}
 				\vspace{\margingatheredcaptbottom cm}
 			\end{changemargin}
 			\vspace{\margingatheredcaptbottom cm}
@@ -1384,7 +1409,7 @@
 		\end{gather*}
 		\vspace{\margingatheredcapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\margingatheredcaptbottom cm}
 		\end{changemargin}
 		\vspace{\margingathercaptbottom cm}
@@ -1432,7 +1457,7 @@
 			\end{align}
 			\vspace{\marginaligncapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#2}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 				\vspace{\marginaligncaptbottom cm}
 			\end{changemargin}
 			\vspace{\marginaligncaptbottom cm}
@@ -1456,7 +1481,7 @@
 		\end{align*}
 		\vspace{\marginaligncapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\marginaligncaptbottom cm}
 		\end{changemargin}
 		\vspace{\marginaligncaptbottom cm}
@@ -1514,7 +1539,7 @@
 			\end{equation}
 			\vspace{\marginalignedcapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#3}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#3\end{\captionfontsize}}
 				\vspace{\marginalignedcaptbottom cm}
 			\end{changemargin}
 			\vspace{\marginalignedcaptbottom cm}
@@ -1544,7 +1569,7 @@
 		\end{equation}
 		\vspace{\marginalignedcapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\marginalignedcaptbottom cm}
 		\end{changemargin}
 		\vspace{\marginalignedcaptbottom cm}
@@ -1600,7 +1625,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[#3]{#2}}
+			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1618,9 +1643,21 @@
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
 %	#4	Leyenda de la imagen (opcional)
-\newcommand{\insertimagemc}[5][]{
+\newcommand{\insertimagemc}[4][]{
 	\setcaptionmargincm{\captionlrmarginmc}
 	\insertimageboxed[#1]{#2}{#3}{0}{#4}
+	\setcaptionmargincm{\captionlrmargin}
+}
+
+% Insertar una imagen con recuadro en un entorno multicol
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Parámetros de la imagen
+%	#4	Ancho de la línea (en pt)
+%	#5	Leyenda de la imagen (opcional)
+\newcommand{\insertimageboxedmc}[5][]{
+	\setcaptionmargincm{\captionlrmarginmc}
+	\insertimageboxed[#1]{#2}{#3}{#4}{#5}
 	\setcaptionmargincm{\captionlrmargin}
 }
 
@@ -1660,7 +1697,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[#3]{#2}}
+			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1716,7 +1753,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1762,7 +1799,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1806,7 +1843,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1853,7 +1890,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1903,7 +1940,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1953,7 +1990,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -2003,7 +2040,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -2053,7 +2090,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -3047,7 +3084,7 @@
 	% Inicia la figura
 	\begin{figure}[H] \centering
 		\vspace{\marginimagemulttop cm}
-		}{
+		}{%
 		\setcaptionmargincm{\captionlrmargin}
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}
@@ -3064,7 +3101,7 @@
 	\def\GLOBALenvimageinitialized {false}
 }
 
-% Crea una sección de imágenes múltiples dentro de un multicol
+% Crea una sección de imágenes múltiples completa dentro de un multicol
 %	#1	Label (opcional)
 %	#2	Posición de la imagen, "bottom" o "top"
 %	#3	Caption
@@ -3080,11 +3117,11 @@
 	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{
-		\begin{figure*}[b!] \centering
-		}{
+		\begin{figure*}[b!] \centering \thisfloatpagestyle{fancy}
+		}{%
 	\ifthenelse{\equal{#2}{top}}{
-		\begin{figure*}[t!] \centering
-	}{
+		\begin{figure*}[t!] \centering \thisfloatpagestyle{fancy}
+	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 	}}
 		\vspace{\marginimagemulttop cm}
@@ -3899,6 +3936,12 @@
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+% Verifica tamaños de fuentes
+% -----------------------------------------------------------------------------
+\corecheckfontsize{\captionfontsize}
+\corecheckfontsize{\subcaptionfsize}
+
+% -----------------------------------------------------------------------------
 % Se activan números en menú marcadores del pdf
 % -----------------------------------------------------------------------------
 \ifthenelse{\equal{\cfgpdfsecnumbookmarks}{true}}{
@@ -3956,14 +3999,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={17/06/2020},
+		Template.Fecha={18/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-7-THS},
-		Template.Version.Hash={873A7973AD44350A057BE944C55B0F44},
+		Template.Version.Dev={2.0.0-beta-5-THS},
+		Template.Version.Hash={88AA2A5DFCB20AA5D70FE53934CA6711},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -3988,7 +4031,17 @@
 % -----------------------------------------------------------------------------
 % Establece la carpeta de imágenes por defecto
 % -----------------------------------------------------------------------------
-\graphicspath{{./\defaultimagefolder}{./\defaultimagefolder/departamentos/}}
+\graphicspath{{./\defaultimagefolder}}
+
+% -----------------------------------------------------------------------------
+% Elimina el espacio vertical de los flotantes
+% -----------------------------------------------------------------------------
+\makeatletter
+\ifthenelse{\equal{\fpremovetopbottomcenter}{true}}{
+	\setlength{\@fptop}{0pt}
+	\setlength{\@fpbot}{0pt}
+}{}
+\makeatother
 
 % -----------------------------------------------------------------------------
 % Definición de valores e dimensiones
@@ -4055,6 +4108,7 @@
 
 % Se configura el texto de los caption
 \captionsetup{
+	font={\captionfontsize},
 	labelfont={color=\captioncolor, \captiontextbold},
 	labelformat={\captionlabelformat},
 	labelsep={\captionlabelsep},
@@ -4064,6 +4118,7 @@
 
 % Configura texto de los subcaption
 \captionsetup*[subfigure]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
@@ -4071,6 +4126,7 @@
 	singlelinecheck=on
 }
 \captionsetup*[subtable]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.0.0 (17/06/2020)
+% Versión:      2.0.0 (18/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -264,7 +264,7 @@
 	\setcaptionmargincm{\captionmarginmultimg}
 	\begin{figure}[H] \centering
 		\vspace{\marginimagemulttop cm}
-		}{
+		}{%
 		\setcaptionmargincm{\captionlrmargin}
 \ifthenelse{\equal{\envimagescaptionvar}{}}{
 			\vspace{\captionlessmarginimage cm}
@@ -283,11 +283,11 @@
 	\def\GLOBALenvimageadded {false}
 	\setcaptionmargincm{\captionmarginmultimg}
 	\ifthenelse{\equal{#2}{bottom}}{
-		\begin{figure*}[b!] \centering
-		}{
+		\begin{figure*}[b!] \centering \thisfloatpagestyle{fancy}
+		}{%
 	\ifthenelse{\equal{#2}{top}}{
-		\begin{figure*}[t!] \centering
-	}{
+		\begin{figure*}[t!] \centering \thisfloatpagestyle{fancy}
+	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 	}}
 		\vspace{\marginimagemulttop cm}

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.0.0 (17/06/2020)
+% Versión:      2.0.0 (18/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -46,6 +46,8 @@
 	\g@addto@macro\temaatratar\xspace
 	\g@addto@macro\titulodelinforme\xspace
 \makeatother
+\corecheckfontsize{\captionfontsize}
+\corecheckfontsize{\subcaptionfsize}
 \ifthenelse{\equal{\cfgpdfsecnumbookmarks}{true}}{
 	\bookmarksetup{numbered}}{
 }
@@ -97,14 +99,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={17/06/2020},
+		Template.Fecha={18/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-7-THS},
-		Template.Version.Hash={873A7973AD44350A057BE944C55B0F44},
+		Template.Version.Dev={2.0.0-beta-5-THS},
+		Template.Version.Hash={88AA2A5DFCB20AA5D70FE53934CA6711},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -125,7 +127,13 @@
 	pdftitle={\pdfmetainfotitulo},
 	pdftoolbar={\cfgpdftoolbar}
 }
-\graphicspath{{./\defaultimagefolder}{./\defaultimagefolder/departamentos/}}
+\graphicspath{{./\defaultimagefolder}}
+\makeatletter
+\ifthenelse{\equal{\fpremovetopbottomcenter}{true}}{
+	\setlength{\@fptop}{0pt}
+	\setlength{\@fpbot}{0pt}
+}{}
+\makeatother
 \renewcommand{\baselinestretch}{\documentinterline}
 \setlength{\headheight}{64 pt}
 \setlength{\footnotemargin}{\marginfootnote pt}
@@ -169,6 +177,7 @@
 	\renewcommand{\captiontextsubnumbold}{}
 }
 \captionsetup{
+	font={\captionfontsize},
 	labelfont={color=\captioncolor, \captiontextbold},
 	labelformat={\captionlabelformat},
 	labelsep={\captionlabelsep},
@@ -176,6 +185,7 @@
 	singlelinecheck=on
 }
 \captionsetup*[subfigure]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
@@ -183,6 +193,7 @@
 	singlelinecheck=on
 }
 \captionsetup*[subtable]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},

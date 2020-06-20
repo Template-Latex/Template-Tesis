@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.0.0 (19/06/2020)
+% Versión:      2.0.0 (20/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -263,7 +263,7 @@
 	\vspace{\marginimagetop cm}
 	\setcaptionmargincm{\captionmarginmultimg}
 \begin{figure}[H] \centering
-		\thisfloatpagestyle{fancy}
+		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
@@ -277,35 +277,13 @@
 	\vspace{\marginimagebottom cm}
 	\def\GLOBALenvimageinitialized {false}
 }
-\newenvironment{imagesmc}[2][]{
-	\def\envimageslabelvar {#1}
-	\def\envimagescaptionvar {#2}
-	\def\GLOBALenvimageinitialized {true}
-	\def\GLOBALenvimageadded {false}
-	\vspace{\marginimagetop cm}
-	\setcaptionmargincm{\captionmarginmultimg}
-\begin{figure}[H] \centering
-		\vspace{\marginimagemulttop cm}%
-		\thisfloatpagestyle{fancy}
-		}{%
-		\setcaptionmargincm{\captionlrmargin}%
-\ifthenelse{\equal{\envimagescaptionvar}{}}{
-			\vspace{\captionlessmarginimage cm}%
-		}{%
-			\setcaptionmargincm{\captionlrmarginmc}
-			\caption{\envimagescaptionvar\envimageslabelvar}%
-		}%
-	\end{figure}%
-	\setcaptionmargincm{\captionlrmargin}
-	\vspace{\marginimagebottom cm}
-	\def\GLOBALenvimageinitialized {false}
-}
-\newenvironment{imagesmcfull}[3][]{
+\newenvironment{imagesmc}[3][]{
 	\def\envimageslabelvar {#1}
 	\def\envimagescaptionvar {#3}
 	\def\GLOBALenvimageinitialized {true}
 	\def\GLOBALenvimageadded {false}
-	\setcaptionmargincm{\captionmarginmultimg}
+	\checkinsidemulticol
+\setcaptionmargincm{\captionmarginmultimg}
 	\ifthenelse{\equal{#2}{bottom}}{%
 \begin{figure*}[b!] \centering
 		}{%

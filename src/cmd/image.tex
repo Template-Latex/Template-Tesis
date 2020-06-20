@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.0.0 (19/06/2020)
+% Versión:      2.0.0 (20/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -43,25 +43,16 @@
 	\vspace{\marginimagebottom cm}
 	\resetindexcaption
 }
-\newcommand{\insertimagemc}[4][]{%
-	\setcaptionmargincm{\captionlrmarginmc}
-	\insertimageboxed[#1]{#2}{#3}{0}{#4}
-	\setcaptionmargincm{\captionlrmargin}
+\newcommand{\insertimagemc}[5][]{%
+	\insertimageboxedmc[#1]{#2}{#3}{0}{#4}{#5}
 }
-\newcommand{\insertimageboxedmc}[5][]{%
-	\setcaptionmargincm{\captionlrmarginmc}
-	\insertimageboxed[#1]{#2}{#3}{#4}{#5}
-	\setcaptionmargincm{\captionlrmargin}
-}
-\newcommand{\insertimagemcfull}[5][]{%
-	\insertimageboxedmcfull[#1]{#2}{#3}{0}{#4}{#5}
-}
-\newcommand{\insertimageboxedmcfull}[6][]{%
-	\emptyvarerr{\insertimageboxedmcfull}{#2}{Direccion de la imagen no definida}
-	\emptyvarerr{\insertimageboxedmcfull}{#3}{Parametros de la imagen no definidos}
-	\emptyvarerr{\insertimageboxedmcfull}{#4}{Ancho de la linea no definido}
-	\emptyvarerr{\insertimageboxedmcfull}{#5}{Posicion de la imagen no definida}
+\newcommand{\insertimageboxedmc}[6][]{%
+	\emptyvarerr{\insertimageboxedmc}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageboxedmc}{#3}{Parametros de la imagen no definidos}
+	\emptyvarerr{\insertimageboxedmc}{#4}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimageboxedmc}{#5}{Posicion de la imagen no definida}
 	\checkoutsideenvimage
+	\checkinsidemulticol
 	\setcaptionmargincm{\captionlrmarginmc}
 	\ifthenelse{\equal{#5}{bottom}}{
 		\begin{figure*}[b!]

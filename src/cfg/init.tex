@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.0.0 (19/06/2020)
+% Versión:      2.0.0 (20/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -99,14 +99,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={19/06/2020},
+		Template.Fecha={20/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-3-THS},
-		Template.Version.Hash={68191B95BE16F4A51E9C438871E00450},
+		Template.Version.Dev={2.0.0-beta-4-THS},
+		Template.Version.Hash={BFF2BBBE97A4842B8CA84B88C4C78031},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -495,3 +495,6 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\let\SOURCEcaptionlrmargin\captionlrmargin
+\BeforeBeginEnvironment{multicols}{\def\captionlrmargin{\captionlrmarginmc}\def\GLOBALenvmulticol{true}\setcaptionmargincm{\captionlrmargin}}
+\AfterEndEnvironment{multicols}{\def\captionlrmargin{\SOURCEcaptionlrmargin}\def\GLOBALenvmulticol{false}\setcaptionmargincm{\captionlrmargin}}

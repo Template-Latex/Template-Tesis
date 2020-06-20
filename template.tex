@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.0 (19/06/2020)
+% Versión:      2.0.0 (20/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -660,6 +660,7 @@
 \def\GLOBALcoretikzimported {false}      % Indica que tikz se importó
 \def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
 \def\GLOBALenvimageinitialized {false}   % Entorno images activo
+\def\GLOBALenvmulticol {false}           % Indica que el entorno multicol está activo
 \def\GLOBALsectionalph {false}           % Sección con numeración de letras
 \def\GLOBALsectionanumenabled {false}    % Sección sin numeración
 \def\GLOBALsubsectionanumenabled {false} % Subsección sin numeración
@@ -799,6 +800,14 @@
 \newcommand{\checkoutsideenvimage}{
 	\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{
 		\throwwarning{Esta funcion solo puede usarse fuera del entorno \noexpand\images}
+		\stop}{
+	}
+}
+
+% Chequea que las funciones puedan usarse solo en el entorno multicol
+\newcommand{\checkinsidemulticol}{
+	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{
+		\throwwarning{Esta funcion solo puede usarse dentro de multicols}
 		\stop}{
 	}
 }
@@ -1638,37 +1647,14 @@
 	\resetindexcaption
 }
 
-% Insertar una imagen en un entorno multicol
-% 	#1	Label (opcional)
-%	#2	Dirección de la imagen
-%	#3	Parámetros de la imagen
-%	#4	Leyenda de la imagen (opcional)
-\newcommand{\insertimagemc}[4][]{%
-	\setcaptionmargincm{\captionlrmarginmc}
-	\insertimageboxed[#1]{#2}{#3}{0}{#4}
-	\setcaptionmargincm{\captionlrmargin}
-}
-
-% Insertar una imagen con recuadro en un entorno multicol
-% 	#1	Label (opcional)
-%	#2	Dirección de la imagen
-%	#3	Parámetros de la imagen
-%	#4	Ancho de la línea (en pt)
-%	#5	Leyenda de la imagen (opcional)
-\newcommand{\insertimageboxedmc}[5][]{%
-	\setcaptionmargincm{\captionlrmarginmc}
-	\insertimageboxed[#1]{#2}{#3}{#4}{#5}
-	\setcaptionmargincm{\captionlrmargin}
-}
-
 % Insertar una imagen completa en un entorno multicol
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
 %	#4	Posición, "bottom" o "top"
 %	#5	Leyenda de la imagen (opcional)
-\newcommand{\insertimagemcfull}[5][]{%
-	\insertimageboxedmcfull[#1]{#2}{#3}{0}{#4}{#5}
+\newcommand{\insertimagemc}[5][]{%
+	\insertimageboxedmc[#1]{#2}{#3}{0}{#4}{#5}
 }
 
 % Insertar una imagen completa con recuadro en un entorno multicol
@@ -1678,12 +1664,13 @@
 %	#4	Ancho de la línea (en pt)
 %	#5	Posición, "bottom" o "top"
 %	#6	Leyenda de la imagen (opcional)
-\newcommand{\insertimageboxedmcfull}[6][]{%
-	\emptyvarerr{\insertimageboxedmcfull}{#2}{Direccion de la imagen no definida}
-	\emptyvarerr{\insertimageboxedmcfull}{#3}{Parametros de la imagen no definidos}
-	\emptyvarerr{\insertimageboxedmcfull}{#4}{Ancho de la linea no definido}
-	\emptyvarerr{\insertimageboxedmcfull}{#5}{Posicion de la imagen no definida}
+\newcommand{\insertimageboxedmc}[6][]{%
+	\emptyvarerr{\insertimageboxedmc}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageboxedmc}{#3}{Parametros de la imagen no definidos}
+	\emptyvarerr{\insertimageboxedmc}{#4}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimageboxedmc}{#5}{Posicion de la imagen no definida}
 	\checkoutsideenvimage
+	\checkinsidemulticol
 	\setcaptionmargincm{\captionlrmarginmc}
 	\ifthenelse{\equal{#5}{bottom}}{
 		\begin{figure*}[b!]
@@ -3092,49 +3079,13 @@
 	
 	% Inicia la figura
 	\begin{figure}[H] \centering%
-		\thisfloatpagestyle{fancy}
+		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}%
 		}{%
-			\caption{\envimagescaptionvar\envimageslabelvar}%
-		}%
-	\end{figure}%
-
-	% Reestablece caption y márgenes
-	\setcaptionmargincm{\captionlrmargin}
-	\vspace{\marginimagebottom cm}
-	
-	% Reestablece globales
-	\def\GLOBALenvimageinitialized {false}
-}
-
-% Crea una sección de imágenes múltiples en un entorno multicol
-%	#1	Label (opcional)
-%	#2	Caption
-\newenvironment{imagesmc}[2][]{
-	% Modifica globales
-	\def\envimageslabelvar {#1}
-	\def\envimagescaptionvar {#2}
-	\def\GLOBALenvimageinitialized {true}
-	\def\GLOBALenvimageadded {false}
-	
-	% Configura caption y márgenes
-	\vspace{\marginimagetop cm}
-	\setcaptionmargincm{\captionmarginmultimg}
-	
-	% Inicia la figura
-	\begin{figure}[H] \centering%
-		\vspace{\marginimagemulttop cm}%
-		\thisfloatpagestyle{fancy}
-		}{%
-		\setcaptionmargincm{\captionlrmargin}%
-		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
-			\vspace{\captionlessmarginimage cm}%
-		}{%
-			\setcaptionmargincm{\captionlrmarginmc}
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure}%
@@ -3151,15 +3102,16 @@
 %	#1	Label (opcional)
 %	#2	Posición de la imagen, "bottom" o "top"
 %	#3	Caption
-\newenvironment{imagesmcfull}[3][]{
+\newenvironment{imagesmc}[3][]{
 	% Modifica globales
 	\def\envimageslabelvar {#1}
 	\def\envimagescaptionvar {#3}
 	\def\GLOBALenvimageinitialized {true}
 	\def\GLOBALenvimageadded {false}
+	\checkinsidemulticol
 	
 	% Configura caption y márgenes
-	\setcaptionmargincm{\captionmarginmultimg}
+	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
 	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
@@ -4046,14 +3998,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={19/06/2020},
+		Template.Fecha={20/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-3-THS},
-		Template.Version.Hash={68191B95BE16F4A51E9C438871E00450},
+		Template.Version.Dev={2.0.0-beta-4-THS},
+		Template.Version.Hash={BFF2BBBE97A4842B8CA84B88C4C78031},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -4598,6 +4550,13 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% -----------------------------------------------------------------------------
+% Parcha el entorno multicols
+% -----------------------------------------------------------------------------
+\let\SOURCEcaptionlrmargin\captionlrmargin
+\BeforeBeginEnvironment{multicols}{\def\captionlrmargin{\captionlrmarginmc}\def\GLOBALenvmulticol{true}\setcaptionmargincm{\captionlrmargin}}
+\AfterEndEnvironment{multicols}{\def\captionlrmargin{\SOURCEcaptionlrmargin}\def\GLOBALenvmulticol{false}\setcaptionmargincm{\captionlrmargin}}
 
 % PORTADA
 \newcommand{\templatePortrait}{

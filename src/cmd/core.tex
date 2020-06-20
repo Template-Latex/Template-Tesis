@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.0.0 (19/06/2020)
+% Versión:      2.0.0 (20/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -16,6 +16,7 @@
 \def\GLOBALcoretikzimported {false}
 \def\GLOBALenvimageadded {false}
 \def\GLOBALenvimageinitialized {false}
+\def\GLOBALenvmulticol {false}
 \def\GLOBALsectionalph {false}
 \def\GLOBALsectionanumenabled {false}
 \def\GLOBALsubsectionanumenabled {false}
@@ -94,6 +95,12 @@
 \newcommand{\checkoutsideenvimage}{
 	\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{
 		\throwwarning{Esta funcion solo puede usarse fuera del entorno \noexpand\images}
+		\stop}{
+	}
+}
+\newcommand{\checkinsidemulticol}{
+	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{
+		\throwwarning{Esta funcion solo puede usarse dentro de multicols}
 		\stop}{
 	}
 }

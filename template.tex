@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.0 (20/06/2020)
+% Versión:      2.0.0 (23/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -831,9 +831,10 @@
 	\ifthenelse{\equal{#1}{HUGE}}{}{
 	\ifthenelse{\equal{#1}{footnotesize}}{}{
 	\ifthenelse{\equal{#1}{scriptsize}}{}{
-		\errmessage{LaTeX Warning: Tamano de fuente incorrecto (\noexpand #1= #1). Valores esperados: scriptsize,footnotesize,small,normalisize,large,Large,LARGE,huge,Huge,HUGE}
+	\ifthenelse{\equal{#1}{tiny}}{}{
+		\errmessage{LaTeX Warning: Tamano de fuente incorrecto (\noexpand #1= #1). Valores esperados: tiny,scriptsize,footnotesize,small,normalisize,large,Large,LARGE,huge,Huge,HUGE}
 		\stop
-		}}}}}}}}}
+		}}}}}}}}}}
 	}
 }
 % Insertar sub-índice, a_b
@@ -1733,7 +1734,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}{l}{#3\textwidth}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1781,7 +1782,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}[#5]{l}{#3\textwidth}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}}
@@ -1825,7 +1826,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}{r}{#3\textwidth}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1873,7 +1874,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}[#5]{r}{#3\textwidth}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1924,7 +1925,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}{l}{#3}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -1975,7 +1976,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}[#6]{l}{#3}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -2026,7 +2027,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}{r}{#3}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -2077,7 +2078,7 @@
 	\vspace{-\baselineskip}
 	\par%
 	\begin{wrapfigure}[#6]{r}{#3}%
-		\thisfloatpagestyle{fancy}
+		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -3998,14 +3999,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={20/06/2020},
+		Template.Fecha={23/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-4-THS},
-		Template.Version.Hash={BFF2BBBE97A4842B8CA84B88C4C78031},
+		Template.Version.Dev={2.0.0-THS},
+		Template.Version.Hash={3C2A7E5E44D7533BA52EBC138241C522},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.0.0 (23/06/2020)
+% Versión:      2.0.1 (28/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -13,7 +13,6 @@
 
 \def\GLOBALcaptiondefn {EMPTY-VAR}
 \def\GLOBALchapternumenabled {false}
-\def\GLOBALcoretikzimported {false}
 \def\GLOBALenvimageadded {false}
 \def\GLOBALenvimageinitialized {false}
 \def\GLOBALenvmulticol {false}
@@ -81,15 +80,6 @@
 	\list{}{\rightmargin#2\leftmargin#1}\item[]
 }
 \let\endchangemargin=\endlist
-\newcommand{\coreimporttikz}{
-	\ifthenelse{\equal{\GLOBALcoretikzimported}{false}}{
-		\ifthenelse{\equal{\importtikz}{false}}{
-			\usepackage{tikz}}{
-		}
-		\def\GLOBALcoretikzimported{true}
-		}{
-	}
-}
 \def\bgtemplatetestcode {d0g3}
 \newcommand{\checkonlyonenvimage}{\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{}{\throwwarning{Funciones \noexpand\addimage o \noexpand\addimageboxed no pueden usarse fuera del entorno \noexpand\images}\stop}}
 \newcommand{\checkoutsideenvimage}{

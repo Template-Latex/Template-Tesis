@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.0.0 (23/06/2020)
+% Versión:      2.0.1 (28/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,6 +14,7 @@
 \newcommand{\newp}{\hbadness=10000 \vspace{\baselineskip} \par}
 \newcommand{\newpar}[1]{\hbadness=10000 #1 \newp}
 \newcommand{\newparnl}[1]{#1 \par}
+\newcommand{\newcolumn}{\checkinsidemulticol\vfill\null\columnbreak}
 \newcommand{\itemresize}[2]{
 	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}
 	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}

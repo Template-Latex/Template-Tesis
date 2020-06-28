@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.0 (23/06/2020)
+% Versión:      2.0.1 (28/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -242,11 +242,6 @@
 	\usepackage[toc]{appendix} % Eliminado en Auxiliares/Controles, sin [toc]
 }{
 	\usepackage{appendix}
-}
-
-% Importa la librería tikz
-\ifthenelse{\equal{\importtikz}{true}}{ % Eliminado en Auxiliares/Controles
-	\usepackage{tikz}}{
 }
 
 % Dimensiones y geometría del documento
@@ -657,7 +652,6 @@
 %\def\GLOBALcaptiondefnimages{EMPTY-VAR} % Definición del caption en images
 %\def\GLOBALcaptiondefnsrc{EMPTY-VAR}    % Definición del caption en sourcecode
 \def\GLOBALchapternumenabled {false}     % Numeración de capítulos empezó
-\def\GLOBALcoretikzimported {false}      % Indica que tikz se importó
 \def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
 \def\GLOBALenvimageinitialized {false}   % Entorno images activo
 \def\GLOBALenvmulticol {false}           % Indica que el entorno multicol está activo
@@ -778,17 +772,6 @@
 	\list{}{\rightmargin#2\leftmargin#1}\item[]
 }
 \let\endchangemargin=\endlist
-
-% Se importa la librería tikz
-\newcommand{\coreimporttikz}{
-	\ifthenelse{\equal{\GLOBALcoretikzimported}{false}}{
-		\ifthenelse{\equal{\importtikz}{false}}{
-			\usepackage{tikz}}{
-		}
-		\def\GLOBALcoretikzimported{true}
-		}{
-	}
-}
 
 % Imagen de prueba tikz
 \def\bgtemplatetestcode {d0g3}
@@ -1597,8 +1580,19 @@
 %	#4	Leyenda de la imagen (opcional)
 \newcommand{\addimageboxed}[4]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#4]{\fbox{\includegraphics[#2]{#1}}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
 
+% Añade una imagen a un env 'image' con borde sin leyenda
+%	#1	Dirección de la imagen
+%	#2	Parámetros de la imagen
+\newcommand{\addimageanum}[2]{\addimageboxedanum{#1}{#2}{0}}
+
+% Añade una imagen a un env 'image' con borde sin leyenda
+%	#1	Dirección de la imagen
+%	#2	Parámetros de la imagen
+%	#3	Ancho de la línea (en pt)
+\newcommand{\addimageboxedanum}[3]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat{\fbox{\includegraphics[#2]{#1}}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
+
 % Añade un salto de línea en las imágenes
-\newcommand{\imagesnewline}{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\linebreak\noindent}
+\newcommand{\imagesnewline}{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\vspace{\marginimagemultbottom cm}\linebreak\noindent}
 
 % Agrega un espacio horizontal a las imágenes
 % 	#1 Tamaño del espacio
@@ -2472,6 +2466,9 @@
 % Insertar párrafo sin nueva línea al final
 % 	#1	Párrafo
 \newcommand{\newparnl}[1]{#1 \par}
+
+% Crea un salto de columna en el entorno multicol
+\newcommand{\newcolumn}{\checkinsidemulticol\vfill\null\columnbreak}
 
 % Inserta un lipsum corregido
 % \newcommand{\slipsum}[1][]{~\lipsum[#1]}
@@ -3999,15 +3996,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={23/06/2020},
+		Template.Fecha={28/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-THS},
-		Template.Version.Hash={3C2A7E5E44D7533BA52EBC138241C522},
-		Template.Version.Release={2.0.0},
+		Template.Version.Dev={2.0.1-THS},
+		Template.Version.Hash={B142DC5754602D6548E8B0B71130B66B},
+		Template.Version.Release={2.0.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4019,7 +4016,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.0.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.0.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

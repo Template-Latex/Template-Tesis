@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.1 (28/06/2020)
+% Versión:      2.0.2 (21/07/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1010,6 +1010,11 @@
 % Expresión automorfismo
 \newcommand{\Autexp}{
 	\ensuremath{\rm{Aut}}
+}
+
+% Negrita introducida por word
+\newcommand{\mathbit}[1]{
+	\bm{#1}
 }
 
 % Expresión diff
@@ -3996,15 +4001,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={28/06/2020},
+		Template.Fecha={21/07/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.1-THS},
-		Template.Version.Hash={B142DC5754602D6548E8B0B71130B66B},
-		Template.Version.Release={2.0.1},
+		Template.Version.Dev={2.0.2-THS},
+		Template.Version.Hash={9533E561AA9F833E9E5DDDFE50C6CEDF},
+		Template.Version.Release={2.0.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4016,7 +4021,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.0.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.0.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5355,6 +5360,11 @@
 \ifthenelse{\equal{\addemptypagespredoc}{true}}{
 	\insertblankpage}{
 }
+	% -----------------------------------------------------------------------------
+	% Configura el nombre del abstract
+	% -----------------------------------------------------------------------------
+	\renewcommand{\abstractname}{\nameabstract}
+
 }
 
 % TABLA DE CONTENIDOS - ÍNDICE

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.0.2 (21/07/2020)
+% Versión:      2.0.3 (02/08/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -56,14 +56,51 @@
 	\checkoutsideenvimage
 	\checkinsidemulticol
 	\setcaptionmargincm{\captionlrmarginmc}
-	\ifthenelse{\equal{#5}{bottom}}{
-		\begin{figure*}[b!]
+	\ifthenelse{\equal{#5}{bottom}}{%
+		\begin{figure*}[hb]
 	}{
-	\ifthenelse{\equal{#5}{top}}{
-		\begin{figure*}[t!]
+	\ifthenelse{\equal{#5}{top}}{%
+		\begin{figure*}[ht]
 	}{
-		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
-	}}
+	\ifthenelse{\equal{#5}{fixed2}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed2b}}{%
+		\end{multicols}
+		\begin{figure*}[b]
+	}{
+	\ifthenelse{\equal{#5}{fixed2t}}{%
+		\end{multicols}
+		\begin{figure*}[t]
+	}{
+	\ifthenelse{\equal{#5}{fixed3}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed3b}}{%
+		\end{multicols}
+		\begin{figure*}[b]
+	}{
+	\ifthenelse{\equal{#5}{fixed3t}}{%
+		\end{multicols}
+		\begin{figure*}[t]
+	}{
+	\ifthenelse{\equal{#5}{fixed4}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed4b}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed4t}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
+		\stop}}}}}}}}}}
+	}
 		\thisfloatpagestyle{fancy}
 		\begingroup
 			\setlength{\fboxsep}{0 pt}
@@ -78,6 +115,34 @@
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{figure*}
+	\ifthenelse{\equal{#5}{fixed2}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{#5}{fixed2b}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{#5}{fixed2t}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{#5}{fixed3}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{#5}{fixed3b}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{#5}{fixed3t}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{#5}{fixed4}}{%
+		\begin{multicols}{4}
+	}{
+	\ifthenelse{\equal{#5}{fixed4b}}{%
+		\begin{multicols}{4}
+	}{
+	\ifthenelse{\equal{#5}{fixed4t}}{%
+		\begin{multicols}{4}
+	}{
+	}}}}}}}}}
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
@@ -94,7 +159,7 @@
 	~
 	\vspace{-\baselineskip}
 \par
-	\begin{wrapfigure}{l}{#3\textwidth}%
+	\begin{wrapfigure}{l}{#3\linewidth}%
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -126,7 +191,7 @@
 	~
 	\vspace{-\baselineskip}
 \par
-	\begin{wrapfigure}[#5]{l}{#3\textwidth}%
+	\begin{wrapfigure}[#5]{l}{#3\linewidth}%
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}}
@@ -156,7 +221,7 @@
 	~
 	\vspace{-\baselineskip}
 \par
-	\begin{wrapfigure}{r}{#3\textwidth}%
+	\begin{wrapfigure}{r}{#3\linewidth}%
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}
@@ -188,7 +253,7 @@
 	~
 	\vspace{-\baselineskip}
 \par
-	\begin{wrapfigure}[#5]{r}{#3\textwidth}%
+	\begin{wrapfigure}[#5]{r}{#3\linewidth}%
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
 			\vspace{\marginfloatimages pt}

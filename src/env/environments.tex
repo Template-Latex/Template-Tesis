@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.0.2 (21/07/2020)
+% Versión:      2.0.3 (02/08/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -279,18 +279,20 @@
 }
 \newenvironment{imagesmc}[3][]{
 	\def\envimageslabelvar {#1}
+	\def\envimagesmcpos {#2}
 	\def\envimagescaptionvar {#3}
 	\def\GLOBALenvimageinitialized {true}
 	\def\GLOBALenvimageadded {false}
 	\checkinsidemulticol
 \setcaptionmargincm{\captionmarginmultimg}
 	\ifthenelse{\equal{#2}{bottom}}{%
-\begin{figure*}[b!] \centering
-		}{%
+\begin{figure*}[hb] \centering
+	}{%
 	\ifthenelse{\equal{#2}{top}}{%
-\begin{figure*}[t!] \centering
+\begin{figure*}[ht] \centering
 	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
+		\stop
 	}}%
 		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%

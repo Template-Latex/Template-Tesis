@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.4 (26/09/2020)
+% Versión:      2.0.5 (07/10/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -944,6 +944,7 @@
 \newcommand{\topequal}[2]{
 	\ensuremath{\overbrace{#1}^{\mathclap{#2}}}
 }
+\newcommand{\topequaltext}[2]{\topequal{#1}{\text{#2}}}
 
 % Llave inferior de equivalencia
 % 	#1	Elemento a igualar
@@ -951,6 +952,7 @@
 \newcommand{\underequal}[2]{
 	\ensuremath{\underbrace{#1}_{\mathclap{#2}}}
 }
+\newcommand{\underequaltext}[2]{\underequal{#1}{\text{#2}}}
 
 % Rectángulo superior de equivalencia
 % 	#1	Elemento a igualar
@@ -958,6 +960,7 @@
 \newcommand{\topsequal}[2]{
 	\ensuremath{\overbracket{#1}^{\mathclap{#2}}}
 }
+\newcommand{\topsequaltext}[2]{\topsequal{#1}{\text{#2}}}
 
 % Rectángulo inferior de equivalencia
 % 	#1	Elemento a igualar
@@ -965,6 +968,23 @@
 \newcommand{\undersequal}[2]{
 	\ensuremath{\underbracket{#1}_{\mathclap{#2}}}
 }
+\newcommand{\undersequaltext}[2]{\undersequal{#1}{\text{#2}}}
+
+% Función piso
+% 	#1	Elemento
+\newcommand{\floorexp}[1]{
+	\ensuremath{\left\lfloor{#1}\right\rfloor}
+}
+
+% Función techo
+% 	#1	Elemento
+\newcommand{\ceilexp}[1]{
+	\ensuremath{\left\lceil{#1}\right\rceil}
+}
+
+% Función mod
+%	#1	Elemento tal que (mod #1)
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 
 % Paréntesis grande
 % 	#1	Expresión
@@ -1042,6 +1062,10 @@
 	\ensuremath{\rm{Re}(z)}
 }
 
+% Barra superior en elemento
+%	#1 	Elemento
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
 % Definición de letras
 \newcommand{\A}{\mathcal{A}}
 \let\oldC=\C
@@ -1066,10 +1090,6 @@
 \renewcommand{\S}{\mathcal{S}}
 \newcommand{\T}{\mathcal{T}}
 \newcommand{\Z}{\mathbb{Z}}
-
-% Barra superior en elemento
-%	#1 	Elemento
-\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
 % Definición de teoremas y lemas
 \makeatletter
@@ -3452,6 +3472,9 @@
 	ndkeywordstyle=\color{blue}\bfseries,
 	sensitive=false
 }
+\lstdefinestyle{javascript}{
+	language=JavaScript
+}
 \lstdefinestyle{js}{
 	language=JavaScript
 }
@@ -3669,16 +3692,22 @@
 % -----------------------------------------------------------------------------
 % Python
 % -----------------------------------------------------------------------------
-\lstdefinestyle{python}{
+\lstdefinelanguage{pythonEXTENDED}{
 	language=Python,
 	breakatwhitespace=false,
 	emph={
-		AbstractSet,Any,AsyncContextManager,AsyncGenerator,AsyncIterable,AsyncIterator,Awaitable,AwaitableGenerator,BinaryIO,ByteString,Callable,Collection,Container,ContextManager,Coroutine,Dict,ForwardRef,Generator,GenericMeta,Hashable,IO,ItemsView,Iterable,Iterator,KeysView,List,Mapping,MappingView,Match,Meta,MutableMapping,MutableSequence,MutableSet,NamedTuple,Pattern,Reversible,Sequence,Sized,SupportInts,SupportsAbs,SupportsBytes,SupportsComplex,SupportsFloat,SupportsIndex,SupportsRound,TextIO,Tuple,TypeAlias,TYPE_CHECKING,Union,ValuesView,__add__,__and__,__eq__,__floordiv__,__ge__,__gt__,__init__,__le__,__lt__,__main__,__mod__,__mul__,__name__,__ne__,__or__,__pow__,__repr__,__str__,__sub__,__truediv__,__xor__
+		AbstractSet,Any,AsyncContextManager,AsyncGenerator,AsyncIterable,AsyncIterator,Awaitable,AwaitableGenerator,BinaryIO,ByteString,Callable,Collection,Container,ContextManager,Coroutine,Dict,False,ForwardRef,Generator,GenericMeta,Hashable,IO,ItemsView,Iterable,Iterator,KeysView,List,Mapping,MappingView,Match,Meta,MutableMapping,MutableSequence,MutableSet,NamedTuple,None,Pattern,Reversible,Sequence,Sized,SupportInts,SupportsAbs,SupportsBytes,SupportsComplex,SupportsFloat,SupportsIndex,SupportsRound,TextIO,True,Tuple,TypeAlias,TYPE_CHECKING,Union,ValuesView,__add__,__and__,__eq__,__floordiv__,__ge__,__gt__,__init__,__le__,__lt__,__main__,__mod__,__mul__,__name__,__ne__,__or__,__pow__,__repr__,__str__,__sub__,__truediv__,__xor__
 	},
 	emphstyle=\color{dkcyan}\ttfamily,
 	keepspaces=true,
 	morecomment=[s][\color{BurntOrange}]{@}{\ },
-	morekeywords={as,assert,close,listdir,None,self,sorted,split,strip,with}
+	morekeywords={as,assert,close,listdir,self,sorted,split,strip,with}
+}
+\lstdefinestyle{py}{
+	language=pythonEXTENDED
+}
+\lstdefinestyle{python}{
+	language=pythonEXTENDED
 }
 
 % -----------------------------------------------------------------------------
@@ -3863,6 +3892,7 @@
 	\ifthenelse{\equal{#1}{html5}}{}{
 	\ifthenelse{\equal{#1}{ini}}{}{
 	\ifthenelse{\equal{#1}{java}}{}{
+	\ifthenelse{\equal{#1}{javascript}}{}{
 	\ifthenelse{\equal{#1}{js}}{}{
 	\ifthenelse{\equal{#1}{json}}{}{
 	\ifthenelse{\equal{#1}{kotlin}}{}{
@@ -3879,6 +3909,7 @@
 	\ifthenelse{\equal{#1}{php}}{}{
 	\ifthenelse{\equal{#1}{plaintext}}{}{
 	\ifthenelse{\equal{#1}{pseudocode}}{}{
+	\ifthenelse{\equal{#1}{py}}{}{
 	\ifthenelse{\equal{#1}{python}}{}{
 	\ifthenelse{\equal{#1}{r}}{}{
 	\ifthenelse{\equal{#1}{ruby}}{}{
@@ -3890,9 +3921,9 @@
 	\ifthenelse{\equal{#1}{verilog}}{}{
 	\ifthenelse{\equal{#1}{vhdl}}{}{
 	\ifthenelse{\equal{#1}{xml}}{}{
-		\errmessage{LaTeX Warning: Estilo de codigo desconocido. Valores esperados: assemblerx64,assemblerx86,bash,c,cpp,csharp,css,csv,cuda,docker,fortran,glsl,haskell,html5,ini,java,js,json,kotlin,latex,lisp,lua,maple,matlab,octave,opencl,opensees,pascal,perl,php,plaintext,pseudocode,python,r,ruby,scala,scheme,sql,tcl,vbscript,verilog,vhdl,xml}
+		\errmessage{LaTeX Warning: Estilo de codigo desconocido. Valores esperados: assemblerx64,assemblerx86,bash,c,cpp,csharp,css,csv,cuda,docker,fortran,glsl,haskell,html5,ini,java,javascript,js,json,kotlin,latex,lisp,lua,maple,matlab,octave,opencl,opensees,pascal,perl,php,plaintext,pseudocode,py,python,r,ruby,scala,scheme,sql,tcl,vbscript,verilog,vhdl,xml}
 		\stop
-	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
 % -----------------------------------------------------------------------------
 % Estilo de enumeración en griego
@@ -4072,15 +4103,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={26/09/2020},
+		Template.Fecha={07/10/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.4-THS},
-		Template.Version.Hash={5C5F2A7233F9F39DACEF80EF513B9E7B},
-		Template.Version.Release={2.0.4},
+		Template.Version.Dev={2.0.5-1-THS},
+		Template.Version.Hash={C6C472CC10C66EDD0223DAD80FA3EA57},
+		Template.Version.Release={2.0.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4092,7 +4123,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.0.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.0.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

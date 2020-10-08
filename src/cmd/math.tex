@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones matemáticas
-% Versión:      2.0.4 (26/09/2020)
+% Versión:      2.0.5 (07/10/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -80,15 +80,26 @@
 \newcommand{\topequal}[2]{
 	\ensuremath{\overbrace{#1}^{\mathclap{#2}}}
 }
+\newcommand{\topequaltext}[2]{\topequal{#1}{\text{#2}}}
 \newcommand{\underequal}[2]{
 	\ensuremath{\underbrace{#1}_{\mathclap{#2}}}
 }
+\newcommand{\underequaltext}[2]{\underequal{#1}{\text{#2}}}
 \newcommand{\topsequal}[2]{
 	\ensuremath{\overbracket{#1}^{\mathclap{#2}}}
 }
+\newcommand{\topsequaltext}[2]{\topsequal{#1}{\text{#2}}}
 \newcommand{\undersequal}[2]{
 	\ensuremath{\underbracket{#1}_{\mathclap{#2}}}
 }
+\newcommand{\undersequaltext}[2]{\undersequal{#1}{\text{#2}}}
+\newcommand{\floorexp}[1]{
+	\ensuremath{\left\lfloor{#1}\right\rfloor}
+}
+\newcommand{\ceilexp}[1]{
+	\ensuremath{\left\lceil{#1}\right\rceil}
+}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 \newcommand{\bigp}[1]{
 	\ensuremath{\big(#1\big)}
 }
@@ -131,6 +142,7 @@
 \newcommand{\Rezexp}{
 	\ensuremath{\rm{Re}(z)}
 }
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \newcommand{\A}{\mathcal{A}}
 \let\oldC=\C
 \renewcommand{\C}{\mathbb{C}}
@@ -154,7 +166,6 @@
 \renewcommand{\S}{\mathcal{S}}
 \newcommand{\T}{\mathcal{T}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \makeatletter
 	\renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 \makeatother

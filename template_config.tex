@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.0.5 (07/10/2020)
+% Versión:      2.0.6 (21/10/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -66,6 +66,8 @@
 \def\tablecaptiontop {true}        % Leyenda arriba de las tablas
 
 % CONFIGURACIÓN DEL ÍNDICE
+\def\addabstracttobookmarks {true} % Añade el resumen a los marcadores del pdf
+\def\addagradectobookmarks {true}  % Añade el agradecimiento a los marcadores
 \def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
 \def\charafterobjectindex {.}      % Carácter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Carácter número de página en índice
@@ -85,17 +87,16 @@
 \def\apaciteshowurl {false}        % Muestra las url en las referencias
 \def\apacitestyle {apacite}        % Formato de ref. apacite {apa,ieeetr,etc..}
 \def\appendixindepobjnum {true}    % Anexo usa n° objetos independientes
+\def\bibtexindexbibliography{true} % Función \bibliography se inserta en el índice
 \def\bibtexrefsep {6}              % Separación entre refs. {bibtex} [pt]
-\def\bibtexstyle {apa}             % Formato de ref. bibtex {apa,ieeetr,etc...}
+\def\bibtexstyle {ieeetr}          % Formato de ref. bibtex {apa,ieeetr,etc...}
 \def\bibtextextalign {justify}     % Alineación bibtex {justify,left,right,center}
+\def\fontsizerefbibl {\normalsize} % Tamaño de fuentes al usar \bibliography{file}
 \def\natbibnumbers {true}          % Forza el uso de números en la bibliografía
 \def\natbibrefsep {6}              % Separación entre referencia {natbib} [pt]
 \def\natbibrefstyle {ieeetr}       % Formato de ref. natbib {apa,ieeetr,etc...}
 \def\natbibsquare {true}           % Usa [] o () en las numeraciones
-\def\refsfontsize {\normalsize}    % Tamaño de fuentes al usar \bibliography{file}
 \def\sectionappendixlastchar {.}   % Carácter entre n° de sec. anexo y título
-\def\addabstracttobookmarks {true} % Añade el resumen a los marcadores del pdf
-\def\addagradectobookmarks {true}  % Añade el agradecimiento a los marcadores
 \def\stylecitereferences {natbib}  % Estilo cita/ref. {apacite,bibtex,natbib}
 \def\twocolumnreferences {false}   % Referencias en dos columnas
 

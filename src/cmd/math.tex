@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones matemáticas
-% Versión:      2.0.6 (21/10/2020)
+% Versión:      2.0.7 (29/10/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -145,6 +145,13 @@
 	\ensuremath{\rm{Re}(z)}
 }
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\makeatletter
+\def\longtilde#1{\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
+				\sortoftildefill\crcr\noalign{\kern3\p@\nointerlineskip}%
+				$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
+\def\sortoftildefill{$\m@th \setbox\z@\hbox{$\braceld$}%
+	\braceld\leaders\vrule \@height\ht\z@ \@depth\z@\hfill\braceru$}
+\makeatother
 \newcommand{\A}{\ensuremath{\mathcal{A}}}
 \newcommand{\B}{\ensuremath{\mathcal{B}}}
 \let\oldC=\C
@@ -177,6 +184,23 @@
 \newcommand{\X}{\ensuremath{\mathcal{X}}}
 \newcommand{\Y}{\ensuremath{\mathcal{Y}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\asteq}{\ensuremath{\mathrel{{*}{=}}}}
+\newcommand{\cdoteq}{\ensuremath{\mathrel{{\cdot}{=}}}}
+\newcommand{\diveq}{\ensuremath{\mathrel{{/}{=}}}}
+\newcommand{\eqast}{\ensuremath{\mathrel{{=}{*}}}}
+\newcommand{\eqcdot}{\ensuremath{\mathrel{{=}{\cdot}}}}
+\newcommand{\eqdiv}{\ensuremath{\mathrel{{=}{/}}}}
+\newcommand{\eqeq}{\ensuremath{\mathrel{{=}{=}}}}
+\newcommand{\eqminus}{\ensuremath{\mathrel{{=}{-}}}}
+\newcommand{\eqnot}{\ensuremath{\mathrel{{=}{!}}}}
+\newcommand{\eqplus}{\ensuremath{\mathrel{{=}{+}}}}
+\newcommand{\eqtimes}{\ensuremath{\mathrel{{=}{\times}}}}
+\newcommand{\minuseq}{\ensuremath{\mathrel{{-}{=}}}}
+\newcommand{\minusminus}{\ensuremath{\mathrel{{-}{-}}}}
+\newcommand{\noteq}{\ensuremath{\mathrel{{!}{=}}}}
+\newcommand{\pluseq}{\ensuremath{\mathrel{{+}{=}}}}
+\newcommand{\plusplus}{\ensuremath{\mathrel{{+}{+}}}}
+\newcommand{\timeseq}{\ensuremath{\mathrel{{\times}{=}}}}
 \makeatletter
 	\renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 \makeatother

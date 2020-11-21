@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.0.7 (29/10/2020)
+% Versión:      2.1.0 (21/11/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -274,7 +274,7 @@
 	\resetindexcaption
 }
 \newcommand{\insertimageleftp}[5][]{%
-	\xspace~\\%
+	\xspace ~ \\%
 	\vspace{-2\baselineskip}%
 \par
 	\insertimageleftboxedp[#1]{#2}{#3}{#4}{0}{#5}
@@ -342,7 +342,7 @@
 	\resetindexcaption
 }
 \newcommand{\insertimagerightp}[5][]{%
-	\xspace~\\%
+	\xspace ~ \\%
 	\vspace{-2\baselineskip}%
 \par
 	\insertimagerightboxedp[#1]{#2}{#3}{#4}{0}{#5}
@@ -408,6 +408,9 @@
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
+}
+\newcommand{\coreinsertkeyimage}[2]{%
+	\expandafter\includegraphics\expandafter[#1]{\expandafter#2}%
 }
 \makeatletter
 \define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}

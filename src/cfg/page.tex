@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      2.0.7 (29/10/2020)
+% Versión:      2.1.0 (21/11/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -53,7 +53,7 @@
 		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
 	}{}
 \fancyheadoffset{0pt}
-\def\hfheaderimagesizeA {0.5}
+\def\hfheaderimageparamsA {height=\baselineskip}
 	\ifthenelse{\equal{\hfstyle}{style1}}{
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
@@ -267,9 +267,9 @@
 			}{
 				\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
-			\fancyhead[R]{
-				\includegraphics[width=\hfheaderimagesizeA cm]{\imagendepartamento}
-				\vspace{-0.15cm}
+			\fancyhead[R]{%
+				\coreinsertkeyimage{\hfheaderimageparamsA}{\imagendepartamento}%
+				\vspace{-0.15cm}%
 			}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -668,9 +668,9 @@
 			}{
 				\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
-			\fancyhead[R]{
-				\includegraphics[width=\hfheaderimagesizeA cm]{\imagendepartamento}
-				\vspace{-0.15cm}
+			\fancyhead[R]{%
+				\coreinsertkeyimage{\hfheaderimageparamsA}{\imagendepartamento}%
+				\vspace{-0.15cm}%
 			}
 			\fancyfoot[C]{\thepage \nomnpageof \pageref{LastPage}}
 			\renewcommand{\headrulewidth}{0.5pt}

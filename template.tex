@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.7 (29/10/2020)
+% Versión:      2.1.0 (21/11/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -2027,7 +2027,7 @@
 %	#4	Propiedades de la imagen
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftp}[5][]{%
-	\xspace~\\%
+	\xspace ~ \\%
 	\vspace{-2\baselineskip}%
 	\par%
 	\insertimageleftboxedp[#1]{#2}{#3}{#4}{0}{#5}
@@ -2129,7 +2129,7 @@
 %	#4	Propiedades de la imagen
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightp}[5][]{%
-	\xspace~\\%
+	\xspace ~ \\%
 	\vspace{-2\baselineskip}%
 	\par%
 	\insertimagerightboxedp[#1]{#2}{#3}{#4}{0}{#5}
@@ -2222,6 +2222,13 @@
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
+}
+
+% Inserta una imagen con parametros keyvals almacenados en una variable
+% 	#1	Parámetros (keyvals)
+%	#2	Dirección de la imagen
+\newcommand{\coreinsertkeyimage}[2]{%
+	\expandafter\includegraphics\expandafter[#1]{\expandafter#2}%
 }
 
 % Define la clave resolution al insertar imágenes
@@ -4144,15 +4151,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={29/10/2020},
+		Template.Fecha={21/11/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.7-THS},
-		Template.Version.Hash={7CB4949C3F0564C3EC40F8CAF4310AE4},
-		Template.Version.Release={2.0.7},
+		Template.Version.Dev={2.1.0-THS},
+		Template.Version.Hash={2F118B5F4EC6880C4B0ED96C08FB004C},
+		Template.Version.Release={2.1.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4164,7 +4171,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.0.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.1.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4727,7 +4734,7 @@
 
 	% Logo de la universidad
 	\hspace*{-0.5cm} % Necesario para centrar el logo con el título
-	\includegraphics[scale=\imagendepartamentoescala]{\imagendepartamento}
+	\coreinsertkeyimage{\imagendepartamentoparams}{\imagendepartamento}
 	\hspace*{0.05cm}
 	\begin{minipage}{0.8\linewidth}
 		\MakeUppercase \nombreuniversidad ~ \\
@@ -4825,7 +4832,7 @@
 	% Se crean los header-footer
 	% -----------------------------------------------------------------------------
 	\fancyheadoffset{0pt} % Desactiva el offset de los header-footer
-	\def\hfheaderimagesizeA {0.5}  % Tamaño de las imágenes del encabezado estilo 3/13
+	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
 	\ifthenelse{\equal{\hfstyle}{style1}}{
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
@@ -5039,9 +5046,9 @@
 			}{
 				\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
-			\fancyhead[R]{
-				\includegraphics[width=\hfheaderimagesizeA cm]{\imagendepartamento}
-				\vspace{-0.15cm}
+			\fancyhead[R]{%
+				\coreinsertkeyimage{\hfheaderimageparamsA}{\imagendepartamento}%
+				\vspace{-0.15cm}%
 			}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -5440,9 +5447,9 @@
 			}{
 				\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
-			\fancyhead[R]{
-				\includegraphics[width=\hfheaderimagesizeA cm]{\imagendepartamento}
-				\vspace{-0.15cm}
+			\fancyhead[R]{%
+				\coreinsertkeyimage{\hfheaderimageparamsA}{\imagendepartamento}%
+				\vspace{-0.15cm}%
 			}
 			\fancyfoot[C]{\thepage \nomnpageof \pageref{LastPage}}
 			\renewcommand{\headrulewidth}{0.5pt}

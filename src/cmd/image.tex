@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.1.0 (21/11/2020)
+% Versión:      2.1.1 (18/12/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,10 +11,10 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
-\newcommand{\addimage}[3]{\addimageboxed{#1}{#2}{0}{#3}}
-\newcommand{\addimageboxed}[4]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#4]{\fbox{\includegraphics[#2]{#1}}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
+\newcommand{\addimage}[4][]{\addimageboxed[#1]{#2}{#3}{0}{#4}}
+\newcommand{\addimageboxed}[5][]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#4 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#5]{\fbox{\includegraphics[#3]{#2}}#1}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
 \newcommand{\addimageanum}[2]{\addimageboxedanum{#1}{#2}{0}}
-\newcommand{\addimageboxedanum}[3]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat{\fbox{\includegraphics[#2]{#1}}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
+\newcommand{\addimageboxedanum}[3]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\fbox{\includegraphics[#2]{#1}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
 \newcommand{\imagesnewline}{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\vspace{\marginimagemultbottom cm}\linebreak\noindent}
 \newcommand{\imageshspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\hspace{#1}}
 \newcommand{\imagesvspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}~ \\ \vspace*{#1}}

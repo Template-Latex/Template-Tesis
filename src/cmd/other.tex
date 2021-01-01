@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.1.2 (22/12/2020)
+% Versión:      2.1.3 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,17 +11,27 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
-\newcommand{\newp}{\hbadness=10000 \vspace{\baselineskip} \par}
-\newcommand{\newpar}[1]{\hbadness=10000 #1 \newp}
-\newcommand{\newparnl}[1]{#1 \par}
-\newcommand{\newcolumn}{\checkinsidemulticol\vfill\null\columnbreak}
-\newcommand{\newpagemulticol}{\newcolumn\newcolumn\newpage}
-\newcommand{\itemresize}[2]{
+\newcommand{\newp}{%
+\hbadness=10000 \vspace{\baselineskip} \par
+}
+\newcommand{\newpar}[1]{%
+\hbadness=10000 #1 \newp
+}
+\newcommand{\newparnl}[1]{%
+#1 \par
+}
+\newcommand{\newcolumn}{%
+\checkinsidemulticol\vfill\null\columnbreak
+}
+\newcommand{\newpagemulticol}{%
+\newcolumn\newcolumn\newpage
+}
+\newcommand{\itemresize}[2]{%
 	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}
 	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}
 	\resizebox{#1\linewidth}{!}{#2}
 }
-\newcommand{\insertemptypage}{
+\newcommand{\insertemptypage}{%
 	\newpage
 	\setcounter{templatePageCounter}{\thepage}
 	\pagenumbering{gobble}
@@ -31,26 +41,42 @@
 	\pagenumbering{arabic}
 	\setcounter{page}{\thetemplatePageCounter}
 }
-\newcommand{\insertblankpage}{
+\newcommand{\insertblankpage}{%
 	\newpage
 	\null
 	\newpage
 }
-\newcommand{\includehfpdf}[2][]{
+\newcommand{\includehfpdf}[2][]{%
 	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}
 }
-\newcommand{\includefullhfpdf}[2][]{
+\newcommand{\includefullhfpdf}[2][]{%
 	\includepdf[pages=-,pagecommand={\pagestyle{fancy}},#1]{#2}
 }
-\newcommand{\quotes}[1]{\enquote*{#1}}
-\newcommand{\scite}[1]{\textsuperscript{\cite{#1}}}
-\newcommand{\hreftext}[1]{\ifthenelse{\equal{\fonturl}{same}}{#1}{\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{}}}}}
-\newcommand{\insertemail}[1]{\href{mailto:#1}{\hreftext{#1}}}
-\newcommand{\insertphone}[1]{\href{tel:#1}{\hreftext{#1}}}
-\newcommand{\restartequation}{\setcounter{equation}{0}}
-\newcommand{\disablecaptionmargin}{\setcaptionmargincm{0}}
-\newcommand{\resetcaptionmargin}{\setcaptionmargincm{\captionlrmargin}}
-\newcommand{\settablerowcolors}[1]{
+\newcommand{\quotes}[1]{%
+	\enquote*{#1}%
+}
+\newcommand{\scite}[1]{%
+	\textsuperscript{\cite{#1}}%
+}
+\newcommand{\hreftext}[1]{%
+	\ifthenelse{\equal{\fonturl}{same}}{#1}{\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{}}}}%
+}
+\newcommand{\insertemail}[1]{%
+	\href{mailto:#1}{\hreftext{#1}}%
+}
+\newcommand{\insertphone}[1]{%
+	\href{tel:#1}{\hreftext{#1}}%
+}
+\newcommand{\restartequation}{%
+	\setcounter{equation}{0}%
+}
+\newcommand{\disablecaptionmargin}{%
+	\setcaptionmargincm{0}%
+}
+\newcommand{\resetcaptionmargin}{%
+	\setcaptionmargincm{\captionlrmargin}%
+}
+\newcommand{\settablerowcolors}[1]{%
 	\emptyvarerr{\settablerowcolors}{#1}{Posicion de fila no definida}
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
@@ -150,7 +176,7 @@
 		}
 	}
 }
-\newcommand{\changepagesizeformat}[2][]{
+\newcommand{\changepagesizeformat}[2][]{%
 	\emptyvarerr{\changepagesizeformat}{#2}{Formato de pagina no definido}
 	\ifthenelse{\equal{#2}{4A0}}{
 		\changepagesize[#1]{168.2}{237.8}

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.1.2 (22/12/2020)
+% Versión:      2.1.3 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -99,15 +99,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={22/12/2020},
+		Template.Fecha={01/01/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.2-1-THS},
-		Template.Version.Hash={2B5EA165711C03CEE2E10E44D0A4F5B5},
-		Template.Version.Release={2.1.2},
+		Template.Version.Dev={2.1.3-THS},
+		Template.Version.Hash={ECDD39A19B60740A0680F8AFAB53BF8F},
+		Template.Version.Release={2.1.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -119,7 +119,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.1.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.1.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -279,7 +279,10 @@
 	}
 	\setlength{\bibitemsep}{\bibtexrefsep pt}
 }{
-	\throwbadconfig{Estilo citas desconocido}{\stylecitereferences}{bibtex,apacite,natbib}}}
+\ifthenelse{\equal{\stylecitereferences}{custom}}{
+	\coretemplatemessage{Usando estilo citas referencias custom, importar librerias y configuraciones posterior al llamado de template.tex en archivo principal}
+}{
+	\throwbadconfig{Estilo citas desconocido}{\stylecitereferences}{bibtex,apacite,natbib,custom}}}}
 }
 \makeatletter
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{

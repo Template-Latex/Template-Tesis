@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      2.1.2 (22/12/2020)
+% Versión:      2.1.3 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -156,12 +156,13 @@
 	}}}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
-		\usepackage[nottoc,notlof,notlot]{tocbibind}
-		\usepackage[nosectionbib]{apacite}
-	}{
+	\usepackage[nottoc,notlof,notlot]{tocbibind}
+	\usepackage[nosectionbib]{apacite}
+}{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
-		}{}
-	}
+}{
+\ifthenelse{\equal{\stylecitereferences}{custom}}{
+}{}}}
 }
 \ifthenelse{\equal{\showappendixsecindex}{true}}{
 \usepackage[toc]{appendix}

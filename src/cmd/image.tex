@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.1.2 (22/12/2020)
+% Versión:      2.1.3 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,15 +11,29 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
-\newcommand{\addimage}[4][]{\addimageboxed[#1]{#2}{#3}{0}{#4}}
-\newcommand{\addimageboxed}[5][]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#4 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#5]{\fbox{\includegraphics[#3]{#2}}#1}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
-\newcommand{\addimageanum}[2]{\addimageboxedanum{#1}{#2}{0}}
-\newcommand{\addimageboxedanum}[3]{\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\fbox{\includegraphics[#2]{#1}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}}
-\newcommand{\imagesnewline}{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\vspace{\marginimagemultbottom cm}\linebreak\noindent}
-\newcommand{\imageshspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}\hspace{#1}}
-\newcommand{\imagesvspace}[1]{\checkonlyonenvimage\def\GLOBALenvimageadded {false}~ \\ \vspace*{#1}}
+\newcommand{\addimage}[4][]{%
+	\addimageboxed[#1]{#2}{#3}{0}{#4}%
+}
+\newcommand{\addimageboxed}[5][]{%
+	\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#4 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#5]{\fbox{\includegraphics[#3]{#2}}#1}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}%
+}
+\newcommand{\addimageanum}[2]{%
+	\addimageboxedanum{#1}{#2}{0}%
+}
+\newcommand{\addimageboxedanum}[3]{%
+	\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\fbox{\includegraphics[#2]{#1}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}%
+}
+\newcommand{\imagesnewline}{%
+\checkonlyonenvimage\def\GLOBALenvimageadded {false}\vspace{\marginimagemultbottom cm}\linebreak\noindent
+}
+\newcommand{\imageshspace}[1]{%
+	\checkonlyonenvimage\def\GLOBALenvimageadded {false}\hspace{#1}%
+}
+\newcommand{\imagesvspace}[1]{%
+	\checkonlyonenvimage\def\GLOBALenvimageadded {false}~ \\ \vspace*{#1}%
+}
 \newcommand{\insertimage}[4][]{%
-	\insertimageboxed[#1]{#2}{#3}{0}{#4}
+	\insertimageboxed[#1]{#2}{#3}{0}{#4}%
 }
 \newcommand{\insertimageboxed}[5][]{%
 	\emptyvarerr{\insertimageboxed}{#2}{Direccion de la imagen no definida}
@@ -46,7 +60,7 @@
 	\resetindexcaption
 }
 \newcommand{\insertimagemc}[5][]{%
-	\insertimageboxedmc[#1]{#2}{#3}{0}{#4}{#5}
+	\insertimageboxedmc[#1]{#2}{#3}{0}{#4}{#5}%
 }
 \newcommand{\insertimageboxedmc}[6][]{%
 	\emptyvarerr{\insertimageboxedmc}{#2}{Direccion de la imagen no definida}
@@ -146,10 +160,14 @@
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
-\newcommand{\inserttableimage}[2]{\inserttableimageboxed{#1}{#2}{0}}
-\newcommand{\inserttableimageboxed}[3]{\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}\checkoutsideenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\raisebox{-1\totalheight}{\fbox{\includegraphics[#2]{#1}}}\endgroup\resetindexcaption}
+\newcommand{\inserttableimage}[2]{%
+	\inserttableimageboxed{#1}{#2}{0}%
+}
+\newcommand{\inserttableimageboxed}[3]{%
+\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}\checkoutsideenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\raisebox{-1\totalheight}{\fbox{\includegraphics[#2]{#1}}}\endgroup\resetindexcaption
+}
 \newcommand{\insertimageleft}[4][]{%
-	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}
+	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}%
 }
 \newcommand{\insertimageleftboxed}[5][]{%
 	\emptyvarerr{\insertimageleftboxed}{#2}{Direccion de la imagen no definida}
@@ -180,7 +198,7 @@
 	\resetindexcaption
 }
 \newcommand{\insertimageleftline}[5][]{%
-	\insertimageleftlineboxed[#1]{#2}{#3}{0}{#4}{#5}
+	\insertimageleftlineboxed[#1]{#2}{#3}{0}{#4}{#5}%
 }
 \newcommand{\insertimageleftlineboxed}[6][]{%
 	\emptyvarerr{\insertimageleftlineboxed}{#2}{Direccion de la imagen no definida}
@@ -211,7 +229,7 @@
 	\resetindexcaption
 }
 \newcommand{\insertimageright}[4][]{%
-	\insertimagerightboxed[#1]{#2}{#3}{0}{#4}
+	\insertimagerightboxed[#1]{#2}{#3}{0}{#4}%
 }
 \newcommand{\insertimagerightboxed}[5][]{%
 	\emptyvarerr{\insertimagerightboxed}{#2}{Direccion de la imagen no definida}
@@ -242,7 +260,7 @@
 	\resetindexcaption
 }
 \newcommand{\insertimagerightline}[5][]{%
-	\insertimagerightlineboxed[#1]{#2}{#3}{0}{#4}{#5}
+	\insertimagerightlineboxed[#1]{#2}{#3}{0}{#4}{#5}%
 }
 \newcommand{\insertimagerightlineboxed}[6][]{%
 	\emptyvarerr{\insertimagerightlineboxed}{#2}{Direccion de la imagen no definida}
@@ -277,7 +295,7 @@
 	\xspace ~ \\%
 	\vspace{-2\baselineskip}%
 \par
-	\insertimageleftboxedp[#1]{#2}{#3}{#4}{0}{#5}
+	\insertimageleftboxedp[#1]{#2}{#3}{#4}{0}{#5}%
 }
 \newcommand{\insertimageleftboxedp}[6][]{%
 	\emptyvarerr{\insertimageleftboxedp}{#2}{Direccion de la imagen no definida}
@@ -309,9 +327,9 @@
 	\resetindexcaption
 }
 \newcommand{\insertimageleftlinep}[6][]{%
-	\insertimageleftlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
+	\insertimageleftlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}%
 }
-\newcommand{\insertimageleftlineboxedp}[7][]{
+\newcommand{\insertimageleftlineboxedp}[7][]{%
 	\emptyvarerr{\insertimageleftlineboxedp}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimageleftlineboxedp}{#3}{Ancho del objeto no definido}
 	\emptyvarerr{\insertimageleftlineboxedp}{#4}{Propiedades de la imagen no definidos}
@@ -345,9 +363,9 @@
 	\xspace ~ \\%
 	\vspace{-2\baselineskip}%
 \par
-	\insertimagerightboxedp[#1]{#2}{#3}{#4}{0}{#5}
+	\insertimagerightboxedp[#1]{#2}{#3}{#4}{0}{#5}%
 }
-\newcommand{\insertimagerightboxedp}[6][]{
+\newcommand{\insertimagerightboxedp}[6][]{%
 	\emptyvarerr{\insertimagerightboxedp}{#2}{Direccion de la imagen no definida}
 	\emptyvarerr{\insertimagerightboxedp}{#3}{Ancho del objeto no definido}
 	\emptyvarerr{\insertimagerightboxedp}{#4}{Propiedades de la imagen no definidos}
@@ -377,7 +395,7 @@
 	\resetindexcaption
 }
 \newcommand{\insertimagerightlinep}[6][]{%
-	\insertimagerightlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}
+	\insertimagerightlineboxedp[#1]{#2}{#3}{#4}{0}{#5}{#6}%
 }
 \newcommand{\insertimagerightlineboxedp}[7][]{%
 	\emptyvarerr{\insertimagerightlineboxedp}{#2}{Direccion de la imagen no definida}

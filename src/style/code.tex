@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Estilos de código fuente
-% Versión:      2.1.2 (22/12/2020)
+% Versión:      2.1.3 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -32,10 +32,16 @@
 	},
 	sensitive=false
 }
+\lstdefinestyle{basic}{
+	language=[Visual]Basic
+}
 \lstdefinestyle{c}{
 	language=C,
 	breakatwhitespace=false,
 	keepspaces=true
+}
+\lstdefinestyle{cobol}{
+	language=Cobol
 }
 \lstdefinestyle{cpp}{
 	language=C++,
@@ -111,6 +117,12 @@
 	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
 	sensitive=true,
 	upquote=true
+}
+\lstdefinestyle{gnuplot}{
+	language=Gnuplot
+}
+\lstdefinestyle{go}{
+	language=Go
 }
 \lstdefinestyle{haskell}{
 	language=haskell,
@@ -228,6 +240,9 @@
 \lstdefinestyle{maple}{
 	language=Maple
 }
+\lstdefinestyle{mathematica}{
+	language=Mathematica
+}
 \lstdefinestyle{matlab}{
 	language=Matlab,
 	deletekeywords={fft},
@@ -306,6 +321,10 @@
 	postbreak={},
 	tabsize=4
 }
+\lstdefinestyle{postscript}{
+	language=PostScript,
+	keepspaces=true
+}
 \lstdefinestyle{pseudocode}{
 	language={},
 	backgroundcolor=\color{white},
@@ -334,7 +353,9 @@
 	emphstyle=\color{dkcyan}\ttfamily,
 	keepspaces=true,
 	morecomment=[s][\color{BurntOrange}]{@}{\ },
-	morekeywords={as,assert,close,listdir,self,sorted,split,strip,with}
+	morekeywords={
+		as,assert,close,listdir,self,sorted,split,strip,with
+	}
 }
 \lstdefinestyle{py}{
 	language=pythonEXTENDED
@@ -346,11 +367,33 @@
 	language=R,
 	alsoletter={.<-},
 	alsoother={._$},
-	deletekeywords={df,data,frame,length,as,character},
+	deletekeywords={
+		df,data,frame,length,as,character
+	},
 	morecomment=[l]\#,
 	morestring=[d]',
 	morestring=[d]",
-	otherkeywords={!,!=,~,$,*,\&,\%/\%,\%*\%,\%\%,<-,<<-,/}
+	otherkeywords={
+		!,!=,~,$,*,\&,\%/\%,\%*\%,\%\%,<-,<<-,/
+	}
+}
+\lstdefinestyle{racket}{
+	alsoletter={',`,-,/,>,<,\#,\%},
+	morekeywords=[1]{
+		define,define-macro,define-stream,define-syntax,lambda,stream-lambda
+	},
+	morekeywords=[2]{
+		->,always_publish,and,\#',\#\%module-begin,\#lang,\#`,begin,begin-for-syntax,Boolean,call-with-current-continuation,call-with-input-file,call-with-output-file,callback,call/cc,case,cond,define-context,define-controller,define-struct/contract,define/contract,delay,do,else,environment,eval,fold,for,for-each,force,get,if,implement,in-range,Integer,label,let,let*,let*-values,let-syntax,let-values,letrec,letrec-syntax,map,maybe_publish,message-box,module,new,not,or,or/c,parent,provide,quasiquote,query,quote,rename-out,require,send,submod,syntax,syntax-case,syntax-rules,unquote,unquote-splicing,when,when-provided,when-required,with-syntax
+	},
+	morekeywords=[3]{
+		export,import
+	},
+	morecomment=[l]{;},
+	moredelim=**[is][\color{lgray}]{<<@<<}{>>@>>},
+	moredelim=**[is][\itshape\color{mauve}]{<<;<<}{>>;>>},
+	morecomment=[s]{\#|}{|\#},
+	morestring=[s]{"}{"},
+	sensitive=true
 }
 \lstdefinestyle{ruby}{
 	language=Ruby,
@@ -420,7 +463,9 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 	morestring=[b]',
 	morestring=[b]",
 	morestring=[b]""",
-	otherkeywords={=>,<-,<\%,<:,>:,\#,@}
+	otherkeywords={
+		=>,<-,<\%,<:,>:,\#,@
+	}
 }
 \lstdefinestyle{scheme}{
 	language=Lisp,
@@ -433,6 +478,9 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 \lstdefinestyle{sql}{
 	language=SQL,
 	breakatwhitespace=true
+}
+\lstdefinestyle{swift}{
+	language=Swift
 }
 \lstdefinestyle{tcl}{
 	language=tcl,
@@ -449,10 +497,10 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 }
 \lstdefinelanguage{VHDL}{
 	morekeywords=[1]{
-		library,use,all,entity,is,port,in,out,end,architecture,of,begin,and,or,Not,downto,ALL
+		ALL,all,and,architecture,begin,downto,end,entity,in,is,library,Not,of,or,out,port,use
 	},
 	morekeywords=[2]{
-		STD_LOGIC_VECTOR,STD_LOGIC,IEEE,STD_LOGIC_1164,NUMERIC_STD,STD_LOGIC_ARITH,STD_LOGIC_UNSIGNED,std_logic_vector,std_logic
+		IEEE,NUMERIC_STD,STD_LOGIC,std_logic,STD_LOGIC_1164,STD_LOGIC_ARITH,STD_LOGIC_UNSIGNED,STD_LOGIC_VECTOR,std_logic_vector
 	},
 	morecomment=[l]--
 }
@@ -515,8 +563,8 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 		{ᵘ}{{\textsuperscript{u}}}1 {ᵛ}{{\textsuperscript{v}}}1
 		{ʷ}{{\textsuperscript{w}}}1 {ˣ}{{\textsuperscript{x}}}1
 		{ʸ}{{\textsuperscript{y}}}1 {ᶻ}{{\textsuperscript{z}}}1
-		{α}{{$\alpha$}}1 {ά}{{$\dot \alpha$}}1 {Γ}{{$\Gamma$}}1
-		{γ}{{$\gamma$}}1 {Δ}{{$\Delta$}}1 {δ}{{$\delta$}}1
+		{α}{{$\alpha$}}1 {ά}{{$\dot \alpha$}}1 {Γ}{{$\Gamma$}}1 {Þ}{{$\Thorn$}}1
+		{γ}{{$\gamma$}}1 {Δ}{{$\Delta$}}1 {δ}{{$\delta$}}1 {þ}{{$\thorn$}}1
 		{ε}{{$\epsilon$}}1 {έ}{{$\dot \epsilon$}}1 {ζ}{{$\zeta$}}1
 		{η}{{$\eta$}}1 {ή}{{$\dot \eta$}}1 {Θ}{{$\Theta$}}1
 		{θ}{{$\theta$}}1 {ι}{{$\iota$}}1 {ί}{{$\dot \iota$}}1
@@ -544,7 +592,9 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 	\ifthenelse{\equal{#1}{assemblerx64}}{}{%
 	\ifthenelse{\equal{#1}{assemblerx86}}{}{%
 	\ifthenelse{\equal{#1}{bash}}{}{%
+	\ifthenelse{\equal{#1}{basic}}{}{%
 	\ifthenelse{\equal{#1}{c}}{}{%
+	\ifthenelse{\equal{#1}{cobol}}{}{%
 	\ifthenelse{\equal{#1}{cpp}}{}{%
 	\ifthenelse{\equal{#1}{csharp}}{}{%
 	\ifthenelse{\equal{#1}{css}}{}{%
@@ -553,6 +603,8 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 	\ifthenelse{\equal{#1}{docker}}{}{%
 	\ifthenelse{\equal{#1}{fortran}}{}{%
 	\ifthenelse{\equal{#1}{glsl}}{}{%
+	\ifthenelse{\equal{#1}{gnuplot}}{}{%
+	\ifthenelse{\equal{#1}{go}}{}{%
 	\ifthenelse{\equal{#1}{haskell}}{}{%
 	\ifthenelse{\equal{#1}{html5}}{}{%
 	\ifthenelse{\equal{#1}{ini}}{}{%
@@ -565,6 +617,7 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 	\ifthenelse{\equal{#1}{lisp}}{}{%
 	\ifthenelse{\equal{#1}{lua}}{}{%
 	\ifthenelse{\equal{#1}{maple}}{}{%
+	\ifthenelse{\equal{#1}{mathematica}}{}{%
 	\ifthenelse{\equal{#1}{matlab}}{}{%
 	\ifthenelse{\equal{#1}{octave}}{}{%
 	\ifthenelse{\equal{#1}{opencl}}{}{%
@@ -573,25 +626,34 @@ keywordstyle=[5]\color[rgb]{0,0,0.75}
 	\ifthenelse{\equal{#1}{perl}}{}{%
 	\ifthenelse{\equal{#1}{php}}{}{%
 	\ifthenelse{\equal{#1}{plaintext}}{}{%
+	\ifthenelse{\equal{#1}{postscript}}{}{%
 	\ifthenelse{\equal{#1}{pseudocode}}{}{%
 	\ifthenelse{\equal{#1}{py}}{}{%
 	\ifthenelse{\equal{#1}{python}}{}{%
 	\ifthenelse{\equal{#1}{r}}{}{%
+	\ifthenelse{\equal{#1}{racket}}{}{%
 	\ifthenelse{\equal{#1}{ruby}}{}{%
 	\ifthenelse{\equal{#1}{rust}}{}{%
 	\ifthenelse{\equal{#1}{scala}}{}{%
 	\ifthenelse{\equal{#1}{scheme}}{}{%
 	\ifthenelse{\equal{#1}{sql}}{}{%
+	\ifthenelse{\equal{#1}{swift}}{}{%
 	\ifthenelse{\equal{#1}{tcl}}{}{%
 	\ifthenelse{\equal{#1}{vbscript}}{}{%
 	\ifthenelse{\equal{#1}{verilog}}{}{%
 	\ifthenelse{\equal{#1}{vhdl}}{}{%
 	\ifthenelse{\equal{#1}{xml}}{}{%
-		\errmessage{LaTeX Warning: Estilo de codigo desconocido. Valores esperados: assemblerx64,assemblerx86,bash,c,cpp,csharp,css,csv,cuda,docker,fortran,glsl,haskell,html5,ini,java,javascript,js,json,kotlin,latex,lisp,lua,maple,matlab,octave,opencl,opensees,pascal,perl,php,plaintext,pseudocode,py,python,r,ruby,rust,scala,scheme,sql,tcl,vbscript,verilog,vhdl,xml}%
+		\errmessage{LaTeX Warning: Estilo de codigo desconocido. Valores esperados: assemblerx64,assemblerx86,bash,basic,c,cobol,cpp,csharp,css,csv,cuda,docker,fortran,glsl,gnuplot,go,haskell,html5,ini,java,javascript,js,json,kotlin,latex,lisp,lua,maple,mathematica,matlab,octave,opencl,opensees,pascal,perl,php,plaintext,postscript,pseudocode,py,python,r,racket,ruby,rust,scala,scheme,sql,swift,tcl,vbscript,verilog,vhdl,xml}%
 \stop
-	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}%
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}%
 }
 \newcommand{\inlinesourcecode}[1]{%
 	\checkvalidsourcecodestyle{#1}%
 \lstinline[style=#1]
+}
+\newcommand{\coderef}[1]{%
+	\ensuremath{\text{\ref{#1}}}
+}
+\newcommand{\codeeqref}[1]{%
+	\ensuremath{\text{(\ref{#1})}}
 }

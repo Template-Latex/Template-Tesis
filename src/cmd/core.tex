@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.1.2 (22/12/2020)
+% Versión:      2.1.3 (01/01/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -47,6 +47,9 @@
 		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
 		\stop}{
 	}
+}
+\newcommand{\coretemplatemessage}[1]{
+	\message{Template: #1}
 }
 \newcommand{\checkextravarexist}[2]{
 	\ifthenelse{\isundefined{#1}}{

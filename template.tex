@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.1.4 (05/01/2021)
+% Versión:      2.1.5 (15/03/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1092,37 +1092,62 @@
 
 % Definición de letras
 \newcommand{\A}{\ensuremath{\mathcal{A}}}
+
 \newcommand{\B}{\ensuremath{\mathcal{B}}}
-\let\oldC=\C % No existe en T1
+
+\ifthenelse{\isundefined{\C}}{\newcommand{\C}{C}}{\let\oldC=\C}
 \renewcommand{\C}{\ensuremath{\mathbb{C}}}
+
 \newcommand{\D}{\ensuremath{\mathbb{D}}}
+
 \newcommand{\E}{\ensuremath{\mathbb{E}}}
+
 \newcommand{\F}{\ensuremath{\mathcal{F}}}
-\let\oldG=\G % No existe en T1
+
+\ifthenelse{\isundefined{\G}}{\newcommand{\G}{G}}{\let\oldG=\G}
 \renewcommand{\G}{\ensuremath{\mathcal{G}}}
-\let\oldH=\H % No existe en T1
+
+\ifthenelse{\isundefined{\H}}{\newcommand{\H}{H}}{\let\oldH=\H}
 \renewcommand{\H}{\ensuremath{\mathcal{H}}}
+
 \newcommand{\I}{\ensuremath{\mathbb{I}}}
+
 \newcommand{\J}{\ensuremath{\mathcal{J}}}
+
 \newcommand{\K}{\ensuremath{\mathcal{K}}}
-\let\oldL=\L % Es como una L con una raya
+
+\let\oldL=\L % L con una raya
 \renewcommand{\L}{\ensuremath{\mathcal{L}}}
+
 \newcommand{\M}{\ensuremath{\mathcal{M}}}
+
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
+
 % \renewcommand{\O}{\ensuremath{\mathbb{O}}} % O equivale a o/oo
+
 \let\oldP=\P % P negra
 \renewcommand{\P}{\ensuremath{\mathbb{P}}}
+
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
-\let\oldS=\S % Es como una serpiente
+
+\let\oldS=\S % Serpiente
 \renewcommand{\S}{\ensuremath{\mathcal{S}}}
+
 \newcommand{\T}{\ensuremath{\mathcal{T}}}
-\let\oldU=\U % No existe en T1
+
+\ifthenelse{\isundefined{\U}}{\newcommand{\U}{U}}{\let\oldU=\U}
 \renewcommand{\U}{\ensuremath{\mathcal{U}}}
+
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
+
 \newcommand{\W}{\ensuremath{\mathcal{W}}}
+
 \newcommand{\X}{\ensuremath{\mathcal{X}}}
+
 \newcommand{\Y}{\ensuremath{\mathcal{Y}}}
+
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 
 % Definición de operadores matemáticos de asignación (Typeset assigments)
@@ -2992,7 +3017,7 @@
 
 \newenvironment{anexo}{
 	\begingroup % Inicia el grupo en nueva página y sección
-	\clearpage
+	% \clearpage
 	\phantomsection
 	\changeheadertitle{\nomltappendixsection} % Cambia el nombre del header
 	\def\GLOBALsectionalph{false} % Modifica formato de secciones con sección alph
@@ -4427,15 +4452,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={05/01/2021},
+		Template.Fecha={15/03/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.4-THS},
-		Template.Version.Hash={20D4090A0E1579D427B88BED83BD8F5C},
-		Template.Version.Release={2.1.4},
+		Template.Version.Dev={2.1.5-5-THS},
+		Template.Version.Hash={E8FEAB08CDDCDC7124CDFC2858FB4B73},
+		Template.Version.Release={2.1.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4447,7 +4472,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.1.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.1.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5002,6 +5027,39 @@
 \let\SOURCEcaptionlrmargin\captionlrmargin
 \BeforeBeginEnvironment{multicols}{\def\captionlrmargin{\captionlrmarginmc}\def\GLOBALenvmulticol{true}\setcaptionmargincm{\captionlrmargin}}
 \AfterEndEnvironment{multicols}{\def\captionlrmargin{\SOURCEcaptionlrmargin}\def\GLOBALenvmulticol{false}\setcaptionmargincm{\captionlrmargin}}
+
+% Estilos de capítulos
+\ifthenelse{\equal{\chapterstyle}{style1}}{
+	% Default
+}{
+\ifthenelse{\equal{\chapterstyle}{style2}}{
+	\definecolor{gray75}{gray}{0.75}
+	\newcommand{\hsp}{\hspace{20pt}}
+	\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+}{
+\ifthenelse{\equal{\chapterstyle}{style3}}{
+	\usepackage[Sonny]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style4}}{
+	\usepackage[Lenny]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style5}}{
+	\usepackage[Glenn]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style6}}{
+	\usepackage[Conny]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style7}}{
+	\usepackage[Rejne]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style8}}{
+	\usepackage[Bjarne]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style9}}{
+	\usepackage[Bjornstrup]{fncychap}
+}{
+	\throwbadconfigondoc{Estilo de capitulo incorrecto}{\chapterstyle}{style1 .. style9}}}}}}}}}
+}
 
 % PORTADA
 \newcommand{\templatePortrait}{

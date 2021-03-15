@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones matemáticas
-% Versión:      2.1.4 (05/01/2021)
+% Versión:      2.1.5 (15/03/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -154,14 +154,14 @@
 \makeatother
 \newcommand{\A}{\ensuremath{\mathcal{A}}}
 \newcommand{\B}{\ensuremath{\mathcal{B}}}
-\let\oldC=\C
+\ifthenelse{\isundefined{\C}}{\newcommand{\C}{C}}{\let\oldC=\C}
 \renewcommand{\C}{\ensuremath{\mathbb{C}}}
 \newcommand{\D}{\ensuremath{\mathbb{D}}}
 \newcommand{\E}{\ensuremath{\mathbb{E}}}
 \newcommand{\F}{\ensuremath{\mathcal{F}}}
-\let\oldG=\G
+\ifthenelse{\isundefined{\G}}{\newcommand{\G}{G}}{\let\oldG=\G}
 \renewcommand{\G}{\ensuremath{\mathcal{G}}}
-\let\oldH=\H
+\ifthenelse{\isundefined{\H}}{\newcommand{\H}{H}}{\let\oldH=\H}
 \renewcommand{\H}{\ensuremath{\mathcal{H}}}
 \newcommand{\I}{\ensuremath{\mathbb{I}}}
 \newcommand{\J}{\ensuremath{\mathcal{J}}}
@@ -177,7 +177,7 @@
 \let\oldS=\S
 \renewcommand{\S}{\ensuremath{\mathcal{S}}}
 \newcommand{\T}{\ensuremath{\mathcal{T}}}
-\let\oldU=\U
+\ifthenelse{\isundefined{\U}}{\newcommand{\U}{U}}{\let\oldU=\U}
 \renewcommand{\U}{\ensuremath{\mathcal{U}}}
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
 \newcommand{\W}{\ensuremath{\mathcal{W}}}

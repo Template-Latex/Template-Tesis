@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.1.4 (05/01/2021)
+% Versión:      2.1.5 (15/03/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -99,15 +99,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={05/01/2021},
+		Template.Fecha={15/03/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.4-THS},
-		Template.Version.Hash={20D4090A0E1579D427B88BED83BD8F5C},
-		Template.Version.Release={2.1.4},
+		Template.Version.Dev={2.1.5-5-THS},
+		Template.Version.Hash={E8FEAB08CDDCDC7124CDFC2858FB4B73},
+		Template.Version.Release={2.1.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -119,7 +119,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.1.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.1.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -513,3 +513,33 @@
 \let\SOURCEcaptionlrmargin\captionlrmargin
 \BeforeBeginEnvironment{multicols}{\def\captionlrmargin{\captionlrmarginmc}\def\GLOBALenvmulticol{true}\setcaptionmargincm{\captionlrmargin}}
 \AfterEndEnvironment{multicols}{\def\captionlrmargin{\SOURCEcaptionlrmargin}\def\GLOBALenvmulticol{false}\setcaptionmargincm{\captionlrmargin}}
+\ifthenelse{\equal{\chapterstyle}{style1}}{
+}{
+\ifthenelse{\equal{\chapterstyle}{style2}}{
+	\definecolor{gray75}{gray}{0.75}
+	\newcommand{\hsp}{\hspace{20pt}}
+	\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+}{
+\ifthenelse{\equal{\chapterstyle}{style3}}{
+	\usepackage[Sonny]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style4}}{
+	\usepackage[Lenny]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style5}}{
+	\usepackage[Glenn]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style6}}{
+	\usepackage[Conny]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style7}}{
+	\usepackage[Rejne]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style8}}{
+	\usepackage[Bjarne]{fncychap}
+}{
+\ifthenelse{\equal{\chapterstyle}{style9}}{
+	\usepackage[Bjornstrup]{fncychap}
+}{
+	\throwbadconfigondoc{Estilo de capitulo incorrecto}{\chapterstyle}{style1 .. style9}}}}}}}}}
+}

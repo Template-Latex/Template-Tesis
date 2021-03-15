@@ -105,8 +105,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.5-5-THS},
-		Template.Version.Hash={E8FEAB08CDDCDC7124CDFC2858FB4B73},
+		Template.Version.Dev={2.1.5-7-THS},
+		Template.Version.Hash={B41E5D0678742C7F8A7AA76D2883E086},
 		Template.Version.Release={2.1.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -541,5 +541,14 @@
 \ifthenelse{\equal{\chapterstyle}{style9}}{
 	\usepackage[Bjornstrup]{fncychap}
 }{
-	\throwbadconfigondoc{Estilo de capitulo incorrecto}{\chapterstyle}{style1 .. style9}}}}}}}}}
+\ifthenelse{\equal{\chapterstyle}{style10}}{
+	\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter.\hspace{20pt}}{0pt}{\Huge\bfseries}
+}{
+\ifthenelse{\equal{\chapterstyle}{style11}}{
+	\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hspace{20pt}}{0pt}{\Huge\bfseries}
+}{
+\ifthenelse{\equal{\chapterstyle}{style12}}{
+	\titleformat{\chapter}[hang]{\Huge\bfseries}{}{0pt}{\Huge\bfseries}
+}{
+	\throwbadconfigondoc{Estilo de capitulo incorrecto}{\chapterstyle}{style1 .. style12}}}}}}}}}}}}
 }

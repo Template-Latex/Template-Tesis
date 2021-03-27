@@ -70,6 +70,7 @@
 \usepackage{floatrow}
 \usepackage{framed}
 \usepackage{gensymb}
+\usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{listings}
 \usepackage{longtable}
@@ -95,10 +96,13 @@
 \usepackage[normalem]{ulem}
 \usepackage[nointegrals]{wasysym}
 \usepackage[dvipsnames,table,usenames]{xcolor}
-\ifthenelse{\equal{\graphicxdraft}{false}}{
-	\usepackage{graphicx}
-}{
-	\usepackage[draft]{graphicx}
+\ifthenelse{\equal{\graphicxdraft}{true}}{
+	\usepackage[
+		allfiguresdraft,
+		filename,
+		size={scriptsize},
+		style={tt}
+	]{draftfigure}}{
 }
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\usepackage{listingsutf8}}{

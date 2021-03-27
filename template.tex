@@ -111,6 +111,7 @@
 \usepackage{floatrow}      % Permite administrar posiciones en los caption
 \usepackage{framed}        % Permite creación de recuadros
 \usepackage{gensymb}       % Simbología común
+\usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{lipsum}        % Permite crear párrafos de prueba
 \usepackage{listings}      % Permite añadir código fuente
 \usepackage{longtable}     % Permite utilizar tablas en varias hojas
@@ -161,11 +162,14 @@
 % LIBRERÍAS CONDICIONALES
 % -----------------------------------------------------------------------------
 
-% Carga las imagenes
-\ifthenelse{\equal{\graphicxdraft}{false}}{
-	\usepackage{graphicx}
-}{
-	\usepackage[draft]{graphicx}
+% Imágenes en modo draft
+\ifthenelse{\equal{\graphicxdraft}{true}}{
+	\usepackage[
+		allfiguresdraft,
+		filename,
+		size={scriptsize},
+		style={tt}
+	]{draftfigure}}{
 }
 
 % Acepta codificación UTF-8 en código fuente
@@ -4467,8 +4471,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.6-THS},
-		Template.Version.Hash={2F6A402F6C093991026AC61CEB959241},
+		Template.Version.Dev={2.1.6-1-THS},
+		Template.Version.Hash={768927B1EC9F103B24FBA84A3D2E5578},
 		Template.Version.Release={2.1.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

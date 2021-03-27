@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      2.1.5 (15/03/2021)
+% Versión:      2.1.6 (27/03/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -735,5 +735,10 @@
 \ifthenelse{\equal{\addemptypagespredoc}{true}}{
 	\insertblankpage}{
 }
-	\renewcommand{\abstractname}{\nameabstract}
+	\ifthenelse{\isundefined{\abstractname}}{
+		\newcommand{\abstractname}{\nameabstract}
+		\throwwarning{La variable \noexpand\abstractname no existe, lo que indica que la libreria babel no se ha cargado. Si ha desactivado la configuracion \noexpand\usespanishbabel debe cargar manualmente la libreria babel con algun otro idioma, como por ejemplo \noexpand\usepackage[english]{babel}}
+	}{
+		\renewcommand{\abstractname}{\nameabstract}
+	}
 }

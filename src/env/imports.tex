@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      2.1.5 (15/03/2021)
+% Versión:      2.1.6 (27/03/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -70,7 +70,6 @@
 \usepackage{floatrow}
 \usepackage{framed}
 \usepackage{gensymb}
-\usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{listings}
 \usepackage{longtable}
@@ -96,6 +95,11 @@
 \usepackage[normalem]{ulem}
 \usepackage[nointegrals]{wasysym}
 \usepackage[dvipsnames,table,usenames]{xcolor}
+\ifthenelse{\equal{\graphicxdraft}{false}}{
+	\usepackage{graphicx}
+}{
+	\usepackage[draft]{graphicx}
+}
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\usepackage{listingsutf8}}{
 }
@@ -541,6 +545,9 @@
 	}}}}}}}}}}}}}}}}
 }
 \usepackage[T1]{fontenc}
+\ifthenelse{\equal{\showlayoutlines}{true}}{
+	\usepackage{showframe}}{
+}
 \ifthenelse{\equal{\showlinenumbers}{true}}{
 	\usepackage[switch,columnwise,running]{lineno}}{
 }

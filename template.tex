@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.1.5 (15/03/2021)
+% Versión:      2.1.6 (27/03/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -111,7 +111,6 @@
 \usepackage{floatrow}      % Permite administrar posiciones en los caption
 \usepackage{framed}        % Permite creación de recuadros
 \usepackage{gensymb}       % Simbología común
-\usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{lipsum}        % Permite crear párrafos de prueba
 \usepackage{listings}      % Permite añadir código fuente
 \usepackage{longtable}     % Permite utilizar tablas en varias hojas
@@ -161,6 +160,13 @@
 % -----------------------------------------------------------------------------
 % LIBRERÍAS CONDICIONALES
 % -----------------------------------------------------------------------------
+
+% Carga las imagenes
+\ifthenelse{\equal{\graphicxdraft}{false}}{
+	\usepackage{graphicx}
+}{
+	\usepackage[draft]{graphicx}
+}
 
 % Acepta codificación UTF-8 en código fuente
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
@@ -643,6 +649,9 @@
 % FINALES
 % -----------------------------------------------------------------------------
 \usepackage[T1]{fontenc} % Caracteres acentuados
+\ifthenelse{\equal{\showlayoutlines}{true}}{ % Muestra las líneas del layout
+	\usepackage{showframe}}{
+}
 \ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
 	\usepackage[switch,columnwise,running]{lineno}}{
 }
@@ -4452,15 +4461,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={15/03/2021},
+		Template.Fecha={27/03/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.5-7-THS},
-		Template.Version.Hash={B41E5D0678742C7F8A7AA76D2883E086},
-		Template.Version.Release={2.1.5},
+		Template.Version.Dev={2.1.6-THS},
+		Template.Version.Hash={2F6A402F6C093991026AC61CEB959241},
+		Template.Version.Release={2.1.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4472,7 +4481,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.1.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.1.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5873,7 +5882,12 @@
 	% -----------------------------------------------------------------------------
 	% Configura el nombre del abstract
 	% -----------------------------------------------------------------------------
-	\renewcommand{\abstractname}{\nameabstract}
+	\ifthenelse{\isundefined{\abstractname}}{
+		\newcommand{\abstractname}{\nameabstract}
+		\throwwarning{La variable \noexpand\abstractname no existe, lo que indica que la libreria babel no se ha cargado. Si ha desactivado la configuracion \noexpand\usespanishbabel debe cargar manualmente la libreria babel con algun otro idioma, como por ejemplo \noexpand\usepackage[english]{babel}}
+	}{
+		\renewcommand{\abstractname}{\nameabstract}
+	}
 
 }
 

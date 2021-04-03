@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.1.7 (31/03/2021)
+% Versión:      2.1.8 (03/04/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -46,9 +46,11 @@
 % Manejo de condicionales
 \usepackage{ifthen}
 
-% Idioma español, borrar esta línea si se desea usar otro idioma
+% Carga el idioma
 \ifthenelse{\equal{\usespanishbabel}{true}}{
 	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
+\ifthenelse{\equal{\useenglishbabel}{true}}{
+	\usepackage[english]{babel}}{}
 }
 
 % Cambia el estilo de los títulos
@@ -4466,15 +4468,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={31/03/2021},
+		Template.Fecha={03/04/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.7-THS},
-		Template.Version.Hash={44586ED5CEC7169B6F0D95D4DF059951},
-		Template.Version.Release={2.1.7},
+		Template.Version.Dev={2.1.8-THS},
+		Template.Version.Hash={4C502B1FB54FD660AE941577D2555A1D},
+		Template.Version.Release={2.1.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4486,7 +4488,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.1.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.1.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5108,21 +5110,10 @@
 		\vspace*{1.6cm}\mbox{}
 	\end{minipage}
 
-	\vfill
-
-	\begin{center}
-		\textcolor{\portraittitlecolor}{\MakeUppercase{\textbf{\titulotesis}}} ~ \\
-		
-		\vspace{1.5cm}
-		\textcolor{\portraittitlecolor}{\MakeUppercase{\titulogrado}} ~ \\
-		
-		%\vspace{3cm}
-		%\textcolor{\portraittitlecolor}{\MakeUppercase{\textbf{\autortesis}}}
-		
-		\vfill
-		\tablacomision
-	\end{center}
-
+	% Importada la portada
+	\portada
+	
+	% Ajusta la fuente
 	\normalfont
 	
 }
@@ -5889,7 +5880,7 @@
 	% -----------------------------------------------------------------------------
 	\ifthenelse{\isundefined{\abstractname}}{
 		\newcommand{\abstractname}{\nameabstract}
-		\throwwarning{La variable \noexpand\abstractname no existe, lo que indica que la libreria babel no se ha cargado. Si ha desactivado la configuracion \noexpand\usespanishbabel debe cargar manualmente la libreria babel con algun otro idioma, como por ejemplo \noexpand\usepackage[english]{babel}}
+		\throwwarning{La variable \noexpand\abstractname no existe, lo que indica que la libreria babel no se ha cargado. Si ha desactivado la configuracion \noexpand\usespanishbabel debe cargar manualmente la libreria babel con algun otro idioma, como por ejemplo \noexpand\usepackage[english]{babel}, o bien define en true la configuracion \noexpand\useenglishbabel}
 	}{
 		\renewcommand{\abstractname}{\nameabstract}
 	}

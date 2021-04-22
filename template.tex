@@ -2748,6 +2748,12 @@
 	\enquote*{#1}%
 }
 
+% Inserta un texto entre comillas dobles
+%	#1 	Texto
+\newcommand{\doublequotes}[1]{%
+	\enquote{#1}%
+}
+
 % Inserta una cita con texto elevado
 %	#1	Cita
 \newcommand{\scite}[1]{%
@@ -4498,8 +4504,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0-6-THS},
-		Template.Version.Hash={1DAEB1F52F9F88461D56584FAADFE3F8},
+		Template.Version.Dev={2.2.0-7-THS},
+		Template.Version.Hash={7E07C7E006D848D054889CC4264A0DAD},
 		Template.Version.Release={2.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -4615,6 +4621,8 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
+	% listofformat={subparens},
+	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
 }
@@ -4623,6 +4631,8 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
+	% listofformat={subparens},
+	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
 }

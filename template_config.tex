@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.1.9 (13/04/2021)
+% Versión:      2.2.0 (22/04/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -74,6 +74,7 @@
 \def\addabstracttobookmarks {true} % Añade el resumen a los marcadores del pdf
 \def\addagradectobookmarks {true}  % Añade el agradecimiento a los marcadores
 \def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
+\def\addindexsubtobookmarks {true} % Agrega índice tabla,codigo,etc. a marcadores
 \def\charafterobjectindex {.}      % Carácter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Carácter número de página en índice
 \def\indexdepth {4}                % Profundidad máxima del índice
@@ -210,7 +211,7 @@
 \def\cfgpdflayout {OneColumn}      % Modo de página {OneColumn,SinglePage}
 \def\cfgpdfmenubar {true}          % Muestra el menú del lector
 \def\cfgpdfpageview {FitH}         % {Fit,FitH,FitV,FitR,FitB,FitBH,FitBV}
-\def\cfgpdfsecnumbookmarks {false} % Número de la sec. en marcadores del pdf
+\def\cfgpdfsecnumbookmarks {true}  % Número de la sec. en marcadores del pdf
 \def\cfgpdftoolbar {true}          % Muestra barra de herramientas lector pdf
 \def\cfgshowbookmarkmenu {true}    % Muestra menú marcadores al abrir el pdf
 \def\pdfcompilecompression {9}     % Factor de compresión del pdf (0-9)

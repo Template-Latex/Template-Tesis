@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.1.9 (13/04/2021)
+% Versión:      2.2.0 (22/04/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -100,15 +100,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={13/04/2021},
+		Template.Fecha={22/04/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.9-5-THS},
-		Template.Version.Hash={C1F53C9D6992C92C370084FFF02A5883},
-		Template.Version.Release={2.1.9},
+		Template.Version.Dev={2.2.0-6-THS},
+		Template.Version.Hash={1DAEB1F52F9F88461D56584FAADFE3F8},
+		Template.Version.Release={2.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -120,7 +120,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.1.9 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.2.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -267,7 +267,7 @@
 	\ifthenelse{\equal{\bibtexindexbibliography}{true}}{
 		\let\oldbibliography\bibliography
 		\renewcommand{\bibliography}[1]{
-			\cleardoublepage
+			\clearpage
 			\phantomsection
 \addcontentsline{toc}{chapter}{\namereferences}
 			\oldbibliography{#1}}}{

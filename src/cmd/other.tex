@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.1.9 (13/04/2021)
+% Versión:      2.2.0 (22/04/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -24,7 +24,7 @@
 \checkinsidemulticol\vfill\null\columnbreak
 }
 \newcommand{\newpagemulticol}{%
-\newcolumn\newcolumn\newpage
+\newcolumn\newcolumn\clearpage
 }
 \newcommand{\itemresize}[2]{%
 	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}
@@ -32,19 +32,19 @@
 	\resizebox{#1\linewidth}{!}{#2}
 }
 \newcommand{\insertemptypage}{%
-	\newpage
+	\clearpage
 	\setcounter{templatePageCounter}{\thepage}
 	\pagenumbering{gobble}
 	\null
 	\thispagestyle{empty}
-	\newpage
+	\clearpage
 	\pagenumbering{arabic}
 	\setcounter{page}{\thetemplatePageCounter}
 }
 \newcommand{\insertblankpage}{%
-	\newpage
+	\clearpage
 	\null
-	\newpage
+	\clearpage
 }
 \newcommand{\includehfpdf}[2][]{%
 	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}
@@ -162,7 +162,7 @@
 	\ifthenelse{\equal{\compilertype}{lualatex}}{
 		\throwwarning{Funcion no valida en compilador lualatex}
 	}{
-		\newpage
+		\clearpage
 		\ifthenelse{\equal{#1}{}}{
 			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#2 cm, paperheight=#3 cm}
 		}{

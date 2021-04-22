@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.1.9 (13/04/2021)
+% Versión:      2.2.0 (22/04/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -16,22 +16,23 @@
 	\let\origaddvspace\addvspace
 	\renewcommand{\addvspace}[1]{}
 }{}
-	\newpage
+	\clearpage
 	\begingroup
 	\sectionfont{\color{\indextitlecolor} \fontsizetitlei \styletitlei \selectfont}
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
 		\checkoddpage
 		\ifoddpage
 		\else
-			\newpage
+			\clearpage
 			\null
 			\thispagestyle{empty}
-			\newpage
+			\clearpage
 			\addtocounter{page}{-1}
 		\fi}{
 	}
 	\ifthenelse{\equal{\addindextobookmarks}{true}}{
-		\belowpdfbookmark{\nomltcont}{contents}}{
+		\phantomsection
+		\pdfbookmark{\nomltcont}{contents}}{
 	}
 	\tocloftpagestyle{fancy}
 \ifthenelse{\equal{\showdotaftersnum}{true}}{
@@ -219,25 +220,45 @@
 	}
 \newcommand{\LoIf}{
 		\iftotalfigures
-			\ifthenelse{\equal{\indexnewpagef}{true}}{\newpage}{}
+			\ifthenelse{\equal{\indexnewpagef}{true}}{\clearpage}{}
+			\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+					\phantomsection
+					\belowpdfbookmark{\nomltfigure}{clof}}{}}{
+			}
 			\listoffigures
 		\fi
 	}
 \newcommand{\LoIt}{
 		\iftotaltables
-			\ifthenelse{\equal{\indexnewpaget}{true}}{\newpage}{}
+			\ifthenelse{\equal{\indexnewpaget}{true}}{\clearpage}{}
+			\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+					\phantomsection
+					\belowpdfbookmark{\nomlttable}{clot}}{}}{
+			}
 			\listoftables
 		\fi
 	}
 \newcommand{\LoIc}{
 		\iftotallstlistings
-			\ifthenelse{\equal{\indexnewpagec}{true}}{\newpage}{}
+			\ifthenelse{\equal{\indexnewpagec}{true}}{\clearpage}{}
+			\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+					\phantomsection
+					\belowpdfbookmark{\nomltsrc}{clsrc}}{}}{
+			}
 			\lstlistoflistings
 		\fi
 	}
 \newcommand{\LoIe}{
 		\iftotaltemplateIndexEquationss
-			\ifthenelse{\equal{\indexnewpagee}{true}}{\newpage}{}
+			\ifthenelse{\equal{\indexnewpagee}{true}}{\clearpage}{}
+			\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+					\phantomsection
+					\belowpdfbookmark{\nomlteqn}{cleqn}}{}}{
+			}
 			\listofmyindexequations
 		\fi
 	}
@@ -249,15 +270,15 @@
 \ifthenelse{\equal{\objectchaptermargin}{false}}{
 	\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
 }{}
-	\newpage
+	\clearpage
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
 		\vfill
 		\checkoddpage
 		\ifoddpage
-			\newpage
+			\clearpage
 			\null
 			\thispagestyle{empty}
-			\newpage
+			\clearpage
 			\addtocounter{page}{-1}
 		\else
 		\fi}{

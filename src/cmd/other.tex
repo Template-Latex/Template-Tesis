@@ -61,6 +61,10 @@
 \newcommand{\scite}[1]{%
 	\textsuperscript{\cite{#1}}%
 }
+\newcommand{\forceindent}{%
+~ \\
+	\vspace{-2\baselineskip}%
+}
 \newcommand{\hreftext}[1]{%
 	\ifthenelse{\equal{\fonturl}{same}}{#1}{\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{}}}}%
 }

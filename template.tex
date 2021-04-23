@@ -2760,6 +2760,13 @@
 	\textsuperscript{\cite{#1}}%
 }
 
+% Fuerza la indentación
+\newcommand{\forceindent}{%
+	~ \\ %
+	
+	\vspace{-2\baselineskip}%
+}
+
 % Inserta un texto con el formato de enlace
 % 	#1 	Enlace
 \newcommand{\hreftext}[1]{%
@@ -3337,9 +3344,7 @@
 		\phantomsection
 		\pdfbookmark{\nameagradec}{acknowledgments}}{
 	}
-	~ \\
-
-	\vspace{-2\baselineskip}
+	\forceindent
 	}{
 	\clearpage
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
@@ -4504,8 +4509,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0-8-THS},
-		Template.Version.Hash={A3D2763601E963762AE0944B153BC100},
+		Template.Version.Dev={2.2.0-9-THS},
+		Template.Version.Hash={1BB3316E52F8086764D94A65ADA8DFB0},
 		Template.Version.Release={2.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

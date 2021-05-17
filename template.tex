@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.2.0 (22/04/2021)
+% Versión:      2.2.1 (17/05/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -269,7 +269,6 @@
 }
 
 % -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
 % LIBRERÍAS DEPENDIENTES
 % -----------------------------------------------------------------------------
 \usepackage{bookmark}      % Administración de marcadores en pdf
@@ -296,6 +295,9 @@
 	\usepackage{arial}
 }{
 \ifthenelse{\equal{\fontdocument}{times}}{
+	\usepackage{mathptmx}
+}{
+\ifthenelse{\equal{\fontdocument}{mathptmx}}{
 	\usepackage{mathptmx}
 }{
 \ifthenelse{\equal{\fontdocument}{helvet}}{
@@ -579,11 +581,11 @@
 	\usepackage[lf]{venturis}
 	\renewcommand*\familydefault{\sfdefault}
 }{
-	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) lmodern,arial,arial2,helvet,times,alegreyasans,mathpazo}
+	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) lmodern,arial,arial2,helvet,times,alegreyasans,mathpazo,mathptmx}
 	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{(Fuentes adicionales) accantis,alegreya,algolrevived,antiqua,antpolt,antpoltlight,anttor,anttorcondensed,anttorlight,anttorlightcondensed,arev,arimo,aurical,avant,baskervald,berasans,beraserif,biolinum,cabin,cabincondensed,cantarell,caladea,carlito,chivolight,chivoregular,clearsans,comfortaa,comicneue,comicneueangular,crimson,cyklop,dejavusans,dejavusanscondensed,droidsans,firasans,iwona,iwonacondensed,iwonalight,iwonalightcondensed,kurier}
 	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{kuriercondensed,kurierlight,kurierlightcondensed,lato,libris,lxfonts,merriweather,merriweatherlight,mintspirit,montserratalternatesextralight,montserratalternatesregular,montserratalternatesthin,montserratextralight,montserratlight,montserratregular,montserratthin,nimbussans,noto,opensansserif,overlock,paratype,paratypesanscaption,paratypesansnarrow,quattrocento,raleway,roboto,robotolight,robotolightcondensed,robotothin,rosario,sourcesanspro,uarial,ugq}
 	\throwbadconfig[noheader]{Fuente desconocida}{\fontdocument}{universalis,universaliscondensed,venturis}
-	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
 
 % -----------------------------------------------------------------------------
@@ -4439,7 +4441,6 @@
 \makeatother
 
 % -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
 % Verifica tamaños de fuentes
 % -----------------------------------------------------------------------------
 \corecheckfontsize{\captionfontsize}
@@ -4503,15 +4504,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={22/04/2021},
+		Template.Fecha={17/05/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.0-9-THS},
-		Template.Version.Hash={1BB3316E52F8086764D94A65ADA8DFB0},
-		Template.Version.Release={2.2.0},
+		Template.Version.Dev={2.2.1-3-THS},
+		Template.Version.Hash={7A7C17782A23469654ED62AF76D5C6BE},
+		Template.Version.Release={2.2.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis/},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4523,7 +4524,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.2.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.2.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4875,7 +4876,6 @@
 % -----------------------------------------------------------------------------
 \urlstyle{\fonturl}
 
-% -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % Configuraciones del motor de compilación
 % -----------------------------------------------------------------------------
@@ -5911,10 +5911,10 @@
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
-% Añade página en blanco
-\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-	\insertblankpage}{
-}
+	% Añade página en blanco
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
+		\insertblankpage}{
+	}
 	% -------------------------------------------------------------------------
 	% Configura el nombre del abstract
 	% -------------------------------------------------------------------------
@@ -5931,11 +5931,11 @@
 \newcommand{\templateIndex}{
 	
 	% -------------------------------------------------------------------------
-% Inicio índice, desactiva espacio entre objetos
-\ifthenelse{\equal{\objectchaptermargin}{false}}{
-	\let\origaddvspace\addvspace
-	\renewcommand{\addvspace}[1]{}
-}{}
+	% Inicio índice, desactiva espacio entre objetos
+	\ifthenelse{\equal{\objectchaptermargin}{false}}{
+		\let\origaddvspace\addvspace
+		\renewcommand{\addvspace}[1]{}
+	}{}
 
 	% -------------------------------------------------------------------------
 	\clearpage
@@ -5967,16 +5967,18 @@
 	\tocloftpagestyle{fancy}
 	
 	% -------------------------------------------------------------------------
-% Configuración del punto en índice
-\ifthenelse{\equal{\showdotaftersnum}{true}}{
-	\def\cftchapaftersnum {.}		
-	\def\cftsecaftersnum {.}
-	\def\cftsubsecaftersnum {.}
-	\def\cftsubsubsecaftersnum {.}
-	\def\cftsubsubsubsecaftersnum {.}
-	}{
-}{}
+	% Configuración del punto en índice
+	% -------------------------------------------------------------------------
+	\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\def\cftchapaftersnum {.}		
+		\def\cftsecaftersnum {.}
+		\def\cftsubsecaftersnum {.}
+		\def\cftsubsubsecaftersnum {.}
+		\def\cftsubsubsubsecaftersnum {.}
+		}{
+	}{}
 
+	% -------------------------------------------------------------------------
 	% Configuración carácter número de página
 	% -------------------------------------------------------------------------
 	\renewcommand{\cftdot}{\charnumpageindex}
@@ -5998,19 +6000,21 @@
 	}
 
 	% -------------------------------------------------------------------------
-% Cambia tabulación índice de objetos para alinear con contenidos
-\ifthenelse{\equal{\objectindexindent}{true}}{
-	\setlength{\cfttabindent}{1.5em}
-	\setlength{\cftfigindent}{1.5em}
-	\setlength{\cftsubfigindent}{1.5em}
-	\def\cftlstlistingindent {1.5em}
-}{
-	\setlength{\cfttabindent}{0em}
-	\setlength{\cftfigindent}{0em}
-	\setlength{\cftsubfigindent}{0em}
-	\def\cftlstlistingindent {0em}
-}
+	% Cambia tabulación índice de objetos para alinear con contenidos
+	% -------------------------------------------------------------------------
+	\ifthenelse{\equal{\objectindexindent}{true}}{
+		\setlength{\cfttabindent}{1.5em}
+		\setlength{\cftfigindent}{1.5em}
+		\setlength{\cftsubfigindent}{1.5em}
+		\def\cftlstlistingindent {1.5em}
+	}{
+		\setlength{\cfttabindent}{0em}
+		\setlength{\cftfigindent}{0em}
+		\setlength{\cftsubfigindent}{0em}
+		\def\cftlstlistingindent {0em}
+	}
 
+	% -------------------------------------------------------------------------
 	% Calcula tamaño del margen de los números en objetos del índice
 	% -------------------------------------------------------------------------
 	
@@ -6254,10 +6258,11 @@
 	\endgroup
 	
 	% -------------------------------------------------------------------------
-% Final del índice, reestablece el espacio
-\ifthenelse{\equal{\objectchaptermargin}{false}}{
-	\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
-}{}
+	% Final del índice, reestablece el espacio
+	% -------------------------------------------------------------------------
+	\ifthenelse{\equal{\objectchaptermargin}{false}}{
+		\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
+	}{}
 
 	% -------------------------------------------------------------------------
 	\clearpage
@@ -6284,10 +6289,8 @@
 	% -------------------------------------------------------------------------
 	\markboth{}{}
 	\clearpage
-
 	% Actualiza headers
 	\ifthenelse{\equal{\disablehfrightmark}{false}}{
-		
 		% Define funciones generales
 		\def\COREhfstyledefA { % 1, 2, 4, 9, 11, 14, 15
 			\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
@@ -6345,7 +6348,6 @@
 				\fancyhead[L]{\nouppercase{\leftmark}}
 			}
 		}
-		
 		% Actualiza los header-footer
 		\ifthenelse{\equal{\hfstyle}{style1}}{
 			\COREhfstyledefA
@@ -6661,6 +6663,7 @@
 	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
 		\setcounter{page}{1}}{
 	}
+	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
 

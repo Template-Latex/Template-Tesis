@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.2.1 (17/05/2021)
+% Versión:      2.2.2 (26/05/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -4469,8 +4469,9 @@
 	\def\pdfmetainfotema {\temaatratar}
 	\def\pdfmetainfotitulo {\titulotesis}
 	\def\pdfmetainfounidepto {\departamentouniversidad}
-	\def\pdfmetainfouninombre {\departamentouniversidad}
-	\def\pdfmetainfouniubicacion {\departamentouniversidad}
+	\def\pdfmetainfounifacultad {\nombrefacultad}
+	\def\pdfmetainfouninombre {\nombreuniversidad}
+	\def\pdfmetainfouniubicacion {\localizacionuniversidad}
 }{
 	\def\pdfmetainfoautor {}
 	\def\pdfmetainfocodigodelcurso {}
@@ -4479,6 +4480,7 @@
 	\def\pdfmetainfotema {}
 	\def\pdfmetainfotitulo {}
 	\def\pdfmetainfounidepto {}
+	\def\pdfmetainfounifacultad {}
 	\def\pdfmetainfouninombre {}
 	\def\pdfmetainfouniubicacion {}
 }
@@ -4504,18 +4506,19 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={17/05/2021},
+		Template.Fecha={26/05/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.1-4-THS},
-		Template.Version.Hash={68A6F5AF75386D6930732E1D8EEF6D92},
-		Template.Version.Release={2.2.1},
+		Template.Version.Dev={2.2.2-1-THS},
+		Template.Version.Hash={A112247B4ADB2739AF6027658F433151},
+		Template.Version.Release={2.2.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
+		Universidad.Facultad={\pdfmetainfounifacultad},
 		Universidad.Nombre={\pdfmetainfouninombre},
 		Universidad.Ubicacion={\pdfmetainfouniubicacion}
 	},
@@ -4524,7 +4527,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.2.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.2.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

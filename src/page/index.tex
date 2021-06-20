@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.2.4 (15/06/2021)
+% Versión:      2.2.5 (20/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -222,7 +222,7 @@
 		\iftotalfigures
 			\ifthenelse{\equal{\indexnewpagef}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
-				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
 					\belowpdfbookmark{\nomltfigure}{clof}}{}}{
 			}
@@ -233,7 +233,7 @@
 		\iftotaltables
 			\ifthenelse{\equal{\indexnewpaget}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
-				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
 					\belowpdfbookmark{\nomlttable}{clot}}{}}{
 			}
@@ -244,7 +244,7 @@
 		\iftotallstlistings
 			\ifthenelse{\equal{\indexnewpagec}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
-				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
 					\belowpdfbookmark{\nomltsrc}{clsrc}}{}}{
 			}
@@ -255,7 +255,7 @@
 		\iftotaltemplateIndexEquationss
 			\ifthenelse{\equal{\indexnewpagee}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
-				\ifthenelse{\equal{\addindextobookmarks}{true}}{
+				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
 					\belowpdfbookmark{\nomlteqn}{cleqn}}{}}{
 			}

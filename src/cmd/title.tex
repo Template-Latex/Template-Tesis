@@ -11,7 +11,9 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+% Activa la numeración en las secciones
 \def\coreintializetitlenumbering {
+	% section
 	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{
 		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
 			\renewcommand{\thesection}{\Alph{section}}
@@ -25,16 +27,19 @@
 			\renewcommand{\thesection}{\thechapter.\arabic{section}}
 		}
 	}
+	% subsection
 	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
 		\renewcommand{\thesubsection}{\arabic{subsection}}
 	}{
 		\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 	}
+	% subsubsection
 	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
 		\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 	}{
 		\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 	}
+	% subsubsubsection
 	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
 		\ifthenelse{\equal{\showdotaftersnum}{true}}{
 			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}.}
@@ -49,48 +54,53 @@
 		}
 	}
 }
+
+% Parcha el formato de capítulos
 \pretocmd{\chapter}{
-\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{chap}}{
+	\ifthenelse{\equal{\equationrestart}{chap}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 	\def\GLOBALchapternumenabled {true}
 	\coreintializetitlenumbering
 }{}{}
+
+% Parcha el formato de secciones al pasar desde una anum, vuelve a activar número
+% de la sección
 \pretocmd{\section}{
-\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{sec}}{
+	\ifthenelse{\equal{\equationrestart}{sec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
@@ -98,75 +108,87 @@
 	\def\GLOBALsubsectionanumenabled {false}
 	\coreintializetitlenumbering
 }{}{}
+
+% Comienza nueva subsección, si está dentro de una sectionanum entonces no dibuja el
+% número de sección, si no entonces dibuja el número de forma normal
 \pretocmd{\subsection}{
-\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{ssec}}{
+	\ifthenelse{\equal{\equationrestart}{ssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 	\def\GLOBALsubsectionanumenabled {false}
 	\coreintializetitlenumbering
 }{}{}
+
+% Comienza nueva subsubsección, aquí hay varios casos:
+%	- si está dentro de una subsección sin número ignora la sección
+%	- si no, entonces puede estar dentro de una sección sin número o no, en ese caso
+%     debe evaluar ambas posibilidades
 \pretocmd{\subsubsection}{
-\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{sssec}}{
+	\ifthenelse{\equal{\equationrestart}{sssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 	\coreintializetitlenumbering
 }{}{}
+
 \pretocmd{\subsubsubsection}{
-\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
 		\setcounter{lstlisting}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\equationrestart}{ssssec}}{
+	\ifthenelse{\equal{\equationrestart}{ssssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}
 		\setcounter{equation}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}
 		\setcounter{figure}{0}
 	}{}
-\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
 }{}{}
+
+% Insertar un título sin número
+% 	#1	Título
 \newcommand{\sectionanum}[1]{
 	\emptyvarerr{\sectionanum}{#1}{Titulo no definido}
 	\phantomsection
@@ -179,6 +201,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled {true}
 }
+
+% Insertar un título sin número y sin indexar
+% 	#1	Título
 \newcommand{\sectionanumnoi}[1]{
 	\emptyvarerr{\sectionanumnoi}{#1}{Titulo no definido}
 	\phantomsection
@@ -190,6 +215,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled {true}
 }
+
+% Insertar un título sin número sin cambiar el título del header
+% 	#1	Título
 \newcommand{\sectionanumheadless}[1]{
 	\emptyvarerr{\sectionanumnoheadless}{#1}{Titulo no definido}
 	\section*{#1}
@@ -199,6 +227,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled {true}
 }
+
+% Insertar un título sin número, sin indexar y sin cambiar el título del header
+% 	#1	Título
 \newcommand{\sectionanumnoiheadless}[1]{
 	\emptyvarerr{\sectionanumnoiheadless}{#1}{Titulo no definido}
 	\section*{#1}
@@ -207,6 +238,9 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled {true}
 }
+
+% Insertar un subtítulo sin número
+% 	#1	Subtítulo
 \newcommand{\subsectionanum}[1]{
 	\emptyvarerr{\subsectionanum}{#1}{Subtitulo no definido}
 	\subsection*{#1}
@@ -216,6 +250,9 @@
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 	\def\GLOBALsubsectionanumenabled {true}
 }
+
+% Insertar un subtítulo sin número y sin indexar
+% 	#1	Subtítulo
 \newcommand{\subsectionanumnoi}[1]{
 	\emptyvarerr{\subsectionanumnoi}{#1}{Subtitulo no definido}
 	\subsection*{#1}
@@ -224,6 +261,9 @@
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 	\def\GLOBALsubsectionanumenabled {true}
 }
+
+% Insertar un sub-subtítulo sin número
+% 	#1	Sub-subtítulo
 \newcommand{\subsubsectionanum}[1]{
 	\emptyvarerr{\subsubsectionanum}{#1}{Sub-subtitulo no definido}
 	\subsubsection*{#1}
@@ -236,6 +276,9 @@
 		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}
 	}
 }
+
+% Insertar un sub-subtítulo sin número y sin indexar
+% 	#1	Sub-subtítulo
 \newcommand{\subsubsectionanumnoi}[1]{
 	\emptyvarerr{\subsubsectionanumnoi}{#1}{Sub-subtitulo no definido}
 	\subsubsection*{#1}
@@ -247,24 +290,39 @@
 		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}
 	}
 }
+
+% Insertar un sub-sub-subtítulo sin número
+% 	#1	Sub-sub-subtítulo
 \newcommand{\subsubsubsectionanum}[1]{
 	\emptyvarerr{\subsubsubsectionanum}{#1}{Sub-sub-subtitulo no definido}
 	\subsubsubsection*{#1}
 	\addcontentsline{toc}{subsubsubsection}{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
 }
+
+% Insertar un sub-sub-subtítulo sin número y sin indexar
+% 	#1	Sub-sub-subtítulo
 \newcommand{\subsubsubsectionanumnoi}[1]{
 	\emptyvarerr{\subsubsubsectionanumnoi}{#1}{Sub-sub-subtitulo no definido}
 	\subsubsection*{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
 }
+
+% Cambia el título del encabezado (header)
+%	#1	Título
 \newcommand{\changeheadertitle}[1]{
 	\emptyvarerr{\changeheadertitle}{#1}{Titulo no definido}
 	\markboth{#1}{}
 }
+
+% Elimina el título del encabezado (header)
 \newcommand{\clearheadertitle}{
 	\markboth{}{}
 }
+
+% Insertar un título en un índice, sin número de página
+%	#1	Margen superior en pt. (opcional)
+%	#2	Título
 \newcommand{\insertindextitle}[2][]{
 	\emptyvarerr{\insertindextitle}{#2}{Titulo no definido}
 	\ifx\hfuzz#1\hfuzz
@@ -274,6 +332,10 @@
 	\fi
 	\addtocontents{toc}{\noindent\hyperref[swpn]{\textbf{#2}}}
 }
+
+% Insertar un título en un índice, con número de página
+%	#1	Margen superior en pt. (opcional)
+%	#2	Título
 \newcommand{\insertindextitlepage}[2][]{
 	\emptyvarerr{\insertindextitlepage}{#2}{Titulo no definido}
 	\ifx\hfuzz#1\hfuzz
@@ -283,10 +345,17 @@
 	\fi
 	\addcontentsline{toc}{section}{#2}
 }
+
+% Crea una sección en el índice y en el header
+%	#1	Margen superior en pt. (opcional)
+%	#2	Título
 \newcommand{\createhiddensection}[2][]{
 	\changeheadertitle{#2}
 	\insertindextitlepage[#1]{#2}
 }
+
+% Crear un capítulo como una sección
+%	#1	Título
 \newcommand{\newchapter}[1]{
 	\emptyvarerr{\newchapter}{#1}{Titulo no definido}
 	\clearpage

@@ -11,29 +11,57 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+% -----------------------------------------------------------------------------
+% SE GUARDAN VARIABLES ANTES DE CARGAR LIBRERÍAS
+% -----------------------------------------------------------------------------
 \let\RE\Re
 \let\IM\Im
+
+% -----------------------------------------------------------------------------
+% PARCHES DE LIBRERÍAS
+% -----------------------------------------------------------------------------
 \let\counterwithout\relax
 \let\counterwithin\relax
 \let\underbar\relax
 \let\underline\relax
+
+% Si se desactiva el idioma
 \def\unaccentedoperators {}
 \def\decimalpoint {}
 \def\bibname {}
+
+% Parche de sectsty.sty
 \makeatletter
 \def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}
 \def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
 \makeatother
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS DEL NÚCLEO
+% -----------------------------------------------------------------------------
+% Manejo de condicionales
 \usepackage{ifthen}
+
+% Carga el idioma
 \ifthenelse{\equal{\usespanishbabel}{true}}{
 	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
 \ifthenelse{\equal{\useenglishbabel}{true}}{
 	\usepackage[english]{babel}}{}
 }
+
+% Cambia el estilo de los títulos
 \usepackage{sectsty}
+
+% Codificación
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\usepackage[utf8]{inputenc}}{
 }
+
+% Lanza un mensaje de error indicando mala configuración
+%	#1	Parámetros opcionales (nostop,noheader)
+%	#2	Mensaje de error
+% 	#3	Configuración usada
+%	#4	Valores esperados
 \newcommand{\throwbadconfig}[4][]{
 	\ifthenelse{\equal{#1}{noheader}}{
 		\errmessage{LaTeX Warning: #4}
@@ -50,55 +78,72 @@
 		}
 	}
 }
+
+% Librerías matemáticas
 \ifthenelse{\equal{\equationleftalign}{true}}{
 	\usepackage[fleqn]{amsmath}
 }{
 	\usepackage{amsmath}
 }
+
+% Tamaño de la fuente del documento
 \usepackage{scrextend}
 \usepackage{anyfontsize}
 \changefontsizes{\documentfontsize pt}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{array}
-\usepackage{bigstrut}
-\usepackage{bm}
-\usepackage{booktabs}
-\usepackage{caption}
-\usepackage{changepage}
-\usepackage{chngcntr}
-\usepackage{color}
-\usepackage{datetime}
-\usepackage{floatpag}
-\usepackage{floatrow}
-\usepackage{framed}
-\usepackage{gensymb}
-\usepackage{graphicx}
-\usepackage{lipsum}
-\usepackage{listings}
-\usepackage{longtable}
-\usepackage{mathtools}
-\usepackage{multicol}
-\usepackage{needspace}
-\usepackage{pdflscape}
-\usepackage{pdfpages}
-\usepackage{physics}
-\usepackage{rotating}
-\usepackage{selinput}
-\usepackage{setspace}
-\usepackage{soul}
-\usepackage{subfig}
-\usepackage{textcomp}
-\usepackage{url}
-\usepackage{wrapfig}
-\usepackage{xspace}
-\usepackage[makeroom]{cancel}
-\usepackage[inline]{enumitem}
-\usepackage[subfigure,titles]{tocloft}
-\usepackage[figure,table,lstlisting]{totalcount}
-\usepackage[normalem]{ulem}
-\usepackage[nointegrals]{wasysym}
-\usepackage[dvipsnames,table,usenames]{xcolor}
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS INDEPENDIENTES
+% -----------------------------------------------------------------------------
+\usepackage{amssymb}       % Librerías matemáticas
+\usepackage{amsthm}        % Definición de teoremas
+\usepackage{array}         % Nuevas características a las tablas
+\usepackage{bigstrut}      % Líneas horizontales en tablas
+\usepackage{bm}            % Caracteres en negrita en ecuaciones
+\usepackage{booktabs}      % Permite manejar elementos visuales en tablas
+\usepackage{caption}       % Leyendas
+\usepackage{changepage}    % Condicionales para administrar páginas
+\usepackage{chngcntr}      % Añade números a las leyendas
+\usepackage{color}         % Colores
+\usepackage{datetime}      % Fechas
+\usepackage{floatpag}      % Maneja números de páginas
+\usepackage{floatrow}      % Permite administrar posiciones en los caption
+\usepackage{framed}        % Permite creación de recuadros
+\usepackage{gensymb}       % Simbología común
+\usepackage{graphicx}      % Propiedades extra para los gráficos
+\usepackage{lipsum}        % Permite crear párrafos de prueba
+\usepackage{listings}      % Permite añadir código fuente
+\usepackage{longtable}     % Permite utilizar tablas en varias hojas
+\usepackage{mathtools}     % Permite utilizar notaciones matemáticas
+\usepackage{multicol}      % Múltiples columnas
+\usepackage{needspace}     % Maneja los espacios en página
+\usepackage{pdflscape}     % Modo página horizontal de página
+\usepackage{pdfpages}      % Permite administrar páginas en pdf
+\usepackage{physics}       % Paquete de matemáticas
+\usepackage{rotating}      % Permite rotación de objetos
+\usepackage{selinput}      % Compatibilidad con acentos
+\usepackage{setspace}      % Cambia el espacio entre líneas
+\usepackage{soul}          % Permite subrayar texto
+\usepackage{subfig}        % Permite agrupar imágenes
+\usepackage{textcomp}      % Simbología común
+\usepackage{url}           % Permite añadir enlaces
+\usepackage{wrapfig}       % Posición de imágenes
+\usepackage{xspace}        % Adminsitra espacios en párrafos y líneas
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS CON PARÁMETROS
+% -----------------------------------------------------------------------------
+\usepackage[makeroom]{cancel} % Cancelar términos en fórmulas
+\usepackage[inline]{enumitem} % Permite enumerar ítems
+\usepackage[subfigure,titles]{tocloft} % Maneja entradas en el índice
+\usepackage[figure,table,lstlisting]{totalcount} % Contador de objetos
+\usepackage[normalem]{ulem} % Permite tachar y subrayar
+\usepackage[nointegrals]{wasysym} % Contiene caracteres misceláneos (v7.0.4)
+\usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS CONDICIONALES
+% -----------------------------------------------------------------------------
+% Imágenes en modo draft
 \ifthenelse{\equal{\graphicxdraft}{true}}{
 	\usepackage[
 		allfiguresdraft,
@@ -107,21 +152,29 @@
 		style={tt}
 	]{draftfigure}}{
 }
+
+% Acepta codificación UTF-8 en código fuente
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\usepackage{listingsutf8}}{
 }
+
+% Regla superior
 \ifthenelse{\equal{\footnotepagetoprule}{true}}{
-\usepackage[bottom,hang]{footmisc}
+	\usepackage[bottom,hang]{footmisc} % Estilo pie de página
 }{
 	\usepackage[bottom,norule,hang]{footmisc}
 }
+
+% Agrega punto a títulos/subtítulos
 \ifthenelse{\equal{\showdotaftersnum}{true}}{
 	\usepackage{secdot}
 	\sectiondot{subsection}
 	\sectiondot{subsubsection}}{
 }
-\usepackage[pdfencoding=auto,psdextra]{hyperref}
-\ifthenelse{\equal{\stylecitereferences}{natbib}}{
+
+% Referencias
+\usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias
+\ifthenelse{\equal{\stylecitereferences}{natbib}}{ % Formato citas natbib
 	\usepackage[nottoc,notlof,notlot]{tocbibind}
 	\ifthenelse{\equal{\natbibrefstyle}{apa}}{
 		\ifthenelse{\equal{\natbibsquare}{true}}{
@@ -166,32 +219,45 @@
 		}
 	}}}}
 }{
-\ifthenelse{\equal{\stylecitereferences}{apacite}}{
+\ifthenelse{\equal{\stylecitereferences}{apacite}}{ % Formato citas apacite
 	\usepackage[nottoc,notlof,notlot]{tocbibind}
 	\usepackage[nosectionbib]{apacite}
 }{
-\ifthenelse{\equal{\stylecitereferences}{bibtex}}{
+\ifthenelse{\equal{\stylecitereferences}{bibtex}}{ % Formato citas bibtex
 }{
-\ifthenelse{\equal{\stylecitereferences}{custom}}{
+\ifthenelse{\equal{\stylecitereferences}{custom}}{ % Formato citas custom
 }{}}}
 }
+
+% Anexos/Apéndices
 \ifthenelse{\equal{\showappendixsecindex}{true}}{
-\usepackage[toc]{appendix}
+	\usepackage[toc]{appendix} % Eliminado en Auxiliares/Controles, sin [toc]
 }{
 	\usepackage{appendix}
 }
-\ifthenelse{\equal{\compilertype}{lualatex}}{
+
+% Dimensiones y geometría del documento
+\ifthenelse{\equal{\compilertype}{lualatex}}{ % En lualatex sólo se puede cambiar 1 vez el margen
 	\usepackage[top=\pagemargintop cm,bottom=\pagemarginbottom cm,margin=\pagemarginleft cm]{geometry}
-}{
+}{ % pdf2latex, xelatex
 	\usepackage{geometry}
 }
-\usepackage{bookmark}
-\usepackage{fancyhdr}
-\usepackage{float}
-\usepackage{hyperxmp}
-\usepackage{multirow}
-\usepackage{notoccite}
-\usepackage{titlesec}
+
+% -----------------------------------------------------------------------------
+% LIBRERÍAS DEPENDIENTES
+% -----------------------------------------------------------------------------
+\usepackage{bookmark}      % Administración de marcadores en pdf
+\usepackage{fancyhdr}      % Encabezados y pie de páginas
+\usepackage{float}         % Administrador de posiciones de objetos
+\usepackage{hyperxmp}      % Etiquetas opcionales para el pdf compilado
+\usepackage{multirow}      % Agrega nuevas opciones a las tablas
+\usepackage{notoccite}     % Desactiva las citas en el índice
+\usepackage{titlesec}      % Administración de títulos
+
+% -----------------------------------------------------------------------------
+% TIPOGRAFÍA DEL DOCUMENTO
+% -----------------------------------------------------------------------------
+% Tipografías clásicas
 \ifthenelse{\equal{\fontdocument}{lmodern}}{
 	\usepackage{lmodern}
 }{
@@ -223,6 +289,8 @@
 \ifthenelse{\equal{\fontdocument}{mathpazo}}{
 	\usepackage{mathpazo}
 }{
+
+% Otros
 \ifthenelse{\equal{\fontdocument}{accantis}}{
 	\usepackage{accanthis}
 }{
@@ -493,6 +561,10 @@
 	\throwbadconfig[noheader]{Fuente desconocida}{\fontdocument}{universalis,universaliscondensed,venturis}
 	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
+
+% -----------------------------------------------------------------------------
+% TIPOGRAFÍA TYPEWRITER
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
 }{
@@ -554,14 +626,18 @@
 		newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern}
 	}}}}}}}}}}}}}}}}
 }
-\usepackage[T1]{fontenc}
-\ifthenelse{\equal{\showlayoutlines}{true}}{
+
+% -----------------------------------------------------------------------------
+% FINALES
+% -----------------------------------------------------------------------------
+\usepackage[T1]{fontenc} % Caracteres acentuados
+\ifthenelse{\equal{\showlayoutlines}{true}}{ % Muestra las líneas del layout
 	\usepackage{showframe}}{
 }
-\ifthenelse{\equal{\showlinenumbers}{true}}{
+\ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
 	\usepackage[switch,columnwise,running]{lineno}}{
 }
-\usepackage{csquotes}
+\usepackage{csquotes} % Citas y comillas, se debe usar después de lineno [6.4.2]
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\inputencoding{utf8}}{
 }

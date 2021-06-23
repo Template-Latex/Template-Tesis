@@ -12,8 +12,12 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 \newcommand{\templatePagecfg}{
+
+	% -------------------------------------------------------------------------
+	% Numeración de páginas
+	% -------------------------------------------------------------------------
 	\clearpage
-\ifthenelse{\equal{\predocpageromannumber}{true}}{
+	\ifthenelse{\equal{\predocpageromannumber}{true}}{ % Si se usan números romanos en el predocumento
 		\ifthenelse{\equal{\predocpageromanupper}{true}}{
 			\pagenumbering{Roman}
 		}{
@@ -23,37 +27,61 @@
 	}
 	\setcounter{page}{1}
 	\setcounter{footnote}{0}
+
+	% -------------------------------------------------------------------------
+	% Márgenes de páginas y tablas
+	% -------------------------------------------------------------------------
 	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
-\def\arraystretch {\tablepaddingv}
-\setlength{\tabcolsep}{\tablepaddingh em}
+	\def\arraystretch {\tablepaddingv} % Se ajusta el padding vertical de las tablas
+	\setlength{\tabcolsep}{\tablepaddingh em} % Se ajusta el padding horizontal de las tablas
+
+	% -------------------------------------------------------------------------
+	% Se define el punto decimal
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\pointdecimal}{true}}{
 		\decimalpoint}{
 	}
-\renewcommand{\appendixname}{\nomltappendixsection}
-\renewcommand{\appendixpagename}{\nameappendixsection}
-\renewcommand{\appendixtocname}{\nameappendixsection}
-\renewcommand{\chaptername}{\nomchapter}
-\renewcommand{\contentsname}{\nomltcont}
-\renewcommand{\figurename}{\nomltwfigure}
-\renewcommand{\listfigurename}{\nomltfigure}
-\renewcommand{\listtablename}{\nomlttable}
-\renewcommand{\lstlistingname}{\nomltwsrc}
-\renewcommand{\lstlistlistingname}{\nomltsrc}
-\renewcommand{\refname}{\namereferences}
-\renewcommand{\bibname}{\namereferences}
-\renewcommand{\tablename}{\nomltwtable}
+
+	% -------------------------------------------------------------------------
+	% Definición de nombres de objetos
+	% -------------------------------------------------------------------------
+	\renewcommand{\appendixname}{\nomltappendixsection} % Nombre del anexo (título)
+	\renewcommand{\appendixpagename}{\nameappendixsection} % Nombre del anexo en índice
+	\renewcommand{\appendixtocname}{\nameappendixsection} % Nombre del anexo en índice
+	\renewcommand{\chaptername}{\nomchapter}  % Nombre de los capítulos
+	\renewcommand{\contentsname}{\nomltcont} % Nombre del índice
+	\renewcommand{\figurename}{\nomltwfigure} % Nombre de la leyenda de las fig.
+	\renewcommand{\listfigurename}{\nomltfigure} % Nombre del índice de figuras
+	\renewcommand{\listtablename}{\nomlttable} % Nombre del índice de tablas
+	\renewcommand{\lstlistingname}{\nomltwsrc} % Nombre leyenda del código fuente
+	\renewcommand{\lstlistlistingname}{\nomltsrc} % Nombre índice código fuente
+	\renewcommand{\refname}{\namereferences} % Nombre de las referencias (bibtex)
+	\renewcommand{\bibname}{\namereferences} % Nombre de las referencias (natbib)
+	\renewcommand{\tablename}{\nomltwtable} % Nombre de la leyenda de tablas
+
+	% -------------------------------------------------------------------------
+	% Estilo de títulos
+	% -------------------------------------------------------------------------
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	\chaptertitlefont{\color{\chaptercolor} \fontsizechapter \stylechapter \selectfont}
 	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\def\bibfont {\fontsizerefbibl}
+	\def\bibfont {\fontsizerefbibl} % Tamaño de fuente de las referencias
+	
+	% -------------------------------------------------------------------------
+	% Estilo citas
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\stylecitereferences}{apacite}}{
 		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
 	}{}
-\fancyheadoffset{0pt}
-\def\hfheaderimageparamsA {height=\baselineskip}
+
+	% -------------------------------------------------------------------------
+	% Se crean los header-footer
+	% -------------------------------------------------------------------------
+	\fancyheadoffset{0pt} % Desactiva el offset de los header-footer
+	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
 	\ifthenelse{\equal{\hfstyle}{style1}}{
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
@@ -87,7 +115,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style1-i}}{
+	\ifthenelse{\equal{\hfstyle}{style1-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -120,7 +148,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style1-d}}{
+	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -186,7 +214,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style2-i}}{
+	\ifthenelse{\equal{\hfstyle}{style2-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -219,7 +247,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style1-d}}{
+	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -327,7 +355,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style5-d}}{
+	\ifthenelse{\equal{\hfstyle}{style5-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -362,7 +390,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style5-i}}{
+	\ifthenelse{\equal{\hfstyle}{style5-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -432,7 +460,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style8-d}}{
+	\ifthenelse{\equal{\hfstyle}{style8-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -443,7 +471,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style8-i}}{
+	\ifthenelse{\equal{\hfstyle}{style8-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -470,7 +498,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style9-d}}{
+	\ifthenelse{\equal{\hfstyle}{style9-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -486,7 +514,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style9-i}}{
+	\ifthenelse{\equal{\hfstyle}{style9-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -537,7 +565,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style10-i}}{
+	\ifthenelse{\equal{\hfstyle}{style10-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -572,7 +600,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style10-d}}{
+	\ifthenelse{\equal{\hfstyle}{style10-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -607,7 +635,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style11}}{
+	\ifthenelse{\equal{\hfstyle}{style11}}{ % Similar a 1
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -640,7 +668,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style12}}{
+	\ifthenelse{\equal{\hfstyle}{style12}}{ % Similar a 6
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -653,7 +681,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style13}}{
+	\ifthenelse{\equal{\hfstyle}{style13}}{ % Similar a 3
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -678,7 +706,7 @@
 		}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style14}}{
+	\ifthenelse{\equal{\hfstyle}{style14}}{ % Similar a 4
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -693,7 +721,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-\ifthenelse{\equal{\hfstyle}{style15}}{
+	\ifthenelse{\equal{\hfstyle}{style15}}{ % Similar a 1
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -729,16 +757,25 @@
 		\fancyheadoffset{0pt}
 		\COREstyledefinition
 	}
+
+	% -------------------------------------------------------------------------
+	% Muestra los números de línea
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
+	% Añade página en blanco
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
 		\insertblankpage}{
 	}
+	% -------------------------------------------------------------------------
+	% Configura el nombre del abstract
+	% -------------------------------------------------------------------------
 	\ifthenelse{\isundefined{\abstractname}}{
 		\newcommand{\abstractname}{\nameabstract}
 		\throwwarning{La variable \noexpand\abstractname no existe, lo que indica que la libreria babel no se ha cargado. Si ha desactivado la configuracion \noexpand\usespanishbabel debe cargar manualmente la libreria babel con algun otro idioma, como por ejemplo \noexpand\usepackage[english]{babel}, o bien define en true la configuracion \noexpand\useenglishbabel}
 	}{
 		\renewcommand{\abstractname}{\nameabstract}
 	}
+
 }

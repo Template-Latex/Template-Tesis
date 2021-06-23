@@ -12,14 +12,20 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 \newcommand{\templateFinalcfg}{
+	
+	% -------------------------------------------------------------------------
+	% Se reestablecen headers y footers
+	% -------------------------------------------------------------------------
 	\markboth{}{}
 	\clearpage
+	% Actualiza headers
 	\ifthenelse{\equal{\disablehfrightmark}{false}}{
-\def\COREhfstyledefA {
+		% Define funciones generales
+		\def\COREhfstyledefA { % 1, 2, 4, 9, 11, 14, 15
 			\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 			\fancyhead[L]{\nouppercase{\leftmark}}
 		}
-\def\COREhfstyledefB {
+		\def\COREhfstyledefB { % 5
 			\fancypagestyle{plain}{
 				\ifthenelse{\equal{\hfwidthwrap}{true}}{
 					\fancyhead[R]{
@@ -45,7 +51,7 @@
 				\fancyhead[R]{\nouppercase{\leftmark}}
 			}
 		}
-\def\COREhfstyledefC {
+		\def\COREhfstyledefC { % 10
 			\fancypagestyle{plain}{
 				\ifthenelse{\equal{\hfwidthwrap}{true}}{
 					\fancyhead[L]{
@@ -71,25 +77,26 @@
 				\fancyhead[L]{\nouppercase{\leftmark}}
 			}
 		}
+		% Actualiza los header-footer
 		\ifthenelse{\equal{\hfstyle}{style1}}{
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style1-i}}{
+		\ifthenelse{\equal{\hfstyle}{style1-i}}{ % Impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
 			\fancyhead[LE,RO]{\nouppercase{\leftmark}}
 		}{
-\ifthenelse{\equal{\hfstyle}{style1-d}}{
+		\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 			\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{
 		\ifthenelse{\equal{\hfstyle}{style2}}{
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style2-i}}{
+		\ifthenelse{\equal{\hfstyle}{style2-i}}{ % Impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
 			\fancyhead[LE,RO]{\nouppercase{\leftmark}}
 		}{
-\ifthenelse{\equal{\hfstyle}{style2-d}}{
+		\ifthenelse{\equal{\hfstyle}{style2-d}}{ % Impar derecho
 			\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{
@@ -99,47 +106,57 @@
 		\ifthenelse{\equal{\hfstyle}{style5}}{
 			\COREhfstyledefB
 		}{
-\ifthenelse{\equal{\hfstyle}{style5-d}}{
+		\ifthenelse{\equal{\hfstyle}{style5-d}}{ % Impar derecho
 			\COREhfstyledefB
 		}{
-\ifthenelse{\equal{\hfstyle}{style5-i}}{
+		\ifthenelse{\equal{\hfstyle}{style5-i}}{ % Impar izquierdo
 			\COREhfstyledefB
 		}{
 		\ifthenelse{\equal{\hfstyle}{style9}}{
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style9-d}}{
+		\ifthenelse{\equal{\hfstyle}{style9-d}}{ % Impar derecho
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style9-i}}{
+		\ifthenelse{\equal{\hfstyle}{style9-i}}{ % Impar izquierdo
 			\COREhfstyledefA
 		}{
 		\ifthenelse{\equal{\hfstyle}{style10}}{
 			\COREhfstyledefC
 		}{
-\ifthenelse{\equal{\hfstyle}{style10-d}}{
+		\ifthenelse{\equal{\hfstyle}{style10-d}}{ % Impar derecho
 			\COREhfstyledefC
 		}{
-\ifthenelse{\equal{\hfstyle}{style10-i}}{
+		\ifthenelse{\equal{\hfstyle}{style10-i}}{ % Impar izquierdo
 			\COREhfstyledefC
 		}{
-\ifthenelse{\equal{\hfstyle}{style11}}{
+		\ifthenelse{\equal{\hfstyle}{style11}}{ % Similar a 1
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style14}}{
+		\ifthenelse{\equal{\hfstyle}{style14}}{ % Similar a 4
 			\COREhfstyledefA
 		}{
-\ifthenelse{\equal{\hfstyle}{style15}}{
+		\ifthenelse{\equal{\hfstyle}{style15}}{ % Similar a 1
 			\COREhfstyledefA
 		}{
+			% No se encontró el header-footer, no hace nada
 		}}}}}}}}}}}}}}}}}}}
 	}{
 	}
+
+	% -------------------------------------------------------------------------
+	% Estilo de títulos - reestablece estilos por el índice
+	% -------------------------------------------------------------------------
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+	% -------------------------------------------------------------------------
+	% Crea funciones para numerar objetos
+	% -------------------------------------------------------------------------
+	% Numeración de la sección en los objetos CÓDIGO FUENTE
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
 		\def\sectionobjectnumcode {}
 	}{
@@ -164,6 +181,8 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Numeración de la sección en los objetos ECUACIONES
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
 		\def\sectionobjectnumeqn {}
 	}{
@@ -188,6 +207,8 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Numeración de la sección en los objetos FIGURAS
 	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
 		\def\sectionobjectnumfig {}
 	}{
@@ -212,6 +233,8 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Numeración de la sección en los objetos TABLAS
 	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
 		\def\sectionobjectnumtab {}
 	}{
@@ -236,6 +259,11 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% -------------------------------------------------------------------------
+	% Modifica numeración de objetos
+	% -------------------------------------------------------------------------
+	% Código fuente, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\arabic{lstlisting}}
 	}{
@@ -253,6 +281,8 @@
 	}{
 		\throwbadconfig{Tipo numero codigo fuente desconocido}{\captionnumcode}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Ecuaciones, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumequation}{arabic}}{
 		\renewcommand{\theequation}{\sectionobjectnumeqn\arabic{equation}}
 	}{
@@ -270,6 +300,8 @@
 	}{
 		\throwbadconfig{Tipo numero ecuacion desconocido}{\captionnumequation}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Figuras, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumfigure}{arabic}}{
 		\renewcommand{\thefigure}{\sectionobjectnumfig\arabic{figure}}
 	}{
@@ -287,6 +319,8 @@
 	}{
 		\throwbadconfig{Tipo numero figura desconocido}{\captionnumfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Subfiguras, NO USAR SECCIONES YA QUE SON HIJAS DE FIGURA
 	\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{
 		\renewcommand{\thesubfigure}{\arabic{subfigure}}
 	}{
@@ -304,6 +338,8 @@
 	}{
 		\throwbadconfig{Tipo numero subfigura desconocido}{\captionnumsubfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Tablas, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumtable}{arabic}}{
 		\renewcommand{\thetable}{\sectionobjectnumtab\arabic{table}}
 	}{
@@ -321,6 +357,8 @@
 	}{
 		\throwbadconfig{Tipo numero tabla desconocido}{\captionnumtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% Subtablas, NO INCLUIR SECCIÓN YA QUE SON HIJAS DE LAS TABLAS
 	\ifthenelse{\equal{\captionnumsubtable}{arabic}}{
 		\renewcommand{\thesubtable}{\arabic{subtable}}
 	}{
@@ -338,16 +376,33 @@
 	}{
 		\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
+
+	% -------------------------------------------------------------------------
+	% Se reestablecen números de página y secciones
+	% -------------------------------------------------------------------------
+	% Se usa número de páginas en arábigo si es que se tenía activado los númeos romanos
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{
 		\renewcommand{\thepage}{\arabic{page}}}{
 	}
+
+	% Reinicia número de página
 	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
 		\setcounter{page}{1}}{
 	}
+	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
+
+	% -------------------------------------------------------------------------
+	% Muestra los números de línea
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
+
+	% -------------------------------------------------------------------------
+	% Establece el estilo de las subsubsubsecciones
+	% -------------------------------------------------------------------------
 	\titleclass{\subsubsubsection}{straight}[\subsection]
+
 }

@@ -11,12 +11,22 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+% Insertar sub-índice, a_b
+% 	#1	Elemento inferior (a)
+%	#2	Elemento superior (b)
 \newcommand{\lpow}[2]{
 	\ensuremath{{#1}_{#2}}
 }
+
+% Insertar elevado, a^b
+% 	#1	Elemento inferior (a)
+%	#2	Elemento superior (b)
 \newcommand{\pow}[2]{
 	\ensuremath{{#1}^{#2}}
 }
+
+% Inserta inverso función seno, sin^-1
+%	#1	Elemento
 \newcommand{\aasin}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\sin^{-1}#1}
@@ -24,6 +34,9 @@
 		\ensuremath{{\sin}^{-1}}
 	\fi
 }
+
+% Inserta inverso función coseno, cos^-1
+%	#1	Elemento
 \newcommand{\aacos}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\cos^{-1}#1}
@@ -31,6 +44,9 @@
 		\ensuremath{\cos^{-1}}
 	\fi
 }
+
+% Inserta inverso función tangente, tan^-1
+%	#1	Elemento
 \newcommand{\aatan}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\tan^{-1}#1}
@@ -38,6 +54,9 @@
 		\ensuremath{\tan^{-1}}
 	\fi
 }
+
+% Inserta inverso función cosecante, csc^-1
+%	#1	Elemento
 \newcommand{\aacsc}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\csc^{-1}#1}
@@ -45,6 +64,9 @@
 		\ensuremath{\csc^{-1}}
 	\fi
 }
+
+% Inserta inverso función secante, sec^-1
+%	#1	Elemento
 \newcommand{\aasec}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\sec^{-1}#1}
@@ -52,6 +74,9 @@
 		\ensuremath{\sec^{-1}}
 	\fi
 }
+
+% Inserta inverso función cotangente, cot^-1
+%	#1	Elemento
 \newcommand{\aacot}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\ensuremath{\cot^{-1}#1}
@@ -59,135 +84,256 @@
 		\ensuremath{\cot^{-1}}
 	\fi
 }
+
+% Fracción de derivadas parciales af/ax
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracpartial}[2]{
 	\ensuremath{\pdv{#1}{#2}}
 }
+
+% Fracción de derivadas parciales dobles a^2f/ax^2
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracdpartial}[2]{
 	\ensuremath{\pdv[2]{#1}{#2}}
 }
+
+% Fracción de derivadas parciales en n, a^nf/ax^n
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
+%	#3	Orden (n)
 \newcommand{\fracnpartial}[3]{
 	\ensuremath{\pdv[#3]{#1}{#2}}
 }
+
+% Fracción de derivadas df/dx
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracderivat}[2]{
 	\ensuremath{\dv{#1}{#2}}
 }
+
+% Fracción de derivadas dobles d^2/dx^2
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
 \newcommand{\fracdderivat}[2]{
 	\ensuremath{\dv[2]{#1}{#2}}
 }
+
+% Fracción de derivadas en n d^nf/dx^n
+% 	#1	Función a derivar (f)
+%	#2	Variable a derivar (x)
+%	#3	Orden de la derivada (n)
 \newcommand{\fracnderivat}[3]{
 	\ensuremath{\dv[#3]{#1}{#2}}
 }
+
+% Llave superior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\topequal}[2]{
 	\ensuremath{\overbrace{#1}^{\mathclap{#2}}}
 }
 \newcommand{\topequaltext}[2]{\topequal{#1}{\text{#2}}}
+
+% Llave inferior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\underequal}[2]{
 	\ensuremath{\underbrace{#1}_{\mathclap{#2}}}
 }
 \newcommand{\underequaltext}[2]{\underequal{#1}{\text{#2}}}
+
+% Rectángulo superior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\topsequal}[2]{
 	\ensuremath{\overbracket{#1}^{\mathclap{#2}}}
 }
 \newcommand{\topsequaltext}[2]{\topsequal{#1}{\text{#2}}}
+
+% Rectángulo inferior de equivalencia
+% 	#1	Elemento a igualar
+%	#2	Igualdad
 \newcommand{\undersequal}[2]{
 	\ensuremath{\underbracket{#1}_{\mathclap{#2}}}
 }
 \newcommand{\undersequaltext}[2]{\undersequal{#1}{\text{#2}}}
+
+% Función piso
+% 	#1	Elemento
 \newcommand{\floorexp}[1]{
 	\ensuremath{\left\lfloor{#1}\right\rfloor}
 }
+
+% Función techo
+% 	#1	Elemento
 \newcommand{\ceilexp}[1]{
 	\ensuremath{\left\lceil{#1}\right\rceil}
 }
+
+% Función mod
+%	#1	Elemento tal que (mod #1)
 \newcommand{\Mod}[1]{
 	\ensuremath{\ (\mathrm{mod}\ #1)}
 }
+
+% Paréntesis grande
+% 	#1	Expresión
 \newcommand{\bigp}[1]{
 	\ensuremath{\big(#1\big)}
 }
+
+% Paréntesis g+grande
+% 	#1	Expresión
 \newcommand{\biggp}[1]{
 	\ensuremath{\bigg(#1\bigg)}
 }
+
+% Cajón grande
+% 	#1	Expresión
 \newcommand{\bigc}[1]{
 	\ensuremath{\big[#1\big]}
 }
+
+% Cajón g+grande
+% 	#1	Expresión
 \newcommand{\biggc}[1]{
 	\ensuremath{\bigg[#1\bigg]}
 }
+
+% Llave grande
+% 	#1	Expresión
 \newcommand{\bigb}[1]{
 	\ensuremath{\big\{#1\big\}}
 }
+
+% Llave g+grande
+% 	#1	Expresión
 \newcommand{\biggb}[1]{
 	\ensuremath{\bigg\{#1\bigg\}}
 }
+
+% Expresión divergencia
 \newcommand{\divexp}{
 	\ensuremath{\rm{div}\ }
 }
+
+% Expresión automorfismo
 \newcommand{\Autexp}{
 	\ensuremath{\rm{Aut}}
 }
+
+% Negrita introducida por word
 \newcommand{\mathbit}[1]{
 	\bm{#1}
 }
+
+% Expresión diff
 \newcommand{\Diffexp}{
 	\ensuremath{\rm{Diff}}
 }
+
+% Expresión imaginario
 \newcommand{\Imexp}{
 	\ensuremath{\rm{Im}}
 }
+
+% Expresión imaginario en z
 \newcommand{\Imzexp}{
 	\ensuremath{\rm{Im}(z)}
 }
+
+% Expresión real
 \newcommand{\Reexp}{
 	\ensuremath{\rm{Re}}
 }
+
+% Expresión real en z
 \newcommand{\Rezexp}{
 	\ensuremath{\rm{Re}(z)}
 }
+
+% Barra superior en elemento
+%	#1 	Elemento
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+% Función \tilde{} pero que encierra todo el texto
+%	#1 	Elemento
 \makeatletter
 \def\longtilde#1{%
 	\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
 	\sortoftildefill\crcr\noalign{\kern3\p@\nointerlineskip}%
-$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits
+	$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits%
 }
 \def\sortoftildefill {%
 	$\m@th \setbox\z@\hbox{$\braceld$}%
-\braceld\leaders\vrule \@height\ht\z@ \@depth\z@\hfill\braceru$
+	\braceld\leaders\vrule \@height\ht\z@ \@depth\z@\hfill\braceru$%
 }
 \makeatother
+
+% Definición de letras
 \newcommand{\A}{\ensuremath{\mathcal{A}}}
+
 \newcommand{\B}{\ensuremath{\mathcal{B}}}
+
 \ifthenelse{\isundefined{\C}}{\newcommand{\C}{C}}{\let\oldC=\C}
 \renewcommand{\C}{\ensuremath{\mathbb{C}}}
+
 \newcommand{\D}{\ensuremath{\mathbb{D}}}
+
 \newcommand{\E}{\ensuremath{\mathbb{E}}}
+
 \newcommand{\F}{\ensuremath{\mathcal{F}}}
+
 \ifthenelse{\isundefined{\G}}{\newcommand{\G}{G}}{\let\oldG=\G}
 \renewcommand{\G}{\ensuremath{\mathcal{G}}}
+
 \ifthenelse{\isundefined{\H}}{\newcommand{\H}{H}}{\let\oldH=\H}
 \renewcommand{\H}{\ensuremath{\mathcal{H}}}
+
 \newcommand{\I}{\ensuremath{\mathbb{I}}}
+
 \newcommand{\J}{\ensuremath{\mathcal{J}}}
+
 \newcommand{\K}{\ensuremath{\mathcal{K}}}
-\let\oldL=\L
+
+\let\oldL=\L % L con una raya
 \renewcommand{\L}{\ensuremath{\mathcal{L}}}
+
 \newcommand{\M}{\ensuremath{\mathcal{M}}}
+
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
-\let\oldP=\P
+
+% \renewcommand{\O}{\ensuremath{\mathbb{O}}} % O equivale a o/oo
+
+\let\oldP=\P % P negra
 \renewcommand{\P}{\ensuremath{\mathbb{P}}}
+
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
-\let\oldS=\S
+
+\let\oldS=\S % Serpiente
 \renewcommand{\S}{\ensuremath{\mathcal{S}}}
+
 \newcommand{\T}{\ensuremath{\mathcal{T}}}
+
 \ifthenelse{\isundefined{\U}}{\newcommand{\U}{U}}{\let\oldU=\U}
 \renewcommand{\U}{\ensuremath{\mathcal{U}}}
+
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
+
 \newcommand{\W}{\ensuremath{\mathcal{W}}}
+
 \newcommand{\X}{\ensuremath{\mathcal{X}}}
+
 \newcommand{\Y}{\ensuremath{\mathcal{Y}}}
+
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+
+% Definición de operadores matemáticos de asignación (Typeset assigments)
 \newcommand{\asteq}{\ensuremath{\mathrel{{*}{=}}}}
 \newcommand{\cdoteq}{\ensuremath{\mathrel{{\cdot}{=}}}}
 \newcommand{\diveq}{\ensuremath{\mathrel{{/}{=}}}}
@@ -205,6 +351,8 @@ $\hfil\displaystyle{#1}\hfil$\crcr}}}\limits
 \newcommand{\pluseq}{\ensuremath{\mathrel{{+}{=}}}}
 \newcommand{\plusplus}{\ensuremath{\mathrel{{+}{+}}}}
 \newcommand{\timeseq}{\ensuremath{\mathrel{{\times}{=}}}}
+
+% Definición de teoremas y lemas
 \makeatletter
 	\renewenvironment{proof}[1][\proofname]{\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 \makeatother

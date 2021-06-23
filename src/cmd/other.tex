@@ -11,26 +11,43 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+% Insertar párrafo
 \newcommand{\newp}{%
-\hbadness=10000 \vspace{\baselineskip} \par
+	\hbadness=10000 \vspace{\baselineskip} \par%
 }
+
+% Insertar párrafo
+% 	#1	Párrafo
 \newcommand{\newpar}[1]{%
-\hbadness=10000 #1 \newp
+	\hbadness=10000 #1 \newp%
 }
+
+% Insertar párrafo sin nueva línea al final
+% 	#1	Párrafo
 \newcommand{\newparnl}[1]{%
-#1 \par
+	#1 \par%
 }
+
+% Crea un salto de columna en el entorno multicol
 \newcommand{\newcolumn}{%
-\checkinsidemulticol\vfill\null\columnbreak
+	\checkinsidemulticol\vfill\null\columnbreak%
 }
+
+% Salto de página en entorno multicol
 \newcommand{\newpagemulticol}{%
-\newcolumn\newcolumn\clearpage
+	\newcolumn\newcolumn\clearpage%
 }
+
+% Redimensiona un ítem
+% 	#1	Tamaño del nuevo objeto (En linewidth)
+%	#2	Objeto a redimensionar
 \newcommand{\itemresize}[2]{%
 	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}%
 	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}%
 	\resizebox{#1\linewidth}{!}{#2}%
 }
+
+% Crea una página vacía sin header o footer
 \newcommand{\insertemptypage}{%
 	\clearpage
 	\setcounter{templatePageCounter}{\thepage}
@@ -41,50 +58,92 @@
 	\pagenumbering{arabic}
 	\setcounter{page}{\thetemplatePageCounter}
 }
+
+% Inserta una página vacía, aunque conserva header, footer y numeración
 \newcommand{\insertblankpage}{%
 	\clearpage
 	\null
 	\clearpage
 }
+
+% Añade un archivo pdf con el header
+%	#1	Parámetros (opcional)
+%	#2	Nombre del archivo pdf
 \newcommand{\includehfpdf}[2][]{%
 	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}%
 }
+
+% Añade un archivo pdf con el header
+%	#1	Parámetros (opcional)
+%	#2	Nombre del archivo pdf
 \newcommand{\includefullhfpdf}[2][]{%
 	\includepdf[pages=-,pagecommand={\pagestyle{fancy}},#1]{#2}%
 }
+
+% Inserta un texto entre comillas
+%	#1 	Texto
 \newcommand{\quotes}[1]{%
 	\enquote*{#1}%
 }
+
+% Inserta un texto entre comillas dobles
+%	#1 	Texto
 \newcommand{\doublequotes}[1]{%
 	\enquote{#1}%
 }
+
+% Inserta una cita con texto elevado
+%	#1	Cita
 \newcommand{\scite}[1]{%
 	\textsuperscript{\cite{#1}}%
 }
+
+% Fuerza la indentación
 \newcommand{\forceindent}{%
-~ \\
+	~ \\ %
+	
 	\vspace{-2\baselineskip}%
 }
+
+% Inserta un texto con el formato de enlace
+% 	#1 	Enlace
 \newcommand{\hreftext}[1]{%
 	\ifthenelse{\equal{\fonturl}{same}}{#1}{\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{}}}}%
 }
+
+% Inserta un email con un link cliqueable
+%	#1 	Dirección email
 \newcommand{\insertemail}[1]{%
 	\href{mailto:#1}{\hreftext{#1}}%
 }
+
+% Inserta un teléfono celular
+%	#1	Teléfono celular
 \newcommand{\insertphone}[1]{%
 	\href{tel:#1}{\hreftext{#1}}%
 }
+
+% Reinicia el número de ecuaciones
 \newcommand{\restartequation}{%
 	\setcounter{equation}{0}%
 }
+
+% Desactiva el margen de las leyendas
 \newcommand{\disablecaptionmargin}{%
 	\setcaptionmargincm{0}%
 }
+
+% Reinicia el margen de las leyendas
 \newcommand{\resetcaptionmargin}{%
 	\setcaptionmargincm{\captionlrmargin}%
 }
+
+% Modifica el color de las tablas
+%	#1	Posición inicial del inicio de colores
 \newcommand{\settablerowcolors}[1]{%
 	\emptyvarerr{\settablerowcolors}{#1}{Posicion de fila no definida}
+	
+	% Usa colores normales
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -99,6 +158,7 @@
 				\rowcolors{#1}{\tablerowsecondcolor}{\tablerowfirstcolor}
 			}
 		}
+	% Usa colores alternados
 	}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -114,9 +174,14 @@
 			}
 		}
 	}
+
+	% Actualiza el índice previo
 	\def\GLOBALtablerowcolorindex {#1}
 }
+
+% Alterna los colores de las tablas a la última ejecución
 \newcommand{\settablerowcolorslast}{
+	% Usa colores normales
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -131,6 +196,7 @@
 				\rowcolors{\GLOBALtablerowcolorindex}{\tablerowsecondcolor}{\tablerowfirstcolor}
 			}
 		}
+	% Usa colores alternados
 	}{
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{
@@ -147,6 +213,9 @@
 		}
 	}
 }
+
+% Activa el color de las filas de las tablas
+%	#1	Posición inicial del inicio de colores
 \newcommand{\enabletablerowcolor}[1][]{
 	\ifx\hfuzz#1\hfuzz
 		\settablerowcolors{2}
@@ -154,7 +223,11 @@
 		\settablerowcolors{#1}
 	\fi
 }
+
+% Desactiva el color de las filas de las tablas
 \newcommand{\disabletablerowcolor}{\rowcolors{2}{}{}}
+
+% Alterna los colores de las filas de las tablas
 \newcommand{\switchtablerowcolors}{
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
 		\def\GLOBALtablerowcolorswitch {true}
@@ -163,7 +236,13 @@
 	}
 	\settablerowcolorslast
 }
+
+% Cambia el tamaño de la página
+%	#1	Orientacion de la página, puede ser 0 o 90. Por defecto es cero
+%	#2	Ancho de la página (cm)
+%	#3	Alto de la página (cm)
 \newcommand{\changepagesize}[3][]{
+	% \emptyvarerr{\changepagesize}{#1}{Orientacion de la pagina}
 	\emptyvarerr{\changepagesize}{#2}{Ancho de la pagina no definida}
 	\emptyvarerr{\changepagesize}{#3}{Altura de la pagina no definida}
 	\ifthenelse{\equal{\compilertype}{lualatex}}{
@@ -183,6 +262,11 @@
 		}
 	}
 }
+
+% Ofrece diferentes formatos de pagina
+% https://www.prepressure.com/library/paper-size
+%	#1	Indica la rotación, puede ser 0 o 90
+%	#2	Formato de la pagina
 \newcommand{\changepagesizeformat}[2][]{%
 	\emptyvarerr{\changepagesizeformat}{#2}{Formato de pagina no definido}
 	\ifthenelse{\equal{#2}{4A0}}{

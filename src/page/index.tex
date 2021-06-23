@@ -12,13 +12,22 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 \newcommand{\templateIndex}{
+	
+	% -------------------------------------------------------------------------
+	% Inicio índice, desactiva espacio entre objetos
 	\ifthenelse{\equal{\objectchaptermargin}{false}}{
 		\let\origaddvspace\addvspace
 		\renewcommand{\addvspace}[1]{}
 	}{}
+
+	% -------------------------------------------------------------------------
 	\clearpage
 	\begingroup
 	\sectionfont{\color{\indextitlecolor} \fontsizetitlei \styletitlei \selectfont}
+	
+	% -------------------------------------------------------------------------
+	% Salta de página si está imprimiendo por ambas caras
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
 		\checkoddpage
 		\ifoddpage
@@ -30,11 +39,19 @@
 			\addtocounter{page}{-1}
 		\fi}{
 	}
+	
+	% -------------------------------------------------------------------------
+	% Añade la entrada del índice a los marcadores del pdf
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\addindextobookmarks}{true}}{
 		\phantomsection
 		\pdfbookmark{\nomltcont}{contents}}{
 	}
 	\tocloftpagestyle{fancy}
+	
+	% -------------------------------------------------------------------------
+	% Configuración del punto en índice
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showdotaftersnum}{true}}{
 		\def\cftchapaftersnum {.}		
 		\def\cftsecaftersnum {.}
@@ -43,15 +60,31 @@
 		\def\cftsubsubsubsecaftersnum {.}
 		}{
 	}{}
+
+	% -------------------------------------------------------------------------
+	% Configuración carácter número de página
+	% -------------------------------------------------------------------------
 	\renewcommand{\cftdot}{\charnumpageindex}
-\def\cftfigaftersnum {\charafterobjectindex\enspace}
-\def\cftsubfigaftersnum {\charafterobjectindex\enspace}
-\def\cfttabaftersnum {\charafterobjectindex\enspace}
-\def\cftlstlistingaftersnum {\charafterobjectindex\enspace}
-\def\cftmyindexequationsaftersnum {\charafterobjectindex\enspace}
+	
+	% -------------------------------------------------------------------------
+	% Configuración del punto en número de objetos
+	% -------------------------------------------------------------------------
+	\def\cftfigaftersnum {\charafterobjectindex\enspace} % Figuras
+	\def\cftsubfigaftersnum {\charafterobjectindex\enspace} % Subfiguras
+	\def\cfttabaftersnum {\charafterobjectindex\enspace} % Tablas
+	\def\cftlstlistingaftersnum {\charafterobjectindex\enspace} % Códigos fuente
+	\def\cftmyindexequationsaftersnum {\charafterobjectindex\enspace} % Ecuaciones
+	
+	% -------------------------------------------------------------------------
+	% Desactiva los números de línea
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\nolinenumbers}{
 	}
+
+	% -------------------------------------------------------------------------
+	% Cambia tabulación índice de objetos para alinear con contenidos
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\objectindexindent}{true}}{
 		\setlength{\cfttabindent}{1.5em}
 		\setlength{\cftfigindent}{1.5em}
@@ -63,9 +96,15 @@
 		\setlength{\cftsubfigindent}{0em}
 		\def\cftlstlistingindent {0em}
 	}
+
+	% -------------------------------------------------------------------------
+	% Calcula tamaño del margen de los números en objetos del índice
+	% -------------------------------------------------------------------------
+	
+	% Código fuente
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
-\def\cftdefautnumwidthcode {3.0em}
-\def\cftdefaultnumwidthromancode {5.25em}
+		\def\cftdefautnumwidthcode {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromancode {5.25em} % Añade +0.5em para no overflow
 	}{
 	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
 		\def\cftdefautnumwidthcode {3.7em}
@@ -89,9 +128,11 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+
+	% Código fuente
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
-\def\cftdefautnumwidtheqn {3.0em}
-\def\cftdefaultnumwidthromaneqn {5.25em}
+		\def\cftdefautnumwidtheqn {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromaneqn {5.25em} % Añade +0.5em para no overflow
 	}{
 	\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{
 		\def\cftdefautnumwidtheqn {3.7em}
@@ -115,9 +156,11 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+	
+	% Figuras
 	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
-\def\cftdefautnumwidthfig {3.0em}
-\def\cftdefaultnumwidthromanfig {5.25em}
+		\def\cftdefautnumwidthfig {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromanfig {5.25em} % Añade +0.5em
 	}{
 	\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{
 		\def\cftdefautnumwidthfig {3.7em}
@@ -141,9 +184,11 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+	
+	% Tablas
 	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
-\def\cftdefautnumwidthtab {3.0em}
-\def\cftdefaultnumwidthromantab {5.25em}
+		\def\cftdefautnumwidthtab {3.0em} % Añade +0.7em
+		\def\cftdefaultnumwidthromantab {5.25em} % Añade +0.5em
 	}{
 	\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{
 		\def\cftdefautnumwidthtab {3.7em}
@@ -167,10 +212,15 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
+	
+	% Configuración identado de títulos de objetos después del número
 	\def\cftfignumwidth {\cftdefautnumwidth}
+	% \def\cftsubfignumwidth {\cftdefautnumwidth}
 	\def\cfttabnumwidth {\cftdefautnumwidth}
 	\def\cftlstlistingnumwidth {\cftdefautnumwidth}
-\ifthenelse{\equal{\captionnumcode}{arabic}}{
+	
+	% Código fuente
+	\ifthenelse{\equal{\captionnumcode}{arabic}}{ % No hace nada (default)
 		\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
 	}{
 		\ifthenelse{\equal{\captionnumcode}{roman}}{
@@ -182,7 +232,9 @@
 			\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
 		}}
 	}
-\ifthenelse{\equal{\captionnumequation}{arabic}}{
+
+	% Ecuaciones
+	\ifthenelse{\equal{\captionnumequation}{arabic}}{ % No hace nada (default)
 		\def\cftmyindexequationsnumwidth {\cftdefautnumwidtheqn}
 	}{
 		\ifthenelse{\equal{\captionnumequation}{roman}}{
@@ -194,7 +246,9 @@
 			\def\cftmyindexequationsnumwidth {\cftdefautnumwidtheqn}
 		}}
 	}
-\ifthenelse{\equal{\captionnumfigure}{arabic}}{
+	
+	% Figuras
+	\ifthenelse{\equal{\captionnumfigure}{arabic}}{ % No hace nada (default)
 		\def\cftfignumwidth {\cftdefautnumwidthfig}
 	}{
 		\ifthenelse{\equal{\captionnumfigure}{roman}}{
@@ -206,7 +260,9 @@
 				\def\cftfignumwidth {\cftdefautnumwidthfig}
 			}}
 	}
-\ifthenelse{\equal{\captionnumtable}{arabic}}{
+
+	% Tablas
+	\ifthenelse{\equal{\captionnumtable}{arabic}}{ % No hace nada (default)
 		\def\cfttabnumwidth {\cftdefautnumwidthtab}
 	}{
 		\ifthenelse{\equal{\captionnumtable}{roman}}{
@@ -218,7 +274,11 @@
 				\def\cfttabnumwidth {\cftdefautnumwidthtab}
 			}}
 	}
-\newcommand{\LoIf}{
+
+	% -------------------------------------------------------------------------
+	% Genera las funciones para los índices
+	% -------------------------------------------------------------------------
+	\newcommand{\LoIf}{ % Lista de figuras
 		\iftotalfigures
 			\ifthenelse{\equal{\indexnewpagef}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
@@ -229,7 +289,7 @@
 			\listoffigures
 		\fi
 	}
-\newcommand{\LoIt}{
+	\newcommand{\LoIt}{ % Tablas
 		\iftotaltables
 			\ifthenelse{\equal{\indexnewpaget}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
@@ -240,7 +300,7 @@
 			\listoftables
 		\fi
 	}
-\newcommand{\LoIc}{
+	\newcommand{\LoIc}{ % Códigos fuente (listings)
 		\iftotallstlistings
 			\ifthenelse{\equal{\indexnewpagec}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
@@ -251,7 +311,7 @@
 			\lstlistoflistings
 		\fi
 	}
-\newcommand{\LoIe}{
+	\newcommand{\LoIe}{ % Ecuaciones
 		\iftotaltemplateIndexEquationss
 			\ifthenelse{\equal{\indexnewpagee}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
@@ -262,14 +322,32 @@
 			\listofmyindexequations
 		\fi
 	}
+
+	% -------------------------------------------------------------------------
+	% Índice de contenidos
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showindexofcontents}{true}}{
 		\tableofcontents
 	}{}
+	
+	% -------------------------------------------------------------------------
+	% Índice de objetos
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\indexstyle}{ftc}}{\LoIf\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{}}{}{\ifthenelse{\equal{\indexstyle}{e}}{\LoIe}{\ifthenelse{\equal{\indexstyle}{c}}{\LoIc}{\ifthenelse{\equal{\indexstyle}{f}}{\LoIf}{\ifthenelse{\equal{\indexstyle}{t}}{\LoIt}{\ifthenelse{\equal{\indexstyle}{ec}}{\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{ce}}{\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{ef}}{\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{fe}}{\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{et}}{\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{te}}{\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{cf}}{\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{fc}}{\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ct}}{\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{tc}}{\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{ft}}{\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{tf}}{\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{ecf}}{\LoIe\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{efc}}{\LoIe\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{cef}}{\LoIc\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{cfe}}{\LoIc\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{fec}}{\LoIf\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{fce}}{\LoIf\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{ect}}{\LoIe\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{etc}}{\LoIe\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{cet}}{\LoIc\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{cte}}{\LoIc\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{tec}}{\LoIt\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{tce}}{\LoIt\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{eft}}{\LoIe\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{etf}}{\LoIe\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{fet}}{\LoIf\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{fte}}{\LoIf\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{tef}}{\LoIt\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{tfe}}{\LoIt\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{cft}}{\LoIc\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{ctf}}{\LoIc\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{fct}}{\LoIf\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{tcf}}{\LoIt\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{tfc}}{\LoIt\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ecft}}{\LoIe\LoIc\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{ectf}}{\LoIe\LoIc\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{efct}}{\LoIe\LoIf\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{eftc}}{\LoIe\LoIf\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{etcf}}{\LoIe\LoIt\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{etfc}}{\LoIe\LoIt\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ceft}}{\LoIc\LoIe\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{cetf}}{\LoIc\LoIe\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{cfet}}{\LoIc\LoIf\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{cfte}}{\LoIc\LoIf\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{ctef}}{\LoIc\LoIt\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{ctfe}}{\LoIc\LoIt\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{fect}}{\LoIf\LoIe\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{fetc}}{\LoIf\LoIe\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{fcet}}{\LoIf\LoIc\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{fcte}}{\LoIf\LoIc\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{ftec}}{\LoIf\LoIt\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{ftce}}{\LoIf\LoIt\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{tecf}}{\LoIt\LoIe\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{tefc}}{\LoIt\LoIe\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{tcef}}{\LoIt\LoIc\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{tcfe}}{\LoIt\LoIc\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{tfec}}{\LoIt\LoIf\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{tfce}}{\LoIt\LoIf\LoIc\LoIe}{\throwbadconfig{Estilo desconocido del indice}{\indexstyle}{ftc,,e,c,f,t,ec,ce,ef,fe,et,te,cf,fc,ct,tc,ft,tf,ecf,efc,cef,cfe,fec,fce,ect,etc,cet,cte,tec,tce,eft,etf,fet,fte,tef,tfe,cft,ctf,fct,tcf,tfc,ecft,ectf,efct,eftc,etcf,etfc,ceft,cetf,cfet,cfte,ctef,ctfe,fect,fetc,fcet,fcte,ftec,ftce,tecf,tefc,tcef,tcfe,tfec,tfce}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+	% -------------------------------------------------------------------------
+	% Termina el bloque de índice
+	% -------------------------------------------------------------------------
 	\endgroup
+	
+	% -------------------------------------------------------------------------
+	% Final del índice, reestablece el espacio
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\objectchaptermargin}{false}}{
 		\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
 	}{}
+
+	% -------------------------------------------------------------------------
 	\clearpage
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
 		\vfill
@@ -283,4 +361,5 @@
 		\else
 		\fi}{
 	}
+
 }

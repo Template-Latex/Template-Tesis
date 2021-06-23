@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.2.5 (20/06/2021)
+% Versión:      2.2.6 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -40,7 +40,7 @@
 \begingroup
 	\phantomsection
 \changeheadertitle{\nomltappendixsection}
-\def\GLOBALsectionalph{false}
+\def\GLOBALsectionalph {false}
 	\bookmarksetup{
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
@@ -53,14 +53,14 @@
 \pdfbookmark{\nameappendixsection}{appendix}
 		}
 		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
-\counterwithin{equation}{chapter}
-\counterwithin{figure}{chapter}
-\counterwithin{lstlisting}{chapter}
-\counterwithin{table}{chapter}
+			\counterwithin{equation}{chapter}
+			\counterwithin{figure}{chapter}
+			\counterwithin{lstlisting}{chapter}
+			\counterwithin{table}{chapter}
 		}
 	}{
 	\end{appendices}
-\def\GLOBALsectionalph{false}
+\def\GLOBALsectionalph {false}
 \bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}}
 	\bookmarksetup{
 		numbered={\cfgpdfsecnumbookmarks},
@@ -282,7 +282,7 @@
 		\insertblankpage}{
 	}
 }
-\newenvironment{images}[2][]{
+\newenvironment{images}[2][]{%
 	\def\envimageslabelvar {#1}
 	\def\envimagescaptionvar {#2}
 	\def\GLOBALenvimageinitialized {true}
@@ -297,6 +297,7 @@
 \ifthenelse{\equal{\envimagescaptionvar}{}}{
 			\vspace{\captionlessmarginimage cm}%
 		}{%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure}%
@@ -328,6 +329,7 @@
 \ifthenelse{\equal{\envimagescaptionvar}{}}{
 			\vspace{\captionlessmarginimage cm}%
 		}{%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%

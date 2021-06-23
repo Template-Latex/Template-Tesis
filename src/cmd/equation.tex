@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar ecuaciones
-% Versión:      2.2.5 (20/06/2021)
+% Versión:      2.2.6 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,48 +11,48 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
-\newcommand{\equationresize}[2]{
-	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
-	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
-	\resizebox{#1\linewidth}{!}{$#2$}
+\newcommand{\equationresize}[2]{%
+	\emptyvarerr{\equationresize}{#1}{Dimension no definida}%
+	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}%
+	\resizebox{#1\linewidth}{!}{$#2$}%
 }
-\newcommand{\insertindexequation}[3][]{
-	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}
-	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}
-	\vspace{\margineqnindextop cm}
-	\begin{align}
-		\text{#1} \ensuremath{#2}
-	\end{align}
-	\vspace{\margineqnindexbottom cm}
-	\myindexequations{#3}
-	\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-		\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}\textit{#3}\end{\captionfontsize}}
-	\end{changemargin}
-	\addtocounter{templateIndexEquations}{1}
+\newcommand{\insertindexequation}[3][]{%
+	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}%
+	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}%
+	\vspace{\margineqnindextop cm}%
+	\begin{align}%
+		\text{#1} \ensuremath{#2}%
+	\end{align}%
+	\vspace{\margineqnindexbottom cm}%
+	\myindexequations{#3}%
+	\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}%
+		\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}\textit{#3}\end{\captionfontsize}}%
+	\end{changemargin}%
+	\addtocounter{templateIndexEquations}{1}%
 }
-\newcommand{\insertequation}[2][]{
-	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}
-	\ifthenelse{\equal{\numberedequation}{true}}{
-		\vspace{\marginequationtop cm}
-		\begin{equation}
-			\text{#1} #2
-		\end{equation}
-		\vspace{\marginequationbottom cm}
-	}{
-		\ifx\hfuzz#1\hfuzz
-		\else
-			\throwwarning{Label invalido en ecuacion sin numero}
-		\fi
-		\insertequationanum{#2}
-	}
+\newcommand{\insertequation}[2][]{%
+	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}%
+	\ifthenelse{\equal{\numberedequation}{true}}{%
+		\vspace{\marginequationtop cm}%
+		\begin{equation}%
+\text{#1} #2
+		\end{equation}%
+		\vspace{\marginequationbottom cm}%
+	}{%
+\ifx\hfuzz#1\hfuzz
+\else
+			\throwwarning{Label invalido en ecuacion sin numero}%
+\fi
+		\insertequationanum{#2}%
+	}%
 }
-\newcommand{\insertequationanum}[1]{
-	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}
-	\vspace{\marginequationtop cm}
-	\begin{equation*}
-		\ensuremath{#1}
-	\end{equation*}
-	\vspace{\marginequationbottom cm}
+\newcommand{\insertequationanum}[1]{%
+	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}%
+	\vspace{\marginequationtop cm}%
+	\begin{equation*}%
+		\ensuremath{#1}%
+	\end{equation*}%
+	\vspace{\marginequationbottom cm}%
 }
 \newcommand{\insertequationleft}[2][]{
 	\emptyvarerr{\insertequationleft}{#2}{Ecuacion no definida}

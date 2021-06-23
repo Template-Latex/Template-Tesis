@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.2.5 (20/06/2021)
+% Versión:      2.2.6 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,22 +11,22 @@
 % Sitio web:    [https://latex.ppizarror.com/tesis]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
-\def\temaatratar{}
-\def\titulodelinforme{\titulotesis}
-\def\autordeldocumento{\autortesis}
-\def\addemptypagetwosides{false}
-\def\predocpageromannumber{true}
-\def\predocresetpagenumber{true}
-\def\indexnewpagec{false}
-\def\indexnewpagef{false}
-\def\indexnewpaget{false}
-\def\indexnewpagee{false}
-\def\showindex{true}
-\def\showindexofcontents{true}
-\def\codigodelcurso{}
-\def\nombredelcurso{}
-\def\fontsizetitlei{\fontsizetitle}
-\def\styletitlei{\styletitle}
+\def\temaatratar {}
+\def\titulodelinforme {\titulotesis}
+\def\autordeldocumento {\autortesis}
+\def\addemptypagetwosides {false}
+\def\predocpageromannumber {true}
+\def\predocresetpagenumber {true}
+\def\indexnewpagec {false}
+\def\indexnewpagef {false}
+\def\indexnewpaget {false}
+\def\indexnewpagee {false}
+\def\showindex {true}
+\def\showindexofcontents {true}
+\def\codigodelcurso {}
+\def\nombredelcurso {}
+\def\fontsizetitlei {\fontsizetitle}
+\def\styletitlei {\styletitle}
 \checkvardefined{\autordeldocumento}
 \checkvardefined{\departamentouniversidad}
 \checkvardefined{\imagendepartamentoparams}
@@ -103,15 +103,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={20/06/2021},
+		Template.Fecha={23/06/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.5-1-THS},
-		Template.Version.Hash={9E6AFDD402BF41ACBA5ADFCB7F2CC548},
-		Template.Version.Release={2.2.5},
+		Template.Version.Dev={2.2.6-THS},
+		Template.Version.Hash={29761CF41ADF95D519A66EA23D031C27},
+		Template.Version.Release={2.2.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -123,7 +123,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.2.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.2.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -360,7 +360,7 @@
 \hbadness=\maxdimen
 \vbadness=\maxdimen
 \makeatletter
-\def\Hv@scale{.95}
+\def\Hv@scale {.95}
 \makeatother
 \makeatletter
 \preto\tabular{\global\rownum=\z@}
@@ -397,9 +397,9 @@
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}}
 }
 \makeatletter
-	\def\toclevel@subsubsubsection{4}
-	\def\toclevel@paragraph{5}
-	\def\toclevel@subparagraph{6}
+	\def\toclevel@subsubsubsection {4}
+	\def\toclevel@paragraph {5}
+	\def\toclevel@subparagraph {6}
 	\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}
 		{3.25ex \@plus 1ex \@minus .2ex}
 		{-1em}
@@ -409,13 +409,13 @@
 		{-1em}
 		{\normalfont\normalsize\bfseries}}
 	\ifthenelse{\equal{\showdotaftersnum}{true}}{
-\def\l@subsubsubsection{\@dottedtocline{4}{7.83em}{4.15em}}
-		\def\l@paragraph{\@dottedtocline{5}{11.98em}{4.92em}}
-		\def\l@subparagraph{\@dottedtocline{6}{14.65em}{5.69em}}
+\def\l@subsubsubsection {\@dottedtocline{4}{7.83em}{4.15em}}
+		\def\l@paragraph {\@dottedtocline{5}{11.98em}{4.92em}}
+		\def\l@subparagraph {\@dottedtocline{6}{14.65em}{5.69em}}
 	}{
-		\def\l@subsubsubsection{\@dottedtocline{4}{6.97em}{4em}}
-		\def\l@paragraph{\@dottedtocline{5}{10.97em}{5em}}
-		\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+		\def\l@subsubsubsection {\@dottedtocline{4}{6.97em}{4em}}
+		\def\l@paragraph {\@dottedtocline{5}{10.97em}{5em}}
+		\def\l@subparagraph {\@dottedtocline{6}{14em}{6em}}
 	}
 \makeatother
 \setcounter{tocdepth}{\indexdepth}
@@ -518,8 +518,16 @@
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \let\SOURCEcaptionlrmargin\captionlrmargin
-\BeforeBeginEnvironment{multicols}{\def\captionlrmargin{\captionlrmarginmc}\def\GLOBALenvmulticol{true}\setcaptionmargincm{\captionlrmargin}}
-\AfterEndEnvironment{multicols}{\def\captionlrmargin{\SOURCEcaptionlrmargin}\def\GLOBALenvmulticol{false}\setcaptionmargincm{\captionlrmargin}}
+\BeforeBeginEnvironment{multicols}{%
+	\def\captionlrmargin {\captionlrmarginmc}%
+	\def\GLOBALenvmulticol {true}%
+	\setcaptionmargincm{\captionlrmargin}%
+}
+\AfterEndEnvironment{multicols}{%
+	\def\captionlrmargin {\SOURCEcaptionlrmargin}%
+	\def\GLOBALenvmulticol {false}%
+	\setcaptionmargincm{\captionlrmargin}%
+}
 \ifthenelse{\equal{\chapterstyle}{style1}}{
 }{
 \ifthenelse{\equal{\chapterstyle}{style2}}{

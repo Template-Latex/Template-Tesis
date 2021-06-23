@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      2.2.5 (20/06/2021)
+% Versión:      2.2.6 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -17,11 +17,12 @@
 \let\counterwithin\relax
 \let\underbar\relax
 \let\underline\relax
-\def\unaccentedoperators{}
-\def\decimalpoint{}
-\def\bibname{}
+\def\unaccentedoperators {}
+\def\decimalpoint {}
+\def\bibname {}
 \makeatletter
-\def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
+\def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}
+\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
 \makeatother
 \usepackage{ifthen}
 \ifthenelse{\equal{\usespanishbabel}{true}}{

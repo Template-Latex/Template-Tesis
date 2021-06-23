@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.2.5 (20/06/2021)
+% Versión:      2.2.6 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -15,16 +15,40 @@
 	\addimageboxed[#1]{#2}{#3}{0}{#4}%
 }
 \newcommand{\addimageboxed}[5][]{%
-	\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#4 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#5]{\fbox{\includegraphics[#3]{#2}}#1}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}%
+\checkonlyonenvimage
+\begingroup
+	\setlength{\fboxsep}{0 pt}%
+	\setlength{\fboxrule}{#4 pt}%
+	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
+		\hspace{\marginimagemultright cm}%
+		\hspace{-0.125cm}%
+	}{}%
+	\subfloat[#5]{%
+		\fbox{\includegraphics[#3]{#2}}#1}%
+\endgroup
+	\def\GLOBALenvimageadded {true}%
 }
 \newcommand{\addimageanum}[2]{%
 	\addimageboxedanum{#1}{#2}{0}%
 }
 \newcommand{\addimageboxedanum}[3]{%
-	\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\fbox{\includegraphics[#2]{#1}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}%
+\checkonlyonenvimage
+\begingroup
+	\setlength{\fboxsep}{0 pt}%
+	\setlength{\fboxrule}{#3 pt}%
+	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
+		\hspace{\marginimagemultright cm}%
+		\hspace{-0.125cm}%
+	}{}%
+	\fbox{\includegraphics[#2]{#1}}%
+\endgroup
+	\def\GLOBALenvimageadded {true}%
 }
 \newcommand{\imagesnewline}{%
-\checkonlyonenvimage\def\GLOBALenvimageadded {false}\vspace{\marginimagemultbottom cm}\linebreak\noindent
+\checkonlyonenvimage
+	\def\GLOBALenvimageadded {false}%
+	\vspace{\marginimagemultbottom cm}%
+\linebreak\noindent
 }
 \newcommand{\imageshspace}[1]{%
 	\checkonlyonenvimage\def\GLOBALenvimageadded {false}\hspace{#1}%
@@ -36,24 +60,25 @@
 	\insertimageboxed[#1]{#2}{#3}{0}{#4}%
 }
 \newcommand{\insertimageboxed}[5][]{%
-	\emptyvarerr{\insertimageboxed}{#2}{Direccion de la imagen no definida}
-	\emptyvarerr{\insertimageboxed}{#3}{Parametros de la imagen no definidos}
-	\emptyvarerr{\insertimageboxed}{#4}{Ancho de la linea no definido}
-	\checkoutsideenvimage
-	\vspace{\marginimagetop cm}
+	\emptyvarerr{\insertimageboxed}{#2}{Direccion de la imagen no definida}%
+	\emptyvarerr{\insertimageboxed}{#3}{Parametros de la imagen no definidos}%
+	\emptyvarerr{\insertimageboxed}{#4}{Ancho de la linea no definido}%
+\checkoutsideenvimage
+	\vspace{\marginimagetop cm}%
 \begin{figure}[H]
-		\thisfloatpagestyle{fancy}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+		\thisfloatpagestyle{fancy}%
+\begingroup
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+\centering
 			\fbox{\includegraphics[#3]{#2}}%
-		\endgroup
-		\ifx\hfuzz#5\hfuzz
+\endgroup
+\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
-		\else
-			\hspace{0cm}
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
+\else
+			\hspace{0cm}%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
 		\fi
 	\end{figure}
 	\vspace{\marginimagebottom cm}
@@ -126,6 +151,7 @@
 			\vspace{\captionlessmarginimage cm}
 		\else
 			\hspace{0cm}
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{figure*}
@@ -164,7 +190,17 @@
 	\inserttableimageboxed{#1}{#2}{0}%
 }
 \newcommand{\inserttableimageboxed}[3]{%
-\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}\checkoutsideenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\raisebox{-1\totalheight}{\fbox{\includegraphics[#2]{#1}}}\endgroup\resetindexcaption
+	\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}%
+	\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}%
+	\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}%
+\checkoutsideenvimage
+\begingroup
+	\setlength{\fboxsep}{0 pt}%
+	\setlength{\fboxrule}{#3 pt}%
+	\raisebox{-1\totalheight}{%
+		\fbox{\includegraphics[#2]{#1}}}%
+\endgroup
+\resetindexcaption
 }
 \newcommand{\insertimageleft}[4][]{%
 	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}%
@@ -191,6 +227,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
@@ -222,6 +259,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -253,6 +291,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
@@ -285,6 +324,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -320,6 +360,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -353,6 +394,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}
@@ -388,6 +430,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -421,6 +464,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}

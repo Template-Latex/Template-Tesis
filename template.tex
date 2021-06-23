@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.2.5 (20/06/2021)
+% Versión:      2.2.6 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -30,13 +30,14 @@
 \let\underline\relax
 
 % Si se desactiva el idioma
-\def\unaccentedoperators{}
-\def\decimalpoint{}
-\def\bibname{}
+\def\unaccentedoperators {}
+\def\decimalpoint {}
+\def\bibname {}
 
 % Parche de sectsty.sty
 \makeatletter
-\def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
+\def\underline#1{\relax\ifmmode\@@underline{#1}\else $\@@underline{\hbox{#1}}\m@th$\relax\fi}
+\def\underbar#1{\underline{\sbox\tw@{#1}\dp\tw@\z@\box\tw@}}
 \makeatother
 
 % -----------------------------------------------------------------------------
@@ -662,11 +663,11 @@
 
 % Contador global de objetos
 \newcounter{templateEquations}      % Ecuaciones
-\newcounter{templateIndexEquations} % Ecuaciones en el índice
 \newcounter{templateFigures}        % Figuras
+\newcounter{templateIndexEquations} % Ecuaciones en el índice
+\newcounter{templateListings}       % Códigos fuente
 \newcounter{templatePageCounter}    % Administra números de páginas
 \newcounter{templateTables}         % Tablas
-\newcounter{templateListings}       % Códigos fuente
 
 % Contador nivel de bookmarks marcadores
 \newcounter{templateBookmarksLevelPrev}
@@ -679,52 +680,52 @@
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
-\newcommand{\throwerror}[2]{
-	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}
+\newcommand{\throwerror}[2]{%
+	\errmessage{LaTeX Error: \noexpand#1 #2 (linea \the\inputlineno)}%
 	\stop
 }
 
 % Lanza un mensaje de advertencia
 %	#1	Mensaje
-\newcommand{\throwwarning}[1]{
-	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}
+\newcommand{\throwwarning}[1]{%
+	\errmessage{LaTeX Warning: #1 (linea \the\inputlineno)}%
 }
 
 % Lanza un mensaje de error indicando mala configuración dentro de begin{document}
 %	#1	Mensaje de error
 % 	#2	Configuración usada
 %	#3	Valores esperados
-\newcommand{\throwbadconfigondoc}[3]{
-	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}
+\newcommand{\throwbadconfigondoc}[3]{%
+	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}%
 	\stop
 }
 
 % Comprueba si una variable está definida
 %	#1	Variable
-\newcommand{\checkvardefined}[1]{
-	\ifthenelse{\isundefined{#1}}{
-		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
-		\stop}{
-	}
+\newcommand{\checkvardefined}[1]{%
+	\ifthenelse{\isundefined{#1}}{%
+		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}%
+		\stop}{%
+	}%
 }
 
 % Escribe un mensaje en la consola
 %	#1	Mensaje
-\newcommand{\coretemplatemessage}[1]{
-	\message{Template: #1}
+\newcommand{\coretemplatemessage}[1]{%
+	\message{Template: #1}%
 }
 
 % Comprueba si una variable está definida
 %	#1	Variable
 %	#2	Mensaje
-\newcommand{\checkextravarexist}[2]{
-	\ifthenelse{\isundefined{#1}}{
-		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}
-		\ifx\hfuzz#2\hfuzz
-			\errmessage{LaTeX Warning: Defina la variable en el bloque de INFORMACION DEL DOCUMENTO al comienzo del archivo principal del template}
-		\else
-			\errmessage{LaTeX Warning: #2}
-		\fi}{
+\newcommand{\checkextravarexist}[2]{%
+	\ifthenelse{\isundefined{#1}}{%
+		\errmessage{LaTeX Warning: Variable \noexpand#1 no definida}%
+		\ifx\hfuzz#2\hfuzz%
+			\errmessage{LaTeX Warning: Defina la variable en el bloque de INFORMACION DEL DOCUMENTO al comienzo del archivo principal del template}%
+		\else%
+			\errmessage{LaTeX Warning: #2}%
+		\fi}{%
 	}
 }
 
@@ -732,9 +733,9 @@
 % 	#1	Función del error
 %	#2	Variable
 %	#3	Mensaje
-\newcommand{\emptyvarerr}[3]{
-	\ifx\hfuzz#2\hfuzz
-		\errmessage{LaTeX Warning: \noexpand#1 #3 (linea \the\inputlineno)}
+\newcommand{\emptyvarerr}[3]{%
+	\ifx\hfuzz#2\hfuzz%
+		\errmessage{LaTeX Warning: \noexpand#1 #3 (linea \the\inputlineno)}%
 	\fi
 }
 
@@ -759,42 +760,65 @@
 
 % Define el caption del índice
 % 	#1	Título del caption
-\newcommand{\setindexcaption}[1]{\def\GLOBALcaptiondefn{#1}}
-%\newcommand{\setindexcaptionimages}[1]{\def\GLOBALcaptiondefnimages{#1}}
-%\newcommand{\setindexcaptionsourcecode}[1]{\def\GLOBALcaptiondefnsrc{#1}}
+\newcommand{\setindexcaption}[1]{\def\GLOBALcaptiondefn {#1}}
+%\newcommand{\setindexcaptionimages}[1]{\def\GLOBALcaptiondefnimages {#1}}
+%\newcommand{\setindexcaptionsourcecode}[1]{\def\GLOBALcaptiondefnsrc {#1}}
 
 % Resetea los caption
-\newcommand{\resetindexcaption}{\def\GLOBALcaptiondefn{EMPTY-VAR}}
-%\newcommand{\resetindexcaptionimages}{\def\GLOBALcaptiondefnimages{EMPTY-VAR}}
-%\newcommand{\resetindexcaptionsourcecode}{\def\GLOBALcaptiondefnsrc{EMPTY-VAR}}
+\newcommand{\resetindexcaption}{\def\GLOBALcaptiondefn {EMPTY-VAR}}
+%\newcommand{\resetindexcaptionimages}{\def\GLOBALcaptiondefnimages {EMPTY-VAR}}
+%\newcommand{\resetindexcaptionsourcecode}{\def\GLOBALcaptiondefnsrc {EMPTY-VAR}}
 
 % Cambia los márgenes del documento
 %	#1	Margen izquierdo
 %	#2	Margen derecho
-\newcommand{\changemargin}[2]{
-	\emptyvarerr{\changemargin}{#1}{Margen izquierdo no definido}
-	\emptyvarerr{\changemargin}{#2}{Margen derecho no definido}
-	\list{}{\rightmargin#2\leftmargin#1}\item[]
+\newcommand{\changemargin}[2]{%
+	\emptyvarerr{\changemargin}{#1}{Margen izquierdo no definido}%
+	\emptyvarerr{\changemargin}{#2}{Margen derecho no definido}%
+	\list{}{\rightmargin#2\leftmargin#1}\item[]%
 }
 \let\endchangemargin=\endlist
 
 % Chequea que las funciones sólo puedan usarse en el entorno images
-\newcommand{\checkonlyonenvimage}{\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{}{\throwwarning{Funciones \noexpand\addimage o \noexpand\addimageboxed no pueden usarse fuera del entorno \noexpand\images}\stop}}
+\newcommand{\checkonlyonenvimage}{%
+	\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{}{%
+		\throwwarning{Funciones \noexpand\addimage o \noexpand\addimageboxed no pueden usarse fuera del entorno \noexpand\images}\stop%
+	}%
+}
 
 % Chequea que las funciones sólo puedan usarse fuera del entorno images
-\newcommand{\checkoutsideenvimage}{
-	\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{
-		\throwwarning{Esta funcion solo puede usarse fuera del entorno \noexpand\images}
-		\stop}{
-	}
+\newcommand{\checkoutsideenvimage}{%
+	\ifthenelse{\equal{\GLOBALenvimageinitialized}{true}}{%
+		\throwwarning{Esta funcion solo puede usarse fuera del entorno \noexpand\images}%
+		\stop}{%
+	}%
 }
 
 % Chequea que las funciones puedan usarse solo en el entorno multicol
-\newcommand{\checkinsidemulticol}{
-	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{
-		\throwwarning{Esta funcion solo puede usarse dentro de multicols}
-		\stop}{
+\newcommand{\checkinsidemulticol}{%
+	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{%
+		\throwwarning{Esta funcion solo puede usarse dentro de multicols}%
+		\stop}{%
 	}
+}
+
+% Verifica que una variable sea del estilo "true" o "false"
+\newcommand{\corecheckbooleanvar}[1]{%
+	\emptyvarerr{\corecheckbooleanvar}{#1}{Variable no definida}%
+	\ifthenelse{\equal{#1}{true}}{}{%
+		\ifthenelse{\equal{#1}{false}}{}{%
+			\throwwarning{Variable debe ser true o false}\stop}%
+	}%
+}
+
+% Centra verticalmente un texto
+%	#1	Texto a centrar
+\newcommand{\verticallycentertext}[1]{%
+	\emptyvarerr{\verticallycentertext}{#1}{Centra un texto verticalmente}%
+	\topskip0pt%
+	\vspace*{\fill}%
+	#1%
+	\vspace*{\fill}%
 }
 
 % Agrega una carpeta al path de imágenes
@@ -805,22 +829,22 @@
 
 % Verifica que un tamaño de fuente sea correcto
 %	#1	Tamaño de fuente
-\newcommand{\corecheckfontsize}[1]{
-	\ifthenelse{\equal{#1}{normalsize}}{}{
-	\ifthenelse{\equal{#1}{small}}{}{
-	\ifthenelse{\equal{#1}{large}}{}{
-	\ifthenelse{\equal{#1}{Large}}{}{
-	\ifthenelse{\equal{#1}{LARGE}}{}{
-	\ifthenelse{\equal{#1}{huge}}{}{
-	\ifthenelse{\equal{#1}{Huge}}{}{
-	\ifthenelse{\equal{#1}{HUGE}}{}{
-	\ifthenelse{\equal{#1}{footnotesize}}{}{
-	\ifthenelse{\equal{#1}{scriptsize}}{}{
-	\ifthenelse{\equal{#1}{tiny}}{}{
-		\errmessage{LaTeX Warning: Tamano de fuente incorrecto (\noexpand #1= #1). Valores esperados: tiny,scriptsize,footnotesize,small,normalisize,large,Large,LARGE,huge,Huge,HUGE}
-		\stop
-		}}}}}}}}}}
-	}
+\newcommand{\corecheckfontsize}[1]{%
+	\ifthenelse{\equal{#1}{normalsize}}{}{%
+	\ifthenelse{\equal{#1}{small}}{}{%
+	\ifthenelse{\equal{#1}{large}}{}{%
+	\ifthenelse{\equal{#1}{Large}}{}{%
+	\ifthenelse{\equal{#1}{LARGE}}{}{%
+	\ifthenelse{\equal{#1}{huge}}{}{%
+	\ifthenelse{\equal{#1}{Huge}}{}{%
+	\ifthenelse{\equal{#1}{HUGE}}{}{%
+	\ifthenelse{\equal{#1}{footnotesize}}{}{%
+	\ifthenelse{\equal{#1}{scriptsize}}{}{%
+	\ifthenelse{\equal{#1}{tiny}}{}{%
+		\errmessage{LaTeX Warning: Tamano de fuente incorrecto (\noexpand #1= #1). Valores esperados: tiny,scriptsize,footnotesize,small,normalisize,large,Large,LARGE,huge,Huge,HUGE}%
+		\stop%
+		}}}}}}}}}}%
+	}%
 }
 
 % Insertar sub-índice, a_b
@@ -1074,11 +1098,15 @@
 % Función \tilde{} pero que encierra todo el texto
 %	#1 	Elemento
 \makeatletter
-\def\longtilde#1{\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
-				\sortoftildefill\crcr\noalign{\kern3\p@\nointerlineskip}%
-				$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
-\def\sortoftildefill{$\m@th \setbox\z@\hbox{$\braceld$}%
-	\braceld\leaders\vrule \@height\ht\z@ \@depth\z@\hfill\braceru$}
+\def\longtilde#1{%
+	\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
+	\sortoftildefill\crcr\noalign{\kern3\p@\nointerlineskip}%
+	$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits%
+}
+\def\sortoftildefill {%
+	$\m@th \setbox\z@\hbox{$\braceld$}%
+	\braceld\leaders\vrule \@height\ht\z@ \@depth\z@\hfill\braceru$%
+}
 \makeatother
 
 % Definición de letras
@@ -1162,66 +1190,66 @@
 
 % Definición de teoremas y lemas
 \makeatletter
-	\renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
+	\renewenvironment{proof}[1][\proofname]{\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 \makeatother
 
 % Redimensiona una ecuación en linewidth
 % 	#1	Tamaño del nuevo objeto (En linewidth)
 %	#2	Ecuación a redimensionar
-\newcommand{\equationresize}[2]{
-	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
-	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
-	\resizebox{#1\linewidth}{!}{$#2$}
+\newcommand{\equationresize}[2]{%
+	\emptyvarerr{\equationresize}{#1}{Dimension no definida}%
+	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}%
+	\resizebox{#1\linewidth}{!}{$#2$}%
 }
 
 % Insertar una ecuación en el índice
 % 	#1	Label (opcional)
 %	#2	Ecuación
 %	#3	Título de la ecuación
-\newcommand{\insertindexequation}[3][]{
-	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}
-	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}
-	\vspace{\margineqnindextop cm}
-	\begin{align}
-		\text{#1} \ensuremath{#2}
-	\end{align}
-	\vspace{\margineqnindexbottom cm}
-	\myindexequations{#3}
-	\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-		\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}\textit{#3}\end{\captionfontsize}}
-	\end{changemargin}
-	\addtocounter{templateIndexEquations}{1}
+\newcommand{\insertindexequation}[3][]{%
+	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}%
+	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}%
+	\vspace{\margineqnindextop cm}%
+	\begin{align}%
+		\text{#1} \ensuremath{#2}%
+	\end{align}%
+	\vspace{\margineqnindexbottom cm}%
+	\myindexequations{#3}%
+	\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}%
+		\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}\textit{#3}\end{\captionfontsize}}%
+	\end{changemargin}%
+	\addtocounter{templateIndexEquations}{1}%
 }
 
 % Insertar una ecuación
 % 	#1	Label (opcional)
 %	#2	Ecuación
-\newcommand{\insertequation}[2][]{
-	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}
-	\ifthenelse{\equal{\numberedequation}{true}}{
-		\vspace{\marginequationtop cm}
-		\begin{equation}
-			\text{#1} #2
-		\end{equation}
-		\vspace{\marginequationbottom cm}
-	}{
-		\ifx\hfuzz#1\hfuzz
-		\else
-			\throwwarning{Label invalido en ecuacion sin numero}
-		\fi
-		\insertequationanum{#2}
-	}
+\newcommand{\insertequation}[2][]{%
+	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}%
+	\ifthenelse{\equal{\numberedequation}{true}}{%
+		\vspace{\marginequationtop cm}%
+		\begin{equation}%
+			\text{#1} #2%
+		\end{equation}%
+		\vspace{\marginequationbottom cm}%
+	}{%
+		\ifx\hfuzz#1\hfuzz%
+		\else%
+			\throwwarning{Label invalido en ecuacion sin numero}%
+		\fi%
+		\insertequationanum{#2}%
+	}%
 }
 
 % Insertar una ecuación sin número
 %	#1	Ecuación
-\newcommand{\insertequationanum}[1]{
-	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}
-	\vspace{\marginequationtop cm}
-	\begin{equation*}
-		\ensuremath{#1}
-	\end{equation*}
-	\vspace{\marginequationbottom cm}
+\newcommand{\insertequationanum}[1]{%
+	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}%
+	\vspace{\marginequationtop cm}%
+	\begin{equation*}%
+		\ensuremath{#1}%
+	\end{equation*}%
+	\vspace{\marginequationbottom cm}%
 }
 
 % Insertar una ecuación alineada a la izquierda
@@ -1679,7 +1707,18 @@
 %	#4	Ancho de la línea (en pt)
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\addimageboxed}[5][]{%
-	\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#4 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#5]{\fbox{\includegraphics[#3]{#2}}#1}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}%
+	\checkonlyonenvimage%
+	\begingroup%
+	\setlength{\fboxsep}{0 pt}%
+	\setlength{\fboxrule}{#4 pt}%
+	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
+		\hspace{\marginimagemultright cm}%
+		\hspace{-0.125cm}%
+	}{}%
+	\subfloat[#5]{%
+		\fbox{\includegraphics[#3]{#2}}#1}%
+	\endgroup%
+	\def\GLOBALenvimageadded {true}%
 }
 
 % Añade una imagen a un env "image" con borde sin leyenda
@@ -1694,12 +1733,25 @@
 %	#2	Parámetros de la imagen
 %	#3	Ancho de la línea (en pt)
 \newcommand{\addimageboxedanum}[3]{%
-	\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\fbox{\includegraphics[#2]{#1}}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}%
+	\checkonlyonenvimage%
+	\begingroup%
+	\setlength{\fboxsep}{0 pt}%
+	\setlength{\fboxrule}{#3 pt}%
+	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
+		\hspace{\marginimagemultright cm}%
+		\hspace{-0.125cm}%
+	}{}%
+	\fbox{\includegraphics[#2]{#1}}%
+	\endgroup%
+	\def\GLOBALenvimageadded {true}%
 }
 
 % Añade un salto de línea en las imágenes
 \newcommand{\imagesnewline}{%
-	\checkonlyonenvimage\def\GLOBALenvimageadded {false}\vspace{\marginimagemultbottom cm}\linebreak\noindent%
+	\checkonlyonenvimage%
+	\def\GLOBALenvimageadded {false}%
+	\vspace{\marginimagemultbottom cm}%
+	\linebreak\noindent%
 }
 
 % Agrega un espacio horizontal a las imágenes
@@ -1730,24 +1782,25 @@
 %	#4	Ancho de la línea (en pt)
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageboxed}[5][]{%
-	\emptyvarerr{\insertimageboxed}{#2}{Direccion de la imagen no definida}
-	\emptyvarerr{\insertimageboxed}{#3}{Parametros de la imagen no definidos}
-	\emptyvarerr{\insertimageboxed}{#4}{Ancho de la linea no definido}
-	\checkoutsideenvimage
-	\vspace{\marginimagetop cm}
+	\emptyvarerr{\insertimageboxed}{#2}{Direccion de la imagen no definida}%
+	\emptyvarerr{\insertimageboxed}{#3}{Parametros de la imagen no definidos}%
+	\emptyvarerr{\insertimageboxed}{#4}{Ancho de la linea no definido}%
+	\checkoutsideenvimage%
+	\vspace{\marginimagetop cm}%
 	\begin{figure}[H]%
-		\thisfloatpagestyle{fancy}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+		\thisfloatpagestyle{fancy}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+			\centering%
 			\fbox{\includegraphics[#3]{#2}}%
-		\endgroup
-		\ifx\hfuzz#5\hfuzz
+		\endgroup%
+		\ifx\hfuzz#5\hfuzz%
 			\vspace{\captionlessmarginimage cm}
-		\else
-			\hspace{0cm}
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
+		\else%
+			\hspace{0cm}%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
 		\fi
 	\end{figure}
 	\vspace{\marginimagebottom cm}
@@ -1835,6 +1888,7 @@
 			\vspace{\captionlessmarginimage cm}
 		\else
 			\hspace{0cm}
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{figure*}
@@ -1882,7 +1936,17 @@
 %	#2	Parámetros de la imagen
 %	#3	Ancho de la línea (en pt)
 \newcommand{\inserttableimageboxed}[3]{%
-	\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}\checkoutsideenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#3 pt}\raisebox{-1\totalheight}{\fbox{\includegraphics[#2]{#1}}}\endgroup\resetindexcaption%
+	\emptyvarerr{\inserttableimageboxed}{#1}{Direccion de la imagen no definida}%
+	\emptyvarerr{\inserttableimageboxed}{#2}{Parametros de la imagen no definidos}%
+	\emptyvarerr{\inserttableimageboxed}{#3}{Ancho de la linea no definido}%
+	\checkoutsideenvimage%
+	\begingroup%
+	\setlength{\fboxsep}{0 pt}%
+	\setlength{\fboxrule}{#3 pt}%
+	\raisebox{-1\totalheight}{%
+		\fbox{\includegraphics[#2]{#1}}}%
+	\endgroup%
+	\resetindexcaption%
 }
 
 % Insertar una imagen a la izquierda, escalada, ancho fijo
@@ -1923,6 +1987,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
@@ -1970,6 +2035,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -2015,6 +2081,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
@@ -2063,6 +2130,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -2114,6 +2182,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -2165,6 +2234,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}
@@ -2216,6 +2286,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
@@ -2267,6 +2338,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}
@@ -2352,7 +2424,7 @@
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
-	\def\GLOBALchapternumenabled{true}
+	\def\GLOBALchapternumenabled {true}
 	\coreintializetitlenumbering
 }{}{}
 
@@ -2379,8 +2451,8 @@
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
-	\def\GLOBALsectionanumenabled{false}
-	\def\GLOBALsubsectionanumenabled{false}
+	\def\GLOBALsectionanumenabled {false}
+	\def\GLOBALsubsectionanumenabled {false}
 	\coreintializetitlenumbering
 }{}{}
 
@@ -2407,7 +2479,7 @@
 		\addtocounter{templateTables}{\value{table}}
 		\setcounter{table}{0}
 	}{}
-	\def\GLOBALsubsectionanumenabled{false}
+	\def\GLOBALsubsectionanumenabled {false}
 	\coreintializetitlenumbering
 }{}{}
 
@@ -2474,7 +2546,7 @@
 	\changeheadertitle{#1}
 	\setcounter{subsection}{0}
 	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
+	\def\GLOBALsectionanumenabled {true}
 }
 
 % Insertar un título sin número y sin indexar
@@ -2488,7 +2560,7 @@
 	\changeheadertitle{#1}
 	\setcounter{subsection}{0}
 	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
+	\def\GLOBALsectionanumenabled {true}
 }
 
 % Insertar un título sin número sin cambiar el título del header
@@ -2500,7 +2572,7 @@
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}
 	\setcounter{subsection}{0}
 	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
+	\def\GLOBALsectionanumenabled {true}
 }
 
 % Insertar un título sin número, sin indexar y sin cambiar el título del header
@@ -2511,7 +2583,7 @@
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}
 	\setcounter{subsection}{0}
 	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
+	\def\GLOBALsectionanumenabled {true}
 }
 
 % Insertar un subtítulo sin número
@@ -2523,7 +2595,7 @@
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}
 	\setcounter{subsubsection}{0}
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
-	\def\GLOBALsubsectionanumenabled{true}
+	\def\GLOBALsubsectionanumenabled {true}
 }
 
 % Insertar un subtítulo sin número y sin indexar
@@ -2534,7 +2606,7 @@
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}
 	\setcounter{subsubsection}{0}
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
-	\def\GLOBALsubsectionanumenabled{true}
+	\def\GLOBALsubsectionanumenabled {true}
 }
 
 % Insertar un sub-subtítulo sin número
@@ -2677,9 +2749,9 @@
 % 	#1	Tamaño del nuevo objeto (En linewidth)
 %	#2	Objeto a redimensionar
 \newcommand{\itemresize}[2]{%
-	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}
-	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}
-	\resizebox{#1\linewidth}{!}{#2}
+	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}%
+	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}%
+	\resizebox{#1\linewidth}{!}{#2}%
 }
 
 % Crea una página vacía sin header o footer
@@ -2705,14 +2777,14 @@
 %	#1	Parámetros (opcional)
 %	#2	Nombre del archivo pdf
 \newcommand{\includehfpdf}[2][]{%
-	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}
+	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}%
 }
 
 % Añade un archivo pdf con el header
 %	#1	Parámetros (opcional)
 %	#2	Nombre del archivo pdf
 \newcommand{\includefullhfpdf}[2][]{%
-	\includepdf[pages=-,pagecommand={\pagestyle{fancy}},#1]{#2}
+	\includepdf[pages=-,pagecommand={\pagestyle{fancy}},#1]{#2}%
 }
 
 % Inserta un texto entre comillas
@@ -2811,7 +2883,7 @@
 	}
 
 	% Actualiza el índice previo
-	\def\GLOBALtablerowcolorindex{#1}
+	\def\GLOBALtablerowcolorindex {#1}
 }
 
 % Alterna los colores de las tablas a la última ejecución
@@ -2865,9 +2937,9 @@
 % Alterna los colores de las filas de las tablas
 \newcommand{\switchtablerowcolors}{
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
-		\def\GLOBALtablerowcolorswitch{true}
+		\def\GLOBALtablerowcolorswitch {true}
 	}{
-		\def\GLOBALtablerowcolorswitch{false}
+		\def\GLOBALtablerowcolorswitch {false}
 	}
 	\settablerowcolorslast
 }
@@ -3015,7 +3087,7 @@
 	% \clearpage
 	\phantomsection
 	\changeheadertitle{\nomltappendixsection} % Cambia el nombre del header
-	\def\GLOBALsectionalph{false} % Modifica formato de secciones con sección alph
+	\def\GLOBALsectionalph {false} % Modifica formato de secciones con sección alph
 	\bookmarksetup{
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
@@ -3031,14 +3103,14 @@
 		% \setcounter{secnumdepth}{4}
 		% \setcounter{tocdepth}{4}
 		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
-\counterwithin{equation}{chapter}
-\counterwithin{figure}{chapter}
-\counterwithin{lstlisting}{chapter}
-\counterwithin{table}{chapter}
+			\counterwithin{equation}{chapter}
+			\counterwithin{figure}{chapter}
+			\counterwithin{lstlisting}{chapter}
+			\counterwithin{table}{chapter}
 		}
 	}{
 	\end{appendices}
-	\def\GLOBALsectionalph{false} % Desactiva formato de secciones con sección alph
+	\def\GLOBALsectionalph {false} % Desactiva formato de secciones con sección alph
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Reestablece índice marcador
 	\bookmarksetup{
 		numbered={\cfgpdfsecnumbookmarks},
@@ -3280,12 +3352,14 @@
 	}
 	% \setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 }
-% Crea una sección de resumen
+
+% Llama al entorno de resumen
 \newenvironment{resumen}{
 	\begin{resumenenv}{\tablaresumen}{\titulotesis}{\nameabstract}{abstractbookmark}
 	}{
 	\end{resumenenv}
 }
+
 % Crea una sección de dedicatoria
 \newenvironment{dedicatoria}{
 	\clearpage\null
@@ -3303,6 +3377,7 @@
 		\insertblankpage}{
 	}
 }
+
 % Crea una sección de agradecimientos
 \newenvironment{agradecimientos}{
 	\clearpage
@@ -3319,9 +3394,10 @@
 	}
 }
 
+% Crea una sección de imágenes múltiples
 %	#1	Label (opcional)
 %	#2	Caption
-\newenvironment{images}[2][]{
+\newenvironment{images}[2][]{%
 	% Modifica globales
 	\def\envimageslabelvar {#1}
 	\def\envimagescaptionvar {#2}
@@ -3341,6 +3417,7 @@
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}%
 		}{%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure}%
@@ -3386,6 +3463,7 @@
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}%
 		}{%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%
@@ -4298,61 +4376,61 @@
 \makeatletter
 \def\greek#1{\expandafter\@greek\csname c@#1\endcsname}
 \def\Greek#1{\expandafter\@Greek\csname c@#1\endcsname}
-\def\@greek#1{
-	\ifcase#1
-		\or $\alpha$
-		\or $\beta$
-		\or $\gamma$
-		\or $\delta$
-		\or $\epsilon$
-		\or $\zeta$
-		\or $\eta$
-		\or $\theta$
-		\or $\iota$
-		\or $\kappa$
-		\or $\lambda$
-		\or $\mu$
-		\or $\nu$
-		\or $\xi$
-		\or $o$
-		\or $\pi$
-		\or $\rho$
-		\or $\sigma$
-		\or $\tau$
-		\or $\upsilon$
-		\or $\phi$
-		\or $\chi$
-		\or $\psi$
-		\or $\omega$
-	\fi
+\def\@greek#1{%
+	\ifcase#1%
+		\or $\alpha$%
+		\or $\beta$%
+		\or $\gamma$%
+		\or $\delta$%
+		\or $\epsilon$%
+		\or $\zeta$%
+		\or $\eta$%
+		\or $\theta$%
+		\or $\iota$%
+		\or $\kappa$%
+		\or $\lambda$%
+		\or $\mu$%
+		\or $\nu$%
+		\or $\xi$%
+		\or $o$%
+		\or $\pi$%
+		\or $\rho$%
+		\or $\sigma$%
+		\or $\tau$%
+		\or $\upsilon$%
+		\or $\phi$%
+		\or $\chi$%
+		\or $\psi$%
+		\or $\omega$%
+	\fi%
 }
-\def\@Greek#1{
-	\ifcase#1
-		\or $\mathrm{A}$
-		\or $\mathrm{B}$
-		\or $\Gamma$
-		\or $\Delta$
-		\or $\mathrm{E}$
-		\or $\mathrm{Z}$
-		\or $\mathrm{H}$
-		\or $\Theta$
-		\or $\mathrm{I}$
-		\or $\mathrm{K}$
-		\or $\Lambda$
-		\or $\mathrm{M}$
-		\or $\mathrm{N}$
-		\or $\Xi$
-		\or $\mathrm{O}$
-		\or $\Pi$
-		\or $\mathrm{P}$
-		\or $\Sigma$
-		\or $\mathrm{T}$
-		\or $\mathrm{Y}$
-		\or $\Phi$
-		\or $\mathrm{X}$
-		\or $\Psi$
-		\or $\Omega$
-	\fi
+\def\@Greek#1{%
+	\ifcase#1%
+		\or $\mathrm{A}$%
+		\or $\mathrm{B}$%
+		\or $\Gamma$%
+		\or $\Delta$%
+		\or $\mathrm{E}$%
+		\or $\mathrm{Z}$%
+		\or $\mathrm{H}$%
+		\or $\Theta$%
+		\or $\mathrm{I}$%
+		\or $\mathrm{K}$%
+		\or $\Lambda$%
+		\or $\mathrm{M}$%
+		\or $\mathrm{N}$%
+		\or $\Xi$%
+		\or $\mathrm{O}$%
+		\or $\Pi$%
+		\or $\mathrm{P}$%
+		\or $\Sigma$%
+		\or $\mathrm{T}$%
+		\or $\mathrm{Y}$%
+		\or $\Phi$%
+		\or $\mathrm{X}$%
+		\or $\Psi$%
+		\or $\Omega$%
+	\fi%
 }
 \makeatother
 \AddEnumerateCounter{\greek}{\@greek}{24}
@@ -4363,22 +4441,22 @@
 % Se revisa si las variables no han sido borradas
 % -----------------------------------------------------------------------------
 % Inicialización de variables
-\def\temaatratar{}
-\def\titulodelinforme{\titulotesis}
-\def\autordeldocumento{\autortesis}
-\def\addemptypagetwosides{false}
-\def\predocpageromannumber{true}
-\def\predocresetpagenumber{true}
-\def\indexnewpagec{false}
-\def\indexnewpagef{false}
-\def\indexnewpaget{false}
-\def\indexnewpagee{false}
-\def\showindex{true}
-\def\showindexofcontents{true}
-\def\codigodelcurso{}
-\def\nombredelcurso{}
-\def\fontsizetitlei{\fontsizetitle}
-\def\styletitlei{\styletitle}
+\def\temaatratar {}
+\def\titulodelinforme {\titulotesis}
+\def\autordeldocumento {\autortesis}
+\def\addemptypagetwosides {false}
+\def\predocpageromannumber {true}
+\def\predocresetpagenumber {true}
+\def\indexnewpagec {false}
+\def\indexnewpagef {false}
+\def\indexnewpaget {false}
+\def\indexnewpagee {false}
+\def\showindex {true}
+\def\showindexofcontents {true}
+\def\codigodelcurso {}
+\def\nombredelcurso {}
+\def\fontsizetitlei {\fontsizetitle}
+\def\styletitlei {\styletitle}
 
 \checkvardefined{\autordeldocumento}
 \checkvardefined{\departamentouniversidad}
@@ -4472,15 +4550,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={20/06/2021},
+		Template.Fecha={23/06/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.5-1-THS},
-		Template.Version.Hash={9E6AFDD402BF41ACBA5ADFCB7F2CC548},
-		Template.Version.Release={2.2.5},
+		Template.Version.Dev={2.2.6-THS},
+		Template.Version.Hash={29761CF41ADF95D519A66EA23D031C27},
+		Template.Version.Release={2.2.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4492,7 +4570,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.2.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.2.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4806,15 +4884,13 @@
 % Configura las fuentes
 % -----------------------------------------------------------------------------
 \makeatletter
-\def\Hv@scale{.95}
+\def\Hv@scale {.95}
 \makeatother
 
 % -----------------------------------------------------------------------------
 % Configuraciones de las tablas
 % -----------------------------------------------------------------------------
-
-% Reinicia el número de cada fila en todas las tablas
-\makeatletter
+\makeatletter % Reinicia el número de cada fila en todas las tablas
 \preto\tabular{\global\rownum=\z@}
 \preto\tabularx{\global\rownum=\z@}
 \makeatother
@@ -4851,7 +4927,7 @@
 	\pdfcompresslevel=\pdfcompilecompression
 	
 	% El óptimo es 2, según
-	% http://texdoc.net/texmf-dist/doc/pdftex/manual/pdftex-a.pdf p.20
+	% https://texdoc.org/serve/pdftex-a.pdf/0 p.20
 	\pdfdecimaldigits=2
 	
 	% Inclusión de PDF
@@ -4891,9 +4967,9 @@
 % Agrega compatibilidad de subsubsubsecciones al TOC
 % -----------------------------------------------------------------------------
 \makeatletter
-	\def\toclevel@subsubsubsection{4}
-	\def\toclevel@paragraph{5}
-	\def\toclevel@subparagraph{6}
+	\def\toclevel@subsubsubsection {4}
+	\def\toclevel@paragraph {5}
+	\def\toclevel@subparagraph {6}
 	\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}
 		{3.25ex \@plus 1ex \@minus .2ex}
 		{-1em}
@@ -4903,13 +4979,13 @@
 		{-1em}
 		{\normalfont\normalsize\bfseries}}
 	\ifthenelse{\equal{\showdotaftersnum}{true}}{
-		\def\l@subsubsubsection{\@dottedtocline{4}{7.83em}{4.15em}} % Incremento 0.77+3.35 a 3.35
-		\def\l@paragraph{\@dottedtocline{5}{11.98em}{4.92em}}
-		\def\l@subparagraph{\@dottedtocline{6}{14.65em}{5.69em}}
+		\def\l@subsubsubsection {\@dottedtocline{4}{7.83em}{4.15em}} % Incremento 0.77+3.35 a 3.35
+		\def\l@paragraph {\@dottedtocline{5}{11.98em}{4.92em}}
+		\def\l@subparagraph {\@dottedtocline{6}{14.65em}{5.69em}}
 	}{
-		\def\l@subsubsubsection{\@dottedtocline{4}{6.97em}{4em}}
-		\def\l@paragraph{\@dottedtocline{5}{10.97em}{5em}}
-		\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+		\def\l@subsubsubsection {\@dottedtocline{4}{6.97em}{4em}}
+		\def\l@paragraph {\@dottedtocline{5}{10.97em}{5em}}
+		\def\l@subparagraph {\@dottedtocline{6}{14em}{6em}}
 	}
 \makeatother
 
@@ -5047,8 +5123,16 @@
 % Parcha el entorno multicols
 % -----------------------------------------------------------------------------
 \let\SOURCEcaptionlrmargin\captionlrmargin
-\BeforeBeginEnvironment{multicols}{\def\captionlrmargin{\captionlrmarginmc}\def\GLOBALenvmulticol{true}\setcaptionmargincm{\captionlrmargin}}
-\AfterEndEnvironment{multicols}{\def\captionlrmargin{\SOURCEcaptionlrmargin}\def\GLOBALenvmulticol{false}\setcaptionmargincm{\captionlrmargin}}
+\BeforeBeginEnvironment{multicols}{%
+	\def\captionlrmargin {\captionlrmarginmc}%
+	\def\GLOBALenvmulticol {true}%
+	\setcaptionmargincm{\captionlrmargin}%
+}
+\AfterEndEnvironment{multicols}{%
+	\def\captionlrmargin {\SOURCEcaptionlrmargin}%
+	\def\GLOBALenvmulticol {false}%
+	\setcaptionmargincm{\captionlrmargin}%
+}
 
 % Estilos de capítulos
 \ifthenelse{\equal{\chapterstyle}{style1}}{
@@ -5097,11 +5181,12 @@
 
 	% Configura la página
 	\clearpage
-	\def\arraystretch{\tablepaddingv} % Ajusta espaciamiento de las tablas
+	\def\arraystretch {\tablepaddingv} % Ajusta espaciamiento de las tablas
 	\renewcommand{\thepage}{\nameportraitpage}
 	\setpagemargincm{\pagemarginleftportrait}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 
-	\pagestyle{fancy} \fancyhf{}
+	\pagestyle{fancy}
+	\fancyhf{}
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}
 
@@ -5181,7 +5266,7 @@
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-	\def\bibfont{\fontsizerefbibl} % Tamaño de fuente de las referencias
+	\def\bibfont {\fontsizerefbibl} % Tamaño de fuente de las referencias
 	
 	% -------------------------------------------------------------------------
 	% Estilo citas

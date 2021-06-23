@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.2.5 (20/06/2021)
+% Versión:      2.2.6 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -27,9 +27,9 @@
 \newcolumn\newcolumn\clearpage
 }
 \newcommand{\itemresize}[2]{%
-	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}
-	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}
-	\resizebox{#1\linewidth}{!}{#2}
+	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}%
+	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}%
+	\resizebox{#1\linewidth}{!}{#2}%
 }
 \newcommand{\insertemptypage}{%
 	\clearpage
@@ -47,10 +47,10 @@
 	\clearpage
 }
 \newcommand{\includehfpdf}[2][]{%
-	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}
+	\includepdf[pagecommand={\pagestyle{fancy}},#1]{#2}%
 }
 \newcommand{\includefullhfpdf}[2][]{%
-	\includepdf[pages=-,pagecommand={\pagestyle{fancy}},#1]{#2}
+	\includepdf[pages=-,pagecommand={\pagestyle{fancy}},#1]{#2}%
 }
 \newcommand{\quotes}[1]{%
 	\enquote*{#1}%
@@ -114,7 +114,7 @@
 			}
 		}
 	}
-	\def\GLOBALtablerowcolorindex{#1}
+	\def\GLOBALtablerowcolorindex {#1}
 }
 \newcommand{\settablerowcolorslast}{
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
@@ -157,9 +157,9 @@
 \newcommand{\disabletablerowcolor}{\rowcolors{2}{}{}}
 \newcommand{\switchtablerowcolors}{
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
-		\def\GLOBALtablerowcolorswitch{true}
+		\def\GLOBALtablerowcolorswitch {true}
 	}{
-		\def\GLOBALtablerowcolorswitch{false}
+		\def\GLOBALtablerowcolorswitch {false}
 	}
 	\settablerowcolorslast
 }

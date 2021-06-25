@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.2.6 (23/06/2021)
+% Versión:      2.2.7 (24/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -37,6 +37,7 @@
 
 % CONFIGURACIÓN DE LAS LEYENDAS - CAPTION
 \def\captionalignment {justified}  % Posición {centered,justified,left,right}
+\def\captioncolor {black}          % Color nombre objeto (código,figura,tabla)
 \def\captionfontsize {small}       % Tamaño de fuente de los caption
 \def\captionlabelformat {simple}   % Formato leyenda {empty,simple,parens}
 \def\captionlabelsep {colon}       % Sep. {none,colon,period,space,quad,newline}
@@ -55,9 +56,21 @@
 \def\captiontbmarginfigure {9.35}  % Margen sup/inf de la leyenda en fig. [pt]
 \def\captiontbmargintable {7.0}    % Margen sup/inf de la leyenda en tab. [pt]
 \def\captiontextbold {false}       % Etiqueta (código,figura,tabla) en negrita
+\def\captiontextcolor {black}      % Color de la leyenda
 \def\captiontextsubnumbold {false} % N° subfigura/subtabla en negrita
 \def\codecaptiontop {true}         % Leyenda arriba del código fuente
+\def\equationcaptioncenter {true}  % Ecuaciones están centradas o justificadas
 \def\figurecaptiontop {false}      % Leyenda arriba de las imágenes
+\def\marginaligncaptbottom {0.05}  % Margen inferior caption en align [cm]
+\def\marginaligncapttop {-0.60}    % Margen superior caption en align [cm]
+\def\marginalignedcaptbottom {0.0} % Margen inferior caption en aligned [cm]
+\def\marginalignedcapttop {-0.60}  % Margen superior caption en aligned [cm]
+\def\margineqncaptionbottom {0.0}  % Margen inferior caption ecuación [cm]
+\def\margineqncaptiontop {-0.90}   % Margen superior caption ecuación [cm]
+\def\margingathercaptbottom {0.05} % Margen inferior caption en gather [cm]
+\def\margingathercapttop {-0.90}   % Margen superior caption en gather [cm]
+\def\margingatheredcaptbottom{0.0} % Margen inf. caption en gathered [cm]
+\def\margingatheredcapttop {-0.90} % Margen superior caption en gathered [cm]
 \def\sectioncaptiondelimiter {.}   % Carácter delimitador n° objeto y sección
 \def\showsectioncaptioncode {chap} % N° sec. código {none,chap,(s/ss/sss/ssss)ec}
 \def\showsectioncaptioneqn {chap}  % N° sec. ecuación {none,chap,(s/ss/sss/ssss)ec}
@@ -115,27 +128,17 @@
 \def\fpremovetopbottomcenter{true} % Elimina espacio vertical al centrar con b!,t!
 \def\imagedefaultplacement {H}     % Posición por defecto de las imágenes
 \def\marginalignbottom {-0.30}     % Margen inferior entorno align [cm]
-\def\marginaligncaptbottom {0.05}  % Margen inferior entorno align caption[cm]
-\def\marginaligncapttop {-0.60}    % Margen superior entorno align caption [cm]
 \def\marginalignedbottom {-0.30}   % Margen inferior entorno aligned [cm]
-\def\marginalignedcaptbottom {0.0} % Margen inferior entorno aligned caption[cm]
-\def\marginalignedcapttop {-0.60}  % Margen superior entorno aligned caption[cm]
 \def\marginalignedtop {-0.40}      % Margen superior entorno aligned [cm]
 \def\marginaligntop {-0.40}        % Margen superior entorno align [cm]
-\def\margineqncaptionbottom {0.0}  % Margen inferior caption ecuación [cm]
-\def\margineqncaptiontop {-0.65}   % Margen superior caption ecuación [cm]
 \def\margineqnindexbottom {-0.90}  % Margen inferior ecuaciones índice [cm]
-\def\margineqnindextop {-0.25}     % Margen superior ecuaciones índice [cm]
+\def\margineqnindextop {0.0}       % Margen superior ecuaciones índice [cm]
 \def\marginequationbottom {-0.15}  % Margen inferior ecuaciones [cm]
 \def\marginequationtop {0.0}       % Margen superior ecuaciones [cm]
 \def\marginfloatimages {-13.0}     % Margen sup. fig. insertimageleft/right [pt]
 \def\marginfootnote {10.0}         % Margen derecho footnote [pt]
 \def\margingatherbottom {-0.20}    % Margen inferior entorno gather [cm]
-\def\margingathercaptbottom {0.05} % Margen inferior entorno gather caption [cm]
-\def\margingathercapttop {-0.77}   % Margen superior entorno gather [cm]
 \def\margingatheredbottom {-0.10}  % Margen inf. entorno gathered [cm]
-\def\margingatheredcaptbottom{0.0} % Margen inf. entorno gathered caption [cm]
-\def\margingatheredcapttop {-0.77} % Margen superior entorno gathered [cm]
 \def\margingatheredtop {-0.40}     % Margen superior entorno gathered [cm]
 \def\margingathertop {-0.40}       % Margen superior entorno gather [cm]
 \def\marginimagebottom {-0.15}     % Margen inferior figura [cm]
@@ -168,8 +171,6 @@
 \def\styletitle {\bfseries}        % Estilo títulos
 
 % CONFIGURACIÓN DE LOS COLORES DEL DOCUMENTO
-\def\captioncolor {black}          % Color nombre objeto (código,figura,tabla)
-\def\captiontextcolor {black}      % Color de la leyenda
 \def\chaptercolor {black}          % Color de los capítulos
 \def\colorpage {white}             % Color de la página
 \def\highlightcolor {yellow}       % Color del subrayado con \hl

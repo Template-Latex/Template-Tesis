@@ -3307,10 +3307,10 @@
 % Crea una sección de resumen
 \newenvironment{resumen}{
 	\clearpage
-	\chapter*{\nameresumen}
-	\ifthenelse{\equal{\addresumentobookmarks}{true}}{
+	\chapter*{\nameabstract}
+	\ifthenelse{\equal{\addabstracttobookmarks}{true}}{
 		\phantomsection
-		\pdfbookmark{\nameresumen}{abstract}}{
+		\pdfbookmark{\nameabstract}{abstract}}{
 	}
 	\forceindent
 	}{

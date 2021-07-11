@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.2.8 (09/07/2021)
+% Versión:      2.2.9 (11/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -69,7 +69,7 @@
 \def\margineqncaptiontop {-0.70}   % Margen superior caption ecuación [cm]
 \def\margingathercaptbottom {0.05} % Margen inferior caption en gather [cm]
 \def\margingathercapttop {-0.90}   % Margen superior caption en gather [cm]
-\def\margingatheredcaptbottom{0.0} % Margen inf. caption en gathered [cm]
+\def\margingatheredcaptbottom {0}  % Margen inf. caption en gathered [cm]
 \def\margingatheredcapttop {-0.90} % Margen superior caption en gathered [cm]
 \def\sectioncaptiondelimiter {.}   % Carácter delimitador n° objeto y sección
 \def\showsectioncaptioncode {chap} % N° sec. código {none,chap,(s/ss/sss/ssss)ec}
@@ -85,8 +85,8 @@
 % CONFIGURACIÓN DEL ÍNDICE
 \def\addabstracttobookmarks {true} % Añade el resumen a los marcadores del pdf
 \def\addagradectobookmarks {true}  % Añade el agradecimiento a los marcadores
-\def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
 \def\addindexsubtobookmarks {true} % Agrega índice tabla,codigo,etc. a marcadores
+\def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
 \def\charafterobjectindex {.}      % Carácter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Carácter número de página en índice
 \def\indexdepth {4}                % Profundidad máxima del índice
@@ -147,7 +147,15 @@
 \def\marginimagemulttop {-0.30}    % Margen superior imágenes múltiples [cm]
 \def\marginimagetop {0.0}          % Margen superior figuras [cm]
 \def\numberedequation {true}       % Ecuaciones con \insert... numeradas
+\def\senumerti {\arabic{enumi}.}   % Estilo enumerate nivel 1
+\def\senumertii {\alph{enumii})}   % Estilo enumerate nivel 2
+\def\senumertiii{\roman{enumiii}.} % Estilo enumerate nivel 3
+\def\senumertiv {\Alph{enumiv})}   % Estilo enumerate nivel 4
 \def\showtableresumenenv {false}   % Muestra tabla superior derecha de resumen
+\def\sitemizei {\iitembcirc}       % Estilo itemize nivel 1
+\def\sitemizeii {\iitemdash}       % Estilo itemize nivel 2
+\def\sitemizeiii {\iitemcirc}      % Estilo itemize nivel 3
+\def\sitemizeiv {\iitembsquare}    % Estilo itemize nivel 4
 \def\sourcecodefontf {\ttfamily}   % Tipo de letra código fuente
 \def\sourcecodefonts {\small}      % Tamaño letra código fuente
 \def\sourcecodenumbersep {6}       % Separación entre número línea y código [pt]
@@ -180,7 +188,6 @@
 \def\linkcolor {black}             % Color de los links del documento
 \def\maintextcolor {black}         % Color principal del texto
 \def\numcitecolor {black}          % Color del n° de las referencias o citas
-\def\portraittitlecolor {black}    % Color de los títulos de la portada
 \def\showborderonlinks {false}     % Color de un link por un recuadro de color
 \def\sourcecodebgcolor {lgray}     % Color de fondo del código fuente
 \def\ssstitlecolor {black}         % Color de los sub-sub-subtítulos

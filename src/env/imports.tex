@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      2.2.8 (09/07/2021)
+% Versión:      2.2.9 (11/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -15,9 +15,7 @@
 \let\RE\Re
 \let\IM\Im
 
-% -----------------------------------------------------------------------------
-% PARCHES DE LIBRERÍAS
-% -----------------------------------------------------------------------------
+% Parches de librerías
 \let\counterwithout\relax
 \let\counterwithin\relax
 \let\underbar\relax
@@ -35,7 +33,7 @@
 \makeatother
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS DEL NÚCLEO
+% Librerías del núcleo
 % -----------------------------------------------------------------------------
 % Manejo de condicionales
 \usepackage{ifthen}
@@ -90,7 +88,7 @@
 \changefontsizes{\documentfontsize pt}
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS INDEPENDIENTES
+% Librerías independientes
 % -----------------------------------------------------------------------------
 \usepackage{amssymb}       % Librerías matemáticas
 \usepackage{amsthm}        % Definición de teoremas
@@ -125,10 +123,10 @@
 \usepackage{textcomp}      % Simbología común
 \usepackage{url}           % Permite añadir enlaces
 \usepackage{wrapfig}       % Posición de imágenes
-\usepackage{xspace}        % Adminsitra espacios en párrafos y líneas
+\usepackage{xspace}        % Administra espacios en párrafos y líneas
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS CON PARÁMETROS
+% Librerías con parámetros
 % -----------------------------------------------------------------------------
 \usepackage[makeroom]{cancel} % Cancelar términos en fórmulas
 \usepackage[inline]{enumitem} % Permite enumerar ítems
@@ -139,7 +137,7 @@
 \usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS CONDICIONALES
+% Librerías condicionales
 % -----------------------------------------------------------------------------
 % Imágenes en modo draft
 \ifthenelse{\equal{\graphicxdraft}{true}}{
@@ -242,7 +240,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS DEPENDIENTES
+% Librerías dependientes
 % -----------------------------------------------------------------------------
 \usepackage{bookmark}      % Administración de marcadores en pdf
 \usepackage{fancyhdr}      % Encabezados y pie de páginas
@@ -253,7 +251,7 @@
 \usepackage{titlesec}      % Administración de títulos
 
 % -----------------------------------------------------------------------------
-% TIPOGRAFÍA DEL DOCUMENTO
+% Tipografía del documento
 % -----------------------------------------------------------------------------
 % Tipografías clásicas
 \ifthenelse{\equal{\fontdocument}{lmodern}}{
@@ -561,7 +559,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% TIPOGRAFÍA TYPEWRITER
+% Tipografía typewriter
 % -----------------------------------------------------------------------------
 \ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
@@ -626,7 +624,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% FINALES
+% Finales
 % -----------------------------------------------------------------------------
 \usepackage[T1]{fontenc} % Caracteres acentuados
 \ifthenelse{\equal{\showlayoutlines}{true}}{ % Muestra las líneas del layout

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.2.8 (09/07/2021)
+% Versión:      2.2.9 (11/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,6 +14,14 @@
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES
 % -----------------------------------------------------------------------------
+% Definiciones previas
+\def\iitembcirc {\raisebox{.55\height}{\scriptsize$\bullet$}}
+\def\iitembsquare {\raisebox{.3\height}{\tiny$\blacksquare$}}
+\def\iitemdash {\raisebox{.35\height}{\textendash}}
+\def\iitemcirc {\raisebox{.25\height}{\small$\circ$}}
+\def\iitemdiamond {\raisebox{.25\height}{\small$\diamond$}}
+
+% Ajustes usuario
 \input{template_config}
 
 % -----------------------------------------------------------------------------
@@ -23,9 +31,7 @@
 \let\RE\Re
 \let\IM\Im
 
-% -----------------------------------------------------------------------------
-% PARCHES DE LIBRERÍAS
-% -----------------------------------------------------------------------------
+% Parches de librerías
 \let\counterwithout\relax
 \let\counterwithin\relax
 \let\underbar\relax
@@ -43,7 +49,7 @@
 \makeatother
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS DEL NÚCLEO
+% Librerías del núcleo
 % -----------------------------------------------------------------------------
 % Manejo de condicionales
 \usepackage{ifthen}
@@ -98,7 +104,7 @@
 \changefontsizes{\documentfontsize pt}
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS INDEPENDIENTES
+% Librerías independientes
 % -----------------------------------------------------------------------------
 \usepackage{amssymb}       % Librerías matemáticas
 \usepackage{amsthm}        % Definición de teoremas
@@ -133,10 +139,10 @@
 \usepackage{textcomp}      % Simbología común
 \usepackage{url}           % Permite añadir enlaces
 \usepackage{wrapfig}       % Posición de imágenes
-\usepackage{xspace}        % Adminsitra espacios en párrafos y líneas
+\usepackage{xspace}        % Administra espacios en párrafos y líneas
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS CON PARÁMETROS
+% Librerías con parámetros
 % -----------------------------------------------------------------------------
 \usepackage[makeroom]{cancel} % Cancelar términos en fórmulas
 \usepackage[inline]{enumitem} % Permite enumerar ítems
@@ -147,7 +153,7 @@
 \usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS CONDICIONALES
+% Librerías condicionales
 % -----------------------------------------------------------------------------
 % Imágenes en modo draft
 \ifthenelse{\equal{\graphicxdraft}{true}}{
@@ -250,7 +256,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS DEPENDIENTES
+% Librerías dependientes
 % -----------------------------------------------------------------------------
 \usepackage{bookmark}      % Administración de marcadores en pdf
 \usepackage{fancyhdr}      % Encabezados y pie de páginas
@@ -261,7 +267,7 @@
 \usepackage{titlesec}      % Administración de títulos
 
 % -----------------------------------------------------------------------------
-% TIPOGRAFÍA DEL DOCUMENTO
+% Tipografía del documento
 % -----------------------------------------------------------------------------
 % Tipografías clásicas
 \ifthenelse{\equal{\fontdocument}{lmodern}}{
@@ -569,7 +575,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% TIPOGRAFÍA TYPEWRITER
+% Tipografía typewriter
 % -----------------------------------------------------------------------------
 \ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
@@ -634,7 +640,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% FINALES
+% Finales
 % -----------------------------------------------------------------------------
 \usepackage[T1]{fontenc} % Caracteres acentuados
 \ifthenelse{\equal{\showlayoutlines}{true}}{ % Muestra las líneas del layout
@@ -3481,6 +3487,7 @@
 % -----------------------------------------------------------------------------
 % IMPORTACIÓN DE ESTILOS
 % -----------------------------------------------------------------------------
+% Definición de colores
 \colorlet{numb}{magenta!60!black}
 \colorlet{punct}{red!60!black}
 \definecolor{delim}{RGB}{20,105,176}
@@ -4446,15 +4453,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={09/07/2021},
+		Template.Fecha={11/07/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.8-2-THS},
-		Template.Version.Hash={EF4E75792DFBA76DB813930D7579358A},
-		Template.Version.Release={2.2.8},
+		Template.Version.Dev={2.2.9-THS},
+		Template.Version.Hash={FC562AAD425B187DFEB29C916E83BDE7},
+		Template.Version.Release={2.2.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4466,7 +4473,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.2.8 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.2.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5051,7 +5058,24 @@
 	\setcaptionmargincm{\captionlrmargin}%
 }
 
+% -----------------------------------------------------------------------------
+% Configura estilos de listas
+% -----------------------------------------------------------------------------
+% Enumerate
+\renewcommand{\labelenumi}{\senumerti}
+\renewcommand{\labelenumii}{\senumertii}
+\renewcommand{\labelenumiii}{\senumertiii}
+\renewcommand{\labelenumiv}{\senumertiv}
+
+% Itemize
+\renewcommand{\labelitemi}{\sitemizei}
+\renewcommand{\labelitemii}{\sitemizeii}
+\renewcommand{\labelitemiii}{\sitemizeiii}
+\renewcommand{\labelitemiv}{\sitemizeiv}
+
+% -----------------------------------------------------------------------------
 % Estilos de capítulos
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\chapterstyle}{style1}}{
 	% Default
 }{
@@ -5888,6 +5912,7 @@
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
 		\insertblankpage}{
 	}
+
 	% -------------------------------------------------------------------------
 	% Configura el nombre del abstract
 	% -------------------------------------------------------------------------
@@ -5904,14 +5929,17 @@
 % TABLA DE CONTENIDOS - ÍNDICE
 % -----------------------------------------------------------------------------
 \newcommand{\templateIndex}{
-	
+
 	% -------------------------------------------------------------------------
 	% Inicio índice, desactiva espacio entre objetos
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\objectchaptermargin}{false}}{
 		\let\origaddvspace\addvspace
 		\renewcommand{\addvspace}[1]{}
 	}{}
 
+	% -------------------------------------------------------------------------
+	% Crea nueva página y establece estilo de títulos
 	% -------------------------------------------------------------------------
 	\clearpage
 	\begingroup
@@ -5992,7 +6020,6 @@
 	% -------------------------------------------------------------------------
 	% Calcula tamaño del margen de los números en objetos del índice
 	% -------------------------------------------------------------------------
-	
 	% Código fuente
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
 		\def\cftdefautnumwidthcode {3.0em} % Añade +0.7em
@@ -6225,13 +6252,208 @@
 	% -------------------------------------------------------------------------
 	% Índice de objetos
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\indexstyle}{ftc}}{\LoIf\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{}}{}{\ifthenelse{\equal{\indexstyle}{e}}{\LoIe}{\ifthenelse{\equal{\indexstyle}{c}}{\LoIc}{\ifthenelse{\equal{\indexstyle}{f}}{\LoIf}{\ifthenelse{\equal{\indexstyle}{t}}{\LoIt}{\ifthenelse{\equal{\indexstyle}{ec}}{\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{ce}}{\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{ef}}{\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{fe}}{\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{et}}{\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{te}}{\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{cf}}{\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{fc}}{\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ct}}{\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{tc}}{\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{ft}}{\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{tf}}{\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{ecf}}{\LoIe\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{efc}}{\LoIe\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{cef}}{\LoIc\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{cfe}}{\LoIc\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{fec}}{\LoIf\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{fce}}{\LoIf\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{ect}}{\LoIe\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{etc}}{\LoIe\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{cet}}{\LoIc\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{cte}}{\LoIc\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{tec}}{\LoIt\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{tce}}{\LoIt\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{eft}}{\LoIe\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{etf}}{\LoIe\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{fet}}{\LoIf\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{fte}}{\LoIf\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{tef}}{\LoIt\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{tfe}}{\LoIt\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{cft}}{\LoIc\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{ctf}}{\LoIc\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{fct}}{\LoIf\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{tcf}}{\LoIt\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{tfc}}{\LoIt\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ecft}}{\LoIe\LoIc\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{ectf}}{\LoIe\LoIc\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{efct}}{\LoIe\LoIf\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{eftc}}{\LoIe\LoIf\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{etcf}}{\LoIe\LoIt\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{etfc}}{\LoIe\LoIt\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{ceft}}{\LoIc\LoIe\LoIf\LoIt}{\ifthenelse{\equal{\indexstyle}{cetf}}{\LoIc\LoIe\LoIt\LoIf}{\ifthenelse{\equal{\indexstyle}{cfet}}{\LoIc\LoIf\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{cfte}}{\LoIc\LoIf\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{ctef}}{\LoIc\LoIt\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{ctfe}}{\LoIc\LoIt\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{fect}}{\LoIf\LoIe\LoIc\LoIt}{\ifthenelse{\equal{\indexstyle}{fetc}}{\LoIf\LoIe\LoIt\LoIc}{\ifthenelse{\equal{\indexstyle}{fcet}}{\LoIf\LoIc\LoIe\LoIt}{\ifthenelse{\equal{\indexstyle}{fcte}}{\LoIf\LoIc\LoIt\LoIe}{\ifthenelse{\equal{\indexstyle}{ftec}}{\LoIf\LoIt\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{ftce}}{\LoIf\LoIt\LoIc\LoIe}{\ifthenelse{\equal{\indexstyle}{tecf}}{\LoIt\LoIe\LoIc\LoIf}{\ifthenelse{\equal{\indexstyle}{tefc}}{\LoIt\LoIe\LoIf\LoIc}{\ifthenelse{\equal{\indexstyle}{tcef}}{\LoIt\LoIc\LoIe\LoIf}{\ifthenelse{\equal{\indexstyle}{tcfe}}{\LoIt\LoIc\LoIf\LoIe}{\ifthenelse{\equal{\indexstyle}{tfec}}{\LoIt\LoIf\LoIe\LoIc}{\ifthenelse{\equal{\indexstyle}{tfce}}{\LoIt\LoIf\LoIc\LoIe}{\throwbadconfig{Estilo desconocido del indice}{\indexstyle}{ftc,,e,c,f,t,ec,ce,ef,fe,et,te,cf,fc,ct,tc,ft,tf,ecf,efc,cef,cfe,fec,fce,ect,etc,cet,cte,tec,tce,eft,etf,fet,fte,tef,tfe,cft,ctf,fct,tcf,tfc,ecft,ectf,efct,eftc,etcf,etfc,ceft,cetf,cfet,cfte,ctef,ctfe,fect,fetc,fcet,fcte,ftec,ftce,tecf,tefc,tcef,tcfe,tfec,tfce}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	\ifthenelse{\equal{\indexstyle}{ftc}}{%
+        \LoIf\LoIt\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{}}{%
+	}{%
+	\ifthenelse{\equal{\indexstyle}{e}}{%
+		\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{c}}{%
+		\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{f}}{%
+		\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{t}}{%
+		\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{ec}}{%
+		\LoIe\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{ce}}{%
+		\LoIc\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{ef}}{%
+		\LoIe\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{fe}}{%
+		\LoIf\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{et}}{%
+		\LoIe\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{te}}{%
+		\LoIt\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{cf}}{%
+		\LoIc\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{fc}}{%
+		\LoIf\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{ct}}{%
+		\LoIc\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{tc}}{%
+		\LoIt\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{ft}}{%
+		\LoIf\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{tf}}{%
+		\LoIt\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{ecf}}{%
+		\LoIe\LoIc\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{efc}}{%
+		\LoIe\LoIf\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{cef}}{%
+		\LoIc\LoIe\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{cfe}}{%
+		\LoIc\LoIf\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{fec}}{%
+		\LoIf\LoIe\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{fce}}{%
+		\LoIf\LoIc\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{ect}}{%
+		\LoIe\LoIc\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{etc}}{%
+		\LoIe\LoIt\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{cet}}{%
+		\LoIc\LoIe\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{cte}}{%
+		\LoIc\LoIt\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{tec}}{%
+		\LoIt\LoIe\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{tce}}{%
+		\LoIt\LoIc\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{eft}}{%
+		\LoIe\LoIf\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{etf}}{%
+		\LoIe\LoIt\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{fet}}{%
+		\LoIf\LoIe\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{fte}}{%
+		\LoIf\LoIt\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{tef}}{%
+		\LoIt\LoIe\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{tfe}}{%
+		\LoIt\LoIf\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{cft}}{%
+		\LoIc\LoIf\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{ctf}}{%
+		\LoIc\LoIt\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{fct}}{%
+		\LoIf\LoIc\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{tcf}}{%
+		\LoIt\LoIc\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{tfc}}{%
+		\LoIt\LoIf\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{ecft}}{%
+		\LoIe\LoIc\LoIf\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{ectf}}{%
+		\LoIe\LoIc\LoIt\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{efct}}{%
+		\LoIe\LoIf\LoIc\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{eftc}}{%
+		\LoIe\LoIf\LoIt\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{etcf}}{%
+		\LoIe\LoIt\LoIc\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{etfc}}{%
+		\LoIe\LoIt\LoIf\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{ceft}}{%
+		\LoIc\LoIe\LoIf\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{cetf}}{%
+		\LoIc\LoIe\LoIt\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{cfet}}{%
+		\LoIc\LoIf\LoIe\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{cfte}}{%
+		\LoIc\LoIf\LoIt\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{ctef}}{%
+		\LoIc\LoIt\LoIe\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{ctfe}}{%
+		\LoIc\LoIt\LoIf\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{fect}}{%
+		\LoIf\LoIe\LoIc\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{fetc}}{%
+		\LoIf\LoIe\LoIt\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{fcet}}{%
+		\LoIf\LoIc\LoIe\LoIt
+	}{
+	\ifthenelse{\equal{\indexstyle}{fcte}}{%
+		\LoIf\LoIc\LoIt\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{ftec}}{%
+		\LoIf\LoIt\LoIe\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{ftce}}{%
+		\LoIf\LoIt\LoIc\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{tecf}}{%
+		\LoIt\LoIe\LoIc\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{tefc}}{%
+		\LoIt\LoIe\LoIf\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{tcef}}{%
+		\LoIt\LoIc\LoIe\LoIf
+	}{
+	\ifthenelse{\equal{\indexstyle}{tcfe}}{%
+		\LoIt\LoIc\LoIf\LoIe
+	}{
+	\ifthenelse{\equal{\indexstyle}{tfec}}{%
+		\LoIt\LoIf\LoIe\LoIc
+	}{
+	\ifthenelse{\equal{\indexstyle}{tfce}}{%
+		\LoIt\LoIf\LoIc\LoIe
+	}{
+		\throwbadconfig{Estilo desconocido del indice}{\indexstyle}{ftc,,e,c,f,t,ec,ce,ef,fe,et,te,cf,fc,ct,tc,ft,tf,ecf,efc,cef,cfe,fec,fce,ect,etc,cet,cte,tec,tce,eft,etf,fet,fte,tef,tfe,cft,ctf,fct,tcf,tfc,ecft,ectf,efct,eftc,etcf,etfc,ceft,cetf,cfet,cfte,ctef,ctfe,fect,fetc,fcet,fcte,ftec,ftce,tecf,tefc,tcef,tcfe,tfec,tfce}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	}
 
 	% -------------------------------------------------------------------------
 	% Termina el bloque de índice
 	% -------------------------------------------------------------------------
 	\endgroup
-	
+
 	% -------------------------------------------------------------------------
 	% Final del índice, reestablece el espacio
 	% -------------------------------------------------------------------------
@@ -6239,6 +6461,8 @@
 		\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
 	}{}
 
+	% -------------------------------------------------------------------------
+	% Se añade una página en blanco
 	% -------------------------------------------------------------------------
 	\clearpage
 	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
@@ -6404,7 +6628,7 @@
 	% -------------------------------------------------------------------------
 	% Crea funciones para numerar objetos
 	% -------------------------------------------------------------------------
-	% Numeración de la sección en los objetos CÓDIGO FUENTE
+	% Numeración de la sección en los objetos código fuente
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
 		\def\sectionobjectnumcode {}
 	}{
@@ -6430,7 +6654,7 @@
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 
-	% Numeración de la sección en los objetos ECUACIONES
+	% Numeración de la sección en los objetos ecuaciones
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
 		\def\sectionobjectnumeqn {}
 	}{
@@ -6456,7 +6680,7 @@
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 
-	% Numeración de la sección en los objetos FIGURAS
+	% Numeración de la sección en los objetos figuras
 	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
 		\def\sectionobjectnumfig {}
 	}{
@@ -6482,7 +6706,7 @@
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 
-	% Numeración de la sección en los objetos TABLAS
+	% Numeración de la sección en los objetos tablas
 	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
 		\def\sectionobjectnumtab {}
 	}{
@@ -6511,7 +6735,7 @@
 	% -------------------------------------------------------------------------
 	% Modifica numeración de objetos
 	% -------------------------------------------------------------------------
-	% Código fuente, INCLUIR SECCIÓN
+	% Código fuente, incluir sección
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\arabic{lstlisting}}
 	}{
@@ -6530,7 +6754,7 @@
 		\throwbadconfig{Tipo numero codigo fuente desconocido}{\captionnumcode}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Ecuaciones, INCLUIR SECCIÓN
+	% Ecuaciones, incluir sección
 	\ifthenelse{\equal{\captionnumequation}{arabic}}{
 		\renewcommand{\theequation}{\sectionobjectnumeqn\arabic{equation}}
 	}{
@@ -6549,7 +6773,7 @@
 		\throwbadconfig{Tipo numero ecuacion desconocido}{\captionnumequation}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Figuras, INCLUIR SECCIÓN
+	% Figuras, incluir sección
 	\ifthenelse{\equal{\captionnumfigure}{arabic}}{
 		\renewcommand{\thefigure}{\sectionobjectnumfig\arabic{figure}}
 	}{
@@ -6568,7 +6792,7 @@
 		\throwbadconfig{Tipo numero figura desconocido}{\captionnumfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Subfiguras, NO USAR SECCIONES YA QUE SON HIJAS DE FIGURA
+	% Subfiguras, no usar secciones ya que son hijas de figura
 	\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{
 		\renewcommand{\thesubfigure}{\arabic{subfigure}}
 	}{
@@ -6587,7 +6811,7 @@
 		\throwbadconfig{Tipo numero subfigura desconocido}{\captionnumsubfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Tablas, INCLUIR SECCIÓN
+	% Tablas, incluir sección
 	\ifthenelse{\equal{\captionnumtable}{arabic}}{
 		\renewcommand{\thetable}{\sectionobjectnumtab\arabic{table}}
 	}{
@@ -6606,7 +6830,7 @@
 		\throwbadconfig{Tipo numero tabla desconocido}{\captionnumtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Subtablas, NO INCLUIR SECCIÓN YA QUE SON HIJAS DE LAS TABLAS
+	% Subtablas, no incluir sección ya que son hijas de las tablas
 	\ifthenelse{\equal{\captionnumsubtable}{arabic}}{
 		\renewcommand{\thesubtable}{\arabic{subtable}}
 	}{

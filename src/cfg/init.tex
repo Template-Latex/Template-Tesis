@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.2.8 (09/07/2021)
+% Versión:      2.2.9 (11/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -121,15 +121,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={09/07/2021},
+		Template.Fecha={11/07/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.8-2-THS},
-		Template.Version.Hash={EF4E75792DFBA76DB813930D7579358A},
-		Template.Version.Release={2.2.8},
+		Template.Version.Dev={2.2.9-THS},
+		Template.Version.Hash={FC562AAD425B187DFEB29C916E83BDE7},
+		Template.Version.Release={2.2.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -141,7 +141,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.2.8 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.2.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -726,7 +726,24 @@
 	\setcaptionmargincm{\captionlrmargin}%
 }
 
+% -----------------------------------------------------------------------------
+% Configura estilos de listas
+% -----------------------------------------------------------------------------
+% Enumerate
+\renewcommand{\labelenumi}{\senumerti}
+\renewcommand{\labelenumii}{\senumertii}
+\renewcommand{\labelenumiii}{\senumertiii}
+\renewcommand{\labelenumiv}{\senumertiv}
+
+% Itemize
+\renewcommand{\labelitemi}{\sitemizei}
+\renewcommand{\labelitemii}{\sitemizeii}
+\renewcommand{\labelitemiii}{\sitemizeiii}
+\renewcommand{\labelitemiv}{\sitemizeiv}
+
+% -----------------------------------------------------------------------------
 % Estilos de capítulos
+% -----------------------------------------------------------------------------
 \ifthenelse{\equal{\chapterstyle}{style1}}{
 	% Default
 }{

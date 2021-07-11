@@ -127,8 +127,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.9-THS},
-		Template.Version.Hash={FC562AAD425B187DFEB29C916E83BDE7},
+		Template.Version.Dev={2.2.9-1-THS},
+		Template.Version.Hash={7AB63BB4E256435F11D66926F8260182},
 		Template.Version.Release={2.2.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -472,7 +472,7 @@
 \strictpagecheck
 
 % -----------------------------------------------------------------------------
-% Actualización márgen títulos
+% Actualización margen títulos
 % -----------------------------------------------------------------------------
 \titlespacing{\section}{0pt}{20pt}{10pt}
 \titlespacing{\subsection}{0pt}{15pt}{10pt}
@@ -518,14 +518,9 @@
 }
 
 % -----------------------------------------------------------------------------
-% Profundidad de las secciones
+% Crea las sub-sub-sub-secciones
 % -----------------------------------------------------------------------------
-\setcounter{secnumdepth}{4} % Límite máximo subsubsubsección
-
-% Crea las subsubsubsecciones
 \newcounter{subsubsubsection}[subsubsection]
-
-% Establece el número de las subsubsubsecciones
 \ifthenelse{\equal{\showdotaftersnum}{true}}{ % Agrega punto tras el número
 	\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}.}
@@ -534,9 +529,10 @@
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}}
 }
 
-% -----------------------------------------------------------------------------
-% Agrega compatibilidad de subsubsubsecciones al TOC
-% -----------------------------------------------------------------------------
+% Límite máximo profundidad
+\setcounter{secnumdepth}{4}
+
+% Agrega compatibilidad de sub-sub-sub-secciones al TOC
 \makeatletter
 	\def\toclevel@subsubsubsection {4}
 	\def\toclevel@paragraph {5}
@@ -669,7 +665,7 @@
 % -----------------------------------------------------------------------------
 % Configuraciones del idioma
 % -----------------------------------------------------------------------------
-% Desactiva carácteres acentuados en operaciones matemáticas
+% Desactiva caracteres acentuados en operaciones matemáticas
 \unaccentedoperators
 
 % -----------------------------------------------------------------------------

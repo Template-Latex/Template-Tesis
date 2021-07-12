@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.2.9 (11/07/2021)
+% Versión:      2.3.0 (12/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -235,6 +235,21 @@
 		\def\GLOBALtablerowcolorswitch {false}
 	}
 	\settablerowcolorslast
+}
+
+% Actualiza el padding de las celdas de las tablas
+%	#1	Padding horizontal (em)
+%	#2	Padding vertical (em)
+\newcommand{\settablecellpadding}[2]{
+	\emptyvarerr{\settablecellpadding}{#1}{Padding horizontal no definido}
+	\emptyvarerr{\settablecellpadding}{#2}{Padding vertical no definido}
+	\setlength{\tabcolsep}{#1 em} % Horizontal
+	\def\arraystretch {#2} % Vertical
+}
+
+% Resetea el padding de las celdas de las tablas
+\newcommand{\resettablecellpadding}{
+	\settablecellpadding{\tablepaddingh}{\tablepaddingv}
 }
 
 % Cambia el tamaño de la página

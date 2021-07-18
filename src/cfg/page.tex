@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      2.3.0 (12/07/2021)
+% Versión:      2.3.1 (17/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -12,7 +12,7 @@
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
 \newcommand{\templatePagecfg}{
-
+	
 	% -------------------------------------------------------------------------
 	% Numeración de páginas
 	% -------------------------------------------------------------------------
@@ -27,20 +27,20 @@
 	}
 	\setcounter{page}{1}
 	\setcounter{footnote}{0}
-
+	
 	% -------------------------------------------------------------------------
 	% Márgenes de páginas y tablas
 	% -------------------------------------------------------------------------
 	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 	\resettablecellpadding
-
+	
 	% -------------------------------------------------------------------------
 	% Se define el punto decimal
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\pointdecimal}{true}}{
 		\decimalpoint}{
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Definición de nombres de objetos
 	% -------------------------------------------------------------------------
@@ -57,7 +57,7 @@
 	\renewcommand{\refname}{\namereferences} % Nombre de las referencias (bibtex)
 	\renewcommand{\bibname}{\namereferences} % Nombre de las referencias (natbib)
 	\renewcommand{\tablename}{\nomltwtable} % Nombre de la leyenda de tablas
-
+	
 	% -------------------------------------------------------------------------
 	% Estilo de títulos
 	% -------------------------------------------------------------------------
@@ -75,7 +75,7 @@
 	\ifthenelse{\equal{\stylecitereferences}{apacite}}{
 		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
 	}{}
-
+	
 	% -------------------------------------------------------------------------
 	% Se crean los header-footer
 	% -------------------------------------------------------------------------
@@ -756,7 +756,7 @@
 		\fancyheadoffset{0pt}
 		\COREstyledefinition
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
 	% -------------------------------------------------------------------------
@@ -777,5 +777,5 @@
 	}{
 		\renewcommand{\abstractname}{\nameabstract}
 	}
-
+	
 }

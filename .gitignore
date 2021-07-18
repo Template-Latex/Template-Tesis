@@ -47,3 +47,6 @@ dist/
 
 # Archivos temporales
 *_temp.tex
+
+# Otros
+.vscode

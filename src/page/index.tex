@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.3.0 (12/07/2021)
+% Versión:      2.3.1 (17/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -20,7 +20,7 @@
 		\let\origaddvspace\addvspace
 		\renewcommand{\addvspace}[1]{}
 	}{}
-
+	
 	% -------------------------------------------------------------------------
 	% Crea nueva página y establece estilo de títulos
 	% -------------------------------------------------------------------------
@@ -56,14 +56,14 @@
 	% Configuración del punto en índice
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showdotaftersnum}{true}}{
-		\def\cftchapaftersnum {.}		
+		\def\cftchapaftersnum {.}
 		\def\cftsecaftersnum {.}
 		\def\cftsubsecaftersnum {.}
 		\def\cftsubsubsecaftersnum {.}
 		\def\cftsubsubsubsecaftersnum {.}
 		}{
 	}{}
-
+	
 	% -------------------------------------------------------------------------
 	% Configuración carácter número de página
 	% -------------------------------------------------------------------------
@@ -84,7 +84,7 @@
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\nolinenumbers}{
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Cambia tabulación índice de objetos para alinear con contenidos
 	% -------------------------------------------------------------------------
@@ -99,7 +99,7 @@
 		\setlength{\cftsubfigindent}{0em}
 		\def\cftlstlistingindent {0em}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Calcula tamaño del margen de los números en objetos del índice
 	% -------------------------------------------------------------------------
@@ -130,7 +130,7 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
-
+	
 	% Código fuente
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
 		\def\cftdefautnumwidtheqn {3.0em} % Añade +0.7em
@@ -234,7 +234,7 @@
 			\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
 		}}
 	}
-
+	
 	% Ecuaciones
 	\ifthenelse{\equal{\captionnumequation}{arabic}}{ % No hace nada (default)
 		\def\cftmyindexequationsnumwidth {\cftdefautnumwidtheqn}
@@ -262,7 +262,7 @@
 				\def\cftfignumwidth {\cftdefautnumwidthfig}
 			}}
 	}
-
+	
 	% Tablas
 	\ifthenelse{\equal{\captionnumtable}{arabic}}{ % No hace nada (default)
 		\def\cfttabnumwidth {\cftdefautnumwidthtab}
@@ -276,7 +276,7 @@
 				\def\cfttabnumwidth {\cftdefautnumwidthtab}
 			}}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Genera las funciones para los índices
 	% -------------------------------------------------------------------------
@@ -324,7 +324,7 @@
 			\listofmyindexequations
 		\fi
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Índice de contenidos
 	% -------------------------------------------------------------------------
@@ -336,7 +336,7 @@
 	% Índice de objetos
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\indexstyle}{ftc}}{%
-        \LoIf\LoIt\LoIc
+		\LoIf\LoIt\LoIc
 	}{
 	\ifthenelse{\equal{\indexstyle}{}}{%
 	}{%
@@ -531,7 +531,7 @@
 	}{
 		\throwbadconfig{Estilo desconocido del indice}{\indexstyle}{ftc,,e,c,f,t,ec,ce,ef,fe,et,te,cf,fc,ct,tc,ft,tf,ecf,efc,cef,cfe,fec,fce,ect,etc,cet,cte,tec,tce,eft,etf,fet,fte,tef,tfe,cft,ctf,fct,tcf,tfc,ecft,ectf,efct,eftc,etcf,etfc,ceft,cetf,cfet,cfte,ctef,ctfe,fect,fetc,fcet,fcte,ftec,ftce,tecf,tefc,tcef,tcfe,tfec,tfce}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Termina el bloque de índice
 	% -------------------------------------------------------------------------
@@ -560,5 +560,5 @@
 		\else
 		\fi}{
 	}
-
+	
 }

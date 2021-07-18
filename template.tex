@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.3.0 (12/07/2021)
+% Versión:      2.3.1 (17/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -414,6 +414,10 @@
 \ifthenelse{\equal{\fontdocument}{lato}}{
 	\usepackage[default]{lato}
 }{
+\ifthenelse{\equal{\fontdocument}{libertine}}{
+	\usepackage[libertine]{newtxmath}
+	\usepackage[tt=false]{libertine}
+}{
 \ifthenelse{\equal{\fontdocument}{libris}}{
 	\usepackage{libris}
 	\renewcommand*\familydefault{\sfdefault}
@@ -532,9 +536,9 @@
 }{
 	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) lmodern,arial,arial2,helvet,times,alegreyasans,mathpazo,mathptmx}
 	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{(Fuentes adicionales) accantis,alegreya,algolrevived,antiqua,antpolt,antpoltlight,anttor,anttorcondensed,anttorlight,anttorlightcondensed,arev,arimo,aurical,avant,baskervald,berasans,beraserif,biolinum,cabin,cabincondensed,cantarell,caladea,carlito,chivolight,chivoregular,clearsans,comfortaa,comicneue,comicneueangular,crimson,cyklop,dejavusans,dejavusanscondensed,droidsans,firasans,iwona,iwonacondensed,iwonalight,iwonalightcondensed,kurier}
-	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{kuriercondensed,kurierlight,kurierlightcondensed,lato,libris,lxfonts,merriweather,merriweatherlight,mintspirit,montserratalternatesextralight,montserratalternatesregular,montserratalternatesthin,montserratextralight,montserratlight,montserratregular,montserratthin,nimbussans,noto,opensansserif,overlock,paratype,paratypesanscaption,paratypesansnarrow,quattrocento,raleway,roboto,robotolight,robotolightcondensed,robotothin,rosario,sourcesanspro,uarial,ugq}
+	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{kuriercondensed,kurierlight,kurierlightcondensed,lato,libertine,libris,lxfonts,merriweather,merriweatherlight,mintspirit,montserratalternatesextralight,montserratalternatesregular,montserratalternatesthin,montserratextralight,montserratlight,montserratregular,montserratthin,nimbussans,noto,opensansserif,overlock,paratype,paratypesanscaption,paratypesansnarrow,quattrocento,raleway,roboto,robotolight,robotolightcondensed,robotothin,rosario,sourcesanspro,uarial,ugq}
 	\throwbadconfig[noheader]{Fuente desconocida}{\fontdocument}{universalis,universaliscondensed,venturis}
-	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
 
 % -----------------------------------------------------------------------------
@@ -2445,7 +2449,7 @@
 % Comienza nueva subsubsección, aquí hay varios casos:
 %	- si está dentro de una subsección sin número ignora la sección
 %	- si no, entonces puede estar dentro de una sección sin número o no, en ese caso
-%     debe evaluar ambas posibilidades
+%	  debe evaluar ambas posibilidades
 \pretocmd{\subsubsection}{
 	\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}
@@ -4424,15 +4428,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={12/07/2021},
+		Template.Fecha={17/07/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.3.0-1-THS},
-		Template.Version.Hash={C25334F3729C3A23BD18054962FDCA28},
-		Template.Version.Release={2.3.0},
+		Template.Version.Dev={2.3.1-THS},
+		Template.Version.Hash={BAD93C672769A258F1D457349FE508DE},
+		Template.Version.Release={2.3.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4444,7 +4448,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.3.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.3.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5113,7 +5117,7 @@
 % PORTADA
 % -----------------------------------------------------------------------------
 \newcommand{\templatePortrait}{
-
+	
 	% Configura la página
 	\clearpage
 	\def\arraystretch {\tablepaddingv} % Ajusta espaciamiento de las tablas
@@ -5148,7 +5152,7 @@
 % CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
 % -----------------------------------------------------------------------------
 \newcommand{\templatePagecfg}{
-
+	
 	% -------------------------------------------------------------------------
 	% Numeración de páginas
 	% -------------------------------------------------------------------------
@@ -5163,20 +5167,20 @@
 	}
 	\setcounter{page}{1}
 	\setcounter{footnote}{0}
-
+	
 	% -------------------------------------------------------------------------
 	% Márgenes de páginas y tablas
 	% -------------------------------------------------------------------------
 	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 	\resettablecellpadding
-
+	
 	% -------------------------------------------------------------------------
 	% Se define el punto decimal
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\pointdecimal}{true}}{
 		\decimalpoint}{
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Definición de nombres de objetos
 	% -------------------------------------------------------------------------
@@ -5193,7 +5197,7 @@
 	\renewcommand{\refname}{\namereferences} % Nombre de las referencias (bibtex)
 	\renewcommand{\bibname}{\namereferences} % Nombre de las referencias (natbib)
 	\renewcommand{\tablename}{\nomltwtable} % Nombre de la leyenda de tablas
-
+	
 	% -------------------------------------------------------------------------
 	% Estilo de títulos
 	% -------------------------------------------------------------------------
@@ -5211,7 +5215,7 @@
 	\ifthenelse{\equal{\stylecitereferences}{apacite}}{
 		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
 	}{}
-
+	
 	% -------------------------------------------------------------------------
 	% Se crean los header-footer
 	% -------------------------------------------------------------------------
@@ -5892,7 +5896,7 @@
 		\fancyheadoffset{0pt}
 		\COREstyledefinition
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
 	% -------------------------------------------------------------------------
@@ -5913,7 +5917,7 @@
 	}{
 		\renewcommand{\abstractname}{\nameabstract}
 	}
-
+	
 }
 
 % -----------------------------------------------------------------------------
@@ -5928,7 +5932,7 @@
 		\let\origaddvspace\addvspace
 		\renewcommand{\addvspace}[1]{}
 	}{}
-
+	
 	% -------------------------------------------------------------------------
 	% Crea nueva página y establece estilo de títulos
 	% -------------------------------------------------------------------------
@@ -5964,14 +5968,14 @@
 	% Configuración del punto en índice
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showdotaftersnum}{true}}{
-		\def\cftchapaftersnum {.}		
+		\def\cftchapaftersnum {.}
 		\def\cftsecaftersnum {.}
 		\def\cftsubsecaftersnum {.}
 		\def\cftsubsubsecaftersnum {.}
 		\def\cftsubsubsubsecaftersnum {.}
 		}{
 	}{}
-
+	
 	% -------------------------------------------------------------------------
 	% Configuración carácter número de página
 	% -------------------------------------------------------------------------
@@ -5992,7 +5996,7 @@
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\nolinenumbers}{
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Cambia tabulación índice de objetos para alinear con contenidos
 	% -------------------------------------------------------------------------
@@ -6007,7 +6011,7 @@
 		\setlength{\cftsubfigindent}{0em}
 		\def\cftlstlistingindent {0em}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Calcula tamaño del margen de los números en objetos del índice
 	% -------------------------------------------------------------------------
@@ -6038,7 +6042,7 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
-
+	
 	% Código fuente
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
 		\def\cftdefautnumwidtheqn {3.0em} % Añade +0.7em
@@ -6142,7 +6146,7 @@
 			\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
 		}}
 	}
-
+	
 	% Ecuaciones
 	\ifthenelse{\equal{\captionnumequation}{arabic}}{ % No hace nada (default)
 		\def\cftmyindexequationsnumwidth {\cftdefautnumwidtheqn}
@@ -6170,7 +6174,7 @@
 				\def\cftfignumwidth {\cftdefautnumwidthfig}
 			}}
 	}
-
+	
 	% Tablas
 	\ifthenelse{\equal{\captionnumtable}{arabic}}{ % No hace nada (default)
 		\def\cfttabnumwidth {\cftdefautnumwidthtab}
@@ -6184,7 +6188,7 @@
 				\def\cfttabnumwidth {\cftdefautnumwidthtab}
 			}}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Genera las funciones para los índices
 	% -------------------------------------------------------------------------
@@ -6232,7 +6236,7 @@
 			\listofmyindexequations
 		\fi
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Índice de contenidos
 	% -------------------------------------------------------------------------
@@ -6244,7 +6248,7 @@
 	% Índice de objetos
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\indexstyle}{ftc}}{%
-        \LoIf\LoIt\LoIc
+		\LoIf\LoIt\LoIc
 	}{
 	\ifthenelse{\equal{\indexstyle}{}}{%
 	}{%
@@ -6439,7 +6443,7 @@
 	}{
 		\throwbadconfig{Estilo desconocido del indice}{\indexstyle}{ftc,,e,c,f,t,ec,ce,ef,fe,et,te,cf,fc,ct,tc,ft,tf,ecf,efc,cef,cfe,fec,fce,ect,etc,cet,cte,tec,tce,eft,etf,fet,fte,tef,tfe,cft,ctf,fct,tcf,tfc,ecft,ectf,efct,eftc,etcf,etfc,ceft,cetf,cfet,cfte,ctef,ctfe,fect,fetc,fcet,fcte,ftec,ftce,tecf,tefc,tcef,tcfe,tfec,tfce}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Termina el bloque de índice
 	% -------------------------------------------------------------------------
@@ -6468,7 +6472,7 @@
 		\else
 		\fi}{
 	}
-
+	
 }
 
 % -----------------------------------------------------------------------------
@@ -6606,7 +6610,7 @@
 		}}}}}}}}}}}}}}}}}}}
 	}{
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Estilo de títulos - restablece estilos por el índice
 	% -------------------------------------------------------------------------
@@ -6615,7 +6619,7 @@
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
+	
 	% -------------------------------------------------------------------------
 	% Crea funciones para numerar objetos
 	% -------------------------------------------------------------------------
@@ -6644,7 +6648,7 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
-
+	
 	% Numeración de la sección en los objetos ecuaciones
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
 		\def\sectionobjectnumeqn {}
@@ -6670,7 +6674,7 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
-
+	
 	% Numeración de la sección en los objetos figuras
 	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
 		\def\sectionobjectnumfig {}
@@ -6696,7 +6700,7 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
-
+	
 	% Numeración de la sección en los objetos tablas
 	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
 		\def\sectionobjectnumtab {}
@@ -6722,7 +6726,7 @@
 	}{
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Modifica numeración de objetos
 	% -------------------------------------------------------------------------
@@ -6744,7 +6748,7 @@
 	}{
 		\throwbadconfig{Tipo numero codigo fuente desconocido}{\captionnumcode}{arabic,alph,Alph,roman,Roman}}}}}
 	}
-
+	
 	% Ecuaciones, incluir sección
 	\ifthenelse{\equal{\captionnumequation}{arabic}}{
 		\renewcommand{\theequation}{\sectionobjectnumeqn\arabic{equation}}
@@ -6763,7 +6767,7 @@
 	}{
 		\throwbadconfig{Tipo numero ecuacion desconocido}{\captionnumequation}{arabic,alph,Alph,roman,Roman}}}}}
 	}
-
+	
 	% Figuras, incluir sección
 	\ifthenelse{\equal{\captionnumfigure}{arabic}}{
 		\renewcommand{\thefigure}{\sectionobjectnumfig\arabic{figure}}
@@ -6782,7 +6786,7 @@
 	}{
 		\throwbadconfig{Tipo numero figura desconocido}{\captionnumfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
-
+	
 	% Subfiguras, no usar secciones ya que son hijas de figura
 	\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{
 		\renewcommand{\thesubfigure}{\arabic{subfigure}}
@@ -6801,7 +6805,7 @@
 	}{
 		\throwbadconfig{Tipo numero subfigura desconocido}{\captionnumsubfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
-
+	
 	% Tablas, incluir sección
 	\ifthenelse{\equal{\captionnumtable}{arabic}}{
 		\renewcommand{\thetable}{\sectionobjectnumtab\arabic{table}}
@@ -6820,7 +6824,7 @@
 	}{
 		\throwbadconfig{Tipo numero tabla desconocido}{\captionnumtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
-
+	
 	% Subtablas, no incluir sección ya que son hijas de las tablas
 	\ifthenelse{\equal{\captionnumsubtable}{arabic}}{
 		\renewcommand{\thesubtable}{\arabic{subtable}}
@@ -6839,7 +6843,7 @@
 	}{
 		\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Se restablecen números de página y secciones
 	% -------------------------------------------------------------------------
@@ -6847,7 +6851,7 @@
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{
 		\renewcommand{\thepage}{\arabic{page}}}{
 	}
-
+	
 	% Reinicia número de página
 	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
 		\setcounter{page}{1}}{
@@ -6855,17 +6859,17 @@
 	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
-
+	
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
-
+	
 	% -------------------------------------------------------------------------
 	% Establece el estilo de las sub-sub-sub-secciones
 	% -------------------------------------------------------------------------
 	\titleclass{\subsubsubsection}{straight}[\subsection]
-
+	
 }

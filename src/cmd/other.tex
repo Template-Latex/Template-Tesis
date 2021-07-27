@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.3.2 (21/07/2021)
+% Versión:      2.3.3 (27/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -176,7 +176,7 @@
 	}
 
 	% Actualiza el índice previo
-	\def\GLOBALtablerowcolorindex {#1}
+	\global\def\GLOBALtablerowcolorindex {#1}
 }
 
 % Alterna los colores de las tablas a la última ejecución
@@ -230,9 +230,9 @@
 % Alterna los colores de las filas de las tablas
 \newcommand{\switchtablerowcolors}{
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{
-		\def\GLOBALtablerowcolorswitch {true}
+		\global\def\GLOBALtablerowcolorswitch {true}
 	}{
-		\def\GLOBALtablerowcolorswitch {false}
+		\global\def\GLOBALtablerowcolorswitch {false}
 	}
 	\settablerowcolorslast
 }

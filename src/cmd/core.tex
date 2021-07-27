@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.3.3 (27/07/2021)
+% Versión:      2.3.4 (27/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -186,7 +186,9 @@
 % Agrega una carpeta al path de imágenes
 %	#1	Carpeta
 \makeatletter
-\newcommand\addpathimage[1]{\gappto\Ginput@path{{#1}}}
+\newcommand\addpathimage[1]{%
+	\gappto\Ginput@path{{#1}}%
+}
 \makeatother
 
 % Verifica que un tamaño de fuente sea correcto

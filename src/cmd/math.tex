@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones matemáticas
-% Versión:      2.3.4 (27/07/2021)
+% Versión:      2.3.5 (08/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -345,13 +345,15 @@
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 
 % Definición de operadores matemáticos de asignación (Typeset assigments)
-\newcommand{\asteq}{\ensuremath{\mathrel{{*}{=}}}}
+\ifthenelse{\equal{\fontdocument}{step}}{}{ % Ya definidos en STEP
+	\newcommand{\asteq}{\ensuremath{\mathrel{{*}{=}}}}
+	\newcommand{\eqeq}{\ensuremath{\mathrel{{=}{=}}}}
+}
 \newcommand{\cdoteq}{\ensuremath{\mathrel{{\cdot}{=}}}}
 \newcommand{\diveq}{\ensuremath{\mathrel{{/}{=}}}}
 \newcommand{\eqast}{\ensuremath{\mathrel{{=}{*}}}}
 \newcommand{\eqcdot}{\ensuremath{\mathrel{{=}{\cdot}}}}
 \newcommand{\eqdiv}{\ensuremath{\mathrel{{=}{/}}}}
-\newcommand{\eqeq}{\ensuremath{\mathrel{{=}{=}}}}
 \newcommand{\eqminus}{\ensuremath{\mathrel{{=}{-}}}}
 \newcommand{\eqnot}{\ensuremath{\mathrel{{=}{!}}}}
 \newcommand{\eqplus}{\ensuremath{\mathrel{{=}{+}}}}

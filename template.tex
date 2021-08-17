@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.3.5 (08/08/2021)
+% Versión:      2.3.6 (17/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -708,6 +708,9 @@
 % -----------------------------------------------------------------------------
 % Tipografía typewriter
 % -----------------------------------------------------------------------------
+% https://tug.org/FontCatalogue/typewriterfonts.html
+\ifthenelse{\equal{\fonttypewriter}{custom}}{
+}{
 \ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
 }{
@@ -721,6 +724,9 @@
 \ifthenelse{\equal{\fonttypewriter}{beramono}}{
 	\usepackage[scaled]{beramono}
 }{
+\ifthenelse{\equal{\fonttypewriter}{cascadiacode}}{
+	\usepackage{cascadia-code}
+}{
 \ifthenelse{\equal{\fonttypewriter}{cmpica}}{
 	\usepackage{addfont}
 	\addfont{OT1}{cmpica}{\pica}
@@ -728,11 +734,22 @@
 	\addfont{OT1}{cmpicati}{\picati}
 	\renewcommand*\ttdefault{pica}
 }{
+\ifthenelse{\equal{\fonttypewriter}{cmodern}}{
+}{
 \ifthenelse{\equal{\fonttypewriter}{courier}}{
 	\usepackage{courier}
 }{
+\ifthenelse{\equal{\fonttypewriter}{courier10}}{
+	\usepackage{courierten}
+}{
+\ifthenelse{\equal{\fonttypewriter}{cmvtt}}{
+	\renewcommand*\ttdefault{cmvtt}
+}{
 \ifthenelse{\equal{\fonttypewriter}{dejavusansmono}}{
 	\usepackage[scaled]{DejaVuSansMono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{droidsansmono}}{
+	\usepackage[defaultmono]{droidsansmono}
 }{
 \ifthenelse{\equal{\fonttypewriter}{firamono}}{
 	\usepackage[scale=0.85]{FiraMono}
@@ -764,10 +781,11 @@
 \ifthenelse{\equal{\fonttypewriter}{texgyrecursor}}{
 	\usepackage{tgcursor}
 }{
-	\throwbadconfig{Fuente desconocida}{\fonttypewriter}{anonymouspro,ascii,beramono,
-		cmpica,courier,dejavusansmono,firamono,gomono,inconsolata,kpmonospaced,lcmtt,
-		newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern}
-	}}}}}}}}}}}}}}}}
+\ifthenelse{\equal{\fonttypewriter}{txtt}}{
+	\renewcommand*\ttdefault{txtt}
+}{
+	\throwbadconfig{Fuente desconocida}{\fonttypewriter}{custom,anonymouspro,ascii,beramono,cascadiacode,cmpica,cmodern,courier,courier10,cvmtt,dejavusansmono,droidsansmono,firamono,gomono,inconsolata,kpmonospaced,lcmtt,newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern,txtt}
+	}}}}}}}}}}}}}}}}}}}}}}}
 }
 
 % -----------------------------------------------------------------------------
@@ -4772,6 +4790,7 @@
 % Se revisa si las variables no han sido borradas
 \def\temaatratar {}
 \def\titulodelinforme {\titulotesis}
+\def\subtituloinforme {\subtitulotesis}
 \def\autordeldocumento {\autortesis}
 \def\addemptypagetwosides {false}
 \def\predocpageromannumber {true}
@@ -4811,6 +4830,12 @@
 	\g@addto@macro\temaatratar\xspace
 	\g@addto@macro\titulodelinforme\xspace
 \makeatother
+
+\ifthenelse{\equal{\subtituloinforme}{}}{
+	\def\tituloinformehf {\titulodelinforme}
+}{
+	\def\tituloinformehf {\subtituloinforme}
+}
 
 % -----------------------------------------------------------------------------
 % Verifica tamaños de fuentes
@@ -4879,15 +4904,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={08/08/2021},
+		Template.Fecha={17/08/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.3.5-1-THS},
-		Template.Version.Hash={B6814399403607EEC0066BD132A6225A},
-		Template.Version.Release={2.3.5},
+		Template.Version.Dev={2.3.6-THS},
+		Template.Version.Hash={242DB22C304F3CAA280EFE933747ACF2},
+		Template.Version.Release={2.3.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4899,7 +4924,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.3.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.3.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5684,7 +5709,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5696,7 +5721,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodelinforme}}
+				\fancyfoot[L]{\small \textit{\tituloinformehf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -5717,7 +5742,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5729,7 +5754,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodelinforme}}
+				\fancyfoot[L]{\small \textit{\tituloinformehf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -5750,7 +5775,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5762,7 +5787,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodelinforme}}
+				\fancyfoot[L]{\small \textit{\tituloinformehf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -5783,7 +5808,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5795,7 +5820,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodelinforme}}
+				\fancyfoot[L]{\small \textit{\tituloinformehf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -5816,7 +5841,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5828,7 +5853,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodelinforme}}
+				\fancyfoot[L]{\small \textit{\tituloinformehf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -5849,7 +5874,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5861,7 +5886,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodelinforme}}
+				\fancyfoot[L]{\small \textit{\tituloinformehf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6080,7 +6105,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[L]{\small \textit{\titulodelinforme}}
+			\fancyfoot[L]{\small \textit{\tituloinformehf}}
 			\fancyfoot[R]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6096,7 +6121,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[RE,LO]{\small \textit{\titulodelinforme}}
+			\fancyfoot[RE,LO]{\small \textit{\tituloinformehf}}
 			\fancyfoot[RO,LE]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6112,7 +6137,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[RO,LE]{\small \textit{\titulodelinforme}}
+			\fancyfoot[RO,LE]{\small \textit{\tituloinformehf}}
 			\fancyfoot[RE,LO]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6137,7 +6162,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6145,7 +6170,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\titulodelinforme}}
+				\fancyhead[R]{\small \textit{\tituloinformehf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[R]{\small \thepage}
@@ -6172,7 +6197,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6180,7 +6205,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\titulodelinforme}}
+				\fancyhead[R]{\small \textit{\tituloinformehf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[RE,LO]{\small \thepage}
@@ -6207,7 +6232,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6215,7 +6240,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\titulodelinforme}}
+				\fancyhead[R]{\small \textit{\tituloinformehf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[LE,RO]{\small \thepage}
@@ -6237,7 +6262,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodelinforme}
+							\small \textit{\tituloinformehf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6249,7 +6274,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodelinforme}}
+				\fancyfoot[L]{\small \textit{\tituloinformehf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}

@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      2.3.5 (08/08/2021)
+% Versión:      2.3.6 (17/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -692,6 +692,9 @@
 % -----------------------------------------------------------------------------
 % Tipografía typewriter
 % -----------------------------------------------------------------------------
+% https://tug.org/FontCatalogue/typewriterfonts.html
+\ifthenelse{\equal{\fonttypewriter}{custom}}{
+}{
 \ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
 }{
@@ -705,6 +708,9 @@
 \ifthenelse{\equal{\fonttypewriter}{beramono}}{
 	\usepackage[scaled]{beramono}
 }{
+\ifthenelse{\equal{\fonttypewriter}{cascadiacode}}{
+	\usepackage{cascadia-code}
+}{
 \ifthenelse{\equal{\fonttypewriter}{cmpica}}{
 	\usepackage{addfont}
 	\addfont{OT1}{cmpica}{\pica}
@@ -712,11 +718,22 @@
 	\addfont{OT1}{cmpicati}{\picati}
 	\renewcommand*\ttdefault{pica}
 }{
+\ifthenelse{\equal{\fonttypewriter}{cmodern}}{
+}{
 \ifthenelse{\equal{\fonttypewriter}{courier}}{
 	\usepackage{courier}
 }{
+\ifthenelse{\equal{\fonttypewriter}{courier10}}{
+	\usepackage{courierten}
+}{
+\ifthenelse{\equal{\fonttypewriter}{cmvtt}}{
+	\renewcommand*\ttdefault{cmvtt}
+}{
 \ifthenelse{\equal{\fonttypewriter}{dejavusansmono}}{
 	\usepackage[scaled]{DejaVuSansMono}
+}{
+\ifthenelse{\equal{\fonttypewriter}{droidsansmono}}{
+	\usepackage[defaultmono]{droidsansmono}
 }{
 \ifthenelse{\equal{\fonttypewriter}{firamono}}{
 	\usepackage[scale=0.85]{FiraMono}
@@ -748,10 +765,11 @@
 \ifthenelse{\equal{\fonttypewriter}{texgyrecursor}}{
 	\usepackage{tgcursor}
 }{
-	\throwbadconfig{Fuente desconocida}{\fonttypewriter}{anonymouspro,ascii,beramono,
-		cmpica,courier,dejavusansmono,firamono,gomono,inconsolata,kpmonospaced,lcmtt,
-		newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern}
-	}}}}}}}}}}}}}}}}
+\ifthenelse{\equal{\fonttypewriter}{txtt}}{
+	\renewcommand*\ttdefault{txtt}
+}{
+	\throwbadconfig{Fuente desconocida}{\fonttypewriter}{custom,anonymouspro,ascii,beramono,cascadiacode,cmpica,cmodern,courier,courier10,cvmtt,dejavusansmono,droidsansmono,firamono,gomono,inconsolata,kpmonospaced,lcmtt,newtxtt,nimbusmono,nimbusmononarrow,texgyrecursor,tmodern,txtt}
+	}}}}}}}}}}}}}}}}}}}}}}}
 }
 
 % -----------------------------------------------------------------------------

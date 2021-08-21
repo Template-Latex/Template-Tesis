@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.3.6 (17/08/2021)
+% Versión:      2.3.7 (21/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -128,15 +128,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={17/08/2021},
+		Template.Fecha={21/08/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.3.6-THS},
-		Template.Version.Hash={242DB22C304F3CAA280EFE933747ACF2},
-		Template.Version.Release={2.3.6},
+		Template.Version.Dev={2.3.7-THS},
+		Template.Version.Hash={90D2DE6D1D4E11CF9F01BEC81E6A6C14},
+		Template.Version.Release={2.3.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -148,7 +148,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.3.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.3.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -513,9 +513,14 @@
 % Se activa el word-wrap para textos con \texttt{}
 % -----------------------------------------------------------------------------
 \ttfamily \hyphenchar\the\font=`\-
-\makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds} % Word-wrap para las \url
-\makeatother
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%
+	\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+	\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+	\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+	\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+	\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+	\do\Y\do\Z%
+}
 
 % -----------------------------------------------------------------------------
 % Se define el tipo de texto de los url

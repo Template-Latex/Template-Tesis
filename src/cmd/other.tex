@@ -1,6 +1,6 @@
 % Template:     Template Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.3.8 (24/08/2021)
+% Versión:      2.3.9 (25/08/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -84,6 +84,24 @@
 %	#1 	Texto
 \newcommand{\quotes}[1]{%
 	\enquote*{#1}%
+}
+
+% Inserta un texto entre comillas y negrita
+%	#1 	Texto
+\newcommand{\quotesbf}[1]{%
+	\quotes{\textbf{#1}}%
+}
+
+% Inserta un texto entre comillas e itálico
+%	#1 	Texto
+\newcommand{\quotesit}[1]{%
+	\quotes{\textit{#1}}%
+}
+
+% Inserta un texto entre comillas y typewriter
+%	#1 	Texto
+\newcommand{\quotesttt}[1]{%
+	\quotes{\texttt{#1}}%
 }
 
 % Inserta un texto entre comillas dobles

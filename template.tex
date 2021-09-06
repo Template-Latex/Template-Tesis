@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.4.1 (01/09/2021)
+% Versión:      2.4.2 (06/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3834,7 +3834,7 @@
 
 % Llama al entorno de resumen
 \newenvironment{resumen}{
-	\begin{resumenenv}{\tablaresumen}{\titulotesis}{\nameabstract}{abstractbookmark}
+	\begin{resumenenv}{\tablaresumen}{\titulodeldocumento}{\nameabstract}{abstractbookmark}
 	}{
 	\end{resumenenv}
 }
@@ -5043,9 +5043,6 @@
 % -----------------------------------------------------------------------------
 % Se revisa si las variables no han sido borradas
 \def\temaatratar {}
-\def\titulodelinforme {\titulotesis}
-\def\subtituloinforme {\subtitulotesis}
-\def\autordeldocumento {\autortesis}
 \def\addemptypagetwosides {false}
 \def\predocpageromannumber {true}
 \def\predocresetpagenumber {true}
@@ -5068,7 +5065,7 @@
 \checkvardefined{\nombrefacultad}
 \checkvardefined{\nombreuniversidad}
 \checkvardefined{\temaatratar}
-\checkvardefined{\titulodelinforme}
+\checkvardefined{\titulodeldocumento}
 
 % -----------------------------------------------------------------------------
 % Se añade \xspace a las variables
@@ -5082,13 +5079,16 @@
 	\g@addto@macro\nombrefacultad\xspace
 	\g@addto@macro\nombreuniversidad\xspace
 	\g@addto@macro\temaatratar\xspace
-	\g@addto@macro\titulodelinforme\xspace
+	\g@addto@macro\titulodeldocumento\xspace
 \makeatother
 
-\ifthenelse{\equal{\subtituloinforme}{}}{
-	\def\tituloinformehf {\titulodelinforme}
+\ifthenelse{\equal{\subtitulodocumento}{}}{
+	\def\titulodeldocumentohf {\titulodeldocumento}
 }{
-	\def\tituloinformehf {\subtituloinforme}
+	\makeatletter
+		\g@addto@macro\subtitulodocumento\xspace
+	\makeatother
+	\def\titulodeldocumentohf {\subtitulodocumento}
 }
 
 % -----------------------------------------------------------------------------
@@ -5117,7 +5117,7 @@
 	\def\pdfmetainfocodigodelcurso {\codigodelcurso}
 	\def\pdfmetainfonombredelcurso {\nombredelcurso}
 	\def\pdfmetainfotema {\temaatratar}
-	\def\pdfmetainfotitulo {\titulotesis}
+	\def\pdfmetainfotitulo {\titulodeldocumento}
 	\def\pdfmetainfounidepto {\departamentouniversidad}
 	\def\pdfmetainfounifacultad {\nombrefacultad}
 	\def\pdfmetainfouninombre {\nombreuniversidad}
@@ -5158,15 +5158,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={01/09/2021},
+		Template.Fecha={06/09/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Tesis},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.4.1-1-THS},
-		Template.Version.Hash={1448A697573146FDEA3E38F423EDCA1A},
-		Template.Version.Release={2.4.1},
+		Template.Version.Dev={2.4.2-THS},
+		Template.Version.Hash={071E65E88EE6FFA093600D3F7EB878BA},
+		Template.Version.Release={2.4.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -5178,7 +5178,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.4.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.4.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5968,7 +5968,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5980,7 +5980,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\tituloinformehf}}
+				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6001,7 +6001,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6013,7 +6013,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\tituloinformehf}}
+				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6034,7 +6034,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6046,7 +6046,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\tituloinformehf}}
+				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6067,7 +6067,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6079,7 +6079,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\tituloinformehf}}
+				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6100,7 +6100,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6112,7 +6112,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\tituloinformehf}}
+				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6133,7 +6133,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6145,7 +6145,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\tituloinformehf}}
+				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6364,7 +6364,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[L]{\small \textit{\tituloinformehf}}
+			\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 			\fancyfoot[R]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6380,7 +6380,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[RE,LO]{\small \textit{\tituloinformehf}}
+			\fancyfoot[RE,LO]{\small \textit{\titulodeldocumentohf}}
 			\fancyfoot[RO,LE]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6396,7 +6396,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[RO,LE]{\small \textit{\tituloinformehf}}
+			\fancyfoot[RO,LE]{\small \textit{\titulodeldocumentohf}}
 			\fancyfoot[RE,LO]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6421,7 +6421,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6429,7 +6429,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\tituloinformehf}}
+				\fancyhead[R]{\small \textit{\titulodeldocumentohf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[R]{\small \thepage}
@@ -6456,7 +6456,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6464,7 +6464,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\tituloinformehf}}
+				\fancyhead[R]{\small \textit{\titulodeldocumentohf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[RE,LO]{\small \thepage}
@@ -6491,7 +6491,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6499,7 +6499,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\tituloinformehf}}
+				\fancyhead[R]{\small \textit{\titulodeldocumentohf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[LE,RO]{\small \thepage}
@@ -6521,7 +6521,7 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\tituloinformehf}
+							\small \textit{\titulodeldocumentohf}
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6533,7 +6533,7 @@
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\tituloinformehf}}
+				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
 				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}

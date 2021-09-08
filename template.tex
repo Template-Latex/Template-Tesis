@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.4.2 (08/09/2021)
+% Versión:      2.4.3 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -933,6 +933,7 @@
 % Resetea los caption
 \newcommand{\resetindexcaption}{%
 	\global\def\GLOBALcaptiondefn {EMPTY-VAR}%
+	\hbadness=10000%
 }
 
 % Cambia los márgenes del documento
@@ -1389,6 +1390,11 @@
 	}
 \makeatother
 
+% Función que se ejecuta tras un equation
+\newcommand{\coreafterequationfn}{%
+	\hbadness=10000%
+}
+
 % Redimensiona una ecuación en linewidth
 % 	#1	Tamaño del nuevo objeto (En linewidth)
 %	#2	Ecuación a redimensionar
@@ -1428,6 +1434,7 @@
 		\end{equation}
 		\vspace{\marginequationbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	}{%
 		\ifx\hfuzz#1\hfuzz%
 		\else%
@@ -1448,6 +1455,7 @@
 	\end{equation*}
 	\vspace{\marginequationbottom cm}%
 	\end{samepage}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación en el índice
@@ -1467,6 +1475,7 @@
 	\end{samepage}
 	\coreinsertequationcaption{\textit{#3}}%
 	\addtocounter{templateIndexEquations}{1}%
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación alineada a la izquierda
@@ -1482,6 +1491,7 @@
 		\end{equation}
 		\vspace{\dimexpr-0.2\baselineskip + \marginequationbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	}{%
 		\ifx\hfuzz#1\hfuzz%
 		\else
@@ -1502,6 +1512,7 @@
 	\end{equation*}
 	\vspace{\dimexpr-0.2\baselineskip + \marginequationbottom cm}%
 	\end{samepage}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación alineada a la derecha
@@ -1517,6 +1528,7 @@
 		\end{equation}
 		\vspace{\dimexpr-0.2\baselineskip + \marginequationbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	}{%
 		\ifx\hfuzz#1\hfuzz%
 		\else
@@ -1537,6 +1549,7 @@
 	\end{equation*}
 	\vspace{\dimexpr-0.2\baselineskip + \marginequationbottom cm}%
 	\end{samepage}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación con leyenda
@@ -1558,6 +1571,7 @@
 			\coreinsertequationcaption{#3}%
 			\vspace{\margineqncaptionbottom cm}%
 			\end{samepage}
+			\coreafterequationfn%
 		}{%
 			\ifx\hfuzz#1\hfuzz
 			\else
@@ -1585,6 +1599,7 @@
 		\coreinsertequationcaption{#2}%
 		\vspace{\margineqncaptionbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	\fi
 }
 
@@ -1600,6 +1615,7 @@
 		\end{gather}
 		\vspace{\margingatherbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	}{%
 		\insertgatheranum{#1}%
 	}
@@ -1616,6 +1632,7 @@
 	\end{gather*}
 	\vspace{\margingatherbottom cm}%
 	\end{samepage}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación (gather) con leyenda
@@ -1636,6 +1653,7 @@
 			\coreinsertequationcaption{#2}%
 			\vspace{\margingathercaptbottom cm}%
 			\end{samepage}
+			\coreafterequationfn%
 		}{%
 			\insertgathercaptionedanum{#1}{#2}%
 		}
@@ -1659,6 +1677,7 @@
 		\coreinsertequationcaption{#2}%
 		\vspace{\margingathercaptbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	\fi
 }
 
@@ -1690,6 +1709,7 @@
 		\vspace{\margingatheredbottom cm}%
 		\end{samepage}
 	}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación con el ambiente gathered sin número
@@ -1703,6 +1723,7 @@
 	\end{gather*}
 	\vspace{\dimexpr-0.15cm + \margingatheredbottom cm}%
 	\end{samepage}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación (gathered) con leyenda
@@ -1726,6 +1747,7 @@
 			\coreinsertequationcaption{#3}%
 			\vspace{\margingatheredcaptbottom cm}%
 			\end{samepage}
+			\coreafterequationfn%
 		}{%
 			\ifx\hfuzz#1\hfuzz
 			\else
@@ -1753,6 +1775,7 @@
 		\coreinsertequationcaption{#2}%
 		\vspace{\dimexpr-0.05cm + \margingatheredcaptbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	\fi
 }
 
@@ -1768,6 +1791,7 @@
 		\end{align}
 		\vspace{\marginalignbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	}{%
 		\insertalignanum{#1}%
 	}
@@ -1784,6 +1808,7 @@
 	\end{align*}
 	\vspace{\marginalignbottom cm}%
 	\end{samepage}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación (align) con leyenda
@@ -1804,6 +1829,7 @@
 			\coreinsertequationcaption{#2}%
 			\vspace{\marginaligncaptbottom cm}%
 			\end{samepage}
+			\coreafterequationfn%
 		}{%
 			\insertaligncaptionedanum{#1}{#2}%
 		}
@@ -1827,6 +1853,7 @@
 		\coreinsertequationcaption{#2}%
 		\vspace{\marginaligncaptbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	\fi
 }
 
@@ -1845,6 +1872,7 @@
 		\end{equation}
 		\vspace{\marginalignedbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	}{%
 		\ifx\hfuzz#1\hfuzz
 		\else
@@ -1865,6 +1893,7 @@
 	\end{align*}
 	\vspace{\dimexpr-0.2cm + \marginalignedbottom cm}%
 	\end{samepage}
+	\coreafterequationfn%
 }
 
 % Insertar una ecuación (aligned) con leyenda
@@ -1888,6 +1917,7 @@
 			\coreinsertequationcaption{#3}%
 			\vspace{\marginalignedcaptbottom cm}%
 			\end{samepage}
+			\coreafterequationfn%
 		}{%
 			\ifx\hfuzz#1\hfuzz
 			\else
@@ -1917,6 +1947,7 @@
 		\coreinsertequationcaption{#2}%
 		\vspace{\marginalignedcaptbottom cm}%
 		\end{samepage}
+		\coreafterequationfn%
 	\fi
 }
 
@@ -2168,8 +2199,8 @@
 		\begin{multicols}{4}
 	}{
 	}}}}}}}}}
-	\setcaptionmargincm{\captionlrmargin}
-	\resetindexcaption
+	\setcaptionmargincm{\captionlrmargin}%
+	\resetindexcaption%
 }
 
 % Insertar una imagen dentro de una tabla
@@ -2962,18 +2993,6 @@
 % Insertar párrafo
 \newcommand{\newp}{%
 	\hbadness=10000 \vspace{\baselineskip} \par%
-}
-
-% Insertar párrafo
-% 	#1	Párrafo
-\newcommand{\newpar}[1]{%
-	\hbadness=10000 #1 \newp%
-}
-
-% Insertar párrafo sin nueva línea al final
-% 	#1	Párrafo
-\newcommand{\newparnl}[1]{%
-	#1 \par%
 }
 
 % Crea un salto de columna en el entorno multicol
@@ -3809,12 +3828,12 @@
 %	#2	Título de la tesis
 %	#3	Título de la sección
 %	#4	Etiqueta del marcador del pdf
-\newenvironment{resumenenv}[4]{
-	\clearpage
-	\emptyvarerr{\resumenenv}{#1}{Tabla resumen no definida}
-	\emptyvarerr{\resumenenv}{#2}{Titulo tesis no definido}
-	\emptyvarerr{\resumenenv}{#3}{Titulo seccion no definida}
-	\emptyvarerr{\resumenenv}{#4}{Etiqueta marcador del pdf}
+\newenvironment{abstractenv}[4]{
+	\clearpage%
+	\emptyvarerr{\abstractenv}{#1}{Tabla resumen no definida}
+	\emptyvarerr{\abstractenv}{#2}{Titulo tesis no definido}
+	\emptyvarerr{\abstractenv}{#3}{Titulo seccion no definida}
+	\emptyvarerr{\abstractenv}{#4}{Etiqueta marcador del pdf}
 	% Añade a los marcadores
 	\ifthenelse{\equal{\addabstracttobookmarks}{true}}{
 		\phantomsection
@@ -3854,9 +3873,9 @@
 
 % Llama al entorno de resumen
 \newenvironment{abstractd}{
-	\begin{resumenenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}
+	\begin{abstractenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}
 	}{
-	\end{resumenenv}
+	\end{abstractenv}
 }
 
 % Crea una sección de dedicatoria
@@ -5063,7 +5082,7 @@
 % CONFIGURACIÓN INICIAL DEL DOCUMENTO
 % -----------------------------------------------------------------------------
 % Se revisa si las variables no han sido borradas
-\def\documenttopic {}
+\def\documentsubject {}
 \def\addemptypagetwosides {false}
 \def\predocpageromannumber {true}
 \def\predocresetpagenumber {true}
@@ -5080,8 +5099,8 @@
 
 \checkvardefined{\coursecode}
 \checkvardefined{\documentauthor}
+\checkvardefined{\documentsubject}
 \checkvardefined{\documenttitle}
-\checkvardefined{\documenttopic}
 \checkvardefined{\universitydepartment}
 \checkvardefined{\universitydepartmentimagecfg}
 \checkvardefined{\universityfaculty}
@@ -5095,8 +5114,8 @@
 	\g@addto@macro\coursecode\xspace
 	\g@addto@macro\coursename\xspace
 	\g@addto@macro\documentauthor\xspace
+	\g@addto@macro\documentsubject\xspace
 	\g@addto@macro\documenttitle\xspace
-	\g@addto@macro\documenttopic\xspace
 	\g@addto@macro\universitydepartment\xspace
 	\g@addto@macro\universityfaculty\xspace
 	\g@addto@macro\universitylocation\xspace
@@ -5137,8 +5156,8 @@
 	\def\pdfmetainfoauthor {\documentauthor}
 	\def\pdfmetainfocoursecode {\coursecode}
 	\def\pdfmetainfocoursename {\coursename}
+	\def\pdfmetainfosubject {\documentsubject}
 	\def\pdfmetainfotitle {\documenttitle}
-	\def\pdfmetainfotopic {\documenttopic}
 	\def\pdfmetainfouniversity {\universityname}
 	\def\pdfmetainfouniversitydepartment {\universitydepartment}
 	\def\pdfmetainfouniversityfaculty {\universityfaculty}
@@ -5149,8 +5168,8 @@
 	\def\pdfmetainfoauthor {}
 	\def\pdfmetainfocoursecode {}
 	\def\pdfmetainfocoursename {}
+	\def\pdfmetainfosubject {}
 	\def\pdfmetainfotitle {}
-	\def\pdfmetainfotopic {}
 	\def\pdfmetainfouniversity {}
 	\def\pdfmetainfouniversitydepartment {}
 	\def\pdfmetainfouniversityfaculty {}
@@ -5172,8 +5191,8 @@
 		Course.Code={\pdfmetainfocoursecode},
 		Course.Name={\pdfmetainfocoursename},
 		Document.Author={\pdfmetainfoauthor},
+		Document.Subject={\pdfmetainfosubject},
 		Document.Title={\pdfmetainfotitle},
-		Document.Topic={\pdfmetainfotopic},
 		Template.Author.Alias={ppizarror},
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
@@ -5185,9 +5204,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.4.2-THS},
-		Template.Version.Hash={BB3419E7C2131E51DC71FD2FBAEFFDB6},
-		Template.Version.Release={2.4.2},
+		Template.Version.Dev={2.4.3-6-THS},
+		Template.Version.Hash={4FCD21E4375A172742D1F9ABC42516AA},
+		Template.Version.Release={2.4.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5199,11 +5218,11 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.4.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.4.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdfsubject={\pdfmetainfotopic},
+	pdfsubject={\pdfmetainfosubject},
 	pdftitle={\pdfmetainfotitle},
 	pdftoolbar={\cfgpdftoolbar}
 }

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.4.2 (08/09/2021)
+% Versión:      2.4.3 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -271,12 +271,12 @@
 %	#2	Título de la tesis
 %	#3	Título de la sección
 %	#4	Etiqueta del marcador del pdf
-\newenvironment{resumenenv}[4]{
-	\clearpage
-	\emptyvarerr{\resumenenv}{#1}{Tabla resumen no definida}
-	\emptyvarerr{\resumenenv}{#2}{Titulo tesis no definido}
-	\emptyvarerr{\resumenenv}{#3}{Titulo seccion no definida}
-	\emptyvarerr{\resumenenv}{#4}{Etiqueta marcador del pdf}
+\newenvironment{abstractenv}[4]{
+	\clearpage%
+	\emptyvarerr{\abstractenv}{#1}{Tabla resumen no definida}
+	\emptyvarerr{\abstractenv}{#2}{Titulo tesis no definido}
+	\emptyvarerr{\abstractenv}{#3}{Titulo seccion no definida}
+	\emptyvarerr{\abstractenv}{#4}{Etiqueta marcador del pdf}
 	% Añade a los marcadores
 	\ifthenelse{\equal{\addabstracttobookmarks}{true}}{
 		\phantomsection
@@ -316,9 +316,9 @@
 
 % Llama al entorno de resumen
 \newenvironment{abstractd}{
-	\begin{resumenenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}
+	\begin{abstractenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}
 	}{
-	\end{resumenenv}
+	\end{abstractenv}
 }
 
 % Crea una sección de dedicatoria

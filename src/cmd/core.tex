@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.4.2 (06/09/2021)
+% Versión:      2.4.2 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -12,6 +12,7 @@
 % Definición de variables globales
 \global\def\GLOBALcaptiondefn {EMPTY-VAR}       % Definición del caption
 \global\def\GLOBALchapternumenabled {false}     % Numeración de capítulos empezó
+\global\def\GLOBALenvappendix {false}           % Indica que el entorno anexo está activo
 \global\def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
 \global\def\GLOBALenvimageinitialized {false}   % Entorno images activo
 \global\def\GLOBALenvmulticol {false}           % Indica que el entorno multicol está activo
@@ -20,6 +21,10 @@
 \global\def\GLOBALsubsectionanumenabled {false} % Subsección sin numeración
 \global\def\GLOBALtablerowcolorindex {2}        % Índice tabla colores
 \global\def\GLOBALtablerowcolorswitch {false}   % Tabla con colores cambiados
+
+% Signo porcentaje para archivos
+\def\LOCALpercentchar#1{}
+\edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
 
 % Contador global de objetos
 \newcounter{templateEquations}      % Ecuaciones
@@ -158,6 +163,14 @@
 \newcommand{\checkinsidemulticol}{%
 	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{%
 		\throwwarning{Esta funcion solo puede usarse dentro de multicols}%
+		\stop}{%
+	}
+}
+
+% Chequea que las funciones puedan usarse fuera del entorno anexo
+\newcommand{\checkoutsideappendix}{%
+	\ifthenelse{\equal{\GLOBALenvappendix}{true}}{%
+		\throwwarning{Esta funcion solo puede usarse fuera de anexo}%
 		\stop}{%
 	}
 }

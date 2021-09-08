@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Archivo principal
-% Versión:      2.4.2 (06/09/2021)
+% Versión:      2.4.2 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -13,34 +13,34 @@
 \documentclass[letterpaper,oneside]{book}
 
 % INFORMACIÓN DEL DOCUMENTO
-\def\titulodeldocumento {Título de la tesis}
-\def\subtitulodocumento {}
-\def\titulogrado {
+\def\documenttitle {Título de la tesis}
+\def\documentsubtitle {}
+\def\degreetitle {
 	Tesis para optar al grado de magíster en ciencias de la ingeniería, mención área de la ingeniería
 	\bigbreak\vspace{0.3cm}
 	Memoria para optar al título de ingeniero
 }
 
-\def\nombreuniversidad {Universidad de Chile}
-\def\nombrefacultad {Facultad de Ciencias Físicas y Matemáticas}
-\def\departamentouniversidad {Departamento de la Universidad}
-\def\imagendepartamento {departamentos/uchile2}
-\def\imagendepartamentoparams {height=3cm}
-\def\localizacionuniversidad {Santiago de Chile}
+\def\universityname {Universidad de Chile}
+\def\universityfaculty {Facultad de Ciencias Físicas y Matemáticas}
+\def\universitydepartment {Departamento de la Universidad}
+\def\universitydepartmentimage {departamentos/uchile2}
+\def\universitydepartmentimagecfg {height=3cm}
+\def\universitylocation {Santiago de Chile}
 
 % INTEGRANTES, PROFESORES Y FECHAS
-\def\autordeldocumento {Nombre del autor}
-\def\fechadocumento {\the\year}
+\def\documentauthor {Nombre del autor}
+\def\documentdate {\the\year}
 
-\def\portada {
+\def\portrait {
 \begin{center}
 	\vspace{1.5cm} ~ \\
-	\MakeUppercase{\textbf{\titulodeldocumento}} ~ \\
+	\MakeUppercase{\textbf{\documenttitle}} ~ \\
 	\vspace{1.5cm}
-	\MakeUppercase{\titulogrado} ~ \\
+	\MakeUppercase{\degreetitle} ~ \\
 	\vfill
 	\begin{tabular}{c}
-		\MakeUppercase{\autordeldocumento} \\
+		\MakeUppercase{\documentauthor} \\
 		\vspace{1.0cm} \\
 		PROFESOR GUÍA: \\
 		PROFESOR 1 \\
@@ -52,18 +52,18 @@
 		Este trabajo ha sido parcialmente financiado por: \\
 		NOMBRE INSTITUCIÓN \\
 		\vspace{0.5cm} \\
-		\MakeUppercase{\localizacionuniversidad} \\
-		\MakeUppercase{\fechadocumento}
+		\MakeUppercase{\universitylocation} \\
+		\MakeUppercase{\documentdate}
 	\end{tabular}
 \end{center}}{
 }
-\def\tablaresumen { % Para activar, cambiar configuración \showtableresumenenv
+\def\abstracttable { % Para activar, cambiar configuración \showabstracttable
 \begin{tabular}{l}
 	RESUMEN DE LA MEMORIA PARA OPTAR \\
 	AL TÍTULO DE MAGÍSTER EN CIENCIAS \\
 	DE LA INGENIERÍA \\
-	POR: \MakeUppercase{\autordeldocumento} \\
-	FECHA: \MakeUppercase{\fechadocumento} \\
+	POR: \MakeUppercase{\documentauthor} \\
+	FECHA: \MakeUppercase{\documentdate} \\
 	PROF. GUÍA: NOMBRE PROFESOR
 \end{tabular}}{
 }
@@ -81,21 +81,21 @@
 \templatePagecfg
 
 % RESUMEN O ABSTRACT
-\begin{resumen}
+\begin{abstractd}
 	\lipsum[1]
-\end{resumen}
+\end{abstractd}
 
 % DEDICATORIA
-\begin{dedicatoria}
+\begin{dedicatory}
 	Una frase de dedicatoria, \\
 	pueden ser dos líneas. \newp
 	\textbf{Saludos}
-\end{dedicatoria}
+\end{dedicatory}
 
 % AGRADECIMIENTOS
-\begin{agradecimientos}
+\begin{acknowledgments}
 	\lipsum[1]
-\end{agradecimientos}
+\end{acknowledgments}
 
 % TABLA DE CONTENIDOS - ÍNDICE
 \templateIndex

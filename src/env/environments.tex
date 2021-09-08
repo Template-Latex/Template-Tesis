@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.4.2 (06/09/2021)
+% Versión:      2.4.2 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -36,7 +36,8 @@
 	\end{thebibliography}
 }
 
-\newenvironment{anexo}{
+\newenvironment{appendixd}{
+	\global\def\GLOBALenvappendix {true}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
 	\phantomsection
@@ -48,7 +49,7 @@
 	}
 	\appendixtitleon
 	\appendixtitletocon
-	%\addappheadtotoc
+	% \addappheadtotoc
 	\bookmarksetupnext{level=part}
 	\begin{appendices} % Crea la sección
 		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
@@ -282,7 +283,7 @@
 		\pdfbookmark{#3}{#4}}{
 	}
 	% Inserta la tabla resumen
-	\ifthenelse{\equal{\showtableresumenenv}{true}}{
+	\ifthenelse{\equal{\showabstracttable}{true}}{
 		\begin{flushright}
 			\small
 			#1
@@ -295,7 +296,7 @@
 	\begin{center}
 		\textcolor{\titlecolor}{\MakeUppercase{\textbf{#2}}}
 	\end{center} \newp
-	\ifthenelse{\equal{\showtableresumenenv}{true}}{
+	\ifthenelse{\equal{\showabstracttable}{true}}{
 		\vspace{-\baselineskip}
 	}{
 		\vspace{-0.5\baselineskip}
@@ -314,14 +315,14 @@
 }
 
 % Llama al entorno de resumen
-\newenvironment{resumen}{
-	\begin{resumenenv}{\tablaresumen}{\titulodeldocumento}{\nameabstract}{abstractbookmark}
+\newenvironment{abstractd}{
+	\begin{resumenenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}
 	}{
 	\end{resumenenv}
 }
 
 % Crea una sección de dedicatoria
-\newenvironment{dedicatoria}{
+\newenvironment{dedicatory}{
 	\clearpage\null
 	\phantomsection
 	% \ifthenelse{\equal{\adddedictobookmarks}{true}}{
@@ -339,7 +340,7 @@
 }
 
 % Crea una sección de agradecimientos
-\newenvironment{agradecimientos}{
+\newenvironment{acknowledgments}{
 	\clearpage
 	\chapter*{\nameagradec}
 	\ifthenelse{\equal{\addagradectobookmarks}{true}}{
@@ -366,7 +367,7 @@
 	
 	% Configura caption y márgenes
 	\vspace{\marginimagetop cm}%
-	\setcaptionmargincm{\captionmarginmultimg}%
+	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
 	
 	% Inicia la figura
 	\begin{samepage}%
@@ -404,6 +405,7 @@
 	\global\def\GLOBALenvimageinitialized {true}
 	\global\def\GLOBALenvimageadded {false}
 	\checkinsidemulticol%
+	\checkoutsideappendix%
 	
 	% Configura caption y márgenes
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
@@ -431,7 +433,7 @@
 	\end{figure*}%
 	
 	% Restablece caption y márgenes
-	\setcaptionmargincm{\captionlrmargin}%
+	\setcaptionmargincm{\captionlrmarginmc}%
 	
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}

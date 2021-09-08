@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de portadas
-% Versión:      2.4.2 (06/09/2021)
+% Versión:      2.4.2 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -24,19 +24,19 @@
 
 	% Logo de la universidad
 	\hspace*{-0.5cm} % Necesario para centrar el logo con el título
-	\coreinsertkeyimage{\imagendepartamentoparams}{\imagendepartamento}
-	\hspace*{0.05cm}
-	\begin{minipage}{0.8\linewidth}
-		\MakeUppercase \nombreuniversidad ~ \\
-		\MakeUppercase \nombrefacultad ~ \\
-		\MakeUppercase \departamentouniversidad
-		\vspace*{1.6cm}\mbox{}
-	\end{minipage}
+	\coreinsertkeyimage{\universitydepartmentimagecfg}{\universitydepartmentimage}%
+	\hspace*{0.05cm}%
+	\begin{minipage}{0.8\linewidth}%
+		\MakeUppercase \universityname ~ \\%
+		\MakeUppercase \universityfaculty ~ \\%
+		\MakeUppercase \universitydepartment%
+		\vspace*{1.6cm}\mbox{}%
+	\end{minipage}%
 
 	% Importada la portada
-	\portada
+	\portrait%
 	
 	% Ajusta la fuente
-	\normalfont
+	\normalfont%
 	
 }

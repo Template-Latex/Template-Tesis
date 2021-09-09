@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.4.3 (08/09/2021)
+% Versión:      2.4.4 (09/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -125,16 +125,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={08/09/2021},
+		Template.Date={09/09/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.4.3-6-THS},
-		Template.Version.Hash={4FCD21E4375A172742D1F9ABC42516AA},
-		Template.Version.Release={2.4.3},
+		Template.Version.Dev={2.4.4-THS},
+		Template.Version.Hash={B435870B0A631EEF86BD5A28CFCD3581},
+		Template.Version.Release={2.4.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -146,7 +146,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.4.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.4.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -173,9 +173,8 @@
 % -----------------------------------------------------------------------------
 % Definición de valores e dimensiones
 % -----------------------------------------------------------------------------
-\renewcommand{\baselinestretch}{\documentinterline} % Ajuste del entrelineado
+\setstretch{\documentinterline} % Ajuste del entrelineado
 \setlength{\headheight}{64 pt} % Tamaño de la cabecera sin fancyhdr
-% \setcounter{MaxMatrixCols}{20} % Número máximo de columnas en matrices
 \setlength{\footnotemargin}{\marginfootnote pt} % Margen del footnote
 \setlength{\columnsep}{\columnsepwidth em} % Separación entre columnas
 \ifthenelse{\equal{\showlinenumbers}{true}}{
@@ -620,6 +619,7 @@
 }{
 	\throwbadconfig{Formato reinicio numero footnote desconocido}{\footnoterestart}{none,chap,page,sec,ssec,sssec,ssssec}}}}}}}
 }
+
 % Previene footnote en otras páginas
 \interfootnotelinepenalty=10000
 
@@ -777,6 +777,15 @@
 \renewcommand{\labelitemii}{\sitemizeii}
 \renewcommand{\labelitemiii}{\sitemizeiii}
 \renewcommand{\labelitemiv}{\sitemizeiv}
+
+% -----------------------------------------------------------------------------
+% Configura métodos aplicados al iniciar el documento
+% -----------------------------------------------------------------------------
+\AtBeginDocument{%
+	 \normalfont%
+	 \setlength{\parindent}{\documentparindent pt}%
+	 \setlength{\parskip}{\documentparskip pt}%
+}
 
 % -----------------------------------------------------------------------------
 % Estilos de capítulos

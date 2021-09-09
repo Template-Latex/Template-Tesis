@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.4.3 (08/09/2021)
+% Versión:      2.4.4 (09/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -229,9 +229,9 @@
 %	#1	Label (opcional)
 %	#2	Estilo de código
 %	#3	Caption
-\lstnewenvironment{sourcecode}[3][]{
+\lstnewenvironment{sourcecode}[3][]{%
 	\coreinitsourcecode{#1}{#2}{#3}
-}{
+}{%
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\leftlinenumbers}{
 	}
@@ -242,11 +242,11 @@
 %	#2	Estilo de código
 %	#3	Archivo de código fuente
 %	#4	Caption
-\newcommand{\importsourcecode}[4][]{
-	\coreinitsourcecode{#1}{#2}{#4}
-	\lstinputlisting{#3}
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\leftlinenumbers}{
+\newcommand{\importsourcecode}[4][]{%
+	\coreinitsourcecode{#1}{#2}{#4}%
+	\lstinputlisting{#3}%
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\leftlinenumbers}{%
 	}
 }
 

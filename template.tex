@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.4.4 (09/09/2021)
+% Versión:      2.4.5 (10/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -4989,6 +4989,11 @@
 %	#2	Estilo de código
 %	#3	Código a insertar
 \newcommand{\inlinesourcecodeboxed}[3][]{%
+	\emptyvarerr{\inlinesourcecodeboxed}{#2}{Estilo de codigo no definido}%
+	\emptyvarerr{\inlinesourcecodeboxed}{#3}{Codigo no definido}%
+	\lstset{%
+		basicstyle={\sourcecodeilfonts\sourcecodeilfontf\color{\maintextcolor}}%
+	}
 	\checkvalidsourcecodestyle{#2}%
 	\ifthenelse{\equal{#1}{}}{%
 		\Colorbox{\sourcecodebgcolor}{\lstinline[style=#2]!#3!}%
@@ -4998,18 +5003,21 @@
 	}{%
 		\Colorbox{#1}{\lstinline[style=#2]!#3!}%
 	}}%
+	\lstset{%
+		basicstyle={\sourcecodefonts\sourcecodefontf\color{\maintextcolor}}%
+	}
 }
 
 % Inserta una referencia en un código fuente
 % 	#1	Referencia
 \newcommand{\coderef}[1]{%
-	\ensuremath{\text{\ref{#1}}}
+	\ensuremath{\text{\ref{#1}}}%
 }
 
 % Inserta una referencia en un código fuente
 % 	#1	Referencia
 \newcommand{\codeeqref}[1]{%
-	\ensuremath{\text{(\ref{#1})}}
+	\ensuremath{\text{(\ref{#1})}}%
 }
 
 % -----------------------------------------------------------------------------
@@ -5198,16 +5206,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={09/09/2021},
+		Template.Date={10/09/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.4.4-THS},
-		Template.Version.Hash={B435870B0A631EEF86BD5A28CFCD3581},
-		Template.Version.Release={2.4.4},
+		Template.Version.Dev={2.4.5-THS},
+		Template.Version.Hash={AE4F3DCF4ADCE88AC06F7805D5765B69},
+		Template.Version.Release={2.4.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5219,7 +5227,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.4.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.4.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

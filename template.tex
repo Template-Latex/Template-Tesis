@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.4.5 (10/09/2021)
+% Versión:      2.4.6 (11/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -179,7 +179,7 @@
 }
 
 % Regla superior
-\ifthenelse{\equal{\footnotepagetoprule}{true}}{
+\ifthenelse{\equal{\footnoterulepage}{true}}{
 	\usepackage[bottom,hang]{footmisc} % Estilo pie de página
 }{
 	\usepackage[bottom,norule,hang]{footmisc}
@@ -224,6 +224,13 @@
 	\usepackage[top=\pagemargintop cm,bottom=\pagemarginbottom cm,margin=\pagemarginleft cm]{geometry}
 }{ % pdf2latex, xelatex
 	\usepackage{geometry}
+}
+
+% Notas en tablas
+\ifthenelse{\equal{\tablenotesameline}{true}}{
+	\usepackage[para]{threeparttable}
+}{
+	\usepackage{threeparttable}
 }
 
 % -----------------------------------------------------------------------------
@@ -5206,16 +5213,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={10/09/2021},
+		Template.Date={11/09/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.4.5-THS},
-		Template.Version.Hash={AE4F3DCF4ADCE88AC06F7805D5765B69},
-		Template.Version.Release={2.4.5},
+		Template.Version.Dev={2.4.6-1-THS},
+		Template.Version.Hash={46522666E9FFD1BB3E35344BDB836DA7},
+		Template.Version.Release={2.4.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5227,7 +5234,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.4.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.4.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5256,7 +5263,6 @@
 % -----------------------------------------------------------------------------
 \setstretch{\documentinterline} % Ajuste del entrelineado
 \setlength{\headheight}{64 pt} % Tamaño de la cabecera sin fancyhdr
-\setlength{\footnotemargin}{\marginfootnote pt} % Margen del footnote
 \setlength{\columnsep}{\columnsepwidth em} % Separación entre columnas
 \ifthenelse{\equal{\showlinenumbers}{true}}{
 	\setlength{\linenumbersep}{0.50cm}
@@ -5675,8 +5681,9 @@
 \setcounter{tocdepth}{\indexdepth}
 
 % -----------------------------------------------------------------------------
-% Restauración número footnote
+% Configuración footnotes
 % -----------------------------------------------------------------------------
+% Restaura número
 \ifthenelse{\equal{\footnoterestart}{none}}{
 	\counterwithout*{footnote}{chapter}
 }{
@@ -5701,8 +5708,19 @@
 	\throwbadconfig{Formato reinicio numero footnote desconocido}{\footnoterestart}{none,chap,page,sec,ssec,sssec,ssssec}}}}}}}
 }
 
+% Define el tamaño del margen
+\setlength{\footnotemargin}{\footnotelmargin pt}
+
 % Previene footnote en otras páginas
 \interfootnotelinepenalty=10000
+
+% Configura tablas y figuras
+\ifthenelse{\equal{\footnoterulefigure}{false}}{
+	\floatsetup[figure]{footnoterule=none}}{
+}
+\ifthenelse{\equal{\footnoteruletable}{false}}{
+	\floatsetup[table]{footnoterule=none}}{
+}
 
 % -----------------------------------------------------------------------------
 % Restauración número ecuación, NOTA: NO hace nada, sólo se modifica en title.tex
@@ -5822,6 +5840,16 @@
 \newcolumntype{\HColor}[2]{>{\columncolor{#1}\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#2}}
 \newcolumntype{G}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
 \newcolumntype{\GColor}[2]{>{\columncolor{#1}\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}b{#2}}
+
+% -----------------------------------------------------------------------------
+% Parcha el entorno tablenotes
+% -----------------------------------------------------------------------------
+\BeforeBeginEnvironment{tablenotes}{%
+	\tablenotesfontsize\selectfont%
+}
+\AfterEndEnvironment{tablenotes}{%
+	\normalsize\selectfont%
+}
 
 % -----------------------------------------------------------------------------
 % Parcha el entorno multicols

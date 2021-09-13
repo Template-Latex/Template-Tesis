@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.4.7 (12/09/2021)
+% Versión:      2.4.8 (13/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -58,12 +58,6 @@
 	\makeatother
 	\def\documenttitlehf {\documentsubtitle}
 }
-
-% -----------------------------------------------------------------------------
-% Verifica tamaños de fuentes
-% -----------------------------------------------------------------------------
-\corecheckfontsize{\captionfontsize}
-\corecheckfontsize{\subcaptionfsize}
 
 % -----------------------------------------------------------------------------
 % Se activan números en menú marcadores del pdf
@@ -125,16 +119,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={12/09/2021},
+		Template.Date={13/09/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.4.7-2-THS},
-		Template.Version.Hash={E70C98A9449942DD3795AF031F7D0DB7},
-		Template.Version.Release={2.4.7},
+		Template.Version.Dev={2.4.8-THS},
+		Template.Version.Hash={AEAE825603A81121B74B885C6F35471C},
+		Template.Version.Release={2.4.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -146,7 +140,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.4.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.4.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -231,6 +225,7 @@
 }
 
 % Se configura el texto de los caption
+\corecheckfontsize{\captionfontsize}
 \captionsetup{
 	font={\captionfontsize},
 	labelfont={color=\captioncolor, \captiontextbold},
@@ -241,6 +236,7 @@
 }
 
 % Configura texto de los subcaption
+\corecheckfontsize{\subcaptionfsize}
 \captionsetup*[subfigure]{
 	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
@@ -501,14 +497,6 @@
 % Se activa el word-wrap para textos con \texttt{}
 % -----------------------------------------------------------------------------
 \ttfamily \hyphenchar\the\font=`\-
-\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%
-	\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
-	\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
-	\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
-	\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
-	\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
-	\do\Y\do\Z%
-}
 
 % -----------------------------------------------------------------------------
 % Se define el tipo de texto de los url

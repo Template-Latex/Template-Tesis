@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.4.6 (11/09/2021)
+% Versión:      2.4.7 (12/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -294,7 +294,7 @@
 	}
 	% Título
 	\begin{center}
-		\textcolor{\titlecolor}{\MakeUppercase{\textbf{#2}}}
+		\textcolor{\sectioncolor}{\MakeUppercase{\textbf{#2}}}
 	\end{center} \newp
 	\ifthenelse{\equal{\showabstracttable}{true}}{
 		\vspace{-\baselineskip}
@@ -366,27 +366,27 @@
 	\global\def\GLOBALenvimageadded {false}
 	
 	% Configura caption y márgenes
-	\vspace{\marginimagetop cm}%
+	\corevspacevarcm{\marginimagetop}%
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
 	
 	% Inicia la figura
 	\begin{samepage}%
 	\begin{figure}[H] \centering%
 		\thisfloatpagestyle{fancy}%
-		\vspace{\marginimagemulttop cm}%
+		\corevspacevarcm{\marginimagemulttop}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
-			\vspace{\captionlessmarginimage cm}%
+			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
-			\ifthenelse{\equal{\captionmarginimages}{0}}{}{\vspace{\captionmarginimages cm}}%
+			\ifthenelse{\equal{\captionmarginimages}{0}}{}{\corevspacevarcm{\captionmarginimages}}%
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure}%
 
 	% Restablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}%
-	\vspace{\marginimagebottom cm}%
+	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
 	
 	% Restablece globales
@@ -421,13 +421,13 @@
 		\stop
 	}}%
 		\thisfloatpagestyle{fancy}%
-		\vspace{\marginimagemulttop cm}%
+		\corevspacevarcm{\marginimagemulttop}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
-			\vspace{\captionlessmarginimage cm}%
+			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
-			\ifthenelse{\equal{\captionmarginimagesmc}{0}}{}{\vspace{\captionmarginimagesmc cm}}
+			\ifthenelse{\equal{\captionmarginimagesmc}{0}}{}{\corevspacevarcm{\captionmarginimagesmc}}
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%

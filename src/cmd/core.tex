@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.4.6 (11/09/2021)
+% Versión:      2.4.7 (12/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -193,6 +193,15 @@
 	\vspace*{\fill}%
 	#1%
 	\vspace*{\fill}%
+}
+
+\newlength{\coregluevarcm}
+\setlength{\coregluevarcm}{0.25 cm}
+
+% Inserta un espacio vertical en cm con una variación +/-
+%	#1	Espacio (en cm)
+\newcommand{\corevspacevarcm}[1]{%
+	\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%
 }
 
 % Agrega una carpeta al path de imágenes

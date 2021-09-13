@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.4.6 (11/09/2021)
+% Versión:      2.4.7 (12/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -24,7 +24,7 @@
 	% -------------------------------------------------------------------------
 	\clearpage
 	\begingroup
-	\sectionfont{\color{\indextitlecolor} \fontsizetitlei \styletitlei \selectfont}
+	\sectionfont{\color{\indextitlecolor} \indexsectionfontsize \indexsectionstyle \selectfont}
 	
 	% -------------------------------------------------------------------------
 	% Salta de página si está imprimiendo por ambas caras
@@ -53,7 +53,7 @@
 	% -------------------------------------------------------------------------
 	% Configuración del punto en índice
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\showdotaftersnum}{true}}{
+	\ifthenelse{\equal{\dotaftersnum}{true}}{
 		\def\cftchapaftersnum {.}
 		\def\cftsecaftersnum {.}
 		\def\cftsubsecaftersnum {.}
@@ -533,6 +533,7 @@
 	% -------------------------------------------------------------------------
 	% Termina el bloque de índice
 	% -------------------------------------------------------------------------
+	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
 	\endgroup
 
 	% -------------------------------------------------------------------------

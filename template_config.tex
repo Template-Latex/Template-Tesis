@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.4.8 (13/09/2021)
+% Versión:      2.4.9 (14/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -41,21 +41,21 @@
 \def\captionfontsize {small}       % Tamaño de fuente de los caption
 \def\captionlabelformat {simple}   % Formato leyenda {empty,simple,parens}
 \def\captionlabelsep {colon}       % Sep. {none,colon,period,space,quad,newline}
-\def\captionlessmarginimage {0.1}  % Margen sup/inf de figura si no hay ley. [cm]
+\def\captionlessmarginimage {0.1}  % Margen sup/inf de figura sin leyenda [cm]
 \def\captionlrmargin {2}           % Márgenes izq/der de la leyenda [cm]
-\def\captionlrmarginmc {1}         % Margen izq/der leyenda dentro de columnas [cm]
+\def\captionlrmarginmc {1}         % Margen izq/der leyenda dentro de cols. [cm]
 \def\captionmarginimage {0}        % Margen vertical entre caption e imagen [cm]
-\def\captionmarginimages {0}       % Margen v entre caption y entorno images [cm]
-\def\captionmarginimagesmc {0}     % Margen v entre caption y entorno imagesmc [cm]
+\def\captionmarginimages {0}       % Margen vertical entre caption e images [cm]
+\def\captionmarginimagesmc {0}     % Margen vert. entre caption e imagesmc [cm]
 \def\captionmarginmultimg {0}      % Margen izq/der leyendas múltiple img [cm]
 \def\captionnumcode {arabic}       % N° código {arabic,alph,Alph,roman,Roman}
-\def\captionnumequation {arabic}   % N° ecuaciones {arabic,alph,Alph,roman,Roman}
+\def\captionnumequation {arabic}   % N° ecuac. {arabic,alph,Alph,roman,Roman}
 \def\captionnumfigure {arabic}     % N° figuras {arabic,alph,Alph,roman,Roman}
-\def\captionnumsubfigure {alph}    % N° subfiguras {arabic,alph,Alph,roman,Roman}
+\def\captionnumsubfigure {alph}    % N° subfigs. {arabic,alph,Alph,roman,Roman}
 \def\captionnumsubtable {alph}     % N° subtabla {arabic,alph,Alph,roman,Roman}
 \def\captionnumtable {arabic}      % N° tabla {arabic,alph,Alph,roman,Roman}
-\def\captionsubchar {.}            % Caracter entre N° objeto y N° subfigura/tabla
-\def\captiontbmarginfigure {9.35}  % Margen sup/inf de la leyenda en figuras [pt]
+\def\captionsubchar {.}            % Caracter entre N° objeto - subfigura/tabla
+\def\captiontbmarginfigure {9.35}  % Margen sup/inf de leyenda en figuras [pt]
 \def\captiontbmargintable {7}      % Margen sup/inf de la leyenda en tablas [pt]
 \def\captiontextbold {false}       % Etiqueta (código,figura,tabla) en negrita
 \def\captiontextcolor {black}      % Color de la leyenda
@@ -74,11 +74,11 @@
 \def\margingatheredcaptbottom{0.1} % Margen inferior caption en gathered [cm]
 \def\margingatheredcapttop {-0.7}  % Margen superior caption en gathered [cm]
 \def\sectioncaptiondelimiter {.}   % Caracter delimitador n° objeto y sección
-\def\showsectioncaptioncode {chap} % N° sec. código {none,chap,(s/ss/sss/ssss)ec}
-\def\showsectioncaptioneqn {chap}  % N° sec. ecuación {none,chap,(s/ss/sss/ssss)ec}
-\def\showsectioncaptionfig {chap}  % N° sec. figuras {none,chap,(s/ss/sss/ssss)ec}
+\def\showsectioncaptioncode {chap} % N° sec código {none,chap,(s/ss/sss/ssss)ec}
+\def\showsectioncaptioneqn {chap}  % N° sec ecuac. {none,chap,(s/ss/sss/ssss)ec}
+\def\showsectioncaptionfig {chap}  % N° sec figs. {none,chap,(s/ss/sss/ssss)ec}
 \def\showsectioncaptionmat {chap}  % N° matemático {none,chap,(s/ss/sss/ssss)ec}
-\def\showsectioncaptiontab {chap}  % N° sec. tablas {none,chap,(s/ss/sss/ssss)ec}
+\def\showsectioncaptiontab {chap}  % N° sec tablas {none,chap,(s/ss/sss/ssss)ec}
 \def\subcaptionfsize{footnotesize} % Tamaño de la fuente de los subcaption
 \def\subcaptionlabelformat{parens} % Formato leyenda sub. {empty,simple,parens}
 \def\subcaptionlabelsep {space}    % Sep. {none,colon,period,space,quad,newline}
@@ -87,12 +87,12 @@
 % CONFIGURACIÓN DEL ÍNDICE
 \def\addabstracttobookmarks {true} % Añade el resumen a los marcadores del pdf
 \def\addagradectobookmarks {true}  % Añade el agradecimiento a los marcadores
-\def\addindexsubtobookmarks {true} % Agrega índice tabla,codigo,etc. a marcadores
+\def\addindexsubtobookmarks {true} % Agrega índice tabla,codigo,etc a marcadores
 \def\addindextobookmarks {true}    % Añade el índice a los marcadores del pdf
 \def\charafterobjectindex {.}      % Caracter después de n° figura,tabla,código
 \def\charnumpageindex {.}          % Caracter número de página en índice
 \def\indexdepth {4}                % Profundidad máxima del índice
-\def\indexstyle {tf}               % Estilo {f:figura,t:tabla,c:código,e:ecuación}
+\def\indexstyle {tf}               % Tipo {f:figura,t:tabla,c:código,e:ecuación}
 \def\indextitlemargin {11.4}       % Margen título índice \insertindextitle [pt]
 \def\objectchaptermargin {false}   % Activa margen de objetos entre capítulos
 \def\objectindexindent {false}     % Indenta la lista de objetos
@@ -105,21 +105,21 @@
 \def\apaciterefnumber {false}      % Lista de referencias con números
 \def\apaciterefsep {6}             % Separación entre refs. {apacite} [pt]
 \def\apaciteshowurl {false}        % Muestra las url en las referencias
-\def\apacitestyle {apacite}        % Formato referencias apacite {apa,ieeetr,etc..}
+\def\apacitestyle {apacite}        % Formato refs. apacite {apa,ieeetr,etc..}
 \def\appendixindepobjnum {true}    % Anexo usa n° objetos independientes
-\def\bibtexindexbibliography{true} % Función \bibliography se inserta en el índice
+\def\bibtexindexbibliography{true} % Función \bibliography se inserta en índice
 \def\bibtexrefsep {6}              % Separación entre refs. {bibtex} [pt]
-\def\bibtexstyle {ieeetr}          % Formato referencias bibtex {apa,ieeetr,etc...}
-\def\bibtextextalign {justify}     % Alineación bibtex {justify,left,right,center}
-\def\fontsizerefbibl {\normalsize} % Tamaño de fuentes al usar \bibliography{file}
+\def\bibtexstyle {ieeetr}          % Formato refs. bibtex {apa,ieeetr,etc...}
+\def\bibtextextalign {justify}     % Alineac. bibtex {justify,left,right,center}
+\def\fontsizerefbibl {\normalsize} % Tamaño fuente al usar \bibliography{file}
 \def\natbibrefcitecharclose {]}    % Caracter final cita natbib
 \def\natbibrefcitecharopen {[}     % Caracter inicial cita natbib
 \def\natbibrefcitecompress {true}  % Comprime refererencias al citar
 \def\natbibrefcitesepcomma {true}  % Separador en coma (,) o punto y coma (;)
 \def\natbibrefcitetype {numbers}   % Tipo citación {authoryear,numbers,super}
 \def\natbibrefsep {6}              % Separación entre referencia {natbib} [pt]
-\def\natbibrefstyle {ieeetr}       % Formato referencias natbib {apa,ieeetr,etc...}
-\def\stylecitereferences {natbib}  % Estilo cita/ref {apacite,bibtex,natbib,custom}
+\def\natbibrefstyle {natnumurl}    % Formato refs. natbib {apa,ieeetr,etc...}
+\def\stylecitereferences {natbib}  % Estilo refs. {apacite,bibtex,natbib,custom}
 \def\twocolumnreferences {false}   % Referencias en dos columnas
 
 % CONFIGURACIONES DE OBJETOS
@@ -128,12 +128,12 @@
 \def\equationleftalign {false}     % Ecuaciones alineadas a la izquierda
 \def\equationrestart {none}        % Reinicio n° {none,chap,(s/ss/sss/ssss)ec}
 \def\footnotelmargin {10}          % Margen entre footnote y el número [pt]
-\def\footnoterestart {none}        % N° footnote {none,chap,page,(s/ss/sss/ssss)ec}
+\def\footnoterestart {none}        % N° foot. {none,chap,page,(s/ss/sss/ssss)ec}
 \def\footnoterulefigure {false}    % Footnote en figuras tienen línea superior
 \def\footnoterulepage {true}       % Footnote en páginas tienen línea superior
 \def\footnoteruletable {false}     % Footnote en tablas tienen línea superior
 \def\footnotetwocolumn {false}     % Footnote en dos columnas
-\def\fpremovetopbottomcenter{true} % Elimina espacio vertical al centrar con b!,t!
+\def\fpremovetopbottomcenter{true} % Elimina espacio vert. al centrar con b!,t!
 \def\imagedefaultplacement {H}     % Posición por defecto de las imágenes
 \def\marginalignbottom {-0.4}      % Margen inferior entorno align [cm]
 \def\marginalignedbottom {-0.2}    % Margen inferior entorno aligned [cm]
@@ -143,7 +143,7 @@
 \def\margineqnindextop {0}         % Margen superior ecuaciones índice [cm]
 \def\marginequationbottom {-0.2}   % Margen inferior ecuaciones [cm]
 \def\marginequationtop {0}         % Margen superior ecuaciones [cm]
-\def\marginfloatimages {-13}       % Margen sup. figuras insertimageleft/right [pt]
+\def\marginfloatimages {-13}       % Margen sup figs. insertimageleft/right [pt]
 \def\margingatherbottom {-0.2}     % Margen inferior entorno gather [cm]
 \def\margingatheredbottom {-0.1}   % Margen inferior entorno gathered [cm]
 \def\margingatheredtop {-0.4}      % Margen superior entorno gathered [cm]
@@ -178,7 +178,7 @@
 
 % CONFIGURACIÓN DE LOS TÍTULOS
 \def\anumsecaddtocounter {false}   % Insertar títulos anum. aumenta n° de sec
-\def\appendixsectionlastchar {.}   % Caracter entre n° de seccción anexo y título
+\def\appendixsectionlastchar {.}   % Caracter entre n° seccción anexo y título
 \def\chapterfontsize {\huge}       % Tamaño fuente de los capítulos
 \def\chapterfontstyle {\bfseries}  % Estilo fuente de los capítulos
 \def\dotaftersnum {true}           % Punto al final de n° (s/ss/sss/ssss)ection

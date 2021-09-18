@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      2.4.9 (14/09/2021)
+% Versión:      2.5.0 (18/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -103,7 +103,7 @@
 \usepackage{chngcntr}      % Añade números a las leyendas
 \usepackage{color}         % Colores
 \usepackage{datetime}      % Fechas
-\usepackage{floatpag}      % Maneja números de páginas
+\usepackage{floatpag}      % Maneja estilos de páginas introducidos por obj. flotantes
 \usepackage{floatrow}      % Permite administrar posiciones en los caption
 \usepackage{framed}        % Permite creación de recuadros
 \usepackage{gensymb}       % Simbología común
@@ -122,6 +122,7 @@
 \usepackage{selinput}      % Compatibilidad con acentos
 \usepackage{setspace}      % Cambia el espacio entre líneas
 \usepackage{soul}          % Permite subrayar texto
+\usepackage{stfloats}      % Permite cambiar posición de flotantes con [b] y [t]
 \usepackage{subfig}        % Permite agrupar imágenes
 \usepackage{textcomp}      % Simbología común
 \usepackage{wrapfig}       % Posición de imágenes
@@ -177,7 +178,11 @@
 }
 
 % Referencias
-\usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias
+\ifthenelse{\equal{\backrefpagecite}{true}}{
+	\usepackage[pdfencoding=auto,psdextra,backref=page]{hyperref} % Enlaces, referencias
+}{
+	\usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias
+}
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{ % Formato citas natbib
 	\usepackage[nottoc,notlof,notlot]{tocbibind}
 	\ifthenelse{\equal{\natbibrefcitecompress}{true}}{

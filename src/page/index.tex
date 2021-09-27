@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.5.2 (21/09/2021)
+% Versión:      2.5.3 (27/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -46,7 +46,7 @@
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\addindextobookmarks}{true}}{
 		\phantomsection
-		\pdfbookmark{\nomltcont}{contents}}{
+		\pdfbookmark{\nameltcont}{contents}}{
 	}
 	\tocloftpagestyle{fancy}
 	
@@ -284,7 +284,7 @@
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
 				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
-					\belowpdfbookmark{\nomltfigure}{clof}}{}}{
+					\belowpdfbookmark{\nameltfigure}{clof}}{}}{
 			}
 			\listoffigures
 		\fi
@@ -295,7 +295,7 @@
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
 				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
-					\belowpdfbookmark{\nomlttable}{clot}}{}}{
+					\belowpdfbookmark{\namelttable}{clot}}{}}{
 			}
 			\listoftables
 		\fi
@@ -306,7 +306,7 @@
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
 				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
-					\belowpdfbookmark{\nomltsrc}{clsrc}}{}}{
+					\belowpdfbookmark{\nameltsrc}{clsrc}}{}}{
 			}
 			\lstlistoflistings
 		\fi
@@ -317,7 +317,7 @@
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{
 				\ifthenelse{\equal{\addindexsubtobookmarks}{true}}{
 					\phantomsection
-					\belowpdfbookmark{\nomlteqn}{cleqn}}{}}{
+					\belowpdfbookmark{\namelteqn}{cleqn}}{}}{
 			}
 			\listofmyindexequations
 		\fi

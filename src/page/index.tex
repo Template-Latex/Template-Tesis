@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.5.3 (27/09/2021)
+% Versión:      2.5.4 (02/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -53,14 +53,11 @@
 	% -------------------------------------------------------------------------
 	% Configuración del punto en índice
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\dotaftersnum}{true}}{
-		\def\cftchapaftersnum {.}
-		\def\cftsecaftersnum {.}
-		\def\cftsubsecaftersnum {.}
-		\def\cftsubsubsecaftersnum {.}
-		\def\cftsubsubsubsecaftersnum {.}
-		}{
-	}{}
+	\def\cftchapaftersnum {\charaftersectionnum}
+	\def\cftsecaftersnum {\charaftersectionnum}
+	\def\cftsubsecaftersnum {\charaftersectionnum}
+	\def\cftsubsubsecaftersnum {\charaftersectionnum}
+	\def\cftsubsubsubsecaftersnum {\charaftersectionnum}
 	
 	% -------------------------------------------------------------------------
 	% Configuración carácter número de página

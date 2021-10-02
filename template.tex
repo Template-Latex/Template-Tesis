@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.5.3 (27/09/2021)
+% Versión:      2.5.4 (02/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -185,13 +185,6 @@
 	\usepackage[bottom,hang]{footmisc} % Estilo pie de página
 }{
 	\usepackage[bottom,norule,hang]{footmisc}
-}
-
-% Agrega punto a títulos/subtítulos
-\ifthenelse{\equal{\dotaftersnum}{true}}{
-	\usepackage{secdot}
-	\sectiondot{subsection}
-	\sectiondot{subsubsection}}{
 }
 
 % Referencias
@@ -2665,47 +2658,39 @@
 \makeatother
 
 % Activa la numeración en las secciones
-\def\coreintializetitlenumbering {
+\def\coreintializetitlenumbering {%
 	% Section
-	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{
-		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-			\renewcommand{\thesection}{\Alph{section}}
-		}{
-			\renewcommand{\thesection}{\arabic{section}}
-		}
-	}{
-		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{
-			\renewcommand{\thesection}{\thechapter.\Alph{section}}
-		}{
-			\renewcommand{\thesection}{\thechapter.\arabic{section}}
-		}
-	}
+	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{%
+		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{%
+			\renewcommand{\thesection}{\Alph{section}}%
+		}{%
+			\renewcommand{\thesection}{\arabic{section}}%
+		}%
+	}{%
+		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{%
+			\renewcommand{\thesection}{\thechapter.\Alph{section}}%
+		}{%
+			\renewcommand{\thesection}{\thechapter.\arabic{section}}%
+		}%
+	}%
 	% Subsection
-	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{
-		\renewcommand{\thesubsection}{\arabic{subsection}}
-	}{
-		\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-	}
+	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{%
+		\renewcommand{\thesubsection}{\arabic{subsection}}%
+	}{%
+		\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}%
+	}%
 	% Subsubsection
-	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
-		\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
-	}{
-		\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
-	}
+	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{%
+		\renewcommand{\thesubsubsection}{\arabic{subsubsection}}%
+	}{%
+		\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}%
+	}%
 	% Subsubsubsection
-	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
-		\ifthenelse{\equal{\dotaftersnum}{true}}{
-			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}.}
-		}{
-			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}}
-		}
-	}{
-		\ifthenelse{\equal{\dotaftersnum}{true}}{
-			\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
-		}{
-			\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
-		}
-	}
+	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{%
+		\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}}%
+	}{%
+		\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}%
+	}%
 	\hbadness=10000%
 }
 
@@ -2924,11 +2909,7 @@
 	\addcontentsline{toc}{subsubsection}{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}%
 	\setcounter{subsubsubsection}{0}%
-	\ifthenelse{\equal{\dotaftersnum}{true}}{%
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}.}%
-	}{%
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}%
-	}
+	\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}%
 }
 
 % Insertar un sub-subtítulo sin número y sin indexar
@@ -2938,11 +2919,7 @@
 	\subsubsection*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}%
 	\setcounter{subsubsubsection}{0}%
-	\ifthenelse{\equal{\dotaftersnum}{true}}{%
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}.}%
-	}{%
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}%
-	}
+	\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}%
 }
 
 % Insertar un sub-sub-subtítulo sin número
@@ -5235,16 +5212,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={27/09/2021},
+		Template.Date={02/10/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.5.3-4-THS},
-		Template.Version.Hash={7BDFD6CF466122E712CAC4A45E5D619C},
-		Template.Version.Release={2.5.3},
+		Template.Version.Dev={2.5.4-THS},
+		Template.Version.Hash={53C050826AF49510738DA71A1E5D4682},
+		Template.Version.Release={2.5.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5256,7 +5233,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.5.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.5.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5542,7 +5519,7 @@
 % -----------------------------------------------------------------------------
 % Configuración anexo
 % -----------------------------------------------------------------------------
-\patchcmd{\appendices}{\quad}{\appendixsectionlastchar\quad}{}{}
+\patchcmd{\appendices}{\quad}{\charappendixsection\spacingaftersection}{}{}
 
 % -----------------------------------------------------------------------------
 % Se añade listings (código fuente) a tocloft
@@ -5650,13 +5627,6 @@
 % Crea las sub-sub-sub-secciones
 % -----------------------------------------------------------------------------
 \newcounter{subsubsubsection}[subsubsection]
-\ifthenelse{\equal{\dotaftersnum}{true}}{ % Agrega punto tras el número
-	\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
-	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}.}
-}{
-	\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
-	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}}
-}
 
 % Límite máximo profundidad
 \setcounter{secnumdepth}{4}
@@ -5666,15 +5636,35 @@
 	\def\toclevel@subsubsubsection {4}
 	\def\toclevel@paragraph {5}
 	\def\toclevel@subparagraph {6}
-	\ifthenelse{\equal{\dotaftersnum}{true}}{
-		\def\l@subsubsubsection {\@dottedtocline{4}{7.83em}{4.15em}} % Incremento 0.77+3.35 a 3.35
-		\def\l@paragraph {\@dottedtocline{5}{11.98em}{4.92em}}
-		\def\l@subparagraph {\@dottedtocline{6}{14.65em}{5.69em}}
-	}{
+	\ifthenelse{\equal{\charaftersectionnum}{}}{ % Sin caracter
 		\def\l@subsubsubsection {\@dottedtocline{4}{6.97em}{4em}}
 		\def\l@paragraph {\@dottedtocline{5}{10.97em}{5em}}
 		\def\l@subparagraph {\@dottedtocline{6}{14em}{6em}}
+	}{ % Posee caracter, Incremento 0.77+3.35 a 3.35
+		\def\l@subsubsubsection {\@dottedtocline{4}{7.83em}{4.15em}}
+		\def\l@paragraph {\@dottedtocline{5}{11.98em}{4.92em}}
+		\def\l@subparagraph {\@dottedtocline{6}{14.65em}{5.69em}}
 	}
+\makeatother
+
+% -----------------------------------------------------------------------------
+% Configura el número de las secciones
+% -----------------------------------------------------------------------------
+% Funciones de bajo nivel
+\makeatletter
+\newcommand\sectionpunct[2]{%
+	\expandafter\def\csname @seccntfmt@#1\endcsname##1{%
+		\csname the##1\endcsname#2%
+	}%
+}
+\def\@seccntformat#1{\@ifundefined{#1@cntformat}%
+	{\csname the#1\endcsname} % Default
+	{\csname #1@cntformat\endcsname} % Control individual
+}
+% Configura secciones
+\newcommand\section@cntformat{\thesection\charaftersectionnum\spacingaftersection}
+\newcommand\subsection@cntformat{\thesubsection\charaftersectionnum\spacingaftersection}
+\newcommand\subsubsection@cntformat{\thesubsubsection\charaftersectionnum\spacingaftersection}
 \makeatother
 
 % -----------------------------------------------------------------------------
@@ -6051,14 +6041,19 @@
 	% Estilo de títulos
 	% -------------------------------------------------------------------------
 	\sectionfont{%
-		\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
+		\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont%
+	}
 	\subsectionfont{%
-		\color{\ssectioncolor} \ssectionfontsize \ssectionfontstyle \selectfont}
+		\color{\ssectioncolor} \ssectionfontsize \ssectionfontstyle \selectfont%
+	}
 	\subsubsectionfont{%
-		\color{\sssectioncolor} \sssectionfontsize \sssectionfontstyle \selectfont}
+		\color{\sssectioncolor} \sssectionfontsize \sssectionfontstyle \selectfont%
+	}
 	\titleformat{\subsubsubsection}{%
 		\color{\ssssectioncolor} \ssssectionfontsz \ssssectionfontstyle
-	}{\thesubsubsubsection}{1em}{}
+		}{%
+		\thesubsubsubsection\charaftersectionnum\spacingaftersection}{0em}{%
+	}
 	\def\bibfont {\fontsizerefbibl} % Tamaño de fuente de las referencias
 	
 	% -------------------------------------------------------------------------
@@ -6812,14 +6807,11 @@
 	% -------------------------------------------------------------------------
 	% Configuración del punto en índice
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\dotaftersnum}{true}}{
-		\def\cftchapaftersnum {.}
-		\def\cftsecaftersnum {.}
-		\def\cftsubsecaftersnum {.}
-		\def\cftsubsubsecaftersnum {.}
-		\def\cftsubsubsubsecaftersnum {.}
-		}{
-	}{}
+	\def\cftchapaftersnum {\charaftersectionnum}
+	\def\cftsecaftersnum {\charaftersectionnum}
+	\def\cftsubsecaftersnum {\charaftersectionnum}
+	\def\cftsubsubsecaftersnum {\charaftersectionnum}
+	\def\cftsubsubsubsecaftersnum {\charaftersectionnum}
 	
 	% -------------------------------------------------------------------------
 	% Configuración carácter número de página
@@ -7474,11 +7466,7 @@
 		\def\sectionobjectnumcode {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{
-		\ifthenelse{\equal{\dotaftersnum}{true}}{
-			\def\sectionobjectnumcode {\thesubsubsubsection}
-		}{
-			\def\sectionobjectnumcode {\thesubsubsubsection\sectioncaptiondelimiter}
-		}
+		\def\sectionobjectnumcode {\thesubsubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{
 		\def\sectionobjectnumcode {\thechapter\sectioncaptiondelimiter}
@@ -7500,11 +7488,7 @@
 		\def\sectionobjectnumeqn {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{
-		\ifthenelse{\equal{\dotaftersnum}{true}}{
-			\def\sectionobjectnumeqn {\thesubsubsubsection}
-		}{
-			\def\sectionobjectnumeqn {\thesubsubsubsection\sectioncaptiondelimiter}
-		}
+		\def\sectionobjectnumeqn {\thesubsubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{
 		\def\sectionobjectnumeqn {\thechapter\sectioncaptiondelimiter}
@@ -7526,11 +7510,7 @@
 		\def\sectionobjectnumfig {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{
-		\ifthenelse{\equal{\dotaftersnum}{true}}{
-			\def\sectionobjectnumfig {\thesubsubsubsection}
-		}{
-			\def\sectionobjectnumfig {\thesubsubsubsection\sectioncaptiondelimiter}
-		}
+		\def\sectionobjectnumfig {\thesubsubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{
 		\def\sectionobjectnumfig {\thechapter\sectioncaptiondelimiter}
@@ -7552,11 +7532,7 @@
 		\def\sectionobjectnumtab {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{
-		\ifthenelse{\equal{\dotaftersnum}{true}}{
-			\def\sectionobjectnumtab {\thesubsubsubsection}
-		}{
-			\def\sectionobjectnumtab {\thesubsubsubsection\sectioncaptiondelimiter}
-		}
+		\def\sectionobjectnumtab {\thesubsubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{
 		\def\sectionobjectnumtab {\thechapter\sectioncaptiondelimiter}

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.5.5 (06/10/2021)
+% Versión:      2.5.6 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3054,6 +3054,9 @@
 	\clearpage
 }
 
+% Define cuál función se ejecuta al insertar páginas en blanco
+\let\addemptypagespredocformat\insertblankpage
+
 % Ejecuta una función dependiendo si la página es par o impar
 %	#1	Par
 %	#2	Impar
@@ -3863,7 +3866,7 @@
 \newenvironment{abstractenv}[4]{
 	\clearpage%
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\insertemptypage}{}%
+		\coretriggeronpage{\addemptypagespredocformat}{}%
 	}{}%
 	\emptyvarerr{\abstractenv}{#1}{Tabla resumen no definida}
 	\emptyvarerr{\abstractenv}{#2}{Titulo tesis no definido}
@@ -3908,7 +3911,7 @@
 \newenvironment{dedicatory}{
 	\clearpage%
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\insertemptypage}{}%
+		\coretriggeronpage{\addemptypagespredocformat}{}%
 	}{}%
 	\null
 	\phantomsection
@@ -3927,7 +3930,7 @@
 \newenvironment{acknowledgments}{
 	\clearpage%
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\insertemptypage}{}%
+		\coretriggeronpage{\addemptypagespredocformat}{}%
 	}{}%
 	\chapter*{\nameagradec}
 	\ifthenelse{\equal{\addagradectobookmarks}{true}}{
@@ -5232,9 +5235,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.5.5-1-THS},
-		Template.Version.Hash={A23EC2F93B4770234C88082CA4AAA0F0},
-		Template.Version.Release={2.5.5},
+		Template.Version.Dev={2.5.6-THS},
+		Template.Version.Hash={9E8E92432D4B396AF78A76D20348CC27},
+		Template.Version.Release={2.5.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5246,7 +5249,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.5.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.5.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6803,7 +6806,7 @@
 	% Salta de página si está imprimiendo por ambas caras
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\insertemptypage}{}%
+		\coretriggeronpage{\addemptypagespredocformat}{}%
 	}{}
 	
 	% -------------------------------------------------------------------------
@@ -7655,10 +7658,10 @@
 	% Agrega páginas dependiendo del formato
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
-		\coretriggeronpage{\insertemptypage}{}%
+		\coretriggeronpage{\addemptypagespredocformat}{}%
 	}{
 		\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-			\coretriggeronpage{\insertemptypage}{}%
+			\coretriggeronpage{\addemptypagespredocformat}{}%
 		}{}
 	}
 	

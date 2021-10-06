@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.5.5 (06/10/2021)
+% Versión:      2.5.6 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -48,6 +48,9 @@
 	\null
 	\clearpage
 }
+
+% Define cuál función se ejecuta al insertar páginas en blanco
+\let\addemptypagespredocformat\insertblankpage
 
 % Ejecuta una función dependiendo si la página es par o impar
 %	#1	Par

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuraciones finales
-% Versión:      2.5.5 (06/10/2021)
+% Versión:      2.5.6 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -354,10 +354,10 @@
 	% Agrega páginas dependiendo del formato
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
-		\coretriggeronpage{\insertemptypage}{}%
+		\coretriggeronpage{\addemptypagespredocformat}{}%
 	}{
 		\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-			\coretriggeronpage{\insertemptypage}{}%
+			\coretriggeronpage{\addemptypagespredocformat}{}%
 		}{}
 	}
 	

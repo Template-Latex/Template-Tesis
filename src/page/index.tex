@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.5.5 (05/10/2021)
+% Versión:      2.5.5 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -525,7 +525,11 @@
 	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
 	\endgroup
 	
-}
-
-
 	% -------------------------------------------------------------------------
+	% Final del índice, restablece el espacio
+	% -------------------------------------------------------------------------
+	\ifthenelse{\equal{\objectchaptermargin}{false}}{
+		\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
+	}{}
+	
+}

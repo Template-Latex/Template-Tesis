@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.5.4 (02/10/2021)
+% Versión:      2.5.5 (05/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -112,6 +112,7 @@
 \usepackage{amssymb}       % Librerías matemáticas
 \usepackage{amsthm}        % Definición de teoremas
 \usepackage{array}         % Nuevas características a las tablas
+\usepackage{atbegshi}      % Permite añadir hooks al inicio de las páginas
 \usepackage{bigstrut}      % Líneas horizontales en tablas
 \usepackage{bm}            % Caracteres en negrita en ecuaciones
 \usepackage{booktabs}      % Permite manejar elementos visuales en tablas
@@ -132,6 +133,7 @@
 \usepackage{multicol}      % Múltiples columnas
 \usepackage{needspace}     % Maneja los espacios en página
 \usepackage{pdflscape}     % Modo página horizontal de página
+
 \usepackage{pdfpages}      % Permite administrar páginas en pdf
 \usepackage{physics}       % Paquete de matemáticas
 \usepackage{realboxes}     % Permite inserción de recuadros
@@ -3029,13 +3031,10 @@
 % Crea una página vacía sin header o footer
 \newcommand{\insertemptypage}{%
 	\clearpage
-	\setcounter{templatePageCounter}{\thepage}
-	\pagenumbering{gobble}
-	\null
 	\thispagestyle{empty}
+	% \addtocounter{page}{-1}
+	\null
 	\clearpage
-	\pagenumbering{arabic}
-	\setcounter{page}{\thetemplatePageCounter}
 }
 
 % Inserta una página vacía, aunque conserva header, footer y numeración
@@ -3043,6 +3042,24 @@
 	\clearpage
 	\null
 	\clearpage
+}
+
+\newcommand{\coreinsertemptypagepredoc}[1]{
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
+
+% Inserta una página vacía si el número es impar y está activada la opción
+%	#1	Tipo de página (odd/even)
+\newcommand{\coreinsertemptypageif}[1]{
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
+		\leavevmode\checkoddpage
+		\ifoddpage
+			par
+			\ifthenelse{\equal{#1}{odd}}{\insertemptypage}{}
+		\else
+			impar
+			\ifthenelse{\equal{#1}{even}}{\insertemptypage}{}
+		\fi}{
+	}
 }
 
 % Añade un archivo pdf con el header
@@ -3872,15 +3889,7 @@
 	}
 	}{%
 	\vfill\null
-	\clearpage
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\vfill
-		\checkoddpage
-		\ifoddpage
-		\else
-			\insertblankpage
-		\fi}{
-	}
+	\coreinsertemptypageif{odd}
 }
 
 % Llama al entorno de resumen
@@ -3902,10 +3911,8 @@
 		\itshape}{
 	\end{flushright}
 	\vspace{\stretch{2}}
-	\null
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\insertblankpage}{
-	}
+	% \null
+	\coreinsertemptypageif{even}
 }
 
 % Crea una sección de agradecimientos
@@ -3918,10 +3925,7 @@
 	}
 	\forceindent
 	}{
-	\clearpage
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\insertblankpage}{
-	}
+	\coreinsertemptypageif{odd}
 }
 
 % Crea una sección de imágenes múltiples
@@ -5104,7 +5108,6 @@
 % -----------------------------------------------------------------------------
 % Se revisa si las variables no han sido borradas
 \def\documentsubject {}
-\def\addemptypagetwosides {false}
 \def\predocpageromannumber {true}
 \def\predocresetpagenumber {true}
 \def\indexnewpagec {false}
@@ -5212,16 +5215,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={02/10/2021},
+		Template.Date={05/10/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.5.4-THS},
-		Template.Version.Hash={53C050826AF49510738DA71A1E5D4682},
-		Template.Version.Release={2.5.4},
+		Template.Version.Dev={2.5.5-THS},
+		Template.Version.Hash={8F894B3FA118430B7ED0BD878A5AA5B7},
+		Template.Version.Release={2.5.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5233,7 +5236,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.5.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.5.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5275,6 +5278,12 @@
 \floatplacement{figure}{\imagedefaultplacement}
 \floatplacement{table}{\tabledefaultplacement}
 \floatplacement{tikz}{\tikzdefaultplacement}
+
+% -----------------------------------------------------------------------------
+% Modifica comportamiento nuevas páginas en formato twosides
+% -----------------------------------------------------------------------------
+\let\oldcleardoublepage\cleardoublepage
+\let\cleardoublepage\clearpage
 
 % -----------------------------------------------------------------------------
 % Configuración de los colores
@@ -5622,6 +5631,11 @@
 }{
 	\throwbadconfig{Compilador desconocido}{\compilertype}{pdf2latex,xelatex,lualatex}}}
 }
+
+% -----------------------------------------------------------------------------
+% Declaración caracteres unicode adicionales
+% -----------------------------------------------------------------------------
+\DeclareUnicodeCharacter{2212}{-}
 
 % -----------------------------------------------------------------------------
 % Crea las sub-sub-sub-secciones
@@ -6756,7 +6770,9 @@
 	}
 	% Añade página en blanco
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\insertblankpage}{
+		\addtocounter{page}{-1}
+		\insertemptypage
+		}{
 	}
 }
 
@@ -6779,21 +6795,6 @@
 	\clearpage
 	\begingroup
 	\sectionfont{\color{\indextitlecolor} \indexsectionfontsize \indexsectionstyle \selectfont}
-	
-	% -------------------------------------------------------------------------
-	% Salta de página si está imprimiendo por ambas caras
-	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
-		\checkoddpage
-		\ifoddpage
-		\else
-			\clearpage
-			\null
-			\thispagestyle{empty}
-			\clearpage
-			\addtocounter{page}{-1}
-		\fi}{
-	}
 	
 	% -------------------------------------------------------------------------
 	% Añade la entrada del índice a los marcadores del pdf
@@ -7297,19 +7298,7 @@
 	% -------------------------------------------------------------------------
 	% Se añade una página en blanco
 	% -------------------------------------------------------------------------
-	\clearpage
-	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
-		\vfill
-		\checkoddpage
-		\ifoddpage
-			\clearpage
-			\null
-			\thispagestyle{empty}
-			\clearpage
-			\addtocounter{page}{-1}
-		\else
-		\fi}{
-	}
+	\coreinsertemptypageif{odd}
 	
 }
 
@@ -7667,11 +7656,28 @@
 	
 	% Reinicia número de página
 	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
-		\setcounter{page}{1}}{
+		\ifodd\thepage
+			lapag par
+		\else
+			lapag impar
+		\fi
+		\makeatletter
+		\if@twoside
+		\setcounter{page}{1}
+		\else
+		\setcounter{page}{1}
+		\fi%  
+		\makeatother
+		}{
 	}
 	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
+
+	% -----------------------------------------------------------------------------
+	% Modifica comportamiento nuevas páginas en formato twosides
+	% -----------------------------------------------------------------------------
+	\let\cleardoublepage\oldcleardoublepage
 	
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea

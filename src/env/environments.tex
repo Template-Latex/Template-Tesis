@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.5.4 (02/10/2021)
+% Versión:      2.5.5 (05/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -303,15 +303,7 @@
 	}
 	}{%
 	\vfill\null
-	\clearpage
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\vfill
-		\checkoddpage
-		\ifoddpage
-		\else
-			\insertblankpage
-		\fi}{
-	}
+	\coreinsertemptypageif{odd}
 }
 
 % Llama al entorno de resumen
@@ -334,9 +326,8 @@
 	\end{flushright}
 	\vspace{\stretch{2}}
 	\null
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\insertblankpage}{
-	}
+	\clearpage
+	\coreinsertemptypageif{odd}
 }
 
 % Crea una sección de agradecimientos
@@ -349,10 +340,7 @@
 	}
 	\forceindent
 	}{
-	\clearpage
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\insertblankpage}{
-	}
+	\coreinsertemptypageif{odd}
 }
 
 % Crea una sección de imágenes múltiples

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Archivo principal
-% Versión:      2.5.4 (02/10/2021)
+% Versión:      2.5.5 (05/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -12,7 +12,7 @@
 % CREACIÓN DEL DOCUMENTO
 \documentclass[
 	spanish, % Idioma: spanish, english, etc.	
-	letterpaper,oneside
+	letterpaper,twoside
 ]{book}
 
 % INFORMACIÓN DEL DOCUMENTO
@@ -58,7 +58,7 @@
 		\MakeUppercase{\universitylocation} \\
 		\MakeUppercase{\documentdate}
 	\end{tabular}
-\end{center}}{
+\end{center}
 }
 \def\abstracttable { % Para activar, cambiar configuración \showabstracttable
 \begin{tabular}{l}
@@ -74,8 +74,13 @@
 % IMPORTACIÓN DEL TEMPLATE
 \input{template}
 
+\stepcounter{templatePageCounter}
+\AtBeginShipout{\stepcounter{templatePageCounter}}
+
+
 % INICIO DE LAS PÁGINAS
 \begin{document}
+
 	
 % PORTADA
 \templatePortrait
@@ -83,9 +88,24 @@
 % CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
 \templatePagecfg
 
+% Ejecuta una función dependiendo si la página es par o impar
+%	#1	Par
+%	#2	Impar
+\newcommand{\coretriggeronpage}[2]{%
+	\ifthenelse{\isodd{\value{templatePageCounter}}}{%
+		#2%
+	}{%
+		#1%
+	}
+}
+
 % RESUMEN O ABSTRACT
 \begin{abstractd}
-	\lipsum[1]
+	\coretriggeronpage{par}{impar}
+	\thetemplatePageCounter
+	\lipsum[1-10]
+epic \coretriggeronpage{par}{impar}
+\thetemplatePageCounter
 \end{abstractd}
 
 % DEDICATORIA
@@ -97,7 +117,7 @@
 
 % AGRADECIMIENTOS
 \begin{acknowledgments}
-	\lipsum[1]
+	\lipsum[1] \thetemplatePageCounter
 \end{acknowledgments}
 
 % TABLA DE CONTENIDOS - ÍNDICE

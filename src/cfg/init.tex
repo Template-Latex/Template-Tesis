@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.5.4 (02/10/2021)
+% Versión:      2.5.5 (05/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,7 +11,6 @@
 
 % Se revisa si las variables no han sido borradas
 \def\documentsubject {}
-\def\addemptypagetwosides {false}
 \def\predocpageromannumber {true}
 \def\predocresetpagenumber {true}
 \def\indexnewpagec {false}
@@ -119,16 +118,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={02/10/2021},
+		Template.Date={05/10/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.5.4-THS},
-		Template.Version.Hash={53C050826AF49510738DA71A1E5D4682},
-		Template.Version.Release={2.5.4},
+		Template.Version.Dev={2.5.5-THS},
+		Template.Version.Hash={8F894B3FA118430B7ED0BD878A5AA5B7},
+		Template.Version.Release={2.5.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -140,7 +139,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.5.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.5.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -182,6 +181,12 @@
 \floatplacement{figure}{\imagedefaultplacement}
 \floatplacement{table}{\tabledefaultplacement}
 \floatplacement{tikz}{\tikzdefaultplacement}
+
+% -----------------------------------------------------------------------------
+% Modifica comportamiento nuevas páginas en formato twosides
+% -----------------------------------------------------------------------------
+\let\oldcleardoublepage\cleardoublepage
+\let\cleardoublepage\clearpage
 
 % -----------------------------------------------------------------------------
 % Configuración de los colores
@@ -529,6 +534,11 @@
 }{
 	\throwbadconfig{Compilador desconocido}{\compilertype}{pdf2latex,xelatex,lualatex}}}
 }
+
+% -----------------------------------------------------------------------------
+% Declaración caracteres unicode adicionales
+% -----------------------------------------------------------------------------
+\DeclareUnicodeCharacter{2212}{-}
 
 % -----------------------------------------------------------------------------
 % Crea las sub-sub-sub-secciones

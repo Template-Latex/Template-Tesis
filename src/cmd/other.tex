@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.5.4 (02/10/2021)
+% Versión:      2.5.5 (05/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -36,13 +36,10 @@
 % Crea una página vacía sin header o footer
 \newcommand{\insertemptypage}{%
 	\clearpage
-	\setcounter{templatePageCounter}{\thepage}
-	\pagenumbering{gobble}
-	\null
 	\thispagestyle{empty}
+	\addtocounter{page}{-1}
+	\null
 	\clearpage
-	\pagenumbering{arabic}
-	\setcounter{page}{\thetemplatePageCounter}
 }
 
 % Inserta una página vacía, aunque conserva header, footer y numeración
@@ -50,6 +47,19 @@
 	\clearpage
 	\null
 	\clearpage
+}
+
+% Inserta una página vacía si el número es impar y está activada la opción
+%	#1	Tipo de página (odd/even)
+\newcommand{\coreinsertemptypageif}[1]{
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
+		\checkoddpage
+		\ifoddpage
+			\ifthenelse{\equal{#1}{odd}}{\insertemptypage}{}
+		\else
+			\ifthenelse{\equal{#1}{even}}{\insertemptypage}{}
+		\fi}{
+	}
 }
 
 % Añade un archivo pdf con el header

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Índice
-% Versión:      2.5.4 (02/10/2021)
+% Versión:      2.5.5 (05/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -29,17 +29,7 @@
 	% -------------------------------------------------------------------------
 	% Salta de página si está imprimiendo por ambas caras
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
-		\checkoddpage
-		\ifoddpage
-		\else
-			\clearpage
-			\null
-			\thispagestyle{empty}
-			\clearpage
-			\addtocounter{page}{-1}
-		\fi}{
-	}
+	\coreinsertemptypageif{even}
 	
 	% -------------------------------------------------------------------------
 	% Añade la entrada del índice a los marcadores del pdf
@@ -543,18 +533,6 @@
 	% -------------------------------------------------------------------------
 	% Se añade una página en blanco
 	% -------------------------------------------------------------------------
-	\clearpage
-	\ifthenelse{\equal{\addemptypagetwosides}{true}}{
-		\vfill
-		\checkoddpage
-		\ifoddpage
-			\clearpage
-			\null
-			\thispagestyle{empty}
-			\clearpage
-			\addtocounter{page}{-1}
-		\else
-		\fi}{
-	}
+	\coreinsertemptypageif{odd}
 	
 }

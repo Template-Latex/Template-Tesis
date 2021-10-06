@@ -39,6 +39,10 @@
 \setcounter{templateBookmarksLevelPrev}{\cfgbookmarksopenlevel}
 \addtocounter{templateBookmarksLevelPrev}{-1}
 
+% Aumenta contador de páginas
+\stepcounter{templatePageCounter}
+\AtBeginShipout{\stepcounter{templatePageCounter}}
+
 % Define latex para uso en referencias
 \let\latex\LaTeX
 

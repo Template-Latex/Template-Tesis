@@ -49,16 +49,14 @@
 	\clearpage
 }
 
-% Inserta una página vacía si el número es impar y está activada la opción
-%	#1	Tipo de página (odd/even)
-\newcommand{\coreinsertemptypageif}[1]{
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\checkoddpage
-		\ifoddpage
-			\ifthenelse{\equal{#1}{odd}}{\insertemptypage}{}
-		\else
-			\ifthenelse{\equal{#1}{even}}{\insertemptypage}{}
-		\fi}{
+% Ejecuta una función dependiendo si la página es par o impar
+%	#1	Par
+%	#2	Impar
+\newcommand{\coretriggeronpage}[2]{%
+	\ifthenelse{\isodd{\value{templatePageCounter}}}{%
+		#2%
+	}{%
+		#1%
 	}
 }
 

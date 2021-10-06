@@ -112,7 +112,6 @@
 \usepackage{amssymb}       % Librerías matemáticas
 \usepackage{amsthm}        % Definición de teoremas
 \usepackage{array}         % Nuevas características a las tablas
-\usepackage{atbegshi}      % Permite añadir hooks al inicio de las páginas
 \usepackage{bigstrut}      % Líneas horizontales en tablas
 \usepackage{bm}            % Caracteres en negrita en ecuaciones
 \usepackage{booktabs}      % Permite manejar elementos visuales en tablas
@@ -133,7 +132,6 @@
 \usepackage{multicol}      % Múltiples columnas
 \usepackage{needspace}     % Maneja los espacios en página
 \usepackage{pdflscape}     % Modo página horizontal de página
-
 \usepackage{pdfpages}      % Permite administrar páginas en pdf
 \usepackage{physics}       % Paquete de matemáticas
 \usepackage{realboxes}     % Permite inserción de recuadros
@@ -845,6 +843,14 @@
 \global\def\GLOBALsubsectionanumenabled {false} % Subsección sin numeración
 \global\def\GLOBALtablerowcolorindex {2}        % Índice tabla colores
 \global\def\GLOBALtablerowcolorswitch {false}   % Tabla con colores cambiados
+\global\def\GLOBALtwoside {false}               % Indica que el documento es twoside
+
+\makeatletter
+\if@twoside
+\global\def\GLOBALtwoside {true}
+\else
+\fi 
+\makeatother
 
 % Signo porcentaje para archivos
 \def\LOCALpercentchar#1{}
@@ -862,6 +868,10 @@
 \newcounter{templateBookmarksLevelPrev}
 \setcounter{templateBookmarksLevelPrev}{\cfgbookmarksopenlevel}
 \addtocounter{templateBookmarksLevelPrev}{-1}
+
+% Aumenta contador de páginas
+\stepcounter{templatePageCounter}
+\AtBeginShipout{\stepcounter{templatePageCounter}}
 
 % Define latex para uso en referencias
 \let\latex\LaTeX
@@ -3032,7 +3042,7 @@
 \newcommand{\insertemptypage}{%
 	\clearpage
 	\thispagestyle{empty}
-	% \addtocounter{page}{-1}
+	\addtocounter{page}{-1}
 	\null
 	\clearpage
 }
@@ -3044,21 +3054,14 @@
 	\clearpage
 }
 
-\newcommand{\coreinsertemptypagepredoc}[1]{
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-
-% Inserta una página vacía si el número es impar y está activada la opción
-%	#1	Tipo de página (odd/even)
-\newcommand{\coreinsertemptypageif}[1]{
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\leavevmode\checkoddpage
-		\ifoddpage
-			par
-			\ifthenelse{\equal{#1}{odd}}{\insertemptypage}{}
-		\else
-			impar
-			\ifthenelse{\equal{#1}{even}}{\insertemptypage}{}
-		\fi}{
+% Ejecuta una función dependiendo si la página es par o impar
+%	#1	Par
+%	#2	Impar
+\newcommand{\coretriggeronpage}[2]{%
+	\ifthenelse{\isodd{\value{templatePageCounter}}}{%
+		#2%
+	}{%
+		#1%
 	}
 }
 
@@ -3859,6 +3862,9 @@
 %	#4	Etiqueta del marcador del pdf
 \newenvironment{abstractenv}[4]{
 	\clearpage%
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{\insertemptypage}{}%
+	}{}%
 	\emptyvarerr{\abstractenv}{#1}{Tabla resumen no definida}
 	\emptyvarerr{\abstractenv}{#2}{Titulo tesis no definido}
 	\emptyvarerr{\abstractenv}{#3}{Titulo seccion no definida}
@@ -3889,7 +3895,6 @@
 	}
 	}{%
 	\vfill\null
-	\coreinsertemptypageif{odd}
 }
 
 % Llama al entorno de resumen
@@ -3901,7 +3906,11 @@
 
 % Crea una sección de dedicatoria
 \newenvironment{dedicatory}{
-	\clearpage\null
+	\clearpage%
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{\insertemptypage}{}%
+	}{}%
+	\null
 	\phantomsection
 	% \ifthenelse{\equal{\adddedictobookmarks}{true}}{
 	% 	\pdfbookmark{\nameadedic}{contents}}{
@@ -3911,13 +3920,15 @@
 		\itshape}{
 	\end{flushright}
 	\vspace{\stretch{2}}
-	% \null
-	\coreinsertemptypageif{even}
+	\null
 }
 
 % Crea una sección de agradecimientos
 \newenvironment{acknowledgments}{
-	\clearpage
+	\clearpage%
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{\insertemptypage}{}%
+	}{}%
 	\chapter*{\nameagradec}
 	\ifthenelse{\equal{\addagradectobookmarks}{true}}{
 		\phantomsection
@@ -3925,7 +3936,6 @@
 	}
 	\forceindent
 	}{
-	\coreinsertemptypageif{odd}
 }
 
 % Crea una sección de imágenes múltiples
@@ -5223,7 +5233,7 @@
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
 		Template.Version.Dev={2.5.5-THS},
-		Template.Version.Hash={8F894B3FA118430B7ED0BD878A5AA5B7},
+		Template.Version.Hash={FB23950EF67113BA44ED5BA75345A35F},
 		Template.Version.Release={2.5.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -5589,11 +5599,6 @@
 \preto\tabular{\global\rownum=\z@}
 \preto\tabularx{\global\rownum=\z@}
 \makeatother
-
-% -----------------------------------------------------------------------------
-% Se activa el modo estricto de revisión de números de página
-% -----------------------------------------------------------------------------
-\strictpagecheck
 
 % -----------------------------------------------------------------------------
 % Se activa el word-wrap para textos con \texttt{}
@@ -6770,9 +6775,7 @@
 	}
 	% Añade página en blanco
 	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\addtocounter{page}{-1}
-		\insertemptypage
-		}{
+		\insertemptypage}{
 	}
 }
 
@@ -6795,6 +6798,13 @@
 	\clearpage
 	\begingroup
 	\sectionfont{\color{\indextitlecolor} \indexsectionfontsize \indexsectionstyle \selectfont}
+	
+	% -------------------------------------------------------------------------
+	% Salta de página si está imprimiendo por ambas caras
+	% -------------------------------------------------------------------------
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{\insertemptypage}{}%
+	}{}
 	
 	% -------------------------------------------------------------------------
 	% Añade la entrada del índice a los marcadores del pdf
@@ -7287,20 +7297,11 @@
 	% -------------------------------------------------------------------------
 	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
 	\endgroup
-
-	% -------------------------------------------------------------------------
-	% Final del índice, restablece el espacio
-	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\objectchaptermargin}{false}}{
-		\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
-	}{}
-
-	% -------------------------------------------------------------------------
-	% Se añade una página en blanco
-	% -------------------------------------------------------------------------
-	\coreinsertemptypageif{odd}
 	
 }
+
+
+	% -------------------------------------------------------------------------
 
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES FINALES
@@ -7646,6 +7647,14 @@
 		\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\coretriggeronpage{\insertemptypage}{}%
+	}{
+		\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+			\coretriggeronpage{\insertemptypage}{}%
+		}{}
+	}
+	
 	% -------------------------------------------------------------------------
 	% Se restablecen números de página y secciones
 	% -------------------------------------------------------------------------
@@ -7656,19 +7665,7 @@
 	
 	% Reinicia número de página
 	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
-		\ifodd\thepage
-			lapag par
-		\else
-			lapag impar
-		\fi
-		\makeatletter
-		\if@twoside
-		\setcounter{page}{1}
-		\else
-		\setcounter{page}{1}
-		\fi%  
-		\makeatother
-		}{
+		\setcounter{page}{1}}{
 	}
 	
 	\setcounter{section}{0}

@@ -74,13 +74,8 @@
 % IMPORTACIÓN DEL TEMPLATE
 \input{template}
 
-\stepcounter{templatePageCounter}
-\AtBeginShipout{\stepcounter{templatePageCounter}}
-
-
 % INICIO DE LAS PÁGINAS
 \begin{document}
-
 	
 % PORTADA
 \templatePortrait
@@ -88,36 +83,25 @@
 % CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
 \templatePagecfg
 
-% Ejecuta una función dependiendo si la página es par o impar
-%	#1	Par
-%	#2	Impar
-\newcommand{\coretriggeronpage}[2]{%
-	\ifthenelse{\isodd{\value{templatePageCounter}}}{%
-		#2%
-	}{%
-		#1%
-	}
-}
-
 % RESUMEN O ABSTRACT
 \begin{abstractd}
-	\coretriggeronpage{par}{impar}
-	\thetemplatePageCounter
-	\lipsum[1-10]
-epic \coretriggeronpage{par}{impar}
-\thetemplatePageCounter
+	\lipsum[1] \thetemplatePageCounter
+\end{abstractd}
+
+\begin{abstractd}
+	nice \thetemplatePageCounter
 \end{abstractd}
 
 % DEDICATORIA
 \begin{dedicatory}
 	Una frase de dedicatoria, \\
-	pueden ser dos líneas. \newp
+	pueden ser dos líneas. \newp \thetemplatePageCounter
 	\textbf{Saludos}
 \end{dedicatory}
 
 % AGRADECIMIENTOS
 \begin{acknowledgments}
-	\lipsum[1] \thetemplatePageCounter
+	\lipsum[1-6]
 \end{acknowledgments}
 
 % TABLA DE CONTENIDOS - ÍNDICE

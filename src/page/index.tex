@@ -29,7 +29,9 @@
 	% -------------------------------------------------------------------------
 	% Salta de página si está imprimiendo por ambas caras
 	% -------------------------------------------------------------------------
-	\coreinsertemptypageif{even}
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{\insertemptypage}{}%
+	}{}
 	
 	% -------------------------------------------------------------------------
 	% Añade la entrada del índice a los marcadores del pdf
@@ -522,17 +524,8 @@
 	% -------------------------------------------------------------------------
 	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
 	\endgroup
-
-	% -------------------------------------------------------------------------
-	% Final del índice, restablece el espacio
-	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\objectchaptermargin}{false}}{
-		\renewcommand{\addvspace}[1]{\origaddvspace{##1}}
-	}{}
-
-	% -------------------------------------------------------------------------
-	% Se añade una página en blanco
-	% -------------------------------------------------------------------------
-	\coreinsertemptypageif{odd}
 	
 }
+
+
+	% -------------------------------------------------------------------------

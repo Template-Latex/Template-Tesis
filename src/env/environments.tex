@@ -303,7 +303,9 @@
 	}
 	}{%
 	\vfill\null
-	\coreinsertemptypageif{odd}
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{}{\insertemptypage}%
+	}{}
 }
 
 % Llama al entorno de resumen
@@ -326,8 +328,9 @@
 	\end{flushright}
 	\vspace{\stretch{2}}
 	\null
-	\clearpage
-	\coreinsertemptypageif{odd}
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{}{\insertemptypage}%
+	}{}
 }
 
 % Crea una sección de agradecimientos
@@ -340,7 +343,9 @@
 	}
 	\forceindent
 	}{
-	\coreinsertemptypageif{odd}
+	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+		\coretriggeronpage{}{\insertemptypage}%
+	}{}
 }
 
 % Crea una sección de imágenes múltiples

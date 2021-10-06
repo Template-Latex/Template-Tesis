@@ -116,7 +116,6 @@
 \usepackage{bm}            % Caracteres en negrita en ecuaciones
 \usepackage{booktabs}      % Permite manejar elementos visuales en tablas
 \usepackage{caption}       % Leyendas
-\usepackage{changepage}    % Condicionales para administrar páginas
 \usepackage{chngcntr}      % Añade números a las leyendas
 \usepackage{color}         % Colores
 \usepackage{datetime}      % Fechas
@@ -845,6 +844,7 @@
 \global\def\GLOBALtablerowcolorswitch {false}   % Tabla con colores cambiados
 \global\def\GLOBALtwoside {false}               % Indica que el documento es twoside
 
+% Configura si el documento es twoside
 \makeatletter
 \if@twoside
 \global\def\GLOBALtwoside {true}
@@ -3894,7 +3894,7 @@
 		\vspace{-0.5\baselineskip}
 	}
 	}{%
-	\vfill\null
+	\vfill\null%
 }
 
 % Llama al entorno de resumen
@@ -5233,7 +5233,7 @@
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
 		Template.Version.Dev={2.5.5-THS},
-		Template.Version.Hash={FB23950EF67113BA44ED5BA75345A35F},
+		Template.Version.Hash={BFEB05D7903A5BB325CF21CF708D9141},
 		Template.Version.Release={2.5.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
@@ -6795,8 +6795,8 @@
 	% -------------------------------------------------------------------------
 	% Crea nueva página y establece estilo de títulos
 	% -------------------------------------------------------------------------
-	\clearpage
-	\begingroup
+	\clearpage%
+	\begingroup%
 	\sectionfont{\color{\indextitlecolor} \indexsectionfontsize \indexsectionstyle \selectfont}
 	
 	% -------------------------------------------------------------------------
@@ -7647,6 +7647,9 @@
 		\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
+	% -------------------------------------------------------------------------
+	% Agrega páginas dependiendo del formato
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
 		\coretriggeronpage{\insertemptypage}{}%
 	}{

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.5.6 (06/10/2021)
+% Versión:      2.5.7 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3042,7 +3042,6 @@
 \newcommand{\insertemptypage}{%
 	\clearpage
 	\thispagestyle{empty}
-	\addtocounter{page}{-1}
 	\null
 	\clearpage
 }
@@ -3054,8 +3053,16 @@
 	\clearpage
 }
 
-% Define cuál función se ejecuta al insertar páginas en blanco
-\let\addemptypagespredocformat\insertblankpage
+% Función personalizada \cleardoublepage
+\def\corecleardoublepage {%
+	\clearpage %
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\ifodd\thepage %
+		\else%
+			\emptypagespredocformat%
+		\fi%
+	}{}
+}%
 
 % Ejecuta una función dependiendo si la página es par o impar
 %	#1	Par
@@ -3865,8 +3872,8 @@
 %	#4	Etiqueta del marcador del pdf
 \newenvironment{abstractenv}[4]{
 	\clearpage%
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\addemptypagespredocformat}{}%
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\coretriggeronpage{\emptypagespredocformat}{}%
 	}{}%
 	\emptyvarerr{\abstractenv}{#1}{Tabla resumen no definida}
 	\emptyvarerr{\abstractenv}{#2}{Titulo tesis no definido}
@@ -3910,8 +3917,8 @@
 % Crea una sección de dedicatoria
 \newenvironment{dedicatory}{
 	\clearpage%
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\addemptypagespredocformat}{}%
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\coretriggeronpage{\emptypagespredocformat}{}%
 	}{}%
 	\null
 	\phantomsection
@@ -3929,8 +3936,8 @@
 % Crea una sección de agradecimientos
 \newenvironment{acknowledgments}{
 	\clearpage%
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\addemptypagespredocformat}{}%
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\coretriggeronpage{\emptypagespredocformat}{}%
 	}{}%
 	\chapter*{\nameagradec}
 	\ifthenelse{\equal{\addagradectobookmarks}{true}}{
@@ -5235,9 +5242,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.5.6-THS},
-		Template.Version.Hash={9E8E92432D4B396AF78A76D20348CC27},
-		Template.Version.Release={2.5.6},
+		Template.Version.Dev={2.5.7-THS},
+		Template.Version.Hash={1B18326CDC2DDEA3502A87C8D3A3CFEE},
+		Template.Version.Release={2.5.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5249,7 +5256,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.5.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.5.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5291,12 +5298,6 @@
 \floatplacement{figure}{\imagedefaultplacement}
 \floatplacement{table}{\tabledefaultplacement}
 \floatplacement{tikz}{\tikzdefaultplacement}
-
-% -----------------------------------------------------------------------------
-% Modifica comportamiento nuevas páginas en formato twosides
-% -----------------------------------------------------------------------------
-\let\oldcleardoublepage\cleardoublepage
-\let\cleardoublepage\clearpage
 
 % -----------------------------------------------------------------------------
 % Configuración de los colores
@@ -5828,6 +5829,26 @@
 \theoremstyle{miobs}
 \newtheorem*{ej}{\namemathej}
 \newtheorem*{obs}{\namemathobs}
+
+% -----------------------------------------------------------------------------
+% Configura el formato oneside/twoside
+% -----------------------------------------------------------------------------
+% Normaliza el formato de páginas
+\raggedbottom
+
+% Desactiva \cleardoublepage hasta el inicio del documento
+\let\oldcleardoublepage\cleardoublepage
+\let\cleardoublepage\clearpage
+
+% Modifica el formato de nuevas páginas predoc y \cleardoublepage 
+\ifthenelse{\equal{\twopagesclearformat}{blank}}{
+	\let\emptypagespredocformat\insertblankpage
+}{
+\ifthenelse{\equal{\twopagesclearformat}{empty}}{
+	\let\emptypagespredocformat\insertemptypage
+}{
+	\throwbadconfig{Valor configuracion incorrecto}{\twopagesclearformat}{blank,empty}}
+}
 
 % -----------------------------------------------------------------------------
 % Configuraciones del idioma
@@ -6777,8 +6798,9 @@
 		\linenumbers}{
 	}
 	% Añade página en blanco
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\insertemptypage}{
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\insertemptypage%
+		\addtocounter{page}{-1}}{
 	}
 }
 
@@ -6805,8 +6827,8 @@
 	% -------------------------------------------------------------------------
 	% Salta de página si está imprimiendo por ambas caras
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-		\coretriggeronpage{\addemptypagespredocformat}{}%
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\coretriggeronpage{\emptypagespredocformat}{}%
 	}{}
 	
 	% -------------------------------------------------------------------------
@@ -7658,12 +7680,14 @@
 	% Agrega páginas dependiendo del formato
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
-		\coretriggeronpage{\addemptypagespredocformat}{}%
-	}{
-		\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-			\coretriggeronpage{\addemptypagespredocformat}{}%
-		}{}
+		\coretriggeronpage{\emptypagespredocformat}{}}{
 	}
+	
+	% -------------------------------------------------------------------------
+	% Reestablece \cleardoublepage
+	% -------------------------------------------------------------------------
+	% \let\cleardoublepage\oldcleardoublepage
+	\let\cleardoublepage\corecleardoublepage
 	
 	% -------------------------------------------------------------------------
 	% Se restablecen números de página y secciones
@@ -7680,11 +7704,6 @@
 	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
-
-	% -----------------------------------------------------------------------------
-	% Modifica comportamiento nuevas páginas en formato twosides
-	% -----------------------------------------------------------------------------
-	\let\cleardoublepage\oldcleardoublepage
 	
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea

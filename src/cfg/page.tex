@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      2.5.6 (06/10/2021)
+% Versión:      2.5.7 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -775,7 +775,8 @@
 		\linenumbers}{
 	}
 	% Añade página en blanco
-	\ifthenelse{\equal{\addemptypagespredoc}{true}}{
-		\insertemptypage}{
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\insertemptypage%
+		\addtocounter{page}{-1}}{
 	}
 }

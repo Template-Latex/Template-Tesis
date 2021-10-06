@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.5.6 (06/10/2021)
+% Versión:      2.5.7 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -125,9 +125,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.5.6-THS},
-		Template.Version.Hash={9E8E92432D4B396AF78A76D20348CC27},
-		Template.Version.Release={2.5.6},
+		Template.Version.Dev={2.5.7-THS},
+		Template.Version.Hash={1B18326CDC2DDEA3502A87C8D3A3CFEE},
+		Template.Version.Release={2.5.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -139,7 +139,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.5.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.5.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -181,12 +181,6 @@
 \floatplacement{figure}{\imagedefaultplacement}
 \floatplacement{table}{\tabledefaultplacement}
 \floatplacement{tikz}{\tikzdefaultplacement}
-
-% -----------------------------------------------------------------------------
-% Modifica comportamiento nuevas páginas en formato twosides
-% -----------------------------------------------------------------------------
-\let\oldcleardoublepage\cleardoublepage
-\let\cleardoublepage\clearpage
 
 % -----------------------------------------------------------------------------
 % Configuración de los colores
@@ -718,6 +712,26 @@
 \theoremstyle{miobs}
 \newtheorem*{ej}{\namemathej}
 \newtheorem*{obs}{\namemathobs}
+
+% -----------------------------------------------------------------------------
+% Configura el formato oneside/twoside
+% -----------------------------------------------------------------------------
+% Normaliza el formato de páginas
+\raggedbottom
+
+% Desactiva \cleardoublepage hasta el inicio del documento
+\let\oldcleardoublepage\cleardoublepage
+\let\cleardoublepage\clearpage
+
+% Modifica el formato de nuevas páginas predoc y \cleardoublepage 
+\ifthenelse{\equal{\twopagesclearformat}{blank}}{
+	\let\emptypagespredocformat\insertblankpage
+}{
+\ifthenelse{\equal{\twopagesclearformat}{empty}}{
+	\let\emptypagespredocformat\insertemptypage
+}{
+	\throwbadconfig{Valor configuracion incorrecto}{\twopagesclearformat}{blank,empty}}
+}
 
 % -----------------------------------------------------------------------------
 % Configuraciones del idioma

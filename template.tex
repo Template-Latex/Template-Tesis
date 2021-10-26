@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.6.1 (26/10/2021)
+% Versión:      2.6.2 (26/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -833,18 +833,25 @@
 % IMPORTACIÓN DE FUNCIONES Y ENTORNOS
 % -----------------------------------------------------------------------------
 % Definición de variables globales
-\global\def\GLOBALcaptiondefn {EMPTY-VAR}       % Definición del caption
-\global\def\GLOBALchapternumenabled {false}     % Numeración de capítulos empezó
-\global\def\GLOBALenvappendix {false}           % Indica que el entorno anexo está activo
-\global\def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
-\global\def\GLOBALenvimageinitialized {false}   % Entorno images activo
-\global\def\GLOBALenvmulticol {false}           % Indica que el entorno multicol está activo
-\global\def\GLOBALsectionalph {false}           % Sección con numeración de letras
-\global\def\GLOBALsectionanumenabled {false}    % Sección sin numeración
-\global\def\GLOBALsubsectionanumenabled {false} % Subsección sin numeración
-\global\def\GLOBALtablerowcolorindex {2}        % Índice tabla colores
-\global\def\GLOBALtablerowcolorswitch {false}   % Tabla con colores cambiados
-\global\def\GLOBALtwoside {false}               % Indica que el documento es twoside
+\global\def\GLOBALcaptiondefn {EMPTY-VAR}         % Definición del caption
+\global\def\GLOBALchapternumenabled {false}       % Numeración de capítulos empezó
+\global\def\GLOBALenvappendix {false}             % Indica que el entorno anexo está activo
+\global\def\GLOBALenvimageadded {false}           % Indica que una imagen ha sido añadida
+\global\def\GLOBALenvimageinitialized {false}     % Entorno images activo
+\global\def\GLOBALenvmulticol {false}             % Indica que el entorno multicol está activo
+\global\def\GLOBALsectionanumenabled {false}      % Sección sin numeración
+\global\def\GLOBALsubsectionanumenabled {false}   % Subsección sin numeración
+\global\def\GLOBALsubsubsectionanumenabled{false} % Sub-subsección sin numeración
+\global\def\GLOBALtablerowcolorindex {2}          % Índice tabla colores
+\global\def\GLOBALtablerowcolorswitch {false}     % Tabla con colores cambiados
+\global\def\GLOBALtwoside {false}                 % Indica que el documento es twoside
+
+% Definición de formato de secciones
+\global\def\GLOBALformatnumchapter {\formatnumchapter}
+\global\def\GLOBALformatnumsection {\formatnumsection}
+\global\def\GLOBALformatnumssection {\formatnumssection}
+\global\def\GLOBALformatnumsssection {\formatnumsssection}
+\global\def\GLOBALformatnumssssection {\formatnumssssection}
 
 % Configura si el documento es twoside
 \makeatletter
@@ -2908,43 +2915,53 @@
 
 % Activa la numeración en las secciones
 \def\coreintializetitlenumbering {%
+	% Capítulo
+	\renewcommand{\thechapter}{\GLOBALformatnumchapter{chapter}}
 	% Section
 	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{%
-		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{%
-			\renewcommand{\thesection}{\Alph{section}}%
-		}{%
-			\renewcommand{\thesection}{\arabic{section}}%
+		\renewcommand{\thesection}{%
+			\GLOBALformatnumsection{section}%
 		}%
 	}{%
-		\ifthenelse{\equal{\GLOBALsectionalph}{true}}{%
-			\renewcommand{\thesection}{\thechapter.\Alph{section}}%
-		}{%
-			\renewcommand{\thesection}{\thechapter.\arabic{section}}%
+		\renewcommand{\thesection}{%
+			\thechapter\charbetwchaptersection\GLOBALformatnumsection{section}%
 		}%
 	}%
 	% Subsection
 	\ifthenelse{\equal{\GLOBALsectionanumenabled}{true}}{%
-		\renewcommand{\thesubsection}{\arabic{subsection}}%
+		\renewcommand{\thesubsection}{%
+			\GLOBALformatnumssection{subsection}%
+		}%
 	}{%
-		\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}%
+		\renewcommand{\thesubsection}{%
+			\thesection\charbetwsectionsubsection\GLOBALformatnumssection{subsection}%
+		}%
 	}%
 	% Subsubsection
 	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{%
-		\renewcommand{\thesubsubsection}{\arabic{subsubsection}}%
+		\renewcommand{\thesubsubsection}{%
+			\GLOBALformatnumsssection{subsubsection}%
+		}%
 	}{%
-		\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}%
+		\renewcommand{\thesubsubsection}{%
+			\thesubsection\charbetwsubsectionssect\GLOBALformatnumsssection{subsubsection}%
+		}%
 	}%
 	% Subsubsubsection
-	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{%
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}}%
+	\ifthenelse{\equal{\GLOBALsubsubsectionanumenabled}{true}}{%
+		\renewcommand{\thesubsubsubsection}{%
+			\GLOBALformatnumssssection{subsubsubsection}%
+		}%
 	}{%
-		\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}%
+		\renewcommand{\thesubsubsubsection}{%
+			\thesubsubsection\charbetwssectionsssect\GLOBALformatnumssssection{subsubsubsection}%
+		}%
 	}%
 	\hbadness=10000%
 }
 
 % Parcha el formato de capítulos
-\pretocmd{\chapter}{
+\pretocmd{\chapter}{%
 	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -2966,12 +2983,15 @@
 		\setcounter{table}{0}%
 	}{}
 	\global\def\GLOBALchapternumenabled {true}%
+	\global\def\GLOBALsectionanumenabled {false}%
+	\global\def\GLOBALsubsectionanumenabled {false}%
+	\global\def\GLOBALsubsubsectionanumenabled {false}%
 	\coreintializetitlenumbering%
 }{}{}
 
 % Parcha el formato de secciones al pasar desde una anum, vuelve a activar número
 % de la sección
-\pretocmd{\section}{
+\pretocmd{\section}{%
 	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -2994,12 +3014,13 @@
 	}{}
 	\global\def\GLOBALsectionanumenabled {false}%
 	\global\def\GLOBALsubsectionanumenabled {false}%
+	\global\def\GLOBALsubsubsectionanumenabled {false}%
 	\coreintializetitlenumbering%
 }{}{}
 
 % Comienza nueva subsección, si está dentro de una sectionanum entonces no dibuja el
 % número de sección, si no entonces dibuja el número de forma normal
-\pretocmd{\subsection}{
+\pretocmd{\subsection}{%
 	\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -3021,6 +3042,7 @@
 		\setcounter{table}{0}%
 	}{}
 	\global\def\GLOBALsubsectionanumenabled {false}%
+	\global\def\GLOBALsubsubsectionanumenabled {false}%
 	\coreintializetitlenumbering%
 }{}{}
 
@@ -3028,7 +3050,7 @@
 %	- si está dentro de una subsección sin número ignora la sección
 %	- si no, entonces puede estar dentro de una sección sin número o no, en ese caso
 %	  debe evaluar ambas posibilidades
-\pretocmd{\subsubsection}{
+\pretocmd{\subsubsection}{%
 	\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -3049,10 +3071,12 @@
 		\addtocounter{templateTables}{\value{table}}%
 		\setcounter{table}{0}%
 	}{}
+	\global\def\GLOBALsubsubsectionanumenabled {false}%
 	\coreintializetitlenumbering%
 }{}{}
 
-\pretocmd{\subsubsubsection}{
+% Parcha sub-sub-subsecciones
+\pretocmd{\subsubsubsection}{%
 	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -3086,8 +3110,8 @@
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
 	\changeheadertitle{#1}%
 	\setcounter{subsection}{0}%
-	\renewcommand{\thesubsection}{\arabic{subsection}}%
 	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un título sin número y sin indexar
@@ -3100,8 +3124,8 @@
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
 	\changeheadertitle{#1}%
 	\setcounter{subsection}{0}%
-	\renewcommand{\thesubsection}{\arabic{subsection}}%
 	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un título sin número sin cambiar el título del header
@@ -3112,8 +3136,8 @@
 	\addcontentsline{toc}{section}{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
 	\setcounter{subsection}{0}%
-	\renewcommand{\thesubsection}{\arabic{subsection}}%
 	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un título sin número, sin indexar y sin cambiar el título del header
@@ -3123,8 +3147,8 @@
 	\section*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
 	\setcounter{subsection}{0}%
-	\renewcommand{\thesubsection}{\arabic{subsection}}%
 	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un subtítulo sin número
@@ -3135,8 +3159,8 @@
 	\addcontentsline{toc}{subsection}{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}%
 	\setcounter{subsubsection}{0}%
-	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}%
 	\global\def\GLOBALsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un subtítulo sin número y sin indexar
@@ -3146,8 +3170,8 @@
 	\subsection*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}%
 	\setcounter{subsubsection}{0}%
-	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}%
 	\global\def\GLOBALsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un sub-subtítulo sin número
@@ -3158,7 +3182,8 @@
 	\addcontentsline{toc}{subsubsection}{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}%
 	\setcounter{subsubsubsection}{0}%
-	\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}%
+	\global\def\GLOBALsubsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un sub-subtítulo sin número y sin indexar
@@ -3168,7 +3193,8 @@
 	\subsubsection*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}%
 	\setcounter{subsubsubsection}{0}%
-	\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}%
+	\global\def\GLOBALsubsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un sub-sub-subtítulo sin número
@@ -3878,7 +3904,12 @@
 	% \clearpage
 	\phantomsection
 	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
-	\global\def\GLOBALsectionalph {false} % Modifica formato de secciones con sección alph
+	% Define formato números para appendix
+	\global\def\GLOBALformatnumchapter {\formatnumapchapter}
+	\global\def\GLOBALformatnumsection {\formatnumapsection}
+	\global\def\GLOBALformatnumssection {\formatnumapssection}
+	\global\def\GLOBALformatnumsssection {\formatnumapsssection}
+	\global\def\GLOBALformatnumssssection {\formatnumapssssection}
 	\bookmarksetup{
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
@@ -3901,7 +3932,12 @@
 		}
 	}{
 	\end{appendices}
-	\global\def\GLOBALsectionalph {false} % Desactiva formato de secciones con sección alph
+	% Restablece formato de números
+	\global\def\GLOBALformatnumchapter {\formatnumchapter}
+	\global\def\GLOBALformatnumsection {\formatnumsection}
+	\global\def\GLOBALformatnumssection {\formatnumssection}
+	\global\def\GLOBALformatnumsssection {\formatnumsssection}
+	\global\def\GLOBALformatnumssssection {\formatnumssssection}
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Restablece índice marcador
 	\bookmarksetup{
 		numbered={\cfgpdfsecnumbookmarks},
@@ -5489,9 +5525,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.6.1-THS},
-		Template.Version.Hash={96768129ED61479DA524B1C6D1044FC6},
-		Template.Version.Release={2.6.1},
+		Template.Version.Dev={2.6.2-THS},
+		Template.Version.Hash={0381F8C932F7936A0FEC1B42868C9013},
+		Template.Version.Release={2.6.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5503,7 +5539,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.6.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.6.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

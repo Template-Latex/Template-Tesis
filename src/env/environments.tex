@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.6.1 (26/10/2021)
+% Versión:      2.6.2 (26/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -42,7 +42,12 @@
 	% \clearpage
 	\phantomsection
 	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
-	\global\def\GLOBALsectionalph {false} % Modifica formato de secciones con sección alph
+	% Define formato números para appendix
+	\global\def\GLOBALformatnumchapter {\formatnumapchapter}
+	\global\def\GLOBALformatnumsection {\formatnumapsection}
+	\global\def\GLOBALformatnumssection {\formatnumapssection}
+	\global\def\GLOBALformatnumsssection {\formatnumapsssection}
+	\global\def\GLOBALformatnumssssection {\formatnumapssssection}
 	\bookmarksetup{
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
@@ -65,7 +70,12 @@
 		}
 	}{
 	\end{appendices}
-	\global\def\GLOBALsectionalph {false} % Desactiva formato de secciones con sección alph
+	% Restablece formato de números
+	\global\def\GLOBALformatnumchapter {\formatnumchapter}
+	\global\def\GLOBALformatnumsection {\formatnumsection}
+	\global\def\GLOBALformatnumssection {\formatnumssection}
+	\global\def\GLOBALformatnumsssection {\formatnumsssection}
+	\global\def\GLOBALformatnumssssection {\formatnumssssection}
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Restablece índice marcador
 	\bookmarksetup{
 		numbered={\cfgpdfsecnumbookmarks},

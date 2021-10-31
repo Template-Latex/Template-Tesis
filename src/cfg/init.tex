@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.6.2 (26/10/2021)
+% Versión:      2.6.3 (31/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -118,16 +118,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={26/10/2021},
+		Template.Date={31/10/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={2.6.2-THS},
-		Template.Version.Hash={0381F8C932F7936A0FEC1B42868C9013},
-		Template.Version.Release={2.6.2},
+		Template.Version.Dev={2.6.3-1-THS},
+		Template.Version.Hash={38965C4FEABFE6A328B953712B457079},
+		Template.Version.Release={2.6.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -139,7 +139,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v2.6.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v2.6.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -379,7 +379,7 @@
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\ifthenelse{\equal{\apaciterefnumber}{true}}{
 		\newcounter{apaciteNumberCounter}
-		\renewcommand{\theapaciteNumberCounter}{% Formato de número
+		\renewcommand{\theapaciteNumberCounter}{ % Formato de número
 			\apaciterefcitecharopen\arabic{apaciteNumberCounter}\apaciterefcitecharclose
 		}
 		\patchcmd{\@lbibitem}{\item[}{\item[\stepcounter{apaciteNumberCounter}{\hss\llap{\theapaciteNumberCounter}\quad}}{}{}
@@ -470,7 +470,6 @@
 \vfuzz=200pt
 \hbadness=\maxdimen
 \vbadness=\maxdimen
-% \sloppy Sloppy arruina portadas al exigir "justify", desde 6.4.2 se desactiva
 
 % -----------------------------------------------------------------------------
 % Configura las fuentes
@@ -523,11 +522,6 @@
 }{
 	\throwbadconfig{Compilador desconocido}{\compilertype}{pdf2latex,xelatex,lualatex}}}
 }
-
-% -----------------------------------------------------------------------------
-% Declaración caracteres unicode adicionales
-% -----------------------------------------------------------------------------
-\DeclareUnicodeCharacter{2212}{-}
 
 % -----------------------------------------------------------------------------
 % Crea las sub-sub-sub-secciones

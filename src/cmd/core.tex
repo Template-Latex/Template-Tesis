@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.6.3 (31/10/2021)
+% Versión:      3.0.0 (05/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -62,6 +62,12 @@
 % Define latex para uso en referencias
 \let\latex\LaTeX
 
+% Nuevas dimensiones
+\newlength{\coregluevarcm}
+\setlength{\coregluevarcm}{0.25 cm}
+\newlength{\corefontwidth}
+\settowidth{\corefontwidth}{template}
+
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
@@ -82,7 +88,7 @@
 %	#3	Valores esperados
 \newcommand{\throwbadconfigondoc}[3]{%
 	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}%
-	\stop
+	\stop%
 }
 
 % Comprueba si una variable está definida
@@ -111,7 +117,7 @@
 		\else%
 			\errmessage{LaTeX Warning: #2}%
 		\fi}{%
-	}
+	}%
 }
 
 % Lanza un mensaje de error si una variable no ha sido definida
@@ -185,7 +191,7 @@
 	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{%
 		\throwwarning{Esta funcion solo puede usarse dentro de multicols}%
 		\stop}{%
-	}
+	}%
 }
 
 % Chequea que las funciones puedan usarse fuera del entorno anexo
@@ -193,7 +199,7 @@
 	\ifthenelse{\equal{\GLOBALenvappendix}{true}}{%
 		\throwwarning{Esta funcion solo puede usarse fuera de anexo}%
 		\stop}{%
-	}
+	}%
 }
 
 % Verifica que una variable sea del estilo "true" o "false"
@@ -215,16 +221,13 @@
 	\vspace*{\fill}%
 }
 
-\newlength{\coregluevarcm}
-\setlength{\coregluevarcm}{0.25 cm}
-
 % Inserta un espacio vertical en cm con una variación +/-
 %	#1	Espacio (en cm)
 \newcommand{\corevspacevarcm}[1]{%
 	\ifthenelse{\equal{#1}{0}}{}{%
 	\ifthenelse{\equal{#1}{0.0}}{}{%
 		\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%
-	}}
+	}}%
 }
 
 % Agrega una carpeta al path de imágenes

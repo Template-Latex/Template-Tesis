@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones para insertar imágenes
-% Versión:      2.6.3 (31/10/2021)
+% Versión:      3.0.0 (05/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -10,6 +10,11 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 \global\def\GLOBALimagelink {} % Almacena el link de la imagen
+
+% Calcula largo hspace
+% Regresión entre 35,46446->9 y 52,68402->13,5
+\newlength{\coreimageshspace}
+\setlength{\coreimageshspace}{\dimexpr 9pt + 0.261330719\corefontwidth - 9.26795284pt}
 
 % Añade una imagen a un env "image" con borde
 % 	#1	Label (opcional)
@@ -32,8 +37,7 @@
 	\setlength{\fboxsep}{0 pt}%
 	\setlength{\fboxrule}{#4 pt}%
 	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
-		\hspace{\marginimagemultright cm}%
-		\hspace{-0.125cm}%
+		\hspace{\dimexpr \marginimagemultright cm -\coreimageshspace}%
 	}{}%
 	\ifthenelse{\equal{#5}{}}{ % Sin label
 		\ifthenelse{\equal{\GLOBALimagelink}{}}{ % Sin link
@@ -96,8 +100,7 @@
 	\setlength{\fboxsep}{0 pt}%
 	\setlength{\fboxrule}{#6 pt}%
 	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
-		\hspace{\marginimagemultright cm}%
-		\hspace{-0.125cm}%
+		\hspace{\dimexpr \marginimagemultright cm -\coreimageshspace}%
 	}{}%
 	\ifthenelse{\equal{#7}{}}{ % Sin label
 		\ifthenelse{\equal{\animatedimageloop}{true}}{ % Con loop
@@ -256,7 +259,7 @@
 			\hspace{0cm}%
 			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
-		\fi
+		\fi%
 	\end{figure}
 	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
@@ -332,7 +335,7 @@
 			\hspace{0cm}%
 			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}%
-		\fi
+		\fi%
 	\end{figure}
 	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
@@ -391,102 +394,102 @@
 	\ifthenelse{\equal{#5}{bottom}}{%
 		\begin{samepage}%
 		\begin{figure*}[b]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{top}}{%
 		\begin{samepage}%
 		\begin{figure*}[t]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed2}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed2b}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[b]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed2t}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[t]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed3}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed3b}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[b]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed3t}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[t]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed4}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed4b}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed4t}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
 		\stop}}}}}}}}}}
-	}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+	}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+			\centering%
 			\fbox{\includegraphics[#3]{#2}}%
-		\endgroup
+		\endgroup%
 		\ifx\hfuzz#6\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
-		\else
-			\hspace{0cm}
+		\else%
+			\hspace{0cm}%
 			\corevspacevarcm{\captionmarginimage}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
-		\fi
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
+		\fi%
 	\end{figure*}
 	\end{samepage}
 	\ifthenelse{\equal{#5}{fixed2}}{%
-		\begin{multicols}{2}
-	}{
+		\begin{multicols}{2}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed2b}}{%
-		\begin{multicols}{2}
-	}{
+		\begin{multicols}{2}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed2t}}{%
-		\begin{multicols}{2}
-	}{
+		\begin{multicols}{2}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed3}}{%
-		\begin{multicols}{3}
-	}{
+		\begin{multicols}{3}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed3b}}{%
-		\begin{multicols}{3}
-	}{
+		\begin{multicols}{3}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed3t}}{%
-		\begin{multicols}{3}
-	}{
+		\begin{multicols}{3}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed4}}{%
-		\begin{multicols}{4}
-	}{
+		\begin{multicols}{4}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed4b}}{%
-		\begin{multicols}{4}
-	}{
+		\begin{multicols}{4}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed4t}}{%
-		\begin{multicols}{4}
-	}{
-	}}}}}}}}}
+		\begin{multicols}{4}%
+	}{%
+	}}}}}}}}}%
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
 }
@@ -601,7 +604,7 @@
 		\else%
 			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
-		\fi
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%

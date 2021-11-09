@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      3.0.0 (05/11/2021)
+% Versión:      3.0.1 (09/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -229,6 +229,11 @@
 	\usepackage[para]{threeparttable}
 }{
 	\usepackage{threeparttable}
+}
+
+% Indentación del primer párrafo
+\ifthenelse{\equal{\indentfirst}{true}}{
+	\usepackage{indentfirst}}{
 }
 
 % -----------------------------------------------------------------------------

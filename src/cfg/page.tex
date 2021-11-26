@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      3.0.3 (23/11/2021)
+% Versión:      3.0.4 (26/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -70,17 +70,19 @@
 		\color{\sssectioncolor} \sssectionfontsize \sssectionfontstyle \selectfont%
 	}
 	\titleformat{\subsubsubsection}{%
-		\color{\ssssectioncolor} \ssssectionfontsz \ssssectionfontstyle
-		}{%
-		\thesubsubsubsection\charaftersectionnum\spacingaftersection}{0em}{%
+		\color{\ssssectioncolor} \ssssectionfontsz \ssssectionfontstyle%
+	}{%
+		\thesubsubsubsection\charaftersectionnum\spacingaftersection%
+		\corepatchaftersubsubsubsection%
+	}{0em}{%
 	}
 	\def\bibfont {\fontsizerefbibl} % Tamaño de fuente de las referencias
 	
 	% -------------------------------------------------------------------------
 	% Estilo citas
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\stylecitereferences}{apacite}}{
-		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
+	\ifthenelse{\equal{\stylecitereferences}{apacite}}{%
+		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}%
 	}{}
 	
 	% -------------------------------------------------------------------------

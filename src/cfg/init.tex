@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      3.0.6 (02/12/2021)
+% Versión:      3.0.7 (05/12/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -115,16 +115,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={02/12/2021},
+		Template.Date={05/12/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.0.6-THS},
-		Template.Version.Hash={B15B315F3B3526CB79631DEC91CEDC2F},
-		Template.Version.Release={3.0.6},
+		Template.Version.Dev={3.0.7-THS},
+		Template.Version.Hash={64C81E7C36C7D45F29BEE51E6CF2524E},
+		Template.Version.Release={3.0.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -136,7 +136,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.0.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.0.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -804,16 +804,16 @@
 % Configura estilos de listas
 % -----------------------------------------------------------------------------
 % Enumerate
-\renewcommand{\labelenumi}{\textcolor{\enumerateitemcolor}{\senumerti}}
-\renewcommand{\labelenumii}{\textcolor{\enumerateitemcolor}{\senumertii}}
-\renewcommand{\labelenumiii}{\textcolor{\enumerateitemcolor}{\senumertiii}}
-\renewcommand{\labelenumiv}{\textcolor{\enumerateitemcolor}{\senumertiv}}
+\def\labelenumi {\textcolor{\enumerateitemcolor}{\senumerti}}
+\def\labelenumii {\textcolor{\enumerateitemcolor}{\senumertii}}
+\def\labelenumiii {\textcolor{\enumerateitemcolor}{\senumertiii}}
+\def\labelenumiv {\textcolor{\enumerateitemcolor}{\senumertiv}}
 
 % Itemize
-\renewcommand{\labelitemi}{\textcolor{\itemizeitemcolor}{\sitemizei}}
-\renewcommand{\labelitemii}{\textcolor{\itemizeitemcolor}{\sitemizeii}}
-\renewcommand{\labelitemiii}{\textcolor{\itemizeitemcolor}{\sitemizeiii}}
-\renewcommand{\labelitemiv}{\textcolor{\itemizeitemcolor}{\sitemizeiv}}
+\def\labelitemi {\textcolor{\itemizeitemcolor}{\sitemizei}}
+\def\labelitemii {\textcolor{\itemizeitemcolor}{\sitemizeii}}
+\def\labelitemiii {\textcolor{\itemizeitemcolor}{\sitemizeiii}}
+\def\labelitemiv {\textcolor{\itemizeitemcolor}{\sitemizeiv}}
 
 % Márgenes
 \setlength\leftmargini{\sitemsmargini pt}

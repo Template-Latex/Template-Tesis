@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.0.7 (05/12/2021)
+% Versión:      3.0.8 (24/12/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -13,11 +13,11 @@
 % CONFIGURACIONES
 % -----------------------------------------------------------------------------
 % Definiciones previas
-\def\iitembcirc {\raisebox{.55\height}{\scriptsize$\bullet$}}
-\def\iitembsquare {\raisebox{.3\height}{\tiny$\blacksquare$}}
-\def\iitemdash {\raisebox{.35\height}{\textendash}}
-\def\iitemcirc {\raisebox{.25\height}{\small$\circ$}}
-\def\iitemdiamond {\raisebox{.25\height}{\small$\diamond$}}
+\def\iitembcirc {\raisebox{0.55\height}{\scriptsize$\bullet$}}
+\def\iitembsquare {\raisebox{0.3\height}{\tiny$\blacksquare$}}
+\def\iitemdash {\raisebox{0.35\height}{\textendash}}
+\def\iitemcirc {\raisebox{0.25\height}{\small$\circ$}}
+\def\iitemdiamond {\raisebox{0.25\height}{\small$\diamond$}}
 
 % Ajustes usuario
 \input{template_config}
@@ -842,7 +842,18 @@
 	\usepackage{showframe}}{
 }
 \ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
-	\usepackage[switch,columnwise,running]{lineno}}{
+	\usepackage[switch,columnwise,running]{lineno}
+	\newcommand*\linenomathpatch[1]{% Parcha entornos
+		\cspreto{#1}{\linenomath}%
+		\cspreto{#1*}{\linenomath}%
+		\csappto{end#1}{\endlinenomath}%
+		\csappto{end#1*}{\endlinenomath}}
+	\linenomathpatch{equation}
+	\linenomathpatch{gather}
+	\linenomathpatch{multline}
+	\linenomathpatch{align}
+	\linenomathpatch{alignat}
+	\linenomathpatch{flalign}}{
 }
 \usepackage{csquotes} % Citas y comillas
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
@@ -5649,16 +5660,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={05/12/2021},
+		Template.Date={24/12/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.0.7-THS},
-		Template.Version.Hash={64C81E7C36C7D45F29BEE51E6CF2524E},
-		Template.Version.Release={3.0.7},
+		Template.Version.Dev={3.0.8-THS},
+		Template.Version.Hash={BB9069B48DE1BFCAF7FA50B2C9FF6B83},
+		Template.Version.Release={3.0.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5670,7 +5681,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.0.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.0.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5701,7 +5712,7 @@
 \setlength{\headheight}{64 pt} % Tamaño de la cabecera sin fancyhdr
 \setlength{\columnsep}{\columnsepwidth em} % Separación entre columnas
 \ifthenelse{\equal{\showlinenumbers}{true}}{
-	\setlength{\linenumbersep}{0.50cm}
+	\setlength{\linenumbersep}{\marginlinenumbers pt}
 	\renewcommand\linenumberfont{\normalfont\tiny\color{\linenumbercolor}}
 	}{
 }

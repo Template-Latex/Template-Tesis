@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      3.0.8 (24/12/2021)
+% Versión:      3.0.9 (10/01/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -90,6 +90,17 @@
 	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}%
 	\stop%
 }
+
+% Chequea que un módulo no haya sido cargado antes de terminar el template
+%	#1	Nombre del módulo
+\makeatletter%
+\newcommand{\checkmodulenotloaded}[1]{%
+	\@ifpackageloaded{#1}{%
+		\throwwarning{Template Error: No se pueden cargar paquetes (#1) antes de importar template.tex}%
+		\stop%
+	}{}%
+}
+\makeatother%
 
 % Comprueba si una variable está definida
 %	#1	Variable

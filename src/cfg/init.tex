@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      3.1.0 (19/01/2022)
+% Versión:      3.1.1 (19/03/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -115,16 +115,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={19/01/2022},
+		Template.Date={19/03/2022},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.1.0-THS},
-		Template.Version.Hash={7590F6144C23EBAF1A1B54662B1B0E40},
-		Template.Version.Release={3.1.0},
+		Template.Version.Dev={3.1.1-2-THS},
+		Template.Version.Hash={40AE2536E04657DDA48AC430A9DCEA0F},
+		Template.Version.Release={3.1.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -136,7 +136,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.1.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.1.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -559,9 +559,9 @@
 	{\csname #1@cntformat\endcsname} % Control individual
 }
 % Configura secciones
-\newcommand\section@cntformat{\thesection\charaftersectionnum\spacingaftersection}
-\newcommand\subsection@cntformat{\thesubsection\charaftersectionnum\spacingaftersection}
-\newcommand\subsubsection@cntformat{\thesubsubsection\charaftersectionnum\spacingaftersection}
+\newcommand\section@cntformat{\GLOBALtitlepresectionstr\thesection\charaftersectionnum\spacingaftersection}
+\newcommand\subsection@cntformat{\GLOBALtitlepresubsectionstr\thesubsection\charaftersectionnum\spacingaftersection}
+\newcommand\subsubsection@cntformat{\GLOBALtitlepresubsubsectionstr\thesubsubsection\charaftersectionnum\spacingaftersection}
 \makeatother
 
 % -----------------------------------------------------------------------------

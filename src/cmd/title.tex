@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Funciones para insertar títulos
-% Versión:      3.1.0 (19/01/2022)
+% Versión:      3.1.1 (19/03/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -15,6 +15,16 @@
 \global\def\GLOBALtitleinitsubsection {false}
 \global\def\GLOBALtitleinitsubsubsection {false}
 \global\def\GLOBALtitleinitsubsubsubsection {false}
+
+% Configura textos a añadir antes de secciones
+\global\def\GLOBALtitleprechapterstr {}
+\global\def\GLOBALtitlepresectionstr {}
+\global\def\GLOBALtitlepresubsectionstr {}
+\global\def\GLOBALtitlepresubsubsectionstr {}
+\global\def\GLOBALtitlepresubsubsubsectionstr {}
+
+% Configura que entornos pueden funcionar
+\global\def\GLOBALtitlechapterenabled {true}
 
 % Activa la numeración en las secciones
 \def\coreintializetitlenumbering {%
@@ -95,6 +105,9 @@
 
 % Parcha el formato de capítulos
 \pretocmd{\chapter}{%
+	\ifthenelse{\equal{\GLOBALtitlechapterenabled}{false}}{ % Verifica que el entorno esté activo
+		\throwwarning{La insercion de capitulos esta desactivada}%
+	}{%
 	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -125,6 +138,7 @@
 	\global\def\GLOBALtitleinitsubsubsection {false}%
 	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	\coreintializetitlenumbering%
+	}%
 }{}{}
 
 % Parcha el formato de secciones al pasar desde una anum, vuelve a activar número
@@ -255,6 +269,25 @@
 	\corechecksectioninitialized%
 	\corechecksubsectioninitialized%
 	\corechecksubsubsectioninitialized%
+}
+
+% Insertar un capítulo sin número
+% 	#1	Título
+\newcommand{\chapteranum}[1]{%
+	\ifthenelse{\equal{\GLOBALtitlechapterenabled}{false}}{ % Verifica que el entorno esté activo
+		\throwwarning{La insercion de capitulos esta desactivada}%
+	}{%
+	\emptyvarerr{\chapteranum}{#1}{Titulo no definido}%
+	\phantomsection%
+	\needspace{3\baselineskip}%
+	\chapter*{#1}%
+	\addcontentsline{toc}{chapter}{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{chapter}}{}%
+	\changeheadertitle{#1}%
+	\setcounter{section}{0}%
+	\global\def\GLOBALchapternumenabled {false}%
+	\coreintializetitlenumbering%
+	}%
 }
 
 % Insertar un título sin número

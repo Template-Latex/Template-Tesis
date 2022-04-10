@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Estilos de código fuente
-% Versión:      3.1.2 (02/04/2022)
+% Versión:      3.1.3 (09/04/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -86,7 +86,8 @@
 % C++
 \lstdefinestyle{cpp}{
 	language=C++,
-	breakatwhitespace=false
+	breakatwhitespace=false,
+	morekeywords={NULL}
 }
 
 % C#
@@ -887,7 +888,7 @@
 		{ϋ}{{$\ddot \upsilon$}}1 {ΰ}{{$\dddot \upsilon$}}1
 		{Φ}{{$\Phi$}}1 {φ}{{$\phi$}}1 {Ψ}{{$\Psi$}}1 {ψ}{{$\psi$}}1
 		{Ω}{{$\Omega$}}1 {ω}{{$\omega$}}1 {ώ}{{$\dot \omega$}}1
-		{“}{{``}}1 {”}{{''}}1 {…}{{$\ldots$}}1 {`}{\`}1 {–}{{--}}1,
+		{“}{{``}}1 {”}{{''}}1 {…}{{$\ldots$}}1 {`}{\`}1 {–}{{--}}1 { }{{ }}1,
 	numbers=left,
 	numbersep={\sourcecodenumbersep pt},
 	numberstyle=\sourcecodenumbersize\color{dkgray},
@@ -1002,7 +1003,7 @@
 	\emptyvarerr{\inlinesourcecodeboxed}{#3}{Codigo no definido}%
 	\lstset{%
 		basicstyle={\sourcecodeilfonts\sourcecodeilfontf\color{\maintextcolor}}%
-	}
+	}%
 	\checkvalidsourcecodestyle{#2}%
 	\ifthenelse{\equal{#1}{}}{%
 		\Colorbox{\sourcecodebgcolor}{\lstinline[style=#2]!#3!}%
@@ -1014,7 +1015,7 @@
 	}}%
 	\lstset{%
 		basicstyle={\sourcecodefonts\sourcecodefontf\color{\maintextcolor}}%
-	}
+	}%
 }
 
 % Inserta una referencia en un código fuente

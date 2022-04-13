@@ -321,13 +321,18 @@ end
 
 % ------------------------------------------------------------------------------
 % ANEXO
-% Existe adicionalmente el entorno appendixd, que permite insertar capítulos
+% Existe adicionalmente el entorno appendixd, que permite insertar \chapter
 % ------------------------------------------------------------------------------
-\begin{appendixs}
+\chapter*{\nameappendixsection}
+\let\clearpage\relax
+\vspace{-1.5cm}
+\begin{appendixd}
 	
-	\section{Cálculos realizados}
+	\chapter{Prueba paralela}
+	
+	\section{Instrumentos}
 
-	\subsection{Metodología}
+	\subsection{Transcripción formulario}
 	\lipsum[1-2]
 
 	% Imagen, se numerará automáticamente con la letra del anexo según
@@ -363,4 +368,4 @@ end
 	\end{table}
 	\disabletablerowcolor % Desactiva el color de celda
 
-\end{appendixs}
+\end{appendixd}

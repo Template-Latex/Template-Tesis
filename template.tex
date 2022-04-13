@@ -4140,11 +4140,25 @@
 }
 
 % Entorno simple de apéndices
+\makeatletter
+\newcommand*\coredisabledchapter{%
+	\@ifstar{\coredisabledchapterstar}{\@dblarg\coredisabledchapternostar}}
+\newcommand*\coredisabledchapterstar[1]{%
+	\noindent\textcolor{red}{Error!} \newline#1%
+	\throwwarning{La insercion de capitulos esta desactivada}%
+}
+\def\coredisabledchapternostar[#1]#2{%
+	\noindent\textcolor{red}{Error!} #1%
+	\throwwarning{La insercion de capitulos esta desactivada}%
+}
+\makeatother
 \newenvironment{appendixs}{%
 	\global\def\GLOBALenvappendix {true}%
 	\global\def\GLOBALtitlerequirechapter {false}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	\chapteranum{\nameappendixsection}%
+	\let\oldchapter\chapter
+	\let\chapter\coredisabledchapter
 	% Define etiqueta secciones
 	\global\def\GLOBALtitlepresectionstr {\nameltappendixsection~}%
 	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
@@ -4184,6 +4198,7 @@
 	% Resetea etiqueta secciones
 	\global\def\GLOBALtitlepresectionstr {}%
 	\global\def\GLOBALtitlechapterenabled {true}%
+	\let\chapter\oldchapter
 	\endgroup%
 	\global\def\GLOBALenvappendix {false}%
 }

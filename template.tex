@@ -4076,6 +4076,16 @@
 	\end{thebibliography}
 }
 
+% Entorno capítulos apéndices con título
+\newenvironment{appendixdtitle}{
+	\chapter*{\nameappendixsection}%
+	\let\clearpage\relax%
+	\vspace{-1.5cm}%
+	\begin{appendixd}%
+	}{%
+	\end{appendixd}%
+}
+
 \newenvironment{appendixd}{%
 	\global\def\GLOBALenvappendix {true}%
 	\global\def\GLOBALtitlerequirechapter {true}%

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.1.3 (09/04/2022)
+% Versión:      3.1.4 (13/04/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3059,6 +3059,13 @@
 	\hbadness=10000%
 }
 
+% Chequea si los capítulos están activados
+\def\corecheckchapterenabled {%
+	\ifthenelse{\equal{\GLOBALtitlechapterenabled}{false}}{ % Verifica que el entorno esté activo
+		\throwwarning{La insercion de capitulos esta desactivada}%
+	}{}%
+}
+
 % Chequea si los capítulos han sido iniciados
 \def\corecheckchapterinitialized {%
 	\ifthenelse{\equal{\GLOBALtitlerequirechapter}{true}}{%
@@ -3091,9 +3098,7 @@
 
 % Parcha el formato de capítulos
 \pretocmd{\chapter}{%
-	\ifthenelse{\equal{\GLOBALtitlechapterenabled}{false}}{ % Verifica que el entorno esté activo
-		\throwwarning{La insercion de capitulos esta desactivada}%
-	}{%
+	\corecheckchapterenabled%
 	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -3124,7 +3129,6 @@
 	\global\def\GLOBALtitleinitsubsubsection {false}%
 	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	\coreintializetitlenumbering%
-	}%
 }{}{}
 
 % Parcha el formato de secciones al pasar desde una anum, vuelve a activar número
@@ -3257,12 +3261,37 @@
 	\corechecksubsubsectioninitialized%
 }
 
+% Entorno que permite desactivar los capítulos
+\makeatletter
+\newcommand*\coredisabledchapter{%
+	\@ifstar{\coredisabledchapterstar}{\@dblarg\coredisabledchapternostar}}
+\newcommand*\coredisabledchapterstar[1]{%
+	\noindent\textcolor{red}{Error!} \newline#1%
+	\throwwarning{La insercion de capitulos esta desactivada}%
+}
+\def\coredisabledchapternostar[#1]#2{%
+	\noindent\textcolor{red}{Error!} #1%
+	\throwwarning{La insercion de capitulos esta desactivada}%
+}
+\makeatother
+\let\oldchapter\chapter
+
+% Desactiva los capítulos
+\newcommand{\disablechapter}{%
+	\let\chapter\coredisabledchapter%
+	\global\def\GLOBALtitlechapterenabled {false}%
+}
+
+% Activa los capítulos
+\newcommand{\enablechapter}{%
+	\let\chapter\oldchapter%
+	\global\def\GLOBALtitlechapterenabled {true}%
+}
+
 % Insertar un capítulo sin número
 % 	#1	Título
 \newcommand{\chapteranum}[1]{%
-	\ifthenelse{\equal{\GLOBALtitlechapterenabled}{false}}{ % Verifica que el entorno esté activo
-		\throwwarning{La insercion de capitulos esta desactivada}%
-	}{%
+	\corecheckchapterenabled%
 	\emptyvarerr{\chapteranum}{#1}{Titulo no definido}%
 	\phantomsection%
 	\needspace{3\baselineskip}%
@@ -3273,7 +3302,6 @@
 	\setcounter{section}{0}%
 	\global\def\GLOBALchapternumenabled {false}%
 	\coreintializetitlenumbering%
-	}%
 }
 
 % Insertar un título sin número
@@ -4076,21 +4104,11 @@
 	\end{thebibliography}
 }
 
-% Entorno capítulos apéndices con título
-\newenvironment{appendixdtitle}{
-	\chapter*{\nameappendixsection}%
-	\let\clearpage\relax%
-	\vspace{-1.5cm}%
-	\begin{appendixd}%
-	}{%
-	\end{appendixd}%
-}
-
+% Crea una sección de anexos
 \newenvironment{appendixd}{%
 	\global\def\GLOBALenvappendix {true}%
 	\global\def\GLOBALtitlerequirechapter {true}%
-	\begingroup % Inicia el grupo en nueva página y sección
-	% \clearpage
+	\begingroup%
 	\phantomsection%
 	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
 	% Define formato números para appendix
@@ -4111,7 +4129,6 @@
 	}%
 	\appendixtitleon%
 	\appendixtitletocon%
-	% \addappheadtotoc
 	\bookmarksetupnext{level=part}%
 	\begin{appendices} % Crea la sección
 		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{%
@@ -4124,7 +4141,7 @@
 			\counterwithin{figure}{chapter}
 			\counterwithin{lstlisting}{chapter}
 			\counterwithin{table}{chapter}
-		}%
+		}{}%
 	}{%
 	\end{appendices}
 	% Restablece formato de números
@@ -4150,25 +4167,11 @@
 }
 
 % Entorno simple de apéndices
-\makeatletter
-\newcommand*\coredisabledchapter{%
-	\@ifstar{\coredisabledchapterstar}{\@dblarg\coredisabledchapternostar}}
-\newcommand*\coredisabledchapterstar[1]{%
-	\noindent\textcolor{red}{Error!} \newline#1%
-	\throwwarning{La insercion de capitulos esta desactivada}%
-}
-\def\coredisabledchapternostar[#1]#2{%
-	\noindent\textcolor{red}{Error!} #1%
-	\throwwarning{La insercion de capitulos esta desactivada}%
-}
-\makeatother
 \newenvironment{appendixs}{%
 	\global\def\GLOBALenvappendix {true}%
 	\global\def\GLOBALtitlerequirechapter {false}%
-	\begingroup % Inicia el grupo en nueva página y sección
+	\begingroup%
 	\chapteranum{\nameappendixsection}%
-	\let\oldchapter\chapter
-	\let\chapter\coredisabledchapter
 	% Define etiqueta secciones
 	\global\def\GLOBALtitlepresectionstr {\nameltappendixsection~}%
 	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
@@ -4185,13 +4188,13 @@
 	\global\def\GLOBALtitleinitsubsubsection {false}%
 	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	% Otras configuraciones
-	\global\def\GLOBALtitlechapterenabled {false}%
+	\disablechapter%
 	\ifthenelse{\equal{\appendixindepobjnum}{true}}{%
 		\counterwithin{equation}{section}
 		\counterwithin{figure}{section}
 		\counterwithin{lstlisting}{section}
 		\counterwithin{table}{section}
-	}%
+	}{}%
 	}{%
 	% Restablece formato de números
 	\global\def\GLOBALformatnumchapter {\formatnumchapter}%
@@ -4207,10 +4210,33 @@
 	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	% Resetea etiqueta secciones
 	\global\def\GLOBALtitlepresectionstr {}%
-	\global\def\GLOBALtitlechapterenabled {true}%
-	\let\chapter\oldchapter
+	\enablechapter%
 	\endgroup%
 	\global\def\GLOBALenvappendix {false}%
+}
+
+% Entorno capítulos apéndices con título
+\newenvironment{appendixdtitle}[1][style1]{
+	\chapter*{\nameappendixsection}%
+	\let\clearpage\relax%
+	\vspace{-1.75cm}%
+	% Configura el tipo de capítulo
+	\ifthenelse{\equal{#1}{style1}}{ % Default
+	}{%
+	\ifthenelse{\equal{#1}{style2}}{%
+		\titleformat{\chapter}[hang]{\huge\bfseries}{\thechapter.\hspace{20pt}}{0pt}{\huge\bfseries}%
+	}{%
+	\ifthenelse{\equal{#1}{style3}}{%
+		\titleformat{\chapter}[hang]{\huge\bfseries}{\nameltappendixsection\ \thechapter.\hspace{20pt}}{0pt}{\huge\bfseries}%
+	}{%
+	\ifthenelse{\equal{#1}{style4}}{%
+		\titleformat{\chapter}[hang]{\LARGE\bfseries}{\nameltappendixsection\ \thechapter.\hspace{20pt}}{0pt}{\LARGE\bfseries}%
+	}{%
+		\throwerror{appendixdtitle}{Estilo capitulo apendice incorrecto. Estilos validos style1..style4}%
+	}{}}}}%
+	\begin{appendixd}%
+		}{%
+	\end{appendixd}%
 }
 
 % Inicia código fuente con parámetros
@@ -5780,16 +5806,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={09/04/2022},
+		Template.Date={13/04/2022},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.1.3-1-THS},
-		Template.Version.Hash={87F63FB7248752C6B93B118619FD4B3D},
-		Template.Version.Release={3.1.3},
+		Template.Version.Dev={3.1.4-1-THS},
+		Template.Version.Hash={6E42C9EAF317A5D2D83EF3E8B28CE9EA},
+		Template.Version.Release={3.1.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5801,7 +5827,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.1.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.1.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

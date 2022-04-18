@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.1.4 (13/04/2022)
+% Versión:      3.1.4 (17/04/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3266,11 +3266,11 @@
 \newcommand*\coredisabledchapter{%
 	\@ifstar{\coredisabledchapterstar}{\@dblarg\coredisabledchapternostar}}
 \newcommand*\coredisabledchapterstar[1]{%
-	\noindent\textcolor{red}{Error!} \newline#1%
+	\noindent\textcolor{red}{Error (chapter):} \newline#1%
 	\throwwarning{La insercion de capitulos esta desactivada}%
 }
 \def\coredisabledchapternostar[#1]#2{%
-	\noindent\textcolor{red}{Error!} #1%
+	\noindent\textcolor{red}{Error (chapter):} #1%
 	\throwwarning{La insercion de capitulos esta desactivada}%
 }
 \makeatother
@@ -5806,15 +5806,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={13/04/2022},
+		Template.Date={17/04/2022},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.1.4-1-THS},
-		Template.Version.Hash={6E42C9EAF317A5D2D83EF3E8B28CE9EA},
+		Template.Version.Dev={3.1.4-4-THS},
+		Template.Version.Hash={0AAA0B8A055FF95BD2BF2AFE620285AF},
 		Template.Version.Release={3.1.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

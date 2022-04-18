@@ -1,6 +1,6 @@
 %% Template:     Template LaTeX
 %% Documento:    Archivo de estilos simple numerados + url (doi, arxivId) [es]
-%% Versión:      1.4.0
+%% Versión:      1.4.1 (18/04/2022)
 %% Codificación: UTF-8
 %%
 %% Autor: Pablo Pizarro R.
@@ -130,28 +130,10 @@ FUNCTION {output.links} {
                 } if$
             } if$
         }{
-            url empty$ {
-                ", \href{https://arxiv.org/abs/" * arxivId * "}{arXiv:\detokenize{" * arxivId * "}}" *
-            }{
-                ", \href{" * url * "}{\nolinkurl{\detokenize{" * url * "}}}" *
-                urldate empty$ {
-                    "" *
-                }{
-                    " (visitado el " * urldate * ")" *
-                } if$
-            } if$
+            ", \href{https://arxiv.org/abs/" * arxivId * "}{arXiv:\detokenize{" * arxivId * "}}" *
         } if$
     }{
-        url empty$ {
-            ", \href{https://dx.doi.org/" * doi * "}{\nolinkurl{doi:\detokenize{" * doi * "}}}" *
-        }{
-            ", \href{" * url * "}{\nolinkurl{\detokenize{" * url * "}}}" *
-            urldate empty$ {
-                "" *
-            }{
-                " (visitado el " * urldate * ")" *
-            } if$
-        } if$
+        ", \href{https://dx.doi.org/" * doi * "}{\nolinkurl{doi:\detokenize{" * doi * "}}}" *
     } if$
 }
 

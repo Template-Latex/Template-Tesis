@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.1.4 (18/04/2022)
+% Versión:      3.1.5 (25/04/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -5806,16 +5806,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={18/04/2022},
+		Template.Date={25/04/2022},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.1.4-5-THS},
-		Template.Version.Hash={3485118E80127F17C7A43B983739D182},
-		Template.Version.Release={3.1.4},
+		Template.Version.Dev={3.1.5-THS},
+		Template.Version.Hash={EDD4557E2360C89414E1D5D85077E06A},
+		Template.Version.Release={3.1.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5827,7 +5827,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.1.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.1.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6517,6 +6517,19 @@
 % Chequea que ciertos módulos no hayan sido cargados antes del inicio del documento
 % -----------------------------------------------------------------------------
 \checkmodulenotloaded{tcolorbox}
+
+% -----------------------------------------------------------------------------
+% Da soporte a \hl{} del paquete soul
+% -----------------------------------------------------------------------------
+\soulregister\cite7
+\soulregister\eqref7
+\soulregister\eqref7
+\soulregister\footnote7
+\soulregister\href7
+\soulregister\pageref7
+\soulregister\quotes7
+\soulregister\ref7
+\soulregister\scite7
 
 % -----------------------------------------------------------------------------
 % Configura métodos aplicados al iniciar el documento

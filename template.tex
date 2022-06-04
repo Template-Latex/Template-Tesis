@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.1.5 (25/04/2022)
+% Versión:      3.1.6 (04/06/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -4106,6 +4106,7 @@
 
 % Crea una sección de anexos
 \newenvironment{appendixd}{%
+	\appendix%
 	\global\def\GLOBALenvappendix {true}%
 	\global\def\GLOBALtitlerequirechapter {true}%
 	\begingroup%
@@ -4168,6 +4169,7 @@
 
 % Entorno simple de apéndices
 \newenvironment{appendixs}{%
+	\appendix%
 	\global\def\GLOBALenvappendix {true}%
 	\global\def\GLOBALtitlerequirechapter {false}%
 	\begingroup%
@@ -5806,16 +5808,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={25/04/2022},
+		Template.Date={04/06/2022},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.1.5-THS},
-		Template.Version.Hash={EDD4557E2360C89414E1D5D85077E06A},
-		Template.Version.Release={3.1.5},
+		Template.Version.Dev={3.1.6-THS},
+		Template.Version.Hash={327E758FFE822214838E0E8112E334FC},
+		Template.Version.Release={3.1.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5827,7 +5829,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.1.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.1.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6553,12 +6555,18 @@
 }{
 \ifthenelse{\equal{\chapterstyle}{style3}}{
 	\usepackage[Sonny]{fncychap}
+	\ChNameVar{\Large}
+	\ChTitleVar{\Large}
 }{
 \ifthenelse{\equal{\chapterstyle}{style4}}{
 	\usepackage[Lenny]{fncychap}
+	\ChNameVar{\Large}
+	\ChTitleVar{\Large}
 }{
 \ifthenelse{\equal{\chapterstyle}{style5}}{
 	\usepackage[Glenn]{fncychap}
+	\ChNameVar{\Large}
+	\ChTitleVar{\Large}
 }{
 \ifthenelse{\equal{\chapterstyle}{style6}}{
 	\usepackage[Conny]{fncychap}

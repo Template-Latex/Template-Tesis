@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.2.1 (06/03/2023)
+% Versión:      3.2.2 (10/03/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -156,7 +156,7 @@
 \usepackage{setspace}      % Cambia el espacio entre líneas
 \usepackage{soul}          % Permite subrayar texto
 \usepackage{stfloats}      % Permite cambiar posición de flotantes con [b] y [t]
-\usepackage{subfig}        % Permite agrupar imágenes
+\usepackage{subcaption}    % Permite agrupar imágenes
 \usepackage{textcomp}      % Simbología común
 \usepackage{wrapfig}       % Posición de imágenes
 \usepackage{xspace}        % Administra espacios en párrafos y líneas
@@ -168,7 +168,7 @@
 \usepackage[export]{adjustbox} % Agrega nuevas etiquetas de posicionado
 \usepackage[makeroom]{cancel} % Cancelar términos en fórmulas
 \usepackage[inline]{enumitem} % Permite enumerar ítems
-\usepackage[subfigure,titles]{tocloft} % Maneja entradas en el índice
+\usepackage[titles]{tocloft} % Maneja entradas en el índice
 \usepackage[figure,table,lstlisting]{totalcount} % Contador de objetos
 \usepackage[normalem]{ulem} % Permite tachar y subrayar
 \usepackage[nointegrals]{wasysym} % Contiene caracteres misceláneos
@@ -5818,16 +5818,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={06/03/2023},
+		Template.Date={10/03/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.1-THS},
-		Template.Version.Hash={B9201BD97B0FC21B3146185E8CD55D3D},
-		Template.Version.Release={3.2.1},
+		Template.Version.Dev={3.2.2-THS},
+		Template.Version.Hash={761E9F478DEFB106DBF6D4B0DCDA91E2},
+		Template.Version.Release={3.2.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5839,7 +5839,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.2.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.2.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -8486,12 +8486,10 @@
 	\ifthenelse{\equal{\objectindexindent}{true}}{
 		\setlength{\cfttabindent}{1.5em}
 		\setlength{\cftfigindent}{1.5em}
-		\setlength{\cftsubfigindent}{1.5em}
 		\def\cftlstlistingindent {1.5em}
 	}{
 		\setlength{\cfttabindent}{0em}
 		\setlength{\cftfigindent}{0em}
-		\setlength{\cftsubfigindent}{0em}
 		\def\cftlstlistingindent {0em}
 	}
 	

@@ -871,6 +871,7 @@
 \global\def\GLOBALchapternumenabled {false}       % Numeración de capítulos empezó
 \global\def\GLOBALenvappendix {false}             % Indica que el entorno anexo está activo
 \global\def\GLOBALenvimageadded {false}           % Indica que una imagen ha sido añadida
+\global\def\GLOBALenvimagecf {false}              % Indica que una imagen usa ContinuedFloat
 \global\def\GLOBALenvimageinitialized {false}     % Entorno images activo
 \global\def\GLOBALenvmulticol {false}             % Indica que el entorno multicol está activo
 \global\def\GLOBALsectionanumenabled {false}      % Sección sin numeración
@@ -2061,7 +2062,7 @@
 \newlength{\coreimageshspace}
 \setlength{\coreimageshspace}{\dimexpr 9pt + 0.261330719\corefontwidth - 9.26795284pt}
 
-% Añade una imagen a un env "image" con borde
+% Añade una imagen en el entorno "images" con borde
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
@@ -2070,7 +2071,7 @@
 	\addimageboxed[#1]{#2}{#3}{0}{#4}%
 }
 
-% Añade una imagen a un env "image" con borde
+% Añade una imagen en el entorno "images" con borde
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
@@ -2114,14 +2115,14 @@
 	\global\def\GLOBALimagenextmarginv {0 cm}%
 }
 
-% Añade una imagen a un env "image" con borde sin leyenda
+% Añade una imagen en el entorno "images" con borde sin leyenda
 %	#1	Dirección de la imagen
 %	#2	Parámetros de la imagen
 \newcommand{\addimageanum}[2]{%
 	\addimageboxed{#1}{#2}{0}{\GLOBALemptyvar}%
 }
 
-% Añade una imagen a un env "image" con borde sin leyenda
+% Añade una imagen en el entorno "images" con borde sin leyenda
 %	#1	Dirección de la imagen
 %	#2	Parámetros de la imagen
 %	#3	Ancho de la línea (en pt)
@@ -2129,7 +2130,7 @@
 	\addimageboxed{#1}{#2}{#3}{\GLOBALemptyvar}%
 }
 
-% Añade una imagen a un env "image" con borde animada
+% Añade una imagen en el entorno "images" con borde animada
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen animada
 %	#3	Parámetros de la imagen
@@ -2140,7 +2141,7 @@
 	\addimageanimatedboxed[#1]{#2}{#3}{#4}{#5}{0}{#6}%
 }
 
-% Añade una imagen a un env "image" con borde animada
+% Añade una imagen en el entorno "images" con borde animada
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen animada
 %	#3	Parámetros de la imagen
@@ -2208,7 +2209,7 @@
 	\global\def\GLOBALimagenextmarginv {0 cm}%
 }
 
-% Añade una imagen a un env "image" con borde sin leyenda animada
+% Añade una imagen en el entorno "images" con borde sin leyenda animada
 %	#1	Dirección de la imagen animada
 %	#2	Parámetros de la imagen
 %	#3	FPS de la imagen
@@ -2217,7 +2218,7 @@
 	\addimageanimatedboxed{#1}{#2}{#3}{#4}{0}{\GLOBALemptyvar}%
 }
 
-% Añade una imagen a un env "image" con borde sin leyenda animada
+% Añade una imagen en el entorno "images" con borde sin leyenda animada
 %	#1	Dirección de la imagen animada
 %	#2	Parámetros de la imagen
 %	#3	FPS de la imagen
@@ -2227,7 +2228,7 @@
 	\addimageanimatedboxed{#1}{#2}{#3}{#4}{#5}{\GLOBALemptyvar}%
 }
 
-% Añade una imagen a un env "image" con borde y un link
+% Añade una imagen en el entorno "images" con borde y un link
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
@@ -2237,7 +2238,7 @@
 	\addimagelinkboxed[#1]{#2}{#3}{0}{#4}{#5}%
 }
 
-% Añade una imagen a un env "image" con borde
+% Añade una imagen en el entorno "images" con borde
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
@@ -2250,7 +2251,7 @@
 	\global\def\GLOBALimagelink {\GLOBALemptyvar}%
 }
 
-% Añade una imagen a un env "image" con borde sin leyenda
+% Añade una imagen en el entorno "images" con borde sin leyenda
 %	#1	Dirección de la imagen
 %	#2	Parámetros de la imagen
 %	#3	Link de la imagen
@@ -2258,7 +2259,7 @@
 	\addimagelink{#1}{#2}{#3}{\GLOBALemptyvar}%
 }
 
-% Añade una imagen a un env "image" con borde sin leyenda
+% Añade una imagen en el entorno "images" con borde sin leyenda
 %	#1	Dirección de la imagen
 %	#2	Parámetros de la imagen
 %	#3	Ancho de la línea (en pt)
@@ -2267,15 +2268,13 @@
 	\addimagelinkboxed{#1}{#2}{#3}{#4}{\GLOBALemptyvar}%
 }
 
-% Añade un salto de línea en las imágenes
-\newcommand{\imagesnewline}{%
+% Permite continuar la numeración en el entorno "images"
+\newcommand{\imagescontinuenumbering}{%
 	\checkonlyonenvimage%
-	\global\def\GLOBALenvimageadded {false}%
-	\corevspacevarcm{\marginimagemultbottom}%
-	~\linebreak\noindent%
+	\global\def\GLOBALenvimagecf {true}%
 }
 
-% Agrega un espacio horizontal a las imágenes
+% Agrega un espacio horizontal en el entorno "images"
 % 	#1 Tamaño del espacio
 \newcommand{\imageshspace}[1]{%
 	\checkonlyonenvimage%
@@ -2283,7 +2282,15 @@
 	\hspace{#1}%
 }
 
-% Agrega un espacio vertical a las imágenes
+% Añade un salto de línea en el entorno "images"
+\newcommand{\imagesnewline}{%
+	\checkonlyonenvimage%
+	\global\def\GLOBALenvimageadded {false}%
+	\corevspacevarcm{\marginimagemultbottom}%
+	~\linebreak\noindent%
+}
+
+% Agrega un espacio vertical en el entorno "images"
 % 	#1 Tamaño del espacio
 \newcommand{\imagesvspace}[1]{%
 	\checkonlyonenvimage%
@@ -2291,9 +2298,10 @@
 	~ \\ \vspace*{#1}%
 }
 
-% Establece el margen vertical de la siguiente imagen
+% Establece el margen vertical de la siguiente imagen en el entorno "images"
 %	#1	Margen vertical
 \newcommand{\setnextimagevmargin}[1]{%
+	\checkonlyonenvimage%
 	\emptyvarerr{\setimagesvmargin}{#1}{Tamaño del margen}%
 	\global\def\GLOBALimagenextmarginv {#1}%
 }
@@ -4108,10 +4116,10 @@
 
 % Crea un entorno para definir el tamaño de bloque
 %	#1	Tamaño de fuente en pt
-\newenvironment{fontsizeblock}[1][\documentfontsize]{
-	\changefontsizes{#1 pt}
-}{
-	\changefontsizes{\documentfontsize pt}
+\newenvironment{fontsizeblock}[1][\documentfontsize]{%
+	\changefontsizes{#1 pt}%
+}{%
+	\changefontsizes{\documentfontsize pt}%
 }
 
 % Crea una sección de anexos
@@ -4529,10 +4537,10 @@
 %	#2	Caption
 \newenvironment{images}[2][]{%
 	% Modifica globales
-	\def\envimageslabelvar {#1}
-	\def\envimagescaptionvar {#2}
-	\global\def\GLOBALenvimageinitialized {true}
-	\global\def\GLOBALenvimageadded {false}
+	\def\envimageslabelvar {#1}%
+	\def\envimagescaptionvar {#2}%
+	\global\def\GLOBALenvimageadded {false}%
+	\global\def\GLOBALenvimageinitialized {true}%
 	
 	% Configura caption y márgenes
 	\corevspacevarcm{\marginimagetop}%
@@ -4541,10 +4549,14 @@
 	% Inicia la figura
 	\begin{samepage}%
 	\begin{figure}[H] \centering%
+		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
+			\ContinuedFloat%
+			\global\def\GLOBALenvimagecf {false}%
+		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
-		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{%
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimages}%
@@ -4570,8 +4582,8 @@
 	\def\envimageslabelvar {#1}%
 	\def\envimagesmcpos {#2}%
 	\def\envimagescaptionvar {#3}%
-	\global\def\GLOBALenvimageinitialized {true}%
 	\global\def\GLOBALenvimageadded {false}%
+	\global\def\GLOBALenvimageinitialized {true}%
 	\checkinsidemulticol%
 	\checkoutsideappendix%
 	
@@ -4588,10 +4600,14 @@
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 		\stop
 	}}%
+		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
+			\ContinuedFloat%
+			\global\def\GLOBALenvimagecf {false}%
+		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
-		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{%
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimagesmc}%
@@ -5825,8 +5841,8 @@
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.3-THS},
-		Template.Version.Hash={D0634D3F499F18666AA91CD3AC9B5D7A},
+		Template.Version.Dev={3.2.3-1-THS},
+		Template.Version.Hash={EC57D7342CE943FACCDF3EB319AF3CD0},
 		Template.Version.Release={3.2.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

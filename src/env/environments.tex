@@ -38,10 +38,10 @@
 
 % Crea un entorno para definir el tamaño de bloque
 %	#1	Tamaño de fuente en pt
-\newenvironment{fontsizeblock}[1][\documentfontsize]{
-	\changefontsizes{#1 pt}
-}{
-	\changefontsizes{\documentfontsize pt}
+\newenvironment{fontsizeblock}[1][\documentfontsize]{%
+	\changefontsizes{#1 pt}%
+}{%
+	\changefontsizes{\documentfontsize pt}%
 }
 
 % Crea una sección de anexos
@@ -459,10 +459,10 @@
 %	#2	Caption
 \newenvironment{images}[2][]{%
 	% Modifica globales
-	\def\envimageslabelvar {#1}
-	\def\envimagescaptionvar {#2}
-	\global\def\GLOBALenvimageinitialized {true}
-	\global\def\GLOBALenvimageadded {false}
+	\def\envimageslabelvar {#1}%
+	\def\envimagescaptionvar {#2}%
+	\global\def\GLOBALenvimageadded {false}%
+	\global\def\GLOBALenvimageinitialized {true}%
 	
 	% Configura caption y márgenes
 	\corevspacevarcm{\marginimagetop}%
@@ -471,10 +471,14 @@
 	% Inicia la figura
 	\begin{samepage}%
 	\begin{figure}[H] \centering%
+		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
+			\ContinuedFloat%
+			\global\def\GLOBALenvimagecf {false}%
+		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
-		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{%
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimages}%
@@ -500,8 +504,8 @@
 	\def\envimageslabelvar {#1}%
 	\def\envimagesmcpos {#2}%
 	\def\envimagescaptionvar {#3}%
-	\global\def\GLOBALenvimageinitialized {true}%
 	\global\def\GLOBALenvimageadded {false}%
+	\global\def\GLOBALenvimageinitialized {true}%
 	\checkinsidemulticol%
 	\checkoutsideappendix%
 	
@@ -518,10 +522,14 @@
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 		\stop
 	}}%
+		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
+			\ContinuedFloat%
+			\global\def\GLOBALenvimagecf {false}%
+		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
-		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{%
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimagesmc}%

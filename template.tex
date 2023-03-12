@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.2.3 (11/03/2023)
+% Versión:      3.2.4 (12/03/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -2479,56 +2479,56 @@
 	\setcaptionmargincm{\captionlrmarginmc}%
 	\ifthenelse{\equal{#5}{bottom}}{%
 		\begin{samepage}%
-		\begin{figure*}[b]
+		\begin{figure*}[!b]
 	}{%
 	\ifthenelse{\equal{#5}{top}}{%
 		\begin{samepage}%
-		\begin{figure*}[t]
+		\begin{figure*}[!t]
 	}{%
 	\ifthenelse{\equal{#5}{fixed2}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[h]
+		\begin{figure*}[!h]
 	}{%
 	\ifthenelse{\equal{#5}{fixed2b}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[b]
+		\begin{figure*}[!b]
 	}{%
 	\ifthenelse{\equal{#5}{fixed2t}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[t]
+		\begin{figure*}[!t]
 	}{%
 	\ifthenelse{\equal{#5}{fixed3}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[h]
+		\begin{figure*}[!h]
 	}{%
 	\ifthenelse{\equal{#5}{fixed3b}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[b]
+		\begin{figure*}[!b]
 	}{%
 	\ifthenelse{\equal{#5}{fixed3t}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[t]
+		\begin{figure*}[!t]
 	}{%
 	\ifthenelse{\equal{#5}{fixed4}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[h]
+		\begin{figure*}[!h]
 	}{%
 	\ifthenelse{\equal{#5}{fixed4b}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[h]
+		\begin{figure*}[!h]
 	}{%
 	\ifthenelse{\equal{#5}{fixed4t}}{%
 		\end{multicols}
 		\begin{samepage}%
-		\begin{figure*}[h]
+		\begin{figure*}[!h]
 	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
 		\stop}}}}}}}}}}
@@ -4592,10 +4592,10 @@
 	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
-		\begin{figure*}[b] \centering%
+		\begin{figure*}[!b] \centering%
 	}{%
 	\ifthenelse{\equal{#2}{top}}{%
-		\begin{figure*}[t] \centering%
+		\begin{figure*}[!t] \centering%
 	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 		\stop
@@ -5834,16 +5834,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={11/03/2023},
+		Template.Date={12/03/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.3-1-THS},
-		Template.Version.Hash={EC57D7342CE943FACCDF3EB319AF3CD0},
-		Template.Version.Release={3.2.3},
+		Template.Version.Dev={3.2.4-THS},
+		Template.Version.Hash={635193F0B1BAD44077CE6D51D2FEE809},
+		Template.Version.Release={3.2.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5855,7 +5855,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.2.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.2.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

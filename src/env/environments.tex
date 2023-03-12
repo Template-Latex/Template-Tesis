@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      3.2.3 (11/03/2023)
+% Versión:      3.2.4 (12/03/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -514,10 +514,10 @@
 	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
-		\begin{figure*}[b] \centering%
+		\begin{figure*}[!b] \centering%
 	}{%
 	\ifthenelse{\equal{#2}{top}}{%
-		\begin{figure*}[t] \centering%
+		\begin{figure*}[!t] \centering%
 	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 		\stop

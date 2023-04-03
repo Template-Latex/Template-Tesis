@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      3.2.4 (12/03/2023)
+% Versión:      3.2.5 (03/04/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -393,21 +393,23 @@
 		\pdfbookmark{#3}{#4}}{%
 	}%
 	% Inserta la tabla resumen
-	\ifthenelse{\equal{\showabstracttable}{true}}{%
+	\ifthenelse{\equal{#1}{}}{%
+		\vspace*{0\baselineskip}%
+	}{%
 		\begin{flushright}%
 			\small%
 			#1%
 		\end{flushright}%
-	}{}%
-	\vspace*{0.5\baselineskip}%
+		\vspace*{0.5\baselineskip}%
+	}%
 	% Título
 	\begin{center}%
 		\textcolor{\sectioncolor}{\MakeUppercase{\textbf{#2}}}%
 	\end{center} \newp%
-	\ifthenelse{\equal{\showabstracttable}{true}}{%
-		\vspace{-\baselineskip}%
-	}{%
+	\ifthenelse{\equal{#1}{}}{%
 		\vspace{-0.5\baselineskip}%
+	}{%
+		\vspace{-\baselineskip}%
 	}%
 	}{%
 	\vfill\null%
@@ -415,6 +417,9 @@
 
 % Llama al entorno de resumen
 \newenvironment{abstractd}{%
+	\ifthenelse{\isundefined{\abstracttable}}{%
+		\def\abstracttable {}}{%
+	}%
 	\begin{abstractenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}%
 	}{%
 	\end{abstractenv}

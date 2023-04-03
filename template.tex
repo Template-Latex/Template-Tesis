@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.2.4 (12/03/2023)
+% Versión:      3.2.5 (03/04/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -4471,21 +4471,23 @@
 		\pdfbookmark{#3}{#4}}{%
 	}%
 	% Inserta la tabla resumen
-	\ifthenelse{\equal{\showabstracttable}{true}}{%
+	\ifthenelse{\equal{#1}{}}{%
+		\vspace*{0\baselineskip}%
+	}{%
 		\begin{flushright}%
 			\small%
 			#1%
 		\end{flushright}%
-	}{}%
-	\vspace*{0.5\baselineskip}%
+		\vspace*{0.5\baselineskip}%
+	}%
 	% Título
 	\begin{center}%
 		\textcolor{\sectioncolor}{\MakeUppercase{\textbf{#2}}}%
 	\end{center} \newp%
-	\ifthenelse{\equal{\showabstracttable}{true}}{%
-		\vspace{-\baselineskip}%
-	}{%
+	\ifthenelse{\equal{#1}{}}{%
 		\vspace{-0.5\baselineskip}%
+	}{%
+		\vspace{-\baselineskip}%
 	}%
 	}{%
 	\vfill\null%
@@ -4493,6 +4495,9 @@
 
 % Llama al entorno de resumen
 \newenvironment{abstractd}{%
+	\ifthenelse{\isundefined{\abstracttable}}{%
+		\def\abstracttable {}}{%
+	}%
 	\begin{abstractenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}%
 	}{%
 	\end{abstractenv}
@@ -5768,6 +5773,14 @@
 	\g@addto@macro\universityname\xspace
 \makeatother
 
+% -----------------------------------------------------------------------------
+% Se crean variables si se borraron
+% -----------------------------------------------------------------------------
+\ifthenelse{\isundefined{\documentsubtitle}}{
+	\errmessage{LaTeX Warning: Se borro la variable \noexpand\documentsubtitle, creando una vacia}
+	\def\documentsubtitle {}}{
+}
+
 \ifthenelse{\equal{\documentsubtitle}{}}{
 	\def\documenttitlehf {\documenttitle}
 }{
@@ -5834,16 +5847,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={12/03/2023},
+		Template.Date={03/04/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.4-THS},
-		Template.Version.Hash={635193F0B1BAD44077CE6D51D2FEE809},
-		Template.Version.Release={3.2.4},
+		Template.Version.Dev={3.2.5-1-THS},
+		Template.Version.Hash={56897E3F4732981364E7AFDC990C3476},
+		Template.Version.Release={3.2.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5855,7 +5868,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.2.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.2.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

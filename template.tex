@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.2.5 (03/04/2023)
+% Versión:      3.2.6 (28/04/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1865,7 +1865,7 @@
 %	#1	Ecuación
 %	#2	Leyenda
 \newcommand{\insertgatheredcaptionedanum}[2]{
-	\emptyvarerr{\insertgatheredcaptionedanum}{#1}{Ecuacion no definida}
+	\emptyvarerr{\insertgatheredcaptionedanum}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertgatheredanum{#1}%
 	\else%
@@ -3025,7 +3025,7 @@
 % Activa la numeración en las secciones
 \def\coreintializetitlenumbering {%
 	% Capítulo
-	\renewcommand{\thechapter}{\GLOBALformatnumchapter{chapter}}
+	\renewcommand{\thechapter}{\GLOBALformatnumchapter{chapter}}%
 	% Section
 	\ifthenelse{\equal{\GLOBALchapternumenabled}{false}}{%
 		\renewcommand{\thesection}{%
@@ -4543,6 +4543,7 @@
 \newenvironment{images}[2][]{%
 	% Modifica globales
 	\def\envimageslabelvar {#1}%
+	\def\envimagescaptioncf {false}%
 	\def\envimagescaptionvar {#2}%
 	\global\def\GLOBALenvimageadded {false}%
 	\global\def\GLOBALenvimageinitialized {true}%
@@ -4557,6 +4558,7 @@
 		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
+			\def\envimagescaptioncf {true}%
 		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 		}{%
@@ -4565,7 +4567,11 @@
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimages}%
-			\caption{\envimagescaptionvar\envimageslabelvar}%
+			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
+				\caption[]{\envimagescaptionvar\envimageslabelvar}%
+			}{%
+				\caption{\envimagescaptionvar\envimageslabelvar}%
+			}%
 		}%
 	\end{figure}%
 
@@ -4586,6 +4592,7 @@
 	% Modifica globales
 	\def\envimageslabelvar {#1}%
 	\def\envimagesmcpos {#2}%
+	\def\envimagescaptioncf {false}%
 	\def\envimagescaptionvar {#3}%
 	\global\def\GLOBALenvimageadded {false}%
 	\global\def\GLOBALenvimageinitialized {true}%
@@ -4608,6 +4615,7 @@
 		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
+			\def\envimagescaptioncf {true}%
 		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 	}{%
@@ -4616,7 +4624,11 @@
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimagesmc}%
-			\caption{\envimagescaptionvar\envimageslabelvar}%
+			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
+				\caption[]{\envimagescaptionvar\envimageslabelvar}%
+			}{%
+				\caption{\envimagescaptionvar\envimageslabelvar}%
+			}%
 		}%
 	\end{figure*}%
 	
@@ -5847,16 +5859,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={03/04/2023},
+		Template.Date={28/04/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.5-4-THS},
-		Template.Version.Hash={1044E84726ECFE319F2C706457F04699},
-		Template.Version.Release={3.2.5},
+		Template.Version.Dev={3.2.6-THS},
+		Template.Version.Hash={D0C4A76937D4EE9CF817DBAE2A94D083},
+		Template.Version.Release={3.2.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5868,7 +5880,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.2.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.2.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      3.2.5 (03/04/2023)
+% Versión:      3.2.6 (28/04/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -465,6 +465,7 @@
 \newenvironment{images}[2][]{%
 	% Modifica globales
 	\def\envimageslabelvar {#1}%
+	\def\envimagescaptioncf {false}%
 	\def\envimagescaptionvar {#2}%
 	\global\def\GLOBALenvimageadded {false}%
 	\global\def\GLOBALenvimageinitialized {true}%
@@ -479,6 +480,7 @@
 		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
+			\def\envimagescaptioncf {true}%
 		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 		}{%
@@ -487,7 +489,11 @@
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimages}%
-			\caption{\envimagescaptionvar\envimageslabelvar}%
+			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
+				\caption[]{\envimagescaptionvar\envimageslabelvar}%
+			}{%
+				\caption{\envimagescaptionvar\envimageslabelvar}%
+			}%
 		}%
 	\end{figure}%
 
@@ -508,6 +514,7 @@
 	% Modifica globales
 	\def\envimageslabelvar {#1}%
 	\def\envimagesmcpos {#2}%
+	\def\envimagescaptioncf {false}%
 	\def\envimagescaptionvar {#3}%
 	\global\def\GLOBALenvimageadded {false}%
 	\global\def\GLOBALenvimageinitialized {true}%
@@ -530,6 +537,7 @@
 		\ifthenelse{\equal{\GLOBALenvimagecf}{true}}{%
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
+			\def\envimagescaptioncf {true}%
 		}{}%
 		\corevspacevarcm{\marginimagemulttop}%
 	}{%
@@ -538,7 +546,11 @@
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
 			\corevspacevarcm{\captionmarginimagesmc}%
-			\caption{\envimagescaptionvar\envimageslabelvar}%
+			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
+				\caption[]{\envimagescaptionvar\envimageslabelvar}%
+			}{%
+				\caption{\envimagescaptionvar\envimageslabelvar}%
+			}%
 		}%
 	\end{figure*}%
 	

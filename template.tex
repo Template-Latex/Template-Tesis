@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.2.6 (28/04/2023)
+% Versión:      3.2.6 (29/04/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -4547,11 +4547,9 @@
 	\def\envimagescaptionvar {#2}%
 	\global\def\GLOBALenvimageadded {false}%
 	\global\def\GLOBALenvimageinitialized {true}%
-	
 	% Configura caption y márgenes
 	\corevspacevarcm{\marginimagetop}%
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
-	
 	% Inicia la figura
 	\begin{samepage}%
 	\begin{figure}[H] \centering%
@@ -4574,12 +4572,10 @@
 			}%
 		}%
 	\end{figure}%
-
 	% Restablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}%
 	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
-	
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}%
 }
@@ -4598,10 +4594,8 @@
 	\global\def\GLOBALenvimageinitialized {true}%
 	\checkinsidemulticol%
 	\checkoutsideappendix%
-	
 	% Configura caption y márgenes
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
-	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
 		\begin{figure*}[!b] \centering%
@@ -4631,10 +4625,8 @@
 			}%
 		}%
 	\end{figure*}%
-	
 	% Restablece caption y márgenes
 	\setcaptionmargincm{\captionlrmarginmc}%
-	
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}%
 }
@@ -5859,15 +5851,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={28/04/2023},
+		Template.Date={29/04/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.6-THS},
-		Template.Version.Hash={D0C4A76937D4EE9CF817DBAE2A94D083},
+		Template.Version.Dev={3.2.6-2-THS},
+		Template.Version.Hash={21A68ACE232EB5A5944E5C715DAE3171},
 		Template.Version.Release={3.2.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},

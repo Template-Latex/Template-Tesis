@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      3.2.6 (28/04/2023)
+% Versión:      3.2.6 (29/04/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -469,11 +469,9 @@
 	\def\envimagescaptionvar {#2}%
 	\global\def\GLOBALenvimageadded {false}%
 	\global\def\GLOBALenvimageinitialized {true}%
-	
 	% Configura caption y márgenes
 	\corevspacevarcm{\marginimagetop}%
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
-	
 	% Inicia la figura
 	\begin{samepage}%
 	\begin{figure}[H] \centering%
@@ -496,12 +494,10 @@
 			}%
 		}%
 	\end{figure}%
-
 	% Restablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}%
 	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
-	
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}%
 }
@@ -520,10 +516,8 @@
 	\global\def\GLOBALenvimageinitialized {true}%
 	\checkinsidemulticol%
 	\checkoutsideappendix%
-	
 	% Configura caption y márgenes
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
-	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
 		\begin{figure*}[!b] \centering%
@@ -553,10 +547,8 @@
 			}%
 		}%
 	\end{figure*}%
-	
 	% Restablece caption y márgenes
 	\setcaptionmargincm{\captionlrmarginmc}%
-	
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}%
 }

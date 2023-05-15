@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      3.2.6 (29/04/2023)
+% Versión:      3.2.7 (15/05/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -400,7 +400,7 @@
 			\small%
 			#1%
 		\end{flushright}%
-		\vspace*{0.5\baselineskip}%
+		\vspace*{0.05\baselineskip}%
 	}%
 	% Título
 	\begin{center}%
@@ -412,7 +412,7 @@
 		\vspace{-\baselineskip}%
 	}%
 	}{%
-	\vfill\null%
+	\vspace{-1\baselineskip}%
 }
 
 % Llama al entorno de resumen
@@ -422,7 +422,7 @@
 	}%
 	\begin{abstractenv}{\abstracttable}{\documenttitle}{\nameabstract}{abstractbookmark}%
 	}{%
-	\end{abstractenv}
+	\end{abstractenv}%
 }
 
 % Crea una sección de dedicatoria
@@ -433,9 +433,6 @@
 	}{}%
 	\null%
 	\phantomsection%
-	% \ifthenelse{\equal{\adddedictobookmarks}{true}}{
-	% 	\pdfbookmark{\nameadedic}{contents}}{
-	% }
 	\vspace{\stretch{1}}%
 	\begin{flushright}%
 		\itshape}{%

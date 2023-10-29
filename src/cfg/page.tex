@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Configuración de página
-% Versión:      3.3.2 (26/10/2023)
+% Versión:      3.3.3 (29/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -9,18 +9,18 @@
 % Manual template: [https://latex.ppizarror.com/tesis]
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
-\newcommand{\templatePagecfg}{
+\newcommand{\templatePagecfg}{%
 	
 	% -------------------------------------------------------------------------
 	% Numeración de páginas
 	% -------------------------------------------------------------------------
 	\clearpage
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{ % Si se usan números romanos en el pre-documento
-		\ifthenelse{\equal{\predocpageromanupper}{true}}{
+		\ifthenelse{\equal{\predocpageromanupper}{true}}{%
 			\pagenumbering{Roman}
-		}{
+		}{%
 			\pagenumbering{roman}
-		}}{
+		}}{%
 		\pagenumbering{arabic}
 	}
 	\setcounter{page}{1}
@@ -35,8 +35,8 @@
 	% -------------------------------------------------------------------------
 	% Se define el punto decimal
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\pointdecimal}{true}}{
-		\decimalpoint}{
+	\ifthenelse{\equal{\pointdecimal}{true}}{%
+		\decimalpoint}{%
 	}
 	
 	% -------------------------------------------------------------------------
@@ -90,30 +90,30 @@
 	% -------------------------------------------------------------------------
 	\fancyheadoffset{0pt} % Desactiva el offset de los header-footer
 	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
-	\ifthenelse{\equal{\hfstyle}{style1}}{
+	\ifthenelse{\equal{\hfstyle}{style1}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{\small \thepage}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyfoot[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
-				\fancyfoot[R]{
+				\fancyfoot[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyfoot[L]{\small \textit{\documenttitlehf}}
 				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
@@ -122,31 +122,31 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style1-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LE,RO]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[RE,LO]{\small \thepage}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyfoot[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
-				\fancyfoot[R]{
+				\fancyfoot[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyfoot[L]{\small \textit{\documenttitlehf}}
 				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
@@ -155,31 +155,31 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LO,RE]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[RO,LE]{\small \thepage}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyfoot[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
-				\fancyfoot[R]{
+				\fancyfoot[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyfoot[L]{\small \textit{\documenttitlehf}}
 				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
@@ -188,31 +188,31 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style2}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style2}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{\small \thepage}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyfoot[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
-				\fancyfoot[R]{
+				\fancyfoot[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyfoot[L]{\small \textit{\documenttitlehf}}
 				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
@@ -221,31 +221,31 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style2-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LE,RO]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[RE,LO]{\small \thepage}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyfoot[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
-				\fancyfoot[R]{
+				\fancyfoot[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyfoot[L]{\small \textit{\documenttitlehf}}
 				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
@@ -254,31 +254,31 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LO,RE]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[RO,LE]{\small \thepage}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyfoot[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
-				\fancyfoot[R]{
+				\fancyfoot[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyfoot[L]{\small \textit{\documenttitlehf}}
 				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
@@ -287,20 +287,20 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style3}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style3}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyhead[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\coursecode \coursename}
 						\end{flushleft}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyhead[L]{\small \textit{\coursecode \coursename}}
 			}
 			\fancyhead[R]{%
@@ -312,12 +312,12 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style4}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style4}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
@@ -327,21 +327,21 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style5}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style5}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyhead[L]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushleft}
 							\coursecode \coursename
 						\end{flushleft}
 					\end{minipage}
 				}
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
-					\fancyhead[R]{
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
+					\fancyhead[R]{%
 						\begin{minipage}[t]{\hfwidthtitle\linewidth}
 							\begin{flushright}
 								\nouppercase{\rightmark}
@@ -349,9 +349,9 @@
 						\end{minipage}
 					}
 				}{}
-			}{
+			}{%
 				\fancyhead[L]{\coursecode \coursename}
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 					\fancyhead[R]{\nouppercase{\rightmark}}
 				}{}
 			}
@@ -362,21 +362,21 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style5-d}}{ % Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyhead[L]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushleft}
 							\coursecode \coursename
 						\end{flushleft}
 					\end{minipage}
 				}
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
-					\fancyhead[R]{
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
+					\fancyhead[R]{%
 						\begin{minipage}[t]{\hfwidthtitle\linewidth}
 							\begin{flushright}
 								\nouppercase{\rightmark}
@@ -384,9 +384,9 @@
 						\end{minipage}
 					}
 				}{}
-			}{
+			}{%
 				\fancyhead[L]{\coursecode \coursename}
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 					\fancyhead[R]{\nouppercase{\rightmark}}
 				}{}
 			}
@@ -397,21 +397,21 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style5-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyhead[L]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushleft}
 							\coursecode \coursename
 						\end{flushleft}
 					\end{minipage}
 				}
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
-					\fancyhead[R]{
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
+					\fancyhead[R]{%
 						\begin{minipage}[t]{\hfwidthtitle\linewidth}
 							\begin{flushright}
 								\nouppercase{\rightmark}
@@ -419,9 +419,9 @@
 						\end{minipage}
 					}
 				}{}
-			}{
+			}{%
 				\fancyhead[L]{\coursecode \coursename}
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 					\fancyhead[R]{\nouppercase{\rightmark}}
 				}{}
 			}
@@ -432,10 +432,10 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style6}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style6}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[L]{\universitydepartment}
 			\fancyfoot[C]{\thepage}
@@ -445,10 +445,10 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style7}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style7}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
@@ -456,10 +456,10 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style8}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style8}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[R]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
@@ -467,10 +467,10 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style8-d}}{ % Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[RO,LE]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
@@ -478,10 +478,10 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style8-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[RE,LO]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
@@ -489,12 +489,12 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style9}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style9}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
@@ -505,12 +505,12 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style9-d}}{ % Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
@@ -521,12 +521,12 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style9-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
@@ -537,14 +537,14 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style10}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style10}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
-					\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
+					\fancyhead[L]{%
 						\begin{minipage}[t]{\hfwidthtitle\linewidth}
 							\begin{flushleft}
 								\nouppercase{\rightmark}
@@ -552,15 +552,15 @@
 						\end{minipage}
 					}
 				}{}
-				\fancyhead[R]{
+				\fancyhead[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\documenttitlehf}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			}{%
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
 				\fancyhead[R]{\small \textit{\documenttitlehf}}
@@ -572,14 +572,14 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style10-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
-					\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
+					\fancyhead[L]{%
 						\begin{minipage}[t]{\hfwidthtitle\linewidth}
 							\begin{flushleft}
 								\nouppercase{\rightmark}
@@ -587,15 +587,15 @@
 						\end{minipage}
 					}
 				}{}
-				\fancyhead[R]{
+				\fancyhead[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\documenttitlehf}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			}{%
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
 				\fancyhead[R]{\small \textit{\documenttitlehf}}
@@ -607,14 +607,14 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style10-d}}{ % Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
-					\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
+					\fancyhead[L]{%
 						\begin{minipage}[t]{\hfwidthtitle\linewidth}
 							\begin{flushleft}
 								\nouppercase{\rightmark}
@@ -622,15 +622,15 @@
 						\end{minipage}
 					}
 				}{}
-				\fancyhead[R]{
+				\fancyhead[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\documenttitlehf}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
-				\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			}{%
+				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
 				\fancyhead[R]{\small \textit{\documenttitlehf}}
@@ -642,31 +642,31 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style11}}{ % Similar a 1
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{\small \thepage \namepageof \pageref{TotPages}}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyfoot[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
-				\fancyfoot[R]{
+				\fancyfoot[R]{%
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
 							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyfoot[L]{\small \textit{\documenttitlehf}}
 				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
@@ -675,10 +675,10 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style12}}{ % Similar a 6
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[L]{\universitydepartment}
 			\fancyfoot[C]{\thepage \namepageof \pageref{TotPages}}
@@ -688,20 +688,20 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style13}}{ % Similar a 3
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\hfwidthwrap}{true}}{
-				\fancyhead[L]{
+			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
+				\fancyhead[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
 							\small \textit{\coursecode \coursename}
 						\end{flushleft}
 					\end{minipage}
 				}
-			}{
+			}{%
 				\fancyhead[L]{\small \textit{\coursecode \coursename}}
 			}
 			\fancyhead[R]{%
@@ -713,12 +713,12 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style14}}{ % Similar a 4
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
@@ -728,19 +728,19 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 	\ifthenelse{\equal{\hfstyle}{style15}}{ % Similar a 1
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
-			\ifthenelse{\equal{\disablehfrightmark}{false}}{
+			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[L]{
+			\fancyfoot[L]{%
 				\small \coursecode \coursename
 			}
-			\fancyfoot[R]{
+			\fancyfoot[R]{%
 				\small \thepage
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -748,21 +748,21 @@
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style16}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style16}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style16}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 	}
 	% Aplica el estilo de página
-	\fancypagestyle{plain}{
+	\fancypagestyle{plain}{%
 		\fancyheadoffset{0pt}
 		\COREstyledefinition
 	}
@@ -773,12 +773,12 @@
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\linenumbers}{
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\linenumbers}{%
 	}
 	% Añade página en blanco
 	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
 		\insertemptypage%
-		\addtocounter{page}{-1}}{
+		\addtocounter{page}{-1}}{%
 	}
 }

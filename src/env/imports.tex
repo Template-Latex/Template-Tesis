@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      3.3.2 (26/10/2023)
+% Versión:      3.3.3 (29/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -156,7 +156,6 @@
 \usepackage[figure,table,lstlisting]{totalcount} % Contador de objetos
 \usepackage[normalem]{ulem} % Permite tachar y subrayar
 \usepackage[nointegrals]{wasysym} % Contiene caracteres misceláneos
-\usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
 
 % -----------------------------------------------------------------------------
 % Librerías condicionales
@@ -408,17 +407,17 @@
 \ifthenelse{\equal{\fontdocument}{coelacanth}}{
 	\usepackage[nf]{coelacanth}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{coelacanthextralight}}{
 	\usepackage[el,nf]{coelacanth}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{coelacanthlight}}{
 	\usepackage[l,nf]{coelacanth}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{comfortaa}}{
 	\usepackage[default]{comfortaa}
@@ -449,22 +448,22 @@
 \ifthenelse{\equal{\fontdocument}{crimsonpro}}{
 	\usepackage{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{crimsonproextralight}}{
 	\usepackage[extralight]{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{crimsonprolight}}{
 	\usepackage[light]{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{crimsonpromedium}}{
 	\usepackage[medium]{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{cyklop}}{
 	\usepackage{cyklop}

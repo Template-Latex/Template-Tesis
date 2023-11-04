@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Índice
-% Versión:      3.3.3 (29/10/2023)
+% Versión:      3.3.4 (04/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -207,7 +207,7 @@
 	\def\cftlstlistingnumwidth {\cftdefautnumwidth}
 	
 	% Código fuente
-	\ifthenelse{\equal{\captionnumcode}{arabic}}{ % No hace nada (default)
+	\ifthenelse{\equal{\captionnumcode}{arabic}}{% No hace nada (default)
 		\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
 	}{%
 		\ifthenelse{\equal{\captionnumcode}{roman}}{%
@@ -221,7 +221,7 @@
 	}
 	
 	% Ecuaciones
-	\ifthenelse{\equal{\captionnumequation}{arabic}}{ % No hace nada (default)
+	\ifthenelse{\equal{\captionnumequation}{arabic}}{% No hace nada (default)
 		\def\cftmyindexequationsnumwidth {\cftdefautnumwidtheqn}
 	}{%
 		\ifthenelse{\equal{\captionnumequation}{roman}}{%
@@ -235,7 +235,7 @@
 	}
 	
 	% Figuras
-	\ifthenelse{\equal{\captionnumfigure}{arabic}}{ % No hace nada (default)
+	\ifthenelse{\equal{\captionnumfigure}{arabic}}{% No hace nada (default)
 		\def\cftfignumwidth {\cftdefautnumwidthfig}
 	}{%
 		\ifthenelse{\equal{\captionnumfigure}{roman}}{%
@@ -249,7 +249,7 @@
 	}
 	
 	% Tablas
-	\ifthenelse{\equal{\captionnumtable}{arabic}}{ % No hace nada (default)
+	\ifthenelse{\equal{\captionnumtable}{arabic}}{% No hace nada (default)
 		\def\cfttabnumwidth {\cftdefautnumwidthtab}
 	}{%
 		\ifthenelse{\equal{\captionnumtable}{roman}}{%
@@ -265,7 +265,7 @@
 	% -------------------------------------------------------------------------
 	% Genera las funciones para los índices
 	% -------------------------------------------------------------------------
-	\newcommand{\LoIf}{ % Lista de figuras
+	\newcommand{\LoIf}{% Lista de figuras
 		\iftotalfigures
 			\ifthenelse{\equal{\indexnewpagef}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{%
@@ -276,7 +276,7 @@
 			\listoffigures
 		\fi
 	}
-	\newcommand{\LoIt}{ % Tablas
+	\newcommand{\LoIt}{% Tablas
 		\iftotaltables
 			\ifthenelse{\equal{\indexnewpaget}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{%
@@ -287,7 +287,7 @@
 			\listoftables
 		\fi
 	}
-	\newcommand{\LoIc}{ % Códigos fuente (listings)
+	\newcommand{\LoIc}{% Códigos fuente (listings)
 		\iftotallstlistings
 			\ifthenelse{\equal{\indexnewpagec}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{%
@@ -298,7 +298,7 @@
 			\lstlistoflistings
 		\fi
 	}
-	\newcommand{\LoIe}{ % Ecuaciones
+	\newcommand{\LoIe}{% Ecuaciones
 		\iftotaltemplateIndexEquationss
 			\ifthenelse{\equal{\indexnewpagee}{true}}{\clearpage}{}
 			\ifthenelse{\equal{\addindextobookmarks}{true}}{%

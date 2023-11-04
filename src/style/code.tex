@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Estilos de código fuente
-% Versión:      3.3.3 (29/10/2023)
+% Versión:      3.3.4 (04/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -311,13 +311,13 @@
 
 % JSON
 \lstdefinestyle{json}{
-	literate=*{0}{{{\color{numb}0}}}{1}{1}{{{\color{numb}1}}}{1}{2}
-	{{{\color{numb}2}}}{1}{3}{{{\color{numb}3}}}{1}{4}{{{\color{numb}4}}}
-	{1}{5}{{{\color{numb}5}}}{1}{6}{{{\color{numb}6}}}{1}{7}{{{\color{numb}7}}}
-	{1}{8}{{{\color{numb}8}}}{1}{9}{{{\color{numb}9}}}{1}{:}
-	{{{\color{punct}{:}}}}{1}{,}{{{\color{punct}{,}}}}{1}{\{}
-	{{{\color{delim}{\{}}}}{1}{\}}{{{\color{delim}{\}}}}}
-	{1}{[}{{{\color{delim}{[}}}}{1}{]}{{{\color{delim}{]}}}}{1},
+	literate=*{0}{{{\color{cardinalred}0}}}{1}{1}{{{\color{cardinalred}1}}}{1}{2}
+	{{{\color{cardinalred}2}}}{1}{3}{{{\color{cardinalred}3}}}{1}{4}{{{\color{cardinalred}4}}}
+	{1}{5}{{{\color{cardinalred}5}}}{1}{6}{{{\color{cardinalred}6}}}{1}{7}{{{\color{cardinalred}7}}}
+	{1}{8}{{{\color{cardinalred}8}}}{1}{9}{{{\color{cardinalred}9}}}{1}{:}
+	{{{\color{dkcyan}{:}}}}{1}{,}{{{\color{dkcyan}{,}}}}{1}{\{}
+	{{{\color{MidnightBlue}{\{}}}}{1}{\}}{{{\color{MidnightBlue}{\}}}}}
+	{1}{[}{{{\color{MidnightBlue}{[}}}}{1}{]}{{{\color{MidnightBlue}{]}}}}{1},
 	tabsize=2
 }
 
@@ -678,22 +678,22 @@
 	morecomment=[l]{//},
 	morecomment=[s]{/*}{*/},
 	moredelim=[s][{\itshape\color[rgb]{0,0,0.75}}]{\#[}{]},
-	morekeywords=[2]{ % Traits
+	morekeywords=[2]{% Traits
 		Add,AddAssign,Any,AsciiExt,AsInner,AsInnerMut,AsMut,AsRawFd,AsRawHandle,AsRawSocket,AsRef,Binary,BitAnd,BitAndAssign,Bitor,BitOr,BitOrAssign,BitXor,BitXorAssign,Borrow,BorrowMut,Boxed,BoxPlace,BufRead,BuildHasher,CastInto,CharExt,Clone,CoerceUnsized,CommandExt,Copy,Debug,DecodableFloat,Default,Deref,DerefMut,DirBuilderExt,DirEntryExt,Display,Div,DivAssign,DoubleEndedIterator,DoubleEndedSearcher,Drop,EnvKey,Eq,Error,ExactSizeIterator,ExitStatusExt,Extend,FileExt,FileTypeExt,Float,Fn,FnBox,FnMut,FnOnce,Freeze,From,FromInner,FromIterator,FromRawFd,FromRawHandle,FromRawSocket,FromStr,FullOps,FusedIterator,Generator,Hash,Hasher,Index,IndexMut,InPlace,Int,Into,IntoCow,IntoInner,IntoIterator,IntoRawFd,IntoRawHandle,IntoRawSocket,IsMinusOne,IsZero,Iterator,JoinHandleExt,LargeInt,LowerExp,LowerHex,MetadataExt,Mul,MulAssign,Neg,Not,Octal,OpenOptionsExt,Ord,OsStrExt,OsStringExt,Packet,PartialEq,PartialOrd,Pattern,PermissionsExt,Place,Placer,Pointer,Product,Put,RangeArgument,RawFloat,Read,Rem,RemAssign,Seek,Shl,ShlAssign,Shr,ShrAssign,Sized,SliceConcatExt,SliceExt,SliceIndex,Stats,Step,StrExt,Sub,SubAssign,Sum,Sync,TDynBenchFn,Terminal,Termination,ToOwned,ToSocketAddrs,ToString,Try,TryFrom,TryInto,UnicodeStr,Unsize,UpperExp,UpperHex,WideInt,Write
 	},
 	morekeywords=[2]{
 		Send
 	},
-	morekeywords=[3]{ % Primitivas
+	morekeywords=[3]{% Primitivas
 		bool,char,f32,f64,i8,i16,i32,i64,isize,str,u8,u16,u32,u64,unit,usize,i128,u128
 	},
-	morekeywords=[4]{ % Valor y tipo de constructores
+	morekeywords=[4]{% Valor y tipo de constructores
 		Err,false,None,Ok,Some,true
 	},
-	morekeywords=[5]{ % Identificadores
+	morekeywords=[5]{% Identificadores
 		assert!,assert_eq!,assert_ne!,cfg!,column!,compile_error!,concat!,concat_idents!,debug_assert!,debug_assert_eq!,debug_assert_ne!,env!,eprint!,eprintln!,file!,format!,format_args!,include!,include_bytes!,include_str!,line!,module_path!,option_env!,panic!,print!,println!,select!,stringify!,thread_local!,try!,unimplemented!,unreachable!,vec!,write!,writeln!
 	},
-	morekeywords={ % Palabras reservadas
+	morekeywords={% Palabras reservadas
 		abstract,alignof,become,box,do,final,macro,offsetof,override,priv, proc,pure,sizeof,typeof,unsized,virtual,yield
 	},
 	morekeywords={

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.3.4 (04/11/2023)
+% Versión:      3.3.5 (06/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -83,6 +83,23 @@
 
 % Carga el idioma
 \usepackage{tracklang}
+\ifthenelse{\equal{\stylecitereferences}{natbib}}{% Formato citas natbib
+	\usepackage[nottoc,notlof,notlot]{tocbibind}
+	\ifthenelse{\equal{\natbibrefcitecompress}{true}}{
+		\usepackage[sort&compress]{natbib}
+	}{
+		\usepackage{natbib}
+	}
+}{
+\ifthenelse{\equal{\stylecitereferences}{apacite}}{% Formato citas apacite
+	\usepackage[nottoc,notlof,notlot]{tocbibind}
+	\usepackage[nosectionbib]{apacite}
+}{
+\ifthenelse{\equal{\stylecitereferences}{bibtex}}{% Formato citas bibtex
+}{
+\ifthenelse{\equal{\stylecitereferences}{custom}}{% Formato citas custom
+}{}}}
+}
 \IfTrackedLanguage{spanish}{
 	\usepackage[es-nosectiondot,es-lcroman,es-noquoting]{babel}
 }{% english, otros
@@ -223,23 +240,6 @@
 	\usepackage[pdfencoding=auto,psdextra,backref=page]{hyperref} % Enlaces, referencias
 }{
 	\usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias
-}
-\ifthenelse{\equal{\stylecitereferences}{natbib}}{% Formato citas natbib
-	\usepackage[nottoc,notlof,notlot]{tocbibind}
-	\ifthenelse{\equal{\natbibrefcitecompress}{true}}{
-		\usepackage[sort&compress]{natbib}
-	}{
-		\usepackage{natbib}
-	}
-}{
-\ifthenelse{\equal{\stylecitereferences}{apacite}}{% Formato citas apacite
-	\usepackage[nottoc,notlof,notlot]{tocbibind}
-	\usepackage[nosectionbib]{apacite}
-}{
-\ifthenelse{\equal{\stylecitereferences}{bibtex}}{% Formato citas bibtex
-}{
-\ifthenelse{\equal{\stylecitereferences}{custom}}{% Formato citas custom
-}{}}}
 }
 
 % Anexos/Apéndices
@@ -5861,16 +5861,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={04/11/2023},
+		Template.Date={06/11/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.3.4-THS},
-		Template.Version.Hash={D47FCCE17FA79C3776ED8A7462D799C1},
-		Template.Version.Release={3.3.4},
+		Template.Version.Dev={3.3.5-THS},
+		Template.Version.Hash={99E2D93EFBE55F7AA99B35B023B2D7E0},
+		Template.Version.Release={3.3.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5882,7 +5882,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.3.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.3.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

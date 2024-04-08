@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Importación de librerías
-% Versión:      3.3.7 (07/03/2024)
+% Versión:      3.3.8 (08/04/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -59,16 +59,7 @@
 	}{
 		\usepackage{natbib}
 	}
-}{
-\ifthenelse{\equal{\stylecitereferences}{apacite}}{% Formato citas apacite
-	\usepackage[nottoc,notlof,notlot]{tocbibind}
-	\usepackage[nosectionbib]{apacite}
-}{
-\ifthenelse{\equal{\stylecitereferences}{bibtex}}{% Formato citas bibtex
-}{
-\ifthenelse{\equal{\stylecitereferences}{custom}}{% Formato citas custom
-}{}}}
-}
+}{}% Fin carga natbib
 \IfTrackedLanguage{spanish}{
 	\usepackage[es-nosectiondot,es-lcroman,es-noquoting]{babel}
 }{% english, otros
@@ -217,6 +208,16 @@
 }{
 	\usepackage{appendix}
 }
+
+% Citado
+\ifthenelse{\equal{\stylecitereferences}{apacite}}{% Formato citas apacite
+	\usepackage[nottoc,notlof,notlot]{tocbibind}
+	\usepackage[nosectionbib]{apacite}
+}{
+\ifthenelse{\equal{\stylecitereferences}{bibtex}}{% Formato citas bibtex
+}{
+\ifthenelse{\equal{\stylecitereferences}{custom}}{% Formato citas custom
+}{}}}
 
 % Dimensiones y geometría del documento
 \ifthenelse{\equal{\compilertype}{lualatex}}{% En lualatex sólo se puede cambiar 1 vez el margen

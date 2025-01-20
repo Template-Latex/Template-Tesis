@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.4.0 (23/08/2024)
+% Versión:      3.4.1 (20/01/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -5857,16 +5857,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={23/08/2024},
+		Template.Date={20/01/2025},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.4.0-THS},
-		Template.Version.Hash={91A7B3E5AA124827D5092536AF382AE4},
-		Template.Version.Release={3.4.0},
+		Template.Version.Dev={3.4.1-2-THS},
+		Template.Version.Hash={6CD0C4A02523895630DAD293F81B6449},
+		Template.Version.Release={3.4.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://latex.ppizarror.com/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5878,7 +5878,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.4.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.4.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5948,6 +5948,10 @@
 \ifthenelse{\equal{\pagescolor}{white}}{}{
 	\pagecolor{\pagescolor}
 }
+\makeatletter % Desactiva color de tablas en entornos matemáticos
+\pretocmd\env@cases{\def\@rowc@lors{}}{}{}
+\pretocmd\start@align{\def\@rowc@lors{}}{}{}
+\makeatother
 
 % -----------------------------------------------------------------------------
 % Configuración de las leyendas
@@ -7653,6 +7657,17 @@
 	\def\cfttabnumwidth {\cftdefautnumwidth}
 	\def\cftlstlistingnumwidth {\cftdefautnumwidth}
 	
+	% Actualiza colores
+	\ifthenelse{\equal{\showborderonlinks}{true}}{%
+		\hypersetup{%
+			linkbordercolor=\linkcolorindex
+		}
+	}{%
+		\hypersetup{%
+			linkcolor=\linkcolorindex
+		}
+	}
+	
 	% Código fuente
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{% No hace nada (default)
 		\def\cftlstlistingnumwidth {\cftdefautnumwidthcode}
@@ -7968,6 +7983,15 @@
 	% Termina el bloque de índice
 	% -------------------------------------------------------------------------
 	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
+	\ifthenelse{\equal{\showborderonlinks}{true}}{% Actualiza colores
+		\hypersetup{%
+			linkbordercolor=\linkcolor
+		}
+	}{%
+		\hypersetup{%
+			linkcolor=\linkcolor
+		}
+	}
 	\endgroup
 	
 	% -------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Índice
-% Versión:      3.4.0 (23/08/2024)
+% Versión:      3.4.1 (20/01/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -205,6 +205,17 @@
 	% \def\cftsubfignumwidth {\cftdefautnumwidth}
 	\def\cfttabnumwidth {\cftdefautnumwidth}
 	\def\cftlstlistingnumwidth {\cftdefautnumwidth}
+	
+	% Actualiza colores
+	\ifthenelse{\equal{\showborderonlinks}{true}}{%
+		\hypersetup{%
+			linkbordercolor=\linkcolorindex
+		}
+	}{%
+		\hypersetup{%
+			linkcolor=\linkcolorindex
+		}
+	}
 	
 	% Código fuente
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{% No hace nada (default)
@@ -521,6 +532,15 @@
 	% Termina el bloque de índice
 	% -------------------------------------------------------------------------
 	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
+	\ifthenelse{\equal{\showborderonlinks}{true}}{% Actualiza colores
+		\hypersetup{%
+			linkbordercolor=\linkcolor
+		}
+	}{%
+		\hypersetup{%
+			linkcolor=\linkcolor
+		}
+	}
 	\endgroup
 	
 	% -------------------------------------------------------------------------

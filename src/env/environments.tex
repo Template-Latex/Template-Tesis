@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Definición de entornos
-% Versión:      3.5.0 (07/06/2026)
+% Versión:      3.5.1 (02/07/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -98,10 +98,15 @@
 	\global\def\GLOBALtitleinitsubsubsection {false}%
 	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Restablece índice marcador
-	\bookmarksetup{%
-		numbered={\cfgpdfsecnumbookmarks},
-		openlevel={\cfgbookmarksopenlevel}
-	}%
+	% bookmark valida 'numbered' como booleano literal (true/false), no una macro:
+	% se expanden los valores antes de pasarlos a \bookmarksetup.
+	\begingroup
+	\edef\x{\endgroup
+		\noexpand\bookmarksetup{%
+			numbered={\cfgpdfsecnumbookmarks},%
+			openlevel={\cfgbookmarksopenlevel}%
+		}%
+	}\x%
 	\endgroup%
 	\global\def\GLOBALenvappendix {false}%
 	\global\def\GLOBALtitlerequirechapter {true}%

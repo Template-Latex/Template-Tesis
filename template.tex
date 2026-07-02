@@ -1,6 +1,6 @@
 % Template:     Tesis LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.5.0 (07/06/2026)
+% Versión:      3.5.1 (02/07/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -45,8 +45,21 @@
 \let\IM\Im
 
 % Parches de librerías
-\let\counterwithout\relax
-\let\counterwithin\relax
+\newcommand{\corepatchatleast}[2]{
+	\ifdefined\IfFormatAtLeastTF
+		\IfFormatAtLeastTF{#1}{}{#2}%
+	\else
+		#2
+	\fi
+}
+% Desde LaTeX 2025-06-01 amsmath define \numberwithin como copia de \counterwithin;
+% borrar \counterwithin deja \numberwithin indefinido y rompe el hook de hyperref
+% ("Command \numberwithin undefined"). Se aplica el parche solo en formatos
+% anteriores a 2025-06-01, donde amsmath aún define \numberwithin de forma propia.
+\corepatchatleast{2025-06-01}{
+	\let\counterwithout\relax
+	\let\counterwithin\relax
+}
 \let\underbar\relax
 \let\underline\relax
 
@@ -4221,10 +4234,15 @@
 	\global\def\GLOBALtitleinitsubsubsection {false}%
 	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Restablece índice marcador
-	\bookmarksetup{%
-		numbered={\cfgpdfsecnumbookmarks},
-		openlevel={\cfgbookmarksopenlevel}
-	}%
+	% bookmark valida 'numbered' como booleano literal (true/false), no una macro:
+	% se expanden los valores antes de pasarlos a \bookmarksetup.
+	\begingroup
+	\edef\x{\endgroup
+		\noexpand\bookmarksetup{%
+			numbered={\cfgpdfsecnumbookmarks},%
+			openlevel={\cfgbookmarksopenlevel}%
+		}%
+	}\x%
 	\endgroup%
 	\global\def\GLOBALenvappendix {false}%
 	\global\def\GLOBALtitlerequirechapter {true}%
@@ -5893,8 +5911,6 @@
 }
 \hypersetup{
 	keeppdfinfo,
-	bookmarksopen={\cfgpdfbookmarkopen},
-	bookmarksopenlevel={\cfgbookmarksopenlevel},
 	bookmarkstype={toc},
 	pdfauthor={\pdfmetainfoauthor},
 	pdfcenterwindow={\cfgpdfcenterwindow},
@@ -5913,16 +5929,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={07/06/2026},
+		Template.Date={02/07/2026},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Tesis},
 		Template.Type={Normal},
-		Template.Version.Dev={3.5.0-THS},
-		Template.Version.Hash={D6EB4FBFA3011F444278AE0A88E30E8C},
-		Template.Version.Release={3.5.0},
+		Template.Version.Dev={3.5.1-THS},
+		Template.Version.Hash={8253DAE18ADB0952C902334BA9AF3180},
+		Template.Version.Release={3.5.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Tesis},
 		Template.Web.Manual={https://template-latex.github.io/tesis},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5934,7 +5950,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Tesis v3.5.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Tesis v3.5.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5942,6 +5958,16 @@
 	pdftitle={\pdfmetainfotitle},
 	pdftoolbar={\cfgpdftoolbar}
 }
+% El paquete bookmark (TeX Live 2026) reenvía el valor de bookmarksopen sin
+% expandir a su clave booleana 'open', que solo acepta true/false literales.
+% Se expanden los valores de configuración antes de pasarlos a \hypersetup.
+\begingroup
+\edef\x{\endgroup
+	\noexpand\hypersetup{%
+		bookmarksopen={\cfgpdfbookmarkopen},%
+		bookmarksopenlevel={\cfgbookmarksopenlevel}%
+	}%
+}\x
 
 % -----------------------------------------------------------------------------
 % Establece la carpeta de imágenes por defecto
@@ -6822,7 +6848,7 @@
 	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
 	\ifthenelse{\equal{\hfstyle}{style1}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -6851,11 +6877,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style1-i}}{% Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LE,RO]{\nouppercase{\rightmark}}
@@ -6884,11 +6910,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style1-d}}{% Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LO,RE]{\nouppercase{\rightmark}}
@@ -6917,11 +6943,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style2}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -6950,11 +6976,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style2-i}}{% Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LE,RO]{\nouppercase{\rightmark}}
@@ -6983,11 +7009,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style1-d}}{% Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[LO,RE]{\nouppercase{\rightmark}}
@@ -7016,11 +7042,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style3}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\fancyhead[L]{%
@@ -7041,11 +7067,11 @@
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style4}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -7056,11 +7082,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style5}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\fancyhead[L]{%
@@ -7091,11 +7117,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style5-d}}{% Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\fancyhead[L]{%
@@ -7126,11 +7152,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style5-i}}{% Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\fancyhead[L]{%
@@ -7161,11 +7187,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style6}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[L]{\universitydepartment}
 			\fancyfoot[C]{\thepage}
@@ -7174,55 +7200,55 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style7}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style8}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[R]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style8-d}}{% Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[RO,LE]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style8-i}}{% Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[RE,LO]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style9}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -7234,11 +7260,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style9-d}}{% Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -7250,11 +7276,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style9-i}}{% Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -7266,11 +7292,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style10}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
@@ -7301,11 +7327,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style10-i}}{% Impar izquierdo
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
@@ -7336,11 +7362,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style10-d}}{% Impar derecho
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{%
@@ -7371,11 +7397,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style11}}{% Similar a 1
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -7404,11 +7430,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style12}}{% Similar a 6
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[L]{\universitydepartment}
 			\fancyfoot[C]{\thepage \namepageof \getpagerefnumber{TotPages}}
@@ -7417,11 +7443,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style13}}{% Similar a 3
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\fancyhead[L]{%
@@ -7442,11 +7468,11 @@
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style14}}{% Similar a 4
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -7457,11 +7483,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style15}}{% Similar a 1
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
@@ -7477,24 +7503,24 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style16}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style16}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 	}
 	% Aplica el estilo de página
 	\fancypagestyle{plain}{%
 		\fancyheadoffset{0pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}
 	% Define estilos por defecto en flotantes
 	\floatpagestyle{plain}
@@ -8072,11 +8098,11 @@
 	% Actualiza headers
 	\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 		% Define funciones generales
-		\def\COREhfstyledefA {% 1, 2, 4, 9, 11, 14, 15
+		\def\corehfstyledefA {% 1, 2, 4, 9, 11, 14, 15
 			\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
 			\fancyhead[L]{\nouppercase{\leftmark}}
 		}
-		\def\COREhfstyledefB {% 5
+		\def\corehfstyledefB {% 5
 			\fancypagestyle{plain}{%
 				\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 					\fancyhead[R]{%
@@ -8102,7 +8128,7 @@
 				\fancyhead[R]{\nouppercase{\leftmark}}
 			}
 		}
-		\def\COREhfstyledefC {% 10
+		\def\corehfstyledefC {% 10
 			\fancypagestyle{plain}{%
 				\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 					\fancyhead[L]{%
@@ -8130,7 +8156,7 @@
 		}
 		% Actualiza los header-footer
 		\ifthenelse{\equal{\hfstyle}{style1}}{%
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style1-i}}{% Impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
@@ -8141,7 +8167,7 @@
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style2}}{%
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style2-i}}{% Impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
@@ -8152,43 +8178,43 @@
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style4}}{%
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style5}}{%
-			\COREhfstyledefB
+			\corehfstyledefB
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style5-d}}{% Impar derecho
-			\COREhfstyledefB
+			\corehfstyledefB
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style5-i}}{% Impar izquierdo
-			\COREhfstyledefB
+			\corehfstyledefB
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style9}}{%
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style9-d}}{% Impar derecho
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style9-i}}{% Impar izquierdo
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style10}}{%
-			\COREhfstyledefC
+			\corehfstyledefC
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style10-d}}{% Impar derecho
-			\COREhfstyledefC
+			\corehfstyledefC
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style10-i}}{% Impar izquierdo
-			\COREhfstyledefC
+			\corehfstyledefC
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style11}}{% Similar a 1
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style14}}{% Similar a 4
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 		\ifthenelse{\equal{\hfstyle}{style15}}{% Similar a 1
-			\COREhfstyledefA
+			\corehfstyledefA
 		}{%
 			% No se encontró el header-footer, no hace nada
 		}}}}}}}}}}}}}}}}}}}
